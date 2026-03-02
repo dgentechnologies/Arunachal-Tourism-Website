@@ -51,17 +51,15 @@ export const startAiRequest = () => {
     const waitSeconds = toWaitSeconds(requestCooldownMs);
     throw createQuotaError(`An AI request is already in progress. Please wait ${waitSeconds} seconds and try again.`);
   }
-  requestInFlight = true;
   if (now < quotaCooldownUntil) {
     const waitSeconds = toWaitSeconds(quotaCooldownUntil - now);
-    requestInFlight = false;
     throw createQuotaError(`AI requests are temporarily paused due to quota limits. Please wait ${waitSeconds} seconds and try again.`);
   }
   if (now - lastRequestAt < requestCooldownMs) {
     const waitSeconds = toWaitSeconds(lastRequestAt + requestCooldownMs - now);
-    requestInFlight = false;
     throw createQuotaError(`AI requests are rate-limited on the free tier. Please wait ${waitSeconds} seconds before trying again.`);
   }
+  requestInFlight = true;
   lastRequestAt = now;
   return () => {
     requestInFlight = false;
