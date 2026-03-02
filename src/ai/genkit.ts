@@ -1,3 +1,4 @@
+import {randomUUID} from 'crypto';
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/google-genai';
 
@@ -27,7 +28,7 @@ const maxRequestDurationMs = parseCooldownMs(process.env.AI_REQUEST_TIMEOUT_MS, 
 let lastRequestAt = 0;
 let quotaCooldownUntil = 0;
 let requestInFlight = false;
-let activeRequestToken = 0;
+let activeRequestToken: string | null = null;
 
 const isResourceLimitError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') {
@@ -65,19 +66,19 @@ export const tryAcquireAiRequestSlot = () => {
     throw createQuotaError(`AI requests are rate-limited on the free tier. Please wait ${waitSeconds} seconds before trying again.`);
   }
   requestInFlight = true;
-  const requestToken = activeRequestToken + 1;
+  const requestToken = randomUUID();
   activeRequestToken = requestToken;
   lastRequestAt = now;
   const timeoutId = setTimeout(() => {
     if (activeRequestToken === requestToken) {
       requestInFlight = false;
-      activeRequestToken = 0;
+      activeRequestToken = null;
     }
   }, maxRequestDurationMs);
   return () => {
     if (activeRequestToken === requestToken) {
       requestInFlight = false;
-      activeRequestToken = 0;
+      activeRequestToken = null;
     }
     clearTimeout(timeoutId);
   };
