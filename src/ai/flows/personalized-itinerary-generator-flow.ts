@@ -7,7 +7,7 @@
  * - PersonalizedItineraryGeneratorOutput - The return type for the generatePersonalizedItinerary function.
  */
 
-import {ai, assertAiRequestAllowed, handleAiRequestError, releaseAiRequest} from '@/ai/genkit';
+import {ai, startAiRequest, handleAiRequestError} from '@/ai/genkit';
 import {z} from 'genkit';
 
 // Define the input schema
@@ -54,14 +54,14 @@ export type PersonalizedItineraryGeneratorOutput = z.infer<
 export async function generatePersonalizedItinerary(
   input: PersonalizedItineraryGeneratorInput
 ): Promise<PersonalizedItineraryGeneratorOutput> {
-  assertAiRequestAllowed();
+  const release = startAiRequest();
   try {
     return await personalizedItineraryGeneratorFlow(input);
   } catch (error) {
     handleAiRequestError(error);
     throw error;
   } finally {
-    releaseAiRequest();
+    release();
   }
 }
 
