@@ -23,6 +23,7 @@ const parseCooldownMs = (value: string | undefined, fallback: number) => {
 };
 const requestCooldownMs = parseCooldownMs(process.env.AI_REQUEST_COOLDOWN_MS, DEFAULT_COOLDOWN_MS);
 const quotaCooldownMs = parseCooldownMs(process.env.AI_QUOTA_COOLDOWN_MS, requestCooldownMs);
+const maxRequestDurationMs = parseCooldownMs(process.env.AI_REQUEST_TIMEOUT_MS, DEFAULT_COOLDOWN_MS);
 let lastRequestAt = 0;
 let quotaCooldownUntil = 0;
 let requestInFlight = false;
@@ -64,7 +65,11 @@ export const tryAcquireAiRequestSlot = () => {
   }
   requestInFlight = true;
   lastRequestAt = now;
+  const timeoutId = setTimeout(() => {
+    requestInFlight = false;
+  }, maxRequestDurationMs);
   return () => {
+    clearTimeout(timeoutId);
     requestInFlight = false;
   };
 };
