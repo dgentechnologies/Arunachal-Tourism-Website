@@ -49,11 +49,10 @@ const createQuotaError = (message: string) => {
 
 const toWaitSeconds = (waitMs: number) => Math.max(1, Math.ceil(waitMs / 1000));
 
-export const acquireAiRequestSlot = () => {
+export const tryAcquireAiRequestSlot = () => {
   const now = Date.now();
   if (requestInFlight) {
-    const waitSeconds = toWaitSeconds(requestCooldownMs);
-    throw createQuotaError(`An AI request is already in progress. Please wait ${waitSeconds} seconds and try again.`);
+    throw createQuotaError('An AI request is already in progress. Please wait for it to finish before trying again.');
   }
   if (now < quotaCooldownUntil) {
     const waitSeconds = toWaitSeconds(quotaCooldownUntil - now);
