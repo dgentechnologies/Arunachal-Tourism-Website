@@ -8,10 +8,11 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { generatePersonalizedItinerary, PersonalizedItineraryGeneratorOutput } from "@/ai/flows/personalized-itinerary-generator-flow"
-import { Loader2, Sparkles, Calendar, MapPin, ListChecks } from "lucide-react"
+import { Loader2, Sparkles, Calendar, MapPin, Utensils, BedDouble, CheckCircle2, Star } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 
 const itinerarySchema = z.object({
   interests: z.string().min(3, "Please describe your interests"),
@@ -136,31 +137,98 @@ export default function ItineraryPage() {
 
           {result && (
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <Card className="border-none shadow-xl overflow-hidden">
-                <CardHeader className="bg-primary text-primary-foreground">
-                  <CardTitle className="font-headline flex items-center gap-2">
-                    <ListChecks className="h-5 w-5" />
-                    Personalized Itinerary
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-8">
-                  <div className="prose prose-green max-w-none whitespace-pre-wrap leading-relaxed text-foreground">
-                    {result.itinerary}
-                  </div>
-                </CardContent>
-              </Card>
-
+              {/* Day-by-day itinerary cards */}
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-primary font-headline flex items-center gap-2">
-                  <MapPin className="h-6 w-6" />
+                  <Calendar className="h-6 w-6" />
+                  Your Day-by-Day Journey
+                </h3>
+                <div className="relative">
+                  {/* Timeline line */}
+                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20 hidden md:block" />
+                  <div className="space-y-6">
+                    {result.itineraryDays.map((day) => (
+                      <div key={day.dayNumber} className="relative md:pl-16">
+                        {/* Day number circle on timeline */}
+                        <div className="absolute left-0 top-6 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-sm shadow-md z-10">
+                          Day {day.dayNumber}
+                        </div>
+                        <Card className="border border-border/60 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                          {/* Card header */}
+                          <div className="bg-gradient-to-r from-primary/90 to-primary px-6 py-4">
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <Badge className="mb-2 bg-accent text-accent-foreground md:hidden">Day {day.dayNumber}</Badge>
+                                <h4 className="text-lg font-bold text-primary-foreground font-headline leading-snug">{day.title}</h4>
+                                <div className="flex items-center gap-1.5 mt-1 text-primary-foreground/80 text-sm">
+                                  <MapPin className="h-3.5 w-3.5 shrink-0" />
+                                  <span>{day.location}</span>
+                                </div>
+                              </div>
+                              <div className="shrink-0 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/20 text-primary-foreground font-bold text-xs text-center leading-tight p-1">
+                                Day<br/>{day.dayNumber}
+                              </div>
+                            </div>
+                          </div>
+
+                          <CardContent className="p-5 space-y-4">
+                            {/* Description */}
+                            <p className="text-sm text-muted-foreground leading-relaxed">{day.description}</p>
+
+                            <Separator />
+
+                            {/* Activities */}
+                            <div>
+                              <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Activities</h5>
+                              <ul className="space-y-1.5">
+                                {day.activities.map((activity, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-sm">
+                                    <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                                    <span>{activity}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <Separator />
+
+                            {/* Meals & Accommodation */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div className="bg-secondary/40 rounded-lg p-3 space-y-1">
+                                <div className="flex items-center gap-1.5 text-xs font-semibold text-primary uppercase tracking-wider">
+                                  <Utensils className="h-3.5 w-3.5" />
+                                  Meals
+                                </div>
+                                <p className="text-xs text-muted-foreground leading-relaxed">{day.meals}</p>
+                              </div>
+                              <div className="bg-secondary/40 rounded-lg p-3 space-y-1">
+                                <div className="flex items-center gap-1.5 text-xs font-semibold text-primary uppercase tracking-wider">
+                                  <BedDouble className="h-3.5 w-3.5" />
+                                  Stay
+                                </div>
+                                <p className="text-xs text-muted-foreground leading-relaxed">{day.accommodation}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Best trip suggestions */}
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-primary font-headline flex items-center gap-2">
+                  <Star className="h-6 w-6 text-accent fill-accent" />
                   Best Trip Suggestions
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {result.bestTripSuggestions.map((suggestion, idx) => (
-                    <Card key={idx} className="border-none shadow-md hover:shadow-lg transition-shadow bg-accent/5">
+                    <Card key={idx} className="border border-border/60 shadow-md hover:shadow-lg transition-shadow bg-accent/5">
                       <CardContent className="p-5">
                         <div className="flex gap-4">
-                          <div className="bg-accent h-8 w-8 rounded-full flex items-center justify-center font-bold text-accent-foreground shrink-0">
+                          <div className="bg-primary h-9 w-9 rounded-full flex items-center justify-center font-bold text-primary-foreground shrink-0 text-sm">
                             {idx + 1}
                           </div>
                           <p className="text-sm font-medium leading-relaxed">{suggestion}</p>

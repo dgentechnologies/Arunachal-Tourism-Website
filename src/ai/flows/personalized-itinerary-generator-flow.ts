@@ -26,11 +26,22 @@ export type PersonalizedItineraryGeneratorInput = z.infer<
   typeof PersonalizedItineraryGeneratorInputSchema
 >;
 
+// Define the day schema
+const ItineraryDaySchema = z.object({
+  dayNumber: z.number().int().positive().describe('The day number, e.g. 1, 2, 3.'),
+  title: z.string().describe('A short, evocative title for the day, e.g. "Arrival in Itanagar & Cultural Immersion".'),
+  location: z.string().describe('The primary location or place visited on this day.'),
+  description: z.string().describe('A 2-3 sentence overview of the day.'),
+  activities: z.array(z.string()).describe('A list of 3-5 specific activities for the day.'),
+  meals: z.string().describe('Meal highlights or recommendations for the day, e.g. "Breakfast at hotel, Lunch at local dhabha, Dinner with Adi tribal feast".'),
+  accommodation: z.string().describe('Accommodation suggestion for the night, e.g. "Hotel Donyi Polo Ashok, Itanagar".'),
+});
+
 // Define the output schema
 const PersonalizedItineraryGeneratorOutputSchema = z.object({
-  itinerary: z
-    .string()
-    .describe('A detailed daily itinerary for the trip in Arunachal Pradesh.'),
+  itineraryDays: z
+    .array(ItineraryDaySchema)
+    .describe('A structured day-by-day itinerary for the trip in Arunachal Pradesh.'),
   bestTripSuggestions: z
     .array(z.string())
     .describe('A list of suggested best trips or destinations with brief descriptions for Arunachal Pradesh.'),
@@ -61,8 +72,15 @@ Preferred Activities: {{#each preferredActivities}}
 {{/each}}
 
 Please generate:
-1. A detailed day-by-day itinerary for a trip to Arunachal Pradesh, tailored to the user's interests and preferred activities for the specified duration.
-2. A list of 3-5 'Best Trip' suggestions within Arunachal Pradesh, providing a brief description for each, that align with the user's interests.
+1. A structured day-by-day itinerary as an array of day objects. For each of the {{{durationDays}}} days, provide:
+   - dayNumber (integer, starting at 1)
+   - title (a short evocative title for that day)
+   - location (primary place visited)
+   - description (2-3 sentence overview)
+   - activities (array of 3-5 specific activities)
+   - meals (meal highlights or recommendations)
+   - accommodation (hotel/lodge suggestion for the night)
+2. A list of 3-5 'Best Trip' suggestions within Arunachal Pradesh, each as a concise string with name and brief description, that align with the user's interests.
 
 Ensure the itinerary and suggestions highlight the unique natural beauty, culture, and adventure opportunities of Arunachal Pradesh.
 `,
