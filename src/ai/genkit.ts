@@ -51,6 +51,12 @@ const createQuotaError = (message: string) => {
 };
 
 const toWaitSeconds = (waitMs: number) => Math.max(1, Math.ceil(waitMs / 1000));
+const resetRequestState = (requestToken: string) => {
+  if (activeRequestToken === requestToken) {
+    requestInFlight = false;
+    activeRequestToken = null;
+  }
+};
 
 export const tryAcquireAiRequestSlot = () => {
   const now = Date.now();
@@ -70,22 +76,17 @@ export const tryAcquireAiRequestSlot = () => {
   activeRequestToken = requestToken;
   lastRequestAt = now;
   const timeoutId = setTimeout(() => {
-    if (activeRequestToken === requestToken) {
-      requestInFlight = false;
-      activeRequestToken = null;
-    }
+    resetRequestState(requestToken);
   }, maxRequestDurationMs);
   return () => {
-    if (activeRequestToken === requestToken) {
-      requestInFlight = false;
-      activeRequestToken = null;
-    }
     clearTimeout(timeoutId);
+    resetRequestState(requestToken);
   };
 };
 
 export const handleAiRequestError = (error: unknown) => {
   if (isResourceLimitError(error)) {
     quotaCooldownUntil = Date.now() + quotaCooldownMs;
+    console.warn('AI request cooldown triggered due to quota limits.');
   }
 };
