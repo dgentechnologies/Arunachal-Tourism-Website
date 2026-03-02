@@ -41,8 +41,8 @@ const isQuotaOrRateLimitError = (error: unknown): boolean => {
   const normalizedMessage = message.toLowerCase();
   return err.status === 429 ||
     err.code === 429 ||
-    message.includes('RESOURCE_EXHAUSTED') ||
-    message.includes('429') ||
+    normalizedMessage.includes('resource_exhausted') ||
+    normalizedMessage.includes('429') ||
     normalizedMessage.includes('quota') ||
     normalizedMessage.includes('rate limit');
 };
@@ -69,6 +69,7 @@ const resetRequestState = (requestToken: string) => {
 export const tryAcquireAiRequestSlot = () => {
   const now = Date.now();
   if (requestInFlight && requestInFlightSince && now - requestInFlightSince > maxRequestDurationMs) {
+    console.warn('AI request lock expired; resetting in-flight state.');
     forceResetRequestState();
   }
   if (requestInFlight) {
