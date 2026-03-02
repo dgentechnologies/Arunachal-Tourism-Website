@@ -29,7 +29,9 @@ let lastRequestAt = 0;
 let quotaCooldownUntil = 0;
 let requestInFlight = false;
 let activeRequestToken: string | null = null;
+let requestInFlightSince: number | null = null;
 
+// Genkit errors can surface as status/code 429, RESOURCE_EXHAUSTED, or quota text in message strings.
 const isResourceLimitError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') {
     return false;
@@ -51,15 +53,22 @@ const createQuotaError = (message: string) => {
 };
 
 const toWaitSeconds = (waitMs: number) => Math.max(1, Math.ceil(waitMs / 1000));
+const forceResetRequestState = () => {
+  requestInFlight = false;
+  activeRequestToken = null;
+  requestInFlightSince = null;
+};
 const resetRequestState = (requestToken: string) => {
   if (activeRequestToken === requestToken) {
-    requestInFlight = false;
-    activeRequestToken = null;
+    forceResetRequestState();
   }
 };
 
 export const tryAcquireAiRequestSlot = () => {
   const now = Date.now();
+  if (requestInFlight && requestInFlightSince && now - requestInFlightSince > maxRequestDurationMs) {
+    forceResetRequestState();
+  }
   if (requestInFlight) {
     throw createQuotaError('An AI request is already in progress. Please wait for it to finish before trying again.');
   }
@@ -72,6 +81,7 @@ export const tryAcquireAiRequestSlot = () => {
     throw createQuotaError(`AI requests are rate-limited on the free tier. Please wait ${waitSeconds} seconds before trying again.`);
   }
   requestInFlight = true;
+  requestInFlightSince = now;
   const requestToken = randomUUID();
   activeRequestToken = requestToken;
   lastRequestAt = now;
