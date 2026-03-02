@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { generatePersonalizedItinerary, PersonalizedItineraryGeneratorOutput } from "@/ai/flows/personalized-itinerary-generator-flow"
-import { Loader2, Sparkles, Calendar, MapPin, Utensils, BedDouble, CheckCircle2, Star, AlertCircle } from "lucide-react"
+import { Loader2, Sparkles, Calendar, MapPin, Utensils, BedDouble, CheckCircle2, Star } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
@@ -58,15 +58,21 @@ export default function ItineraryPage() {
       })
     } catch (error: any) {
       console.error("AI Generation Error:", error)
-      // Check for 429 Resource Exhausted / Too Many Requests
-      const isQuotaError = error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED") || error.message?.includes("quota");
+      
+      // Check for 429 Resource Exhausted / Quota Limit
+      const errorMessage = error.message || "";
+      const isQuotaError = errorMessage.includes("429") || 
+                          errorMessage.includes("RESOURCE_EXHAUSTED") || 
+                          errorMessage.includes("quota") ||
+                          error.status === 429 ||
+                          error.code === 429;
       
       toast({
         variant: "destructive",
         title: isQuotaError ? "API Quota Exceeded" : "Generation Failed",
         description: isQuotaError 
-          ? "Your Gemini API quota has been reached. If you are on the free tier, please wait a minute or check your Google AI Studio account for usage limits." 
-          : (error.message || "Failed to connect to the AI service. Please try again later."),
+          ? "You have reached your current API quota limit (429 Too Many Requests). On the free tier, this often happens after just a few requests. Please wait a minute before trying again." 
+          : "Failed to connect to the AI service. Please try again later.",
       })
     } finally {
       setLoading(false)

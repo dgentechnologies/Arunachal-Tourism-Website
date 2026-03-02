@@ -83,13 +83,20 @@ export default function PermitPage() {
       })
     } catch (err: any) {
       console.error("AI Review Error:", err)
-      const isQuotaError = err.message?.includes("429") || err.message?.includes("RESOURCE_EXHAUSTED");
+      
+      const errorMessage = err.message || "";
+      const isQuotaError = errorMessage.includes("429") || 
+                          errorMessage.includes("RESOURCE_EXHAUSTED") || 
+                          errorMessage.includes("quota") ||
+                          err.status === 429 ||
+                          err.code === 429;
+      
       toast({
         variant: "destructive",
         title: isQuotaError ? "API Quota Exceeded" : "Review Failed",
         description: isQuotaError 
-          ? "The AI service is currently rate-limited. Please wait a moment or check your Google AI Studio quota settings." 
-          : (err.message || "Failed to process the AI review. Please check your inputs and try again."),
+          ? "You have reached your current API quota limit (429 Too Many Requests). Please wait a moment before trying again." 
+          : "Failed to process the AI review. Please check your inputs and try again.",
       })
     } finally {
       setIsReviewing(false)

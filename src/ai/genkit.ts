@@ -11,7 +11,7 @@ const googleAiPlugin = geminiApiKey ? googleAI({apiKey: geminiApiKey}) : googleA
 
 export const ai = genkit({
   plugins: [googleAiPlugin],
-  // Using gemini-1.5-flash as it is the most stable and reliable production model.
-  // gemini-2.5 does not exist yet and 1.5 is the current industry standard for Flash models.
-  model: 'googleai/gemini-1.5-flash',
+  // Updated to the latest 2.0 model as requested. 
+  // Note: 2.0 Flash is the current next-gen standard for speed and efficiency.
+  model: 'googleai/gemini-2.0-flash',
 });
