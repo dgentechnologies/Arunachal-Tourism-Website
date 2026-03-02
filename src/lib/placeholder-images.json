@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-mountains",
+      "description": "Lush green mountains of Arunachal Pradesh",
+      "imageUrl": "https://images.unsplash.com/photo-1593285942976-70dbd769a590?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z3JlZW4lMjBtb3VudGFpbnN8ZW58MHx8fHwxNzcyNDc5MDIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "green mountains"
+    },
+    {
+      "id": "hotel-tawang",
+      "description": "Cozy mountain resort in Tawang",
+      "imageUrl": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3VudGFpbiUyMHJlc29ydHxlbnwwfHx8fDE3NzI0NzkwMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain resort"
+    },
+    {
+      "id": "hotel-ziro",
+      "description": "Eco-stay in Ziro valley",
+      "imageUrl": "https://images.unsplash.com/photo-1692080204221-b2b940f0e4f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2YWxsZXklMjBzdGF5fGVufDB8fHx8MTc3MjQ3OTAyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "valley stay"
+    },
+    {
+      "id": "transport-suv",
+      "description": "SUV for mountain travel",
+      "imageUrl": "https://images.unsplash.com/photo-1735864248280-07406026aa7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW91bnRhaW4lMjBzdXZ8ZW58MHx8fHwxNzcyNDc5MDIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain suv"
+    },
+    {
+      "id": "transport-bike",
+      "description": "Royal Enfield for Himalayan tours",
+      "imageUrl": "https://images.unsplash.com/photo-1764747995629-668b0a96bf37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhZHZlbnR1cmUlMjBiaWtlfGVufDB8fHx8MTc3MjQ3OTAyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "adventure bike"
+    },
+    {
+      "id": "culture-monastery",
+      "description": "Tawang Monastery landscape",
+      "imageUrl": "https://images.unsplash.com/photo-1659439904279-be4779887f6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxidWRkaGlzdCUyMG1vbmFzdGVyeXxlbnwwfHx8fDE3NzI0NzkwMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "buddhist monastery"
+    },
+    {
+      "id": "hospital-safety",
+      "description": "Modern hospital facility",
+      "imageUrl": "https://images.unsplash.com/photo-1596541223130-5d31a73fb6c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxob3NwaXRhbCUyMGJ1aWxkaW5nfGVufDB8fHx8MTc3MjM3NTA1NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hospital building"
+    }
+  ]
 }
