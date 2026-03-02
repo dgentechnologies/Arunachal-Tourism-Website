@@ -27,8 +27,9 @@ const maxRequestDurationMs = parseCooldownMs(process.env.AI_REQUEST_TIMEOUT_MS, 
 let lastRequestAt = 0;
 let quotaCooldownUntil = 0;
 let requestInFlight = false;
+let activeRequestToken = 0;
 
-const isQuotaError = (error: unknown): boolean => {
+const isResourceLimitError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') {
     return false;
   }
@@ -64,18 +65,26 @@ export const tryAcquireAiRequestSlot = () => {
     throw createQuotaError(`AI requests are rate-limited on the free tier. Please wait ${waitSeconds} seconds before trying again.`);
   }
   requestInFlight = true;
+  const requestToken = activeRequestToken + 1;
+  activeRequestToken = requestToken;
   lastRequestAt = now;
   const timeoutId = setTimeout(() => {
-    requestInFlight = false;
+    if (activeRequestToken === requestToken) {
+      requestInFlight = false;
+      activeRequestToken = 0;
+    }
   }, maxRequestDurationMs);
   return () => {
+    if (activeRequestToken === requestToken) {
+      requestInFlight = false;
+      activeRequestToken = 0;
+    }
     clearTimeout(timeoutId);
-    requestInFlight = false;
   };
 };
 
 export const handleAiRequestError = (error: unknown) => {
-  if (isQuotaError(error)) {
+  if (isResourceLimitError(error)) {
     quotaCooldownUntil = Date.now() + quotaCooldownMs;
   }
 };
