@@ -58,13 +58,15 @@ export default function ItineraryPage() {
       })
     } catch (error: any) {
       console.error("AI Generation Error:", error)
-      const isQuotaError = error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED");
+      // Check for 429 Resource Exhausted / Too Many Requests
+      const isQuotaError = error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED") || error.message?.includes("quota");
+      
       toast({
         variant: "destructive",
         title: isQuotaError ? "API Quota Exceeded" : "Generation Failed",
         description: isQuotaError 
-          ? "The Gemini API rate limit has been reached. Please wait a minute before trying again or check your Google AI Studio billing." 
-          : (error.message || "Failed to connect to the AI service. Please check your connection and try again."),
+          ? "Your Gemini API quota has been reached. If you are on the free tier, please wait a minute or check your Google AI Studio account for usage limits." 
+          : (error.message || "Failed to connect to the AI service. Please try again later."),
       })
     } finally {
       setLoading(false)
