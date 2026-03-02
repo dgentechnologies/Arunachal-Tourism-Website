@@ -32,17 +32,19 @@ let activeRequestToken: string | null = null;
 let requestInFlightSince: number | null = null;
 
 // Genkit errors can surface as status/code 429, RESOURCE_EXHAUSTED, or quota text in message strings.
-const isResourceLimitError = (error: unknown): boolean => {
+const isQuotaOrRateLimitError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') {
     return false;
   }
   const err = error as { status?: number; code?: number; message?: string };
   const message = err.message ?? '';
+  const normalizedMessage = message.toLowerCase();
   return err.status === 429 ||
     err.code === 429 ||
     message.includes('RESOURCE_EXHAUSTED') ||
     message.includes('429') ||
-    message.toLowerCase().includes('quota');
+    normalizedMessage.includes('quota') ||
+    normalizedMessage.includes('rate limit');
 };
 
 const createQuotaError = (message: string) => {
@@ -95,7 +97,7 @@ export const tryAcquireAiRequestSlot = () => {
 };
 
 export const handleAiRequestError = (error: unknown) => {
-  if (isResourceLimitError(error)) {
+  if (isQuotaOrRateLimitError(error)) {
     quotaCooldownUntil = Date.now() + quotaCooldownMs;
     console.warn('AI request cooldown triggered due to quota limits.');
   }
