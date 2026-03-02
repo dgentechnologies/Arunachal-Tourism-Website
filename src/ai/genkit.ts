@@ -15,3 +15,46 @@ export const ai = genkit({
   // Note: 2.0 Flash is the current next-gen standard for speed and efficiency.
   model: 'googleai/gemini-2.0-flash',
 });
+
+const DEFAULT_COOLDOWN_MS = 60_000;
+const requestCooldownMs = Number(process.env.AI_REQUEST_COOLDOWN_MS ?? DEFAULT_COOLDOWN_MS);
+const quotaCooldownMs = Number(process.env.AI_QUOTA_COOLDOWN_MS ?? requestCooldownMs);
+let lastRequestAt = 0;
+let quotaCooldownUntil = 0;
+
+const isQuotaError = (error: unknown): boolean => {
+  if (!error || typeof error !== 'object') {
+    return false;
+  }
+  const err = error as { status?: number; code?: number; message?: string };
+  const message = err.message ?? '';
+  return err.status === 429 ||
+    err.code === 429 ||
+    message.includes('RESOURCE_EXHAUSTED') ||
+    message.includes('429') ||
+    message.toLowerCase().includes('quota');
+};
+
+const createQuotaError = (message: string) => {
+  const error = new Error(message) as Error & { status?: number; code?: number };
+  error.status = 429;
+  error.code = 429;
+  return error;
+};
+
+export const assertAiRequestAllowed = () => {
+  const now = Date.now();
+  if (now < quotaCooldownUntil) {
+    throw createQuotaError('AI requests are temporarily paused due to quota limits. Please wait a minute and try again.');
+  }
+  if (now - lastRequestAt < requestCooldownMs) {
+    throw createQuotaError('AI requests are rate-limited on the free tier. Please wait a minute before trying again.');
+  }
+  lastRequestAt = now;
+};
+
+export const handleAiRequestError = (error: unknown) => {
+  if (isQuotaError(error)) {
+    quotaCooldownUntil = Date.now() + quotaCooldownMs;
+  }
+};
