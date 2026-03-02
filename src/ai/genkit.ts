@@ -11,6 +11,6 @@ const googleAiPlugin = geminiApiKey ? googleAI({apiKey: geminiApiKey}) : googleA
 
 export const ai = genkit({
   plugins: [googleAiPlugin],
-  // Using gemini-1.5-flash which is the stable production-ready model for Genkit 1.x
-  model: 'googleai/gemini-1.5-flash',
+  // Updated to gemini-2.5-flash per user request
+  model: 'googleai/gemini-2.5-flash',
 });
