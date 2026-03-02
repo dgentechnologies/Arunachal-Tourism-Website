@@ -21,6 +21,7 @@ const requestCooldownMs = Number(process.env.AI_REQUEST_COOLDOWN_MS ?? DEFAULT_C
 const quotaCooldownMs = Number(process.env.AI_QUOTA_COOLDOWN_MS ?? requestCooldownMs);
 let lastRequestAt = 0;
 let quotaCooldownUntil = 0;
+let requestInFlight = false;
 
 const isQuotaError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') {
@@ -44,12 +45,19 @@ const createQuotaError = (message: string) => {
 
 export const assertAiRequestAllowed = () => {
   const now = Date.now();
+  if (requestInFlight) {
+    const waitSeconds = Math.max(1, Math.ceil(requestCooldownMs / 1000));
+    throw createQuotaError(`An AI request is already in progress. Please wait ${waitSeconds} seconds and try again.`);
+  }
   if (now < quotaCooldownUntil) {
-    throw createQuotaError('AI requests are temporarily paused due to quota limits. Please wait a minute and try again.');
+    const waitSeconds = Math.max(1, Math.ceil((quotaCooldownUntil - now) / 1000));
+    throw createQuotaError(`AI requests are temporarily paused due to quota limits. Please wait ${waitSeconds} seconds and try again.`);
   }
   if (now - lastRequestAt < requestCooldownMs) {
-    throw createQuotaError('AI requests are rate-limited on the free tier. Please wait a minute before trying again.');
+    const waitSeconds = Math.max(1, Math.ceil((lastRequestAt + requestCooldownMs - now) / 1000));
+    throw createQuotaError(`AI requests are rate-limited on the free tier. Please wait ${waitSeconds} seconds before trying again.`);
   }
+  requestInFlight = true;
   lastRequestAt = now;
 };
 
@@ -57,4 +65,8 @@ export const handleAiRequestError = (error: unknown) => {
   if (isQuotaError(error)) {
     quotaCooldownUntil = Date.now() + quotaCooldownMs;
   }
+};
+
+export const releaseAiRequest = () => {
+  requestInFlight = false;
 };

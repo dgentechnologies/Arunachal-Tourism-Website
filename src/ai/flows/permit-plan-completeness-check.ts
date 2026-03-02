@@ -7,7 +7,7 @@
  * - PermitPlanOutput - The return type for the permitPlanCompletenessCheck function.
  */
 
-import { ai, assertAiRequestAllowed, handleAiRequestError } from '@/ai/genkit';
+import { ai, assertAiRequestAllowed, handleAiRequestError, releaseAiRequest } from '@/ai/genkit';
 import { z } from 'genkit';
 
 const PermitPlanInputSchema = z.object({
@@ -95,5 +95,7 @@ export async function permitPlanCompletenessCheck(input: PermitPlanInput): Promi
   } catch (error) {
     handleAiRequestError(error);
     throw error;
+  } finally {
+    releaseAiRequest();
   }
 }

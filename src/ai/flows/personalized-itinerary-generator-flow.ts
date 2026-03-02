@@ -7,7 +7,7 @@
  * - PersonalizedItineraryGeneratorOutput - The return type for the generatePersonalizedItinerary function.
  */
 
-import {ai, assertAiRequestAllowed, handleAiRequestError} from '@/ai/genkit';
+import {ai, assertAiRequestAllowed, handleAiRequestError, releaseAiRequest} from '@/ai/genkit';
 import {z} from 'genkit';
 
 // Define the input schema
@@ -60,6 +60,8 @@ export async function generatePersonalizedItinerary(
   } catch (error) {
     handleAiRequestError(error);
     throw error;
+  } finally {
+    releaseAiRequest();
   }
 }
 
