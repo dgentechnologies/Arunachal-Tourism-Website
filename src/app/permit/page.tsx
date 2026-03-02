@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -15,6 +14,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { permitPlanCompletenessCheck, PermitPlanOutput } from "@/ai/flows/permit-plan-completeness-check"
 import { AlertCircle, CheckCircle2, Loader2, Info } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { useToast } from "@/hooks/use-toast"
+
+// Increase timeout for Vercel Server Actions
+export const maxDuration = 60;
 
 const permitFormSchema = z.object({
   applicantName: z.string().min(2, "Name is required"),
@@ -35,6 +38,7 @@ const permitFormSchema = z.object({
 export default function PermitPage() {
   const [reviewResult, setReviewResult] = useState<PermitPlanOutput | null>(null)
   const [isReviewing, setIsReviewing] = useState(false)
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof permitFormSchema>>({
     resolver: zodResolver(permitFormSchema),
@@ -61,14 +65,29 @@ export default function PermitPage() {
 
     const values = form.getValues()
     setIsReviewing(true)
+    setReviewResult(null)
     try {
       const res = await permitPlanCompletenessCheck({
         ...values,
         destinations: values.destinations.split(',').map(d => d.trim()),
       })
+      
+      if (!res) {
+        throw new Error("The AI review tool returned an empty response. Please try again.")
+      }
+      
       setReviewResult(res)
-    } catch (err) {
-      console.error(err)
+      toast({
+        title: "AI Review Complete",
+        description: res.isComplete ? "Your plan looks great!" : "Please review the missing items.",
+      })
+    } catch (err: any) {
+      console.error("AI Review Error:", err)
+      toast({
+        variant: "destructive",
+        title: "Review Failed",
+        description: err.message || "Failed to process the AI review. Please check your inputs and try again.",
+      })
     } finally {
       setIsReviewing(false)
     }
@@ -258,11 +277,12 @@ export default function PermitPage() {
                   <div className="flex flex-col items-center justify-center py-8 text-center space-y-3">
                     <Loader2 className="h-8 w-8 animate-spin text-primary" />
                     <p className="text-sm font-medium">Reviewing your plan...</p>
+                    <p className="text-xs text-muted-foreground animate-pulse">Analyzing with AI...</p>
                   </div>
                 )}
 
                 {reviewResult && (
-                  <div className="space-y-4">
+                  <div className="space-y-4 animate-in fade-in duration-300">
                     <div className="flex items-center gap-2">
                       {reviewResult.isComplete ? (
                         <CheckCircle2 className="h-5 w-5 text-green-600" />

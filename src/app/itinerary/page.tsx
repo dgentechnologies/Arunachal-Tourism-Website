@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -10,9 +9,13 @@ import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { generatePersonalizedItinerary, PersonalizedItineraryGeneratorOutput } from "@/ai/flows/personalized-itinerary-generator-flow"
-import { Loader2, Sparkles, Calendar, MapPin, Utensils, BedDouble, CheckCircle2, Star } from "lucide-react"
+import { Loader2, Sparkles, Calendar, MapPin, Utensils, BedDouble, CheckCircle2, Star, AlertCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { useToast } from "@/hooks/use-toast"
+
+// Increase timeout for Vercel Server Actions
+export const maxDuration = 60;
 
 const itinerarySchema = z.object({
   interests: z.string().min(3, "Please describe your interests"),
@@ -23,6 +26,7 @@ const itinerarySchema = z.object({
 export default function ItineraryPage() {
   const [result, setResult] = useState<PersonalizedItineraryGeneratorOutput | null>(null)
   const [loading, setLoading] = useState(false)
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof itinerarySchema>>({
     resolver: zodResolver(itinerarySchema),
@@ -35,15 +39,30 @@ export default function ItineraryPage() {
 
   async function onSubmit(values: z.infer<typeof itinerarySchema>) {
     setLoading(true)
+    setResult(null)
     try {
       const res = await generatePersonalizedItinerary({
         interests: values.interests,
         durationDays: values.durationDays,
         preferredActivities: values.preferredActivities.split(',').map(a => a.trim())
       })
+      
+      if (!res) {
+        throw new Error("The AI was unable to generate a response. Please try again.")
+      }
+      
       setResult(res)
-    } catch (error) {
-      console.error(error)
+      toast({
+        title: "Itinerary Generated!",
+        description: "Your personalized Himalayan adventure is ready.",
+      })
+    } catch (error: any) {
+      console.error("AI Generation Error:", error)
+      toast({
+        variant: "destructive",
+        title: "Generation Failed",
+        description: error.message || "Failed to connect to the AI service. Please check your connection and try again.",
+      })
     } finally {
       setLoading(false)
     }
@@ -132,29 +151,26 @@ export default function ItineraryPage() {
             <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-8 space-y-4">
               <Loader2 className="h-12 w-12 animate-spin text-primary" />
               <p className="text-lg font-medium animate-pulse">Mapping out your Himalayan adventure...</p>
+              <p className="text-sm text-muted-foreground">This may take up to a minute</p>
             </div>
           )}
 
           {result && (
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              {/* Day-by-day itinerary cards */}
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-primary font-headline flex items-center gap-2">
                   <Calendar className="h-6 w-6" />
                   Your Day-by-Day Journey
                 </h3>
                 <div className="relative">
-                  {/* Timeline line */}
                   <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20 hidden md:block" />
                   <div className="space-y-6">
                     {result.itineraryDays.map((day) => (
                       <div key={day.dayNumber} className="relative md:pl-16">
-                        {/* Day number circle on timeline */}
                         <div className="absolute left-0 top-6 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-sm shadow-md z-10">
                           Day {day.dayNumber}
                         </div>
                         <Card className="border border-border/60 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                          {/* Card header */}
                           <div className="bg-gradient-to-r from-primary/90 to-primary px-6 py-4">
                             <div className="flex items-start justify-between gap-3">
                               <div>
@@ -172,12 +188,8 @@ export default function ItineraryPage() {
                           </div>
 
                           <CardContent className="p-5 space-y-4">
-                            {/* Description */}
                             <p className="text-sm text-muted-foreground leading-relaxed">{day.description}</p>
-
                             <Separator />
-
-                            {/* Activities */}
                             <div>
                               <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Activities</h5>
                               <ul className="space-y-1.5">
@@ -189,10 +201,7 @@ export default function ItineraryPage() {
                                 ))}
                               </ul>
                             </div>
-
                             <Separator />
-
-                            {/* Meals & Accommodation */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               <div className="bg-secondary/40 rounded-lg p-3 space-y-1">
                                 <div className="flex items-center gap-1.5 text-xs font-semibold text-primary uppercase tracking-wider">
@@ -217,7 +226,6 @@ export default function ItineraryPage() {
                 </div>
               </div>
 
-              {/* Best trip suggestions */}
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-primary font-headline flex items-center gap-2">
                   <Star className="h-6 w-6 text-accent fill-accent" />
