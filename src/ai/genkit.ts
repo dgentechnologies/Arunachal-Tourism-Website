@@ -17,8 +17,12 @@ export const ai = genkit({
 });
 
 const DEFAULT_COOLDOWN_MS = 60_000;
-const requestCooldownMs = Number(process.env.AI_REQUEST_COOLDOWN_MS ?? DEFAULT_COOLDOWN_MS);
-const quotaCooldownMs = Number(process.env.AI_QUOTA_COOLDOWN_MS ?? requestCooldownMs);
+const parseCooldownMs = (value: string | undefined, fallback: number) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+};
+const requestCooldownMs = parseCooldownMs(process.env.AI_REQUEST_COOLDOWN_MS, DEFAULT_COOLDOWN_MS);
+const quotaCooldownMs = parseCooldownMs(process.env.AI_QUOTA_COOLDOWN_MS, requestCooldownMs);
 let lastRequestAt = 0;
 let quotaCooldownUntil = 0;
 let requestInFlight = false;
@@ -45,7 +49,7 @@ const createQuotaError = (message: string) => {
 
 const toWaitSeconds = (waitMs: number) => Math.max(1, Math.ceil(waitMs / 1000));
 
-export const startAiRequest = () => {
+export const acquireAiRequestSlot = () => {
   const now = Date.now();
   if (requestInFlight) {
     const waitSeconds = toWaitSeconds(requestCooldownMs);
