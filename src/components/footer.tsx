@@ -19,28 +19,28 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground font-headline">Quick Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/guides" className="hover:text-primary">Travel Guides</Link></li>
-              <li><Link href="/hotels" className="hover:text-primary">Hotel Booking</Link></li>
-              <li><Link href="/transport" className="hover:text-primary">Transport Services</Link></li>
-              <li><Link href="/permit" className="hover:text-primary">Apply for Permit</Link></li>
+              <li><Link href="/guides" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Travel Guides</Link></li>
+              <li><Link href="/hotels" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Hotel Booking</Link></li>
+              <li><Link href="/transport" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Transport Services</Link></li>
+              <li><Link href="/permit" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Apply for Permit</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground font-headline">Support</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/safety" className="hover:text-primary">Safety & Security</Link></li>
-              <li><Link href="/faq" className="hover:text-primary">FAQs</Link></li>
-              <li><Link href="/contact" className="hover:text-primary">Contact Us</Link></li>
-              <li><Link href="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
+              <li><Link href="/safety" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Safety & Security</Link></li>
+              <li><Link href="/faq" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">FAQs</Link></li>
+              <li><Link href="/contact" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Contact Us</Link></li>
+              <li><Link href="/privacy" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">Privacy Policy</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground font-headline">Connect</h4>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Facebook className="h-5 w-5" /></Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Twitter className="h-5 w-5" /></Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Instagram className="h-5 w-5" /></Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Youtube className="h-5 w-5" /></Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-125 hover:-translate-y-0.5"><Facebook className="h-5 w-5" /></Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-125 hover:-translate-y-0.5"><Twitter className="h-5 w-5" /></Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-125 hover:-translate-y-0.5"><Instagram className="h-5 w-5" /></Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-125 hover:-translate-y-0.5"><Youtube className="h-5 w-5" /></Link>
             </div>
           </div>
         </div>

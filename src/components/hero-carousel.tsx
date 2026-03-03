@@ -92,11 +92,11 @@ export function HeroCarousel() {
       {/* Content */}
       <div
         className={cn(
-          "container relative z-10 px-4 text-center text-white flex flex-col items-center transition-all duration-300",
-          isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
+          "container relative z-10 px-4 text-center text-white flex flex-col items-center transition-all duration-500",
+          isTransitioning ? "opacity-0 translate-y-4 scale-[0.98]" : "opacity-100 translate-y-0 scale-100"
         )}
       >
-        <div className="mb-3 inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium">
+        <div className="mb-3 inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium hover:bg-white/25 transition-colors duration-300 cursor-default">
           <span className="inline-block h-2 w-2 rounded-full bg-accent animate-pulse" />
           {slide.tagline}
         </div>
@@ -108,7 +108,10 @@ export function HeroCarousel() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
           <Link href="/permit" className="w-full sm:w-auto">
-            <Button size="lg" className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl">
+            <Button
+              size="lg"
+              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
+            >
               Get Your Permit <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
@@ -116,7 +119,7 @@ export function HeroCarousel() {
             <Button
               size="lg"
               variant="secondary"
-              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl bg-white/20 backdrop-blur-md text-white hover:bg-white/30 border-none"
+              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl bg-white/20 backdrop-blur-md text-white hover:bg-white/35 border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
             >
               Plan My Trip
             </Button>
@@ -128,14 +131,14 @@ export function HeroCarousel() {
       <button
         onClick={prev}
         aria-label="Previous slide"
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 text-white hover:bg-black/50 transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 text-white hover:bg-black/55 hover:scale-110 transition-all duration-200 active:scale-95"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
       <button
         onClick={next}
         aria-label="Next slide"
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 text-white hover:bg-black/50 transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 text-white hover:bg-black/55 hover:scale-110 transition-all duration-200 active:scale-95"
       >
         <ChevronRight className="h-6 w-6" />
       </button>

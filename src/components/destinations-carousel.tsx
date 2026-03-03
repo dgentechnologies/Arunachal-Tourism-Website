@@ -115,26 +115,31 @@ export function DestinationsCarousel() {
               <Link
                 key={dest.name}
                 href={dest.href}
-                className="group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] rounded-2xl overflow-hidden shadow-md snap-start"
+                className="group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] rounded-2xl overflow-hidden shadow-md snap-start hover:shadow-2xl transition-shadow duration-500"
               >
                 {img && (
                   <Image
                     src={img.imageUrl}
                     alt={img.description}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     data-ai-hint={img.imageHint}
                   />
                 )}
-                {/* gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                {/* gradient overlay – slightly more opaque on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent group-hover:from-black/90 transition-all duration-500" />
+                {/* shimmer sweep */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
                   <div className="flex items-center gap-1.5 text-xs font-medium text-white/70 mb-1">
                     <MapPin className="h-3.5 w-3.5" />
                     Arunachal Pradesh
                   </div>
                   <h3 className="text-xl font-bold font-headline">{dest.name}</h3>
                   <p className="text-sm text-white/80 mt-0.5">{dest.tagline}</p>
+                  <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-white/50 group-hover:text-white/90 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    Explore <ChevronRight className="h-3.5 w-3.5" />
+                  </div>
                 </div>
               </Link>
             )

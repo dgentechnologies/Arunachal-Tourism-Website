@@ -58,17 +58,17 @@ export function Nav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors rounded-md",
+                  "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md hover:scale-105",
                   transparent
                     ? pathname === item.href
                       ? "text-white bg-white/20"
-                      : "text-white/80 hover:text-white hover:bg-white/10"
+                      : "text-white/80 hover:text-white hover:bg-white/15"
                     : pathname === item.href
                       ? "text-primary bg-secondary/50"
-                      : "text-muted-foreground hover:text-primary"
+                      : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
                 )}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-4 w-4 transition-transform duration-200" />
                 <span>{item.name}</span>
               </Link>
             )
@@ -77,8 +77,8 @@ export function Nav() {
             <Button
               size="sm"
               className={cn(
-                "font-semibold",
-                transparent && "bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
+                transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
               )}
             >
               Sign In
