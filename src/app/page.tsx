@@ -1,10 +1,12 @@
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
-import { Hotel, Car, ShieldCheck, FileText, Compass, MapPin, ArrowRight } from "lucide-react"
+import { Hotel, Car, ShieldCheck, FileText, Compass, MapPin } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { HeroCarousel } from "@/components/hero-carousel"
+import { DestinationsCarousel } from "@/components/destinations-carousel"
 
 const features = [
   {
@@ -52,43 +54,12 @@ const features = [
 ]
 
 export default function Home() {
-  const heroImg = PlaceHolderImages.find(img => img.id === 'hero-mountains')
-
   return (
     <div className="flex flex-col gap-12 md:gap-20 pb-20">
-      {/* Hero Section */}
-      <section className="relative h-[80vh] md:h-[85vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden">
-        {heroImg && (
-          <Image
-            src={heroImg.imageUrl}
-            alt={heroImg.description}
-            fill
-            className="object-cover brightness-[0.65]"
-            priority
-            data-ai-hint={heroImg.imageHint}
-          />
-        )}
-        <div className="container relative z-10 px-4 text-center text-white flex flex-col items-center">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold font-headline mb-4 md:mb-6 drop-shadow-lg max-w-4xl leading-tight">
-            Arunachal Pradesh: The Land of the Rising Sun
-          </h1>
-          <p className="text-base md:text-xl max-w-2xl mb-8 md:mb-10 drop-shadow-md font-medium text-white/90">
-            Embark on a journey through untouched landscapes, vibrant tribal cultures, and serene monasteries.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Link href="/permit" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl">
-                Get Your Permit <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/itinerary" className="w-full sm:w-auto">
-              <Button size="lg" variant="secondary" className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl bg-white/20 backdrop-blur-md text-white hover:bg-white/30 border-none">
-                Plan My Trip
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Hero Carousel - bleeds up behind the transparent fixed nav */}
+      <div className="-mt-16">
+        <HeroCarousel />
+      </div>
 
       {/* Features Grid */}
       <section className="container mx-auto px-4">
@@ -113,6 +84,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Destinations Carousel */}
+      <DestinationsCarousel />
 
       {/* Destination Preview */}
       <section className="bg-primary/5 py-12 md:py-20">
