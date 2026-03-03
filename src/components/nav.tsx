@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Mountain, Hotel, Car, ShieldAlert, FileText, Compass, Menu, X } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
@@ -17,16 +17,36 @@ const navItems = [
   { name: "Safety", href: "/safety", icon: ShieldAlert },
 ]
 
+const SCROLL_THRESHOLD = 60
+
 export function Nav() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const isHome = pathname === "/"
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > SCROLL_THRESHOLD)
+    handler()
+    window.addEventListener("scroll", handler, { passive: true })
+    return () => window.removeEventListener("scroll", handler)
+  }, [])
+
+  const transparent = isHome && !scrolled && !isOpen
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
+    <nav
+      className={cn(
+        "fixed top-0 z-50 w-full transition-all duration-300",
+        transparent
+          ? "border-transparent bg-transparent"
+          : "border-b bg-background/90 backdrop-blur-md shadow-sm"
+      )}
+    >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <Mountain className="h-8 w-8 text-primary" />
-          <span className="text-xl font-bold tracking-tight text-primary font-headline">Arunachal Explore</span>
+          <Mountain className={cn("h-8 w-8", transparent ? "text-white" : "text-primary")} />
+          <span className={cn("text-xl font-bold tracking-tight font-headline", transparent ? "text-white" : "text-primary")}>Arunachal Explore</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -38,8 +58,14 @@ export function Nav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors hover:text-primary rounded-md",
-                  pathname === item.href ? "text-primary bg-secondary/50" : "text-muted-foreground"
+                  "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors rounded-md",
+                  transparent
+                    ? pathname === item.href
+                      ? "text-white bg-white/20"
+                      : "text-white/80 hover:text-white hover:bg-white/10"
+                    : pathname === item.href
+                      ? "text-primary bg-secondary/50"
+                      : "text-muted-foreground hover:text-primary"
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -47,14 +73,25 @@ export function Nav() {
               </Link>
             )
           })}
-          <div className="ml-4 pl-4 border-l">
-            <Button size="sm" className="font-semibold">Sign In</Button>
+          <div className="ml-4 pl-4 border-l border-current/20">
+            <Button
+              size="sm"
+              className={cn(
+                "font-semibold",
+                transparent && "bg-white/20 text-white hover:bg-white/30 border border-white/30"
+              )}
+            >
+              Sign In
+            </Button>
           </div>
         </div>
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-secondary/50"
+          className={cn(
+            "md:hidden p-2 rounded-md transition-colors",
+            transparent ? "text-white hover:bg-white/10" : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
+          )}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
