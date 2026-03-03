@@ -4,18 +4,16 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Mountain, Hotel, Car, ShieldAlert, FileText, Compass, Menu, X } from "lucide-react"
+import { Mountain, Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-
-const navItems = [
-  { name: "Guides", href: "/guides", icon: Compass },
-  { name: "Hotels", href: "/hotels", icon: Hotel },
-  { name: "Transport", href: "/transport", icon: Car },
-  { name: "Permit", href: "/permit", icon: FileText },
-  { name: "Itinerary", href: "/itinerary", icon: Mountain },
-  { name: "Safety", href: "/safety", icon: ShieldAlert },
-]
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useLanguage, LANGUAGES } from "@/lib/language-context"
 
 const SCROLL_THRESHOLD = 60
 
@@ -24,6 +22,16 @@ export function Nav() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const isHome = pathname === "/"
+  const { language, setLanguage, t } = useLanguage()
+
+  const navItems = [
+    { name: t.guides, href: "/guides", icon: Compass },
+    { name: t.hotels, href: "/hotels", icon: Hotel },
+    { name: t.transport, href: "/transport", icon: Car },
+    { name: t.permit, href: "/permit", icon: FileText },
+    { name: t.itinerary, href: "/itinerary", icon: Mountain },
+    { name: t.safety, href: "/safety", icon: ShieldAlert },
+  ]
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > SCROLL_THRESHOLD)
@@ -73,7 +81,41 @@ export function Nav() {
               </Link>
             )
           })}
-          <div className="ml-4 pl-4 border-l border-current/20">
+          <div className="ml-4 pl-4 border-l border-current/20 flex items-center gap-2">
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    "flex items-center gap-1 font-medium transition-all duration-200 hover:scale-105",
+                    transparent
+                      ? "text-white/80 hover:text-white hover:bg-white/15"
+                      : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
+                  )}
+                >
+                  <Globe className="h-4 w-4" />
+                  <span>{LANGUAGES.find(l => l.code === language)?.nativeLabel}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {LANGUAGES.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className={cn(
+                      "flex items-center justify-between gap-4 cursor-pointer",
+                      language === lang.code && "font-semibold text-primary"
+                    )}
+                  >
+                    <span>{lang.nativeLabel}</span>
+                    <span className="text-xs text-muted-foreground">{lang.label}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button
               size="sm"
               className={cn(
@@ -81,7 +123,7 @@ export function Nav() {
                 transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
               )}
             >
-              Sign In
+              {t.signIn}
             </Button>
           </div>
         </div>
@@ -118,8 +160,31 @@ export function Nav() {
               </Link>
             )
           })}
-          <div className="pt-4 border-t">
-            <Button className="w-full font-semibold">Sign In</Button>
+          {/* Mobile Language Selector */}
+          <div className="pt-2 border-t">
+            <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+              <Globe className="h-3.5 w-3.5" /> Language
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {LANGUAGES.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code)}
+                  className={cn(
+                    "flex flex-col items-start p-3 rounded-lg text-sm font-medium transition-colors",
+                    language === lang.code
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-muted"
+                  )}
+                >
+                  <span>{lang.nativeLabel}</span>
+                  <span className="text-xs text-muted-foreground">{lang.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="pt-2 border-t">
+            <Button className="w-full font-semibold">{t.signIn}</Button>
           </div>
         </div>
       )}
