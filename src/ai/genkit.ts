@@ -14,7 +14,7 @@ export const ai = genkit({
   plugins: [googleAiPlugin],
   // Updated to the latest 2.0 model as requested. 
   // Note: 2.0 Flash is the current next-gen standard for speed and efficiency.
-  model: 'googleai/gemini-2.0-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const DEFAULT_COOLDOWN_MS = 60_000;
