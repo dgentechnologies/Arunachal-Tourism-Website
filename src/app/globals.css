@@ -114,3 +114,7 @@
     animation: shimmer 0.65s ease forwards;
   }
 }
+
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
