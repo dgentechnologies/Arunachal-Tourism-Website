@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe, Mountain, Users, Lightbulb } from "lucide-react"
-import { useState, useEffect } from "react"
+import { Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe, Mountain, Users, Lightbulb, ChevronDown, Flag, Plane } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -18,10 +18,18 @@ import { useLanguage, LANGUAGES } from "@/lib/language-context"
 
 const SCROLL_THRESHOLD = 60
 
+// Permit portal URLs — update these with the officially confirmed URLs from the permit authority
+// Indian citizens: Inner Line Permit (ILP) portal
+const PERMIT_URL_INDIAN = "https://arunachalecotourism.in"
+// Foreign citizens: Protected Area Permit (PAP) via FRRO/ITPO
+const PERMIT_URL_FOREIGN = "https://indianfrro.gov.in"
+
 export function Nav() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [permitOpen, setPermitOpen] = useState(false)
+  const permitRef = useRef<HTMLDivElement>(null)
   const isHome = pathname === "/"
   const { language, setLanguage, t } = useLanguage()
 
@@ -29,7 +37,6 @@ export function Nav() {
     { name: t.guides, href: "/guides", icon: Compass },
     { name: t.hotels, href: "/hotels", icon: Hotel },
     { name: t.transport, href: "/transport", icon: Car },
-    { name: t.permit, href: "/permit", icon: FileText },
     { name: t.itinerary, href: "/itinerary", icon: Mountain },
     { name: t.safety, href: "/safety", icon: ShieldAlert },
     { name: t.tribes, href: "/tribes", icon: Users },
@@ -41,6 +48,17 @@ export function Nav() {
     handler()
     window.addEventListener("scroll", handler, { passive: true })
     return () => window.removeEventListener("scroll", handler)
+  }, [])
+
+  // Close permit dropdown when clicking outside
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (permitRef.current && !permitRef.current.contains(e.target as Node)) {
+        setPermitOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
   }, [])
 
   const transparent = isHome && !scrolled && !isOpen
@@ -87,6 +105,59 @@ export function Nav() {
               </Link>
             )
           })}
+
+          {/* Permit Dropdown */}
+          <div
+            ref={permitRef}
+            className="relative"
+            onMouseEnter={() => setPermitOpen(true)}
+            onMouseLeave={() => setPermitOpen(false)}
+          >
+            <button
+              onClick={() => setPermitOpen(!permitOpen)}
+              className={cn(
+                "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md hover:scale-105",
+                transparent
+                  ? "text-white/80 hover:text-white hover:bg-white/15"
+                  : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
+              )}
+            >
+              <FileText className="h-4 w-4" />
+              <span>{t.permit}</span>
+              <ChevronDown className={cn("h-3 w-3 transition-transform duration-200", permitOpen && "rotate-180")} />
+            </button>
+            {permitOpen && (
+              <div className="absolute top-full left-0 mt-1 w-52 rounded-lg border bg-background shadow-lg py-1 z-50">
+                <a
+                  href={PERMIT_URL_INDIAN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors"
+                  onClick={() => setPermitOpen(false)}
+                >
+                  <Flag className="h-4 w-4 text-primary shrink-0" />
+                  <div>
+                    <p className="font-semibold">Indian Citizens</p>
+                    <p className="text-xs text-muted-foreground">Inner Line Permit</p>
+                  </div>
+                </a>
+                <div className="mx-3 border-t my-1" />
+                <a
+                  href={PERMIT_URL_FOREIGN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors"
+                  onClick={() => setPermitOpen(false)}
+                >
+                  <Plane className="h-4 w-4 text-primary shrink-0" />
+                  <div>
+                    <p className="font-semibold">Foreign Citizens</p>
+                    <p className="text-xs text-muted-foreground">Protected Area Permit</p>
+                  </div>
+                </a>
+              </div>
+            )}
+          </div>
           <div className="ml-4 pl-4 border-l border-current/20 flex items-center gap-2">
             {/* Language Selector */}
             <DropdownMenu>
@@ -166,6 +237,40 @@ export function Nav() {
               </Link>
             )
           })}
+
+          {/* Mobile Permit Options */}
+          <div className="rounded-lg border border-border/60 overflow-hidden">
+            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/20">
+              <FileText className="h-4 w-4 text-primary" />
+              <span className="text-sm font-semibold text-foreground">{t.permit}</span>
+            </div>
+            <a
+              href={PERMIT_URL_INDIAN}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 p-3 text-sm font-medium text-muted-foreground hover:bg-muted border-t"
+            >
+              <Flag className="h-4 w-4 text-primary" />
+              <div>
+                <p className="font-semibold text-foreground">Indian Citizens</p>
+                <p className="text-xs text-muted-foreground">Inner Line Permit →</p>
+              </div>
+            </a>
+            <a
+              href={PERMIT_URL_FOREIGN}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 p-3 text-sm font-medium text-muted-foreground hover:bg-muted border-t"
+            >
+              <Plane className="h-4 w-4 text-primary" />
+              <div>
+                <p className="font-semibold text-foreground">Foreign Citizens</p>
+                <p className="text-xs text-muted-foreground">Protected Area Permit →</p>
+              </div>
+            </a>
+          </div>
           {/* Mobile Language Selector */}
           <div className="pt-2 border-t">
             <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
