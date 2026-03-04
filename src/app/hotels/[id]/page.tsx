@@ -11,7 +11,7 @@ import type { ReactNode } from "react"
 import {
   Star, MapPin, ArrowLeft, Wifi, Coffee, Car, Thermometer,
   Utensils, ConciergeBell, Clock, CheckCircle, ChevronRight,
-  Users, Shield,
+  Users, Shield, Leaf, Binoculars, Flame, Dumbbell, Waves, Sparkles,
 } from "lucide-react"
 
 const amenityIcons: Record<string, ReactNode> = {
@@ -21,13 +21,13 @@ const amenityIcons: Record<string, ReactNode> = {
   thermometer: <Thermometer className="h-5 w-5" />,
   utensils: <Utensils className="h-5 w-5" />,
   "concierge-bell": <ConciergeBell className="h-5 w-5" />,
-  leaf: <CheckCircle className="h-5 w-5" />,
+  leaf: <Leaf className="h-5 w-5" />,
   map: <MapPin className="h-5 w-5" />,
-  binoculars: <CheckCircle className="h-5 w-5" />,
-  campfire: <CheckCircle className="h-5 w-5" />,
-  dumbbell: <CheckCircle className="h-5 w-5" />,
-  "swimming-pool": <CheckCircle className="h-5 w-5" />,
-  spa: <CheckCircle className="h-5 w-5" />,
+  binoculars: <Binoculars className="h-5 w-5" />,
+  campfire: <Flame className="h-5 w-5" />,
+  dumbbell: <Dumbbell className="h-5 w-5" />,
+  "swimming-pool": <Waves className="h-5 w-5" />,
+  spa: <Sparkles className="h-5 w-5" />,
 }
 
 export default function HotelDetailPage({ params }: { params: Promise<{ id: string }> }) {

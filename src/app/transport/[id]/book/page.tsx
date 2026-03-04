@@ -185,7 +185,7 @@ export default function TransportBookingPage({ params }: { params: Promise<{ id:
             <div className="bg-primary/5 rounded-2xl border border-primary/15 p-6 space-y-3">
               <h2 className="text-base font-bold flex items-center gap-2"><Shield className="h-4 w-4 text-primary" /> Rental Policies</h2>
               <ul className="text-sm text-muted-foreground space-y-2">
-                <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />Valid driving licence (LMV / motorcycle) required at pick-up.</li>
+                <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />Valid driving license (LMV / motorcycle) required at pick-up.</li>
                 <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />Inner Line Permit (ILP) mandatory for restricted area routes.</li>
                 <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />Fuel cost is not included in the daily rate.</li>
                 <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />Free cancellation up to 48 hours before pick-up date.</li>
