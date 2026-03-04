@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { Providers } from '@/components/providers';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://arunachalexplore.in';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://arunachal-test1.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
