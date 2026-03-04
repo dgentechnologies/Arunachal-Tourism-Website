@@ -18,11 +18,10 @@ import { useLanguage, LANGUAGES } from "@/lib/language-context"
 
 const SCROLL_THRESHOLD = 60
 
-// Permit portal URLs — update these with the officially confirmed URLs from the permit authority
-// Indian citizens: Inner Line Permit (ILP) portal
-const PERMIT_URL_INDIAN = "https://arunachalecotourism.in"
-// Foreign citizens: Protected Area Permit (PAP) via FRRO/ITPO
-const PERMIT_URL_FOREIGN = "https://indianfrro.gov.in"
+// Indian citizens: Official e-ILP (Electronic Inner Line Permit) portal
+const PERMIT_URL_INDIAN = "https://www.eilp.arunachal.gov.in/preTuristEIlpKYC"
+// Foreign citizens: Dedicated internal page with PAP (Protected Area Permit) details
+const PERMIT_URL_FOREIGN = "/permit/foreign"
 
 export function Nav() {
   const pathname = usePathname()
@@ -142,10 +141,8 @@ export function Nav() {
                   </div>
                 </a>
                 <div className="mx-3 border-t my-1" />
-                <a
+                <Link
                   href={PERMIT_URL_FOREIGN}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors"
                   onClick={() => setPermitOpen(false)}
                 >
@@ -154,7 +151,7 @@ export function Nav() {
                     <p className="font-semibold">Foreign Citizens</p>
                     <p className="text-xs text-muted-foreground">Protected Area Permit</p>
                   </div>
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -257,10 +254,8 @@ export function Nav() {
                 <p className="text-xs text-muted-foreground">Inner Line Permit →</p>
               </div>
             </a>
-            <a
+            <Link
               href={PERMIT_URL_FOREIGN}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-3 p-3 text-sm font-medium text-muted-foreground hover:bg-muted border-t"
             >
@@ -269,7 +264,7 @@ export function Nav() {
                 <p className="font-semibold text-foreground">Foreign Citizens</p>
                 <p className="text-xs text-muted-foreground">Protected Area Permit →</p>
               </div>
-            </a>
+            </Link>
           </div>
           {/* Mobile Language Selector */}
           <div className="pt-2 border-t">
