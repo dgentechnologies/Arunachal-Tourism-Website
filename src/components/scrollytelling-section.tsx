@@ -177,7 +177,7 @@ export function ScrollytellingSection() {
   const activeChapter = chapters[activeIndex]
 
   return (
-    <section ref={outerRef} style={{ height: `${chapters.length * 100}vh` }} className="relative">
+    <section ref={outerRef} style={{ height: `${chapters.length * 65}vh` }} className="relative">
       {/* Sticky viewport */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         {/* Background images — all rendered, crossfade via opacity */}
@@ -300,6 +300,18 @@ export function ScrollytellingSection() {
                     isActive={activatedChapters.has(idx)}
                   />
                 </div>
+
+                {idx === 1 && (
+                  <Link href="/tribes" className="mt-2 sm:mt-0 sm:ml-auto">
+                    <Button
+                      size="lg"
+                      className="h-12 px-8 text-base font-semibold shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95"
+                      style={{ background: ch.accentColor, color: "#1a1a2e" }}
+                    >
+                      {t.exploreTribes} <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                )}
 
                 {idx === chapters.length - 1 && (
                   <Link href="/itinerary" className="mt-2 sm:mt-0 sm:ml-auto">

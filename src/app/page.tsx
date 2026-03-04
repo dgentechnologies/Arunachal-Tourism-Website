@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
-import { Hotel, Car, ShieldCheck, FileText, Compass, MapPin, ArrowRight } from "lucide-react"
+import { Hotel, Car, ShieldCheck, FileText, Compass, MapPin, ArrowRight, Users, Lightbulb } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { HeroCarousel } from "@/components/hero-carousel"
@@ -68,6 +68,77 @@ export default function Home() {
       <ScrollReveal variant="up">
         <DestinationsCarousel />
       </ScrollReveal>
+
+      {/* Tribes & Entrepreneurs Section */}
+      <section className="container mx-auto px-4">
+        <ScrollReveal variant="up" className="text-center mb-10 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">{t.homeCultureSectionTitle}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">{t.homeCultureSectionSubtitle}</p>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Tribes Card */}
+          <ScrollReveal variant="left">
+            <Link href="/tribes" className="block group">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="relative h-64 md:h-80 w-full">
+                  <Image
+                    src="https://picsum.photos/seed/tribes-landing/800/600"
+                    alt="Local Tribes of Arunachal Pradesh"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    data-ai-hint="indigenous tribal culture festival"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-white/20 p-1.5 rounded-lg">
+                      <Users className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-white/80">Culture</span>
+                  </div>
+                  <h3 className="text-2xl font-bold font-headline mb-2">{t.featTribesTitle}</h3>
+                  <p className="text-white/80 text-sm mb-4 leading-relaxed">{t.featTribesDesc}</p>
+                  <span className="inline-flex items-center gap-2 font-semibold text-sm bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors group-hover:bg-primary">
+                    {t.exploreTribes} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </ScrollReveal>
+
+          {/* Entrepreneurs Card */}
+          <ScrollReveal variant="right">
+            <Link href="/entrepreneurs" className="block group">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="relative h-64 md:h-80 w-full">
+                  <Image
+                    src="https://picsum.photos/seed/entrepreneurs-landing/800/600"
+                    alt="Entrepreneurs of Arunachal Pradesh"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    data-ai-hint="entrepreneur business innovation"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-white/20 p-1.5 rounded-lg">
+                      <Lightbulb className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-white/80">Innovation</span>
+                  </div>
+                  <h3 className="text-2xl font-bold font-headline mb-2">{t.featEntrepreneursTitle}</h3>
+                  <p className="text-white/80 text-sm mb-4 leading-relaxed">{t.featEntrepreneursDesc}</p>
+                  <span className="inline-flex items-center gap-2 font-semibold text-sm bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors group-hover:bg-primary">
+                    {t.exploreEntrepreneurs} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* Scrollytelling Section */}
       <ScrollytellingSection />
