@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe, Mountain } from "lucide-react"
+import { Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe, Mountain, Users, Lightbulb } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -32,6 +32,8 @@ export function Nav() {
     { name: t.permit, href: "/permit", icon: FileText },
     { name: t.itinerary, href: "/itinerary", icon: Mountain },
     { name: t.safety, href: "/safety", icon: ShieldAlert },
+    { name: t.tribes, href: "/tribes", icon: Users },
+    { name: t.entrepreneurs, href: "/entrepreneurs", icon: Lightbulb },
   ]
 
   useEffect(() => {

@@ -15,6 +15,8 @@ export interface Translations {
   permit: string
   itinerary: string
   safety: string
+  tribes: string
+  entrepreneurs: string
   signIn: string
   languageLabel: string
 
@@ -200,6 +202,63 @@ export interface Translations {
   missingInfo: string
   issuesFound: string
   suggestions: string
+
+  // TRIBES PAGE
+  tribesPageTitle: string
+  tribesPageSubtitle: string
+  tribesRegionLabel: string
+  tribesCultureLabel: string
+  tribe1Name: string
+  tribe1Region: string
+  tribe1Desc: string
+  tribe2Name: string
+  tribe2Region: string
+  tribe2Desc: string
+  tribe3Name: string
+  tribe3Region: string
+  tribe3Desc: string
+  tribe4Name: string
+  tribe4Region: string
+  tribe4Desc: string
+  tribe5Name: string
+  tribe5Region: string
+  tribe5Desc: string
+  tribe6Name: string
+  tribe6Region: string
+  tribe6Desc: string
+  discoverTribes: string
+
+  // ENTREPRENEURS PAGE
+  entrepreneursPageTitle: string
+  entrepreneursPageSubtitle: string
+  entrepreneurSectorLabel: string
+  entrepreneur1Name: string
+  entrepreneur1Venture: string
+  entrepreneur1Sector: string
+  entrepreneur1Desc: string
+  entrepreneur2Name: string
+  entrepreneur2Venture: string
+  entrepreneur2Sector: string
+  entrepreneur2Desc: string
+  entrepreneur3Name: string
+  entrepreneur3Venture: string
+  entrepreneur3Sector: string
+  entrepreneur3Desc: string
+  entrepreneur4Name: string
+  entrepreneur4Venture: string
+  entrepreneur4Sector: string
+  entrepreneur4Desc: string
+  meetEntrepreneurs: string
+
+  // HOME – TRIBES & ENTREPRENEURS SECTION
+  homeCultureSectionTitle: string
+  homeCultureSectionSubtitle: string
+  featTribesTitle: string
+  featTribesDesc: string
+  featEntrepreneursTitle: string
+  featEntrepreneursDesc: string
+  exploreTribes: string
+  exploreEntrepreneurs: string
 }
 
 const translations: Record<Language, Translations> = {
@@ -211,6 +270,8 @@ const translations: Record<Language, Translations> = {
     permit: "Permit",
     itinerary: "Itinerary",
     safety: "Safety",
+    tribes: "Tribes",
+    entrepreneurs: "Entrepreneurs",
     signIn: "Sign In",
     languageLabel: "English",
 
@@ -396,6 +457,63 @@ const translations: Record<Language, Translations> = {
     missingInfo: "Missing Info:",
     issuesFound: "Issues Found",
     suggestions: "Suggestions:",
+
+    // TRIBES PAGE
+    tribesPageTitle: "Local Tribes of Arunachal Pradesh",
+    tribesPageSubtitle: "Discover the 26+ indigenous tribes whose vibrant traditions, festivals, and way of life make Arunachal Pradesh one of India's most culturally rich states.",
+    tribesRegionLabel: "Region",
+    tribesCultureLabel: "Key Tradition",
+    tribe1Name: "Adi",
+    tribe1Region: "East & West Siang",
+    tribe1Desc: "One of the largest tribes, the Adi are celebrated for their intricate traditional weaving, the Solung and Ponung harvest festivals, and a deep connection to the Siang river valleys.",
+    tribe2Name: "Apatani",
+    tribe2Region: "Lower Subansiri (Ziro)",
+    tribe2Desc: "Famous for their unique paddy-cum-fish farming system and nose-plugs tradition, the Apatani host the iconic Ziro Music Festival and are UNESCO-listed for sustainable land use.",
+    tribe3Name: "Nyishi",
+    tribe3Region: "Papum Pare & West Kameng",
+    tribe3Desc: "The largest tribe in Arunachal, the Nyishi are known for their Nyokum Yullo festival, distinctive hornbill headgear, and vibrant folk music and dance traditions.",
+    tribe4Name: "Monpa",
+    tribe4Region: "Tawang & West Kameng",
+    tribe4Desc: "Buddhist by faith, the Monpa are master craftsmen of handwoven carpets, thangka paintings, and traditional masks. The Torgya and Losar festivals are central to their calendar.",
+    tribe5Name: "Wancho",
+    tribe5Region: "Longding District",
+    tribe5Desc: "The Wancho are skilled woodcarvers and weavers. Their morung (youth dormitory) tradition, rich tattooing culture, and colourful traditional attire are distinctive cultural markers.",
+    tribe6Name: "Galo",
+    tribe6Region: "West Siang",
+    tribe6Desc: "Known for the Mopin festival of fertility and prosperity, the Galo practise jhum cultivation and are adept in traditional medicine, weaving, and community governance.",
+    discoverTribes: "Discover Their Stories",
+
+    // ENTREPRENEURS PAGE
+    entrepreneursPageTitle: "Entrepreneurs of Arunachal Pradesh",
+    entrepreneursPageSubtitle: "Meet the innovators and changemakers from the Land of the Rising Sun who are building businesses, preserving heritage, and inspiring the next generation.",
+    entrepreneurSectorLabel: "Sector",
+    entrepreneur1Name: "Hage Leki",
+    entrepreneur1Venture: "Arunachal Eco Trails",
+    entrepreneur1Sector: "Ecotourism & Hospitality",
+    entrepreneur1Desc: "Founded one of the state's pioneering eco-tourism networks, connecting remote Himalayan villages with responsible travellers while generating sustainable livelihoods for local communities.",
+    entrepreneur2Name: "Ojing Tasing",
+    entrepreneur2Venture: "NorthEast Digital Hub",
+    entrepreneur2Sector: "Technology & Startups",
+    entrepreneur2Desc: "A tech pioneer who launched the region's first digital services startup, bridging the connectivity gap in remote districts and training hundreds of young people in digital skills.",
+    entrepreneur3Name: "Bengia Tolum",
+    entrepreneur3Venture: "Adi Weaves",
+    entrepreneur3Sector: "Handloom & Crafts",
+    entrepreneur3Desc: "Reviving traditional Adi weaving by blending age-old patterns with contemporary fashion, creating a thriving export business that empowers over 200 tribal women artisans.",
+    entrepreneur4Name: "Tara Saikia",
+    entrepreneur4Venture: "Himalayan Organics",
+    entrepreneur4Sector: "Organic Farming & Food",
+    entrepreneur4Desc: "Established the state's first certified organic farm collective, bringing chemical-free highland produce to national markets and building a model of cooperative agri-entrepreneurship.",
+    meetEntrepreneurs: "Read Their Story",
+
+    // HOME – TRIBES & ENTREPRENEURS SECTION
+    homeCultureSectionTitle: "People & Heritage",
+    homeCultureSectionSubtitle: "The soul of Arunachal Pradesh lies in its extraordinary people — ancient tribes preserving millennia-old traditions and modern entrepreneurs building a new future.",
+    featTribesTitle: "Local Tribes",
+    featTribesDesc: "Explore the rich cultural tapestry of 26+ indigenous tribes, each with unique festivals, crafts, and traditions that have endured for centuries.",
+    featEntrepreneursTitle: "Entrepreneurs",
+    featEntrepreneursDesc: "Meet the innovators and changemakers from Arunachal Pradesh who are building businesses and inspiring the next generation.",
+    exploreTribes: "Explore Tribes",
+    exploreEntrepreneurs: "Meet Entrepreneurs",
   },
 
   hi: {
@@ -406,6 +524,8 @@ const translations: Record<Language, Translations> = {
     permit: "परमिट",
     itinerary: "यात्रा कार्यक्रम",
     safety: "सुरक्षा",
+    tribes: "जनजातियाँ",
+    entrepreneurs: "उद्यमी",
     signIn: "साइन इन",
     languageLabel: "हिंदी",
 
@@ -591,6 +711,63 @@ const translations: Record<Language, Translations> = {
     missingInfo: "गुम जानकारी:",
     issuesFound: "मुद्दे पाए गए",
     suggestions: "सुझाव:",
+
+    // TRIBES PAGE
+    tribesPageTitle: "अरुणाचल प्रदेश की स्थानीय जनजातियाँ",
+    tribesPageSubtitle: "26+ आदिवासी जनजातियों की जीवंत परंपराओं, त्योहारों और जीवन शैली को जानें जो अरुणाचल प्रदेश को भारत के सबसे सांस्कृतिक रूप से समृद्ध राज्यों में से एक बनाती हैं।",
+    tribesRegionLabel: "क्षेत्र",
+    tribesCultureLabel: "मुख्य परंपरा",
+    tribe1Name: "आदि",
+    tribe1Region: "पूर्वी और पश्चिमी सियांग",
+    tribe1Desc: "सबसे बड़ी जनजातियों में से एक, आदि अपनी पारंपरिक बुनाई, सोलुंग और पोनुंग फसल त्योहारों और सियांग नदी घाटियों से गहरे संबंध के लिए प्रसिद्ध हैं।",
+    tribe2Name: "अपाटानी",
+    tribe2Region: "लोअर सुबनसिरी (जिरो)",
+    tribe2Desc: "अपनी अनूठी धान-मछली खेती प्रणाली और नाक-प्लग परंपरा के लिए प्रसिद्ध, अपाटानी प्रतिष्ठित जिरो संगीत महोत्सव की मेजबानी करते हैं।",
+    tribe3Name: "न्यिशी",
+    tribe3Region: "पापुम पारे और पश्चिमी कामेंग",
+    tribe3Desc: "अरुणाचल की सबसे बड़ी जनजाति, न्यिशी अपने न्योकुम युल्लो त्योहार, विशिष्ट हॉर्नबिल हेडगियर और लोक संगीत के लिए जानी जाती है।",
+    tribe4Name: "मोन्पा",
+    tribe4Region: "तवांग और पश्चिमी कामेंग",
+    tribe4Desc: "बौद्ध धर्म के अनुयायी मोन्पा हस्तनिर्मित कालीनों, थंका चित्रकला और पारंपरिक मुखौटों के कुशल शिल्पकार हैं।",
+    tribe5Name: "वांचो",
+    tribe5Region: "लोंगडिंग जिला",
+    tribe5Desc: "वांचो कुशल लकड़ी के नक्काशीकार और बुनकर हैं। उनकी मोरुंग परंपरा, टैटू संस्कृति और रंगीन पारंपरिक पोशाक उनकी पहचान है।",
+    tribe6Name: "गालो",
+    tribe6Region: "पश्चिमी सियांग",
+    tribe6Desc: "मोपिन उत्सव के लिए जाने जाने वाले गालो झूम खेती के विशेषज्ञ हैं और पारंपरिक चिकित्सा, बुनाई और सामुदायिक शासन में कुशल हैं।",
+    discoverTribes: "उनकी कहानियाँ जानें",
+
+    // ENTREPRENEURS PAGE
+    entrepreneursPageTitle: "अरुणाचल प्रदेश के उद्यमी",
+    entrepreneursPageSubtitle: "उन नवप्रवर्तकों और बदलाव लाने वालों से मिलें जो व्यवसाय बना रहे हैं, विरासत को संरक्षित कर रहे हैं और अगली पीढ़ी को प्रेरित कर रहे हैं।",
+    entrepreneurSectorLabel: "क्षेत्र",
+    entrepreneur1Name: "हागे लेकी",
+    entrepreneur1Venture: "अरुणाचल इको ट्रेल्स",
+    entrepreneur1Sector: "इको-पर्यटन और आतिथ्य",
+    entrepreneur1Desc: "राज्य के अग्रणी इको-पर्यटन नेटवर्क की स्थापना की, जो दूरस्थ हिमालयी गांवों को जिम्मेदार यात्रियों से जोड़ता है।",
+    entrepreneur2Name: "ओजिंग तासिंग",
+    entrepreneur2Venture: "नॉर्थईस्ट डिजिटल हब",
+    entrepreneur2Sector: "प्रौद्योगिकी और स्टार्टअप",
+    entrepreneur2Desc: "क्षेत्र का पहला डिजिटल सेवा स्टार्टअप शुरू किया और सैकड़ों युवाओं को डिजिटल कौशल में प्रशिक्षित किया।",
+    entrepreneur3Name: "बेंगिया टोलुम",
+    entrepreneur3Venture: "आदि वीव्स",
+    entrepreneur3Sector: "हथकरघा और शिल्प",
+    entrepreneur3Desc: "पारंपरिक आदि बुनाई को समकालीन फैशन के साथ मिलाकर 200 से अधिक आदिवासी महिला कारीगरों को सशक्त किया।",
+    entrepreneur4Name: "तारा सैकिया",
+    entrepreneur4Venture: "हिमालयन ऑर्गेनिक्स",
+    entrepreneur4Sector: "जैविक खेती और खाद्य",
+    entrepreneur4Desc: "राज्य का पहला प्रमाणित जैविक कृषि सामूहिक स्थापित किया, जो राष्ट्रीय बाजारों में रसायन-मुक्त उत्पाद लाता है।",
+    meetEntrepreneurs: "उनकी कहानी पढ़ें",
+
+    // HOME – TRIBES & ENTREPRENEURS SECTION
+    homeCultureSectionTitle: "लोग और विरासत",
+    homeCultureSectionSubtitle: "अरुणाचल प्रदेश की आत्मा उसके असाधारण लोगों में बसती है — प्राचीन जनजातियाँ और आधुनिक उद्यमी।",
+    featTribesTitle: "स्थानीय जनजातियाँ",
+    featTribesDesc: "26+ आदिवासी जनजातियों की समृद्ध सांस्कृतिक विविधता का अन्वेषण करें, जिनमें से प्रत्येक के अनूठे त्योहार, शिल्प और परंपराएं हैं।",
+    featEntrepreneursTitle: "उद्यमी",
+    featEntrepreneursDesc: "अरुणाचल प्रदेश के उन नवप्रवर्तकों से मिलें जो व्यवसाय बना रहे हैं और अगली पीढ़ी को प्रेरित कर रहे हैं।",
+    exploreTribes: "जनजातियाँ जानें",
+    exploreEntrepreneurs: "उद्यमियों से मिलें",
   },
 
   bn: {
@@ -601,6 +778,8 @@ const translations: Record<Language, Translations> = {
     permit: "পারমিট",
     itinerary: "ভ্রমণসূচি",
     safety: "নিরাপত্তা",
+    tribes: "উপজাতি",
+    entrepreneurs: "উদ্যোক্তা",
     signIn: "সাইন ইন",
     languageLabel: "বাংলা",
 
@@ -786,6 +965,63 @@ const translations: Record<Language, Translations> = {
     missingInfo: "অনুপস্থিত তথ্য:",
     issuesFound: "সমস্যা পাওয়া গেছে",
     suggestions: "পরামর্শ:",
+
+    // TRIBES PAGE
+    tribesPageTitle: "অরুণাচল প্রদেশের স্থানীয় উপজাতি",
+    tribesPageSubtitle: "২৬+ আদিবাসী উপজাতির প্রাণবন্ত ঐতিহ্য, উৎসব এবং জীবনধারা আবিষ্কার করুন যা অরুণাচল প্রদেশকে ভারতের সবচেয়ে সাংস্কৃতিকভাবে সমৃদ্ধ রাজ্যগুলির মধ্যে একটি করে তোলে।",
+    tribesRegionLabel: "অঞ্চল",
+    tribesCultureLabel: "মূল ঐতিহ্য",
+    tribe1Name: "আদি",
+    tribe1Region: "পূর্ব ও পশ্চিম সিয়াং",
+    tribe1Desc: "বৃহত্তম উপজাতিগুলির মধ্যে একটি, আদি তাদের ঐতিহ্যবাহী বুনন, সোলুং ও পোনুং উৎসব এবং সিয়াং নদী উপত্যকার সাথে গভীর সম্পর্কের জন্য বিখ্যাত।",
+    tribe2Name: "আপাটানি",
+    tribe2Region: "লোয়ার সুবানসিরি (জিরো)",
+    tribe2Desc: "তাদের অনন্য ধান-মাছ চাষ পদ্ধতি ও নাক-প্লাগ ঐতিহ্যের জন্য বিখ্যাত, আপাটানিরা আইকনিক জিরো মিউজিক ফেস্টিভ্যালের আয়োজন করে।",
+    tribe3Name: "ন্যিশি",
+    tribe3Region: "পাপুম পারে ও পশ্চিম কামেং",
+    tribe3Desc: "অরুণাচলের বৃহত্তম উপজাতি, ন্যিশি তাদের ন্যোকুম ইউলো উৎসব, হর্নবিল হেডগিয়ার এবং লোকসংগীতের জন্য পরিচিত।",
+    tribe4Name: "মনপা",
+    tribe4Region: "তাওয়াং ও পশ্চিম কামেং",
+    tribe4Desc: "বৌদ্ধ ধর্মাবলম্বী মনপারা হাতবোনা কার্পেট, থাংকা চিত্রকলা ও ঐতিহ্যবাহী মুখোশের দক্ষ কারিগর।",
+    tribe5Name: "ওয়ানচো",
+    tribe5Region: "লংডিং জেলা",
+    tribe5Desc: "ওয়ানচোরা দক্ষ কাঠখোদাই শিল্পী ও বুননকারী। তাদের মোরুং ঐতিহ্য, ট্যাটু সংস্কৃতি ও রঙিন ঐতিহ্যবাহী পোশাক তাদের বৈশিষ্ট্য।",
+    tribe6Name: "গালো",
+    tribe6Region: "পশ্চিম সিয়াং",
+    tribe6Desc: "মোপিন উৎসবের জন্য পরিচিত গালোরা ঝুম চাষে পারদর্শী এবং ঐতিহ্যবাহী চিকিৎসা, বুনন ও সম্প্রদায় পরিচালনায় দক্ষ।",
+    discoverTribes: "তাদের গল্প জানুন",
+
+    // ENTREPRENEURS PAGE
+    entrepreneursPageTitle: "অরুণাচল প্রদেশের উদ্যোক্তা",
+    entrepreneursPageSubtitle: "উদীয়মান সূর্যের ভূমির সেই উদ্ভাবক ও পরিবর্তনকারীদের সাথে পরিচিত হন যারা ব্যবসা গড়ছেন এবং পরবর্তী প্রজন্মকে অনুপ্রাণিত করছেন।",
+    entrepreneurSectorLabel: "খাত",
+    entrepreneur1Name: "হাগে লেকি",
+    entrepreneur1Venture: "অরুণাচল ইকো ট্রেইলস",
+    entrepreneur1Sector: "ইকোট্যুরিজম ও আতিথেয়তা",
+    entrepreneur1Desc: "রাজ্যের অগ্রণী ইকো-ট্যুরিজম নেটওয়ার্ক প্রতিষ্ঠা করেছেন যা প্রত্যন্ত হিমালয়ী গ্রামগুলিকে দায়িত্বশীল ভ্রমণকারীদের সাথে সংযুক্ত করে।",
+    entrepreneur2Name: "ওজিং তাসিং",
+    entrepreneur2Venture: "নর্থইস্ট ডিজিটাল হাব",
+    entrepreneur2Sector: "প্রযুক্তি ও স্টার্টআপ",
+    entrepreneur2Desc: "অঞ্চলের প্রথম ডিজিটাল পরিষেবা স্টার্টআপ চালু করেছেন এবং শত শত তরুণকে ডিজিটাল দক্ষতায় প্রশিক্ষণ দিয়েছেন।",
+    entrepreneur3Name: "বেংগিয়া তোলুম",
+    entrepreneur3Venture: "আদি উইভস",
+    entrepreneur3Sector: "হস্তশিল্প ও কারুশিল্প",
+    entrepreneur3Desc: "ঐতিহ্যবাহী আদি বুনন এবং সমসাময়িক ফ্যাশনের মিশেলে ২০০টিরও বেশি আদিবাসী নারী কারিগরকে ক্ষমতায়িত করেছেন।",
+    entrepreneur4Name: "তারা সাইকিয়া",
+    entrepreneur4Venture: "হিমালয়ান অর্গানিক্স",
+    entrepreneur4Sector: "জৈব চাষ ও খাদ্য",
+    entrepreneur4Desc: "রাজ্যের প্রথম প্রত্যয়িত জৈব কৃষি সমবায় প্রতিষ্ঠা করেছেন যা জাতীয় বাজারে রাসায়নিক-মুক্ত পণ্য সরবরাহ করে।",
+    meetEntrepreneurs: "তাদের গল্প পড়ুন",
+
+    // HOME – TRIBES & ENTREPRENEURS SECTION
+    homeCultureSectionTitle: "মানুষ ও ঐতিহ্য",
+    homeCultureSectionSubtitle: "অরুণাচল প্রদেশের আত্মা তার অসাধারণ মানুষদের মধ্যে — প্রাচীন উপজাতি ও আধুনিক উদ্যোক্তা।",
+    featTribesTitle: "স্থানীয় উপজাতি",
+    featTribesDesc: "২৬+ আদিবাসী উপজাতির সমৃদ্ধ সাংস্কৃতিক বৈচিত্র্য অন্বেষণ করুন, যাদের প্রত্যেকের রয়েছে অনন্য উৎসব, কারুশিল্প ও ঐতিহ্য।",
+    featEntrepreneursTitle: "উদ্যোক্তা",
+    featEntrepreneursDesc: "অরুণাচল প্রদেশের সেই উদ্ভাবকদের সাথে পরিচিত হন যারা ব্যবসা গড়ছেন এবং পরবর্তী প্রজন্মকে অনুপ্রাণিত করছেন।",
+    exploreTribes: "উপজাতি জানুন",
+    exploreEntrepreneurs: "উদ্যোক্তাদের সাথে মিলুন",
   },
 
   as: {
@@ -796,6 +1032,8 @@ const translations: Record<Language, Translations> = {
     permit: "পাৰমিট",
     itinerary: "ভ্ৰমণসূচী",
     safety: "সুৰক্ষা",
+    tribes: "জনজাতি",
+    entrepreneurs: "উদ্যোক্তা",
     signIn: "চাইন ইন",
     languageLabel: "অসমীয়া",
 
@@ -981,6 +1219,63 @@ const translations: Record<Language, Translations> = {
     missingInfo: "অনুপস্থিত তথ্য:",
     issuesFound: "সমস্যা পোৱা গৈছে",
     suggestions: "পৰামৰ্শ:",
+
+    // TRIBES PAGE
+    tribesPageTitle: "অৰুণাচল প্ৰদেশৰ স্থানীয় জনজাতি",
+    tribesPageSubtitle: "২৬+ আদিবাসী জনজাতিৰ জীৱন্ত পৰম্পৰা, উৎসৱ আৰু জীৱনধাৰা আৱিষ্কাৰ কৰক যি অৰুণাচল প্ৰদেশক ভাৰতৰ অন্যতম সাংস্কৃতিকভাৱে সমৃদ্ধ ৰাজ্য কৰি তোলে।",
+    tribesRegionLabel: "অঞ্চল",
+    tribesCultureLabel: "মূল পৰম্পৰা",
+    tribe1Name: "আদি",
+    tribe1Region: "পূব আৰু পশ্চিম চিয়াং",
+    tribe1Desc: "বৃহত্তম জনজাতিসমূহৰ এটা, আদি তেওঁলোকৰ পৰম্পৰাগত বুনন, চোলুং আৰু পোনুং উৎসৱ আৰু চিয়াং নদী উপত্যকাৰ সৈতে গভীৰ সম্পৰ্কৰ বাবে বিখ্যাত।",
+    tribe2Name: "আপাটানি",
+    tribe2Region: "লোৱাৰ চুবানচিৰি (জিৰো)",
+    tribe2Desc: "তেওঁলোকৰ অনন্য ধান-মাছ খেতি পদ্ধতি আৰু নাক-প্লাগ পৰম্পৰাৰ বাবে বিখ্যাত, আপাটানিসকলে আইকনিক জিৰো সংগীত উৎসৱৰ আয়োজন কৰে।",
+    tribe3Name: "ন্যিশি",
+    tribe3Region: "পাপুম পাৰে আৰু পশ্চিম কামেং",
+    tribe3Desc: "অৰুণাচলৰ বৃহত্তম জনজাতি, ন্যিশি তেওঁলোকৰ ন্যোকুম ইউল্লো উৎসৱ, হৰ্নবিল হেডগিয়াৰ আৰু লোক সংগীতৰ বাবে পৰিচিত।",
+    tribe4Name: "মনপা",
+    tribe4Region: "তাৱাং আৰু পশ্চিম কামেং",
+    tribe4Desc: "বৌদ্ধ ধৰ্মাৱলম্বী মনপাসকল হাতৰে বোৱা কাৰ্পেট, থাংকা চিত্ৰকলা আৰু পৰম্পৰাগত মুখা নিৰ্মাণৰ দক্ষ কাৰিগৰ।",
+    tribe5Name: "ৱাঞ্চো",
+    tribe5Region: "লংডিং জিলা",
+    tribe5Desc: "ৱাঞ্চোসকল দক্ষ কাঠখোদাই শিল্পী আৰু বোৱালী। তেওঁলোকৰ মোৰুং পৰম্পৰা, টেটু সংস্কৃতি আৰু ৰঙীন পৰম্পৰাগত পোছাক তেওঁলোকৰ বৈশিষ্ট্য।",
+    tribe6Name: "গালো",
+    tribe6Region: "পশ্চিম চিয়াং",
+    tribe6Desc: "মোপিন উৎসৱৰ বাবে পৰিচিত গালোসকল ঝুম খেতিত পাৰদৰ্শী আৰু পৰম্পৰাগত চিকিৎসা, বুনন আৰু সমাজ পৰিচালনাত দক্ষ।",
+    discoverTribes: "তেওঁলোকৰ কাহিনী জানক",
+
+    // ENTREPRENEURS PAGE
+    entrepreneursPageTitle: "অৰুণাচল প্ৰদেশৰ উদ্যোক্তা",
+    entrepreneursPageSubtitle: "উদীয়মান সূৰ্যৰ ভূমিৰ সেই উদ্ভাৱক আৰু পৰিৱৰ্তনকাৰীসকলক লগ কৰক যি ব্যৱসায় গঢ়িছে আৰু পৰৱৰ্তী প্ৰজন্মক অনুপ্ৰাণিত কৰিছে।",
+    entrepreneurSectorLabel: "খণ্ড",
+    entrepreneur1Name: "হাগে লেকি",
+    entrepreneur1Venture: "অৰুণাচল ইকো ট্ৰেইলছ",
+    entrepreneur1Sector: "ইকোট্যুৰিজম আৰু আতিথ্য",
+    entrepreneur1Desc: "ৰাজ্যৰ অগ্ৰণী ইকো-ট্যুৰিজম নেটৱৰ্ক প্ৰতিষ্ঠা কৰিছে যি দূৰৱৰ্তী হিমালয়ী গাঁৱসমূহক দায়িত্বশীল ভ্ৰমণকাৰীৰ সৈতে সংযুক্ত কৰে।",
+    entrepreneur2Name: "অজিং তাছিং",
+    entrepreneur2Venture: "নৰ্থইষ্ট ডিজিটেল হাব",
+    entrepreneur2Sector: "প্ৰযুক্তি আৰু ষ্টাৰ্টআপ",
+    entrepreneur2Desc: "অঞ্চলৰ প্ৰথম ডিজিটেল সেৱা ষ্টাৰ্টআপ আৰম্ভ কৰিছে আৰু শতাধিক যুৱকক ডিজিটেল দক্ষতাত প্ৰশিক্ষণ দিছে।",
+    entrepreneur3Name: "বেংগিয়া তোলুম",
+    entrepreneur3Venture: "আদি ৱিভছ",
+    entrepreneur3Sector: "হাতৰ কাম আৰু শিল্প",
+    entrepreneur3Desc: "পৰম্পৰাগত আদি বুনন আৰু সমসাময়িক ফেশ্বনৰ মিশ্ৰণেৰে ২০০ৰো অধিক আদিবাসী মহিলা কাৰিগৰক ক্ষমতায়িত কৰিছে।",
+    entrepreneur4Name: "তাৰা শইকীয়া",
+    entrepreneur4Venture: "হিমালয়ান অৰ্গেনিক্স",
+    entrepreneur4Sector: "জৈৱিক খেতি আৰু খাদ্য",
+    entrepreneur4Desc: "ৰাজ্যৰ প্ৰথম প্ৰমাণিত জৈৱিক কৃষি সমবায় প্ৰতিষ্ঠা কৰিছে যি ৰাষ্ট্ৰীয় বজাৰত ৰাসায়নিকমুক্ত উচ্চভূমিৰ শস্য যোগান ধৰে।",
+    meetEntrepreneurs: "তেওঁলোকৰ কাহিনী পঢ়ক",
+
+    // HOME – TRIBES & ENTREPRENEURS SECTION
+    homeCultureSectionTitle: "মানুহ আৰু ঐতিহ্য",
+    homeCultureSectionSubtitle: "অৰুণাচল প্ৰদেশৰ আত্মা তাৰ অসাধাৰণ মানুহৰ মাজত বাস কৰে — প্ৰাচীন জনজাতি আৰু আধুনিক উদ্যোক্তা।",
+    featTribesTitle: "স্থানীয় জনজাতি",
+    featTribesDesc: "২৬+ আদিবাসী জনজাতিৰ সমৃদ্ধ সাংস্কৃতিক বৈচিত্ৰ্য অন্বেষণ কৰক, যাৰ প্ৰত্যেকৰে অনন্য উৎসৱ, শিল্প আৰু পৰম্পৰা আছে।",
+    featEntrepreneursTitle: "উদ্যোক্তা",
+    featEntrepreneursDesc: "অৰুণাচল প্ৰদেশৰ সেই উদ্ভাৱকসকলক লগ কৰক যি ব্যৱসায় গঢ়িছে আৰু পৰৱৰ্তী প্ৰজন্মক অনুপ্ৰাণিত কৰিছে।",
+    exploreTribes: "জনজাতি জানক",
+    exploreEntrepreneurs: "উদ্যোক্তাক লগ কৰক",
   },
 }
 

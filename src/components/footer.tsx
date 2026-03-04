@@ -27,6 +27,8 @@ export function Footer() {
               <li><Link href="/hotels" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">{t.footerHotelBooking}</Link></li>
               <li><Link href="/transport" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">{t.footerTransportServices}</Link></li>
               <li><Link href="/permit" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">{t.footerApplyPermit}</Link></li>
+              <li><Link href="/tribes" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">{t.tribes}</Link></li>
+              <li><Link href="/entrepreneurs" className="hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block">{t.entrepreneurs}</Link></li>
             </ul>
           </div>
           <div>
