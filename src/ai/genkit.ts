@@ -1,4 +1,3 @@
-
 import {randomUUID} from 'crypto';
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/google-genai';
@@ -8,14 +7,11 @@ const geminiApiKey =
   process.env.GOOGLE_GENAI_API_KEY ??
   process.env.GOOGLE_API_KEY;
 
-// Ensure we have a valid initialization even if key is provided via environment in other ways
 const googleAiPlugin = geminiApiKey ? googleAI({apiKey: geminiApiKey}) : googleAI();
 
 export const ai = genkit({
   plugins: [googleAiPlugin],
-  // Using the latest Gemini 2.0 Flash model.
-  // Note: Model 2.5 does not currently exist; 2.0 Flash is the correct current high-performance model.
-  model: 'googleai/gemini-2.0-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const DEFAULT_COOLDOWN_MS = 60_000;
@@ -32,7 +28,6 @@ let requestInFlight = false;
 let activeRequestToken: string | null = null;
 let requestInFlightSince: number | null = null;
 
-// Genkit errors can surface as status/code 429, RESOURCE_EXHAUSTED, or quota text in message strings.
 const isQuotaOrRateLimitError = (error: unknown): boolean => {
   if (!error || typeof error !== 'object') {
     return false;

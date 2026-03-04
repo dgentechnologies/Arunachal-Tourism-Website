@@ -1,4 +1,3 @@
-
 import type {Metadata} from 'next';
 import './globals.css';
 import { Nav } from '@/components/nav';
@@ -120,7 +119,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-body antialiased flex flex-col min-h-screen">
+      <body className="font-body antialiased flex flex-col min-h-screen" suppressHydrationWarning>
         <Providers>
           <Nav />
           <main className="flex-grow pt-16">
