@@ -1,3 +1,4 @@
+
 import {randomUUID} from 'crypto';
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/google-genai';
@@ -12,9 +13,9 @@ const googleAiPlugin = geminiApiKey ? googleAI({apiKey: geminiApiKey}) : googleA
 
 export const ai = genkit({
   plugins: [googleAiPlugin],
-  // Updated to the latest 2.0 model as requested. 
-  // Note: 2.0 Flash is the current next-gen standard for speed and efficiency.
-  model: 'googleai/gemini-2.5-flash',
+  // Using the latest Gemini 2.0 Flash model.
+  // Note: Model 2.5 does not currently exist; 2.0 Flash is the correct current high-performance model.
+  model: 'googleai/gemini-2.0-flash',
 });
 
 const DEFAULT_COOLDOWN_MS = 60_000;
