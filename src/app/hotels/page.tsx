@@ -1,55 +1,13 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Star, MapPin, Coffee, Wifi, Car } from "lucide-react"
-import { PlaceHolderImages } from "@/lib/placeholder-images"
+import { hotelsData } from "@/lib/hotels-data"
 import { useLanguage } from "@/lib/language-context"
-
-const hotels = [
-  {
-    id: 1,
-    name: "Tawang Mountain Resort",
-    location: "Tawang, Arunachal Pradesh",
-    price: "₹4,500",
-    rating: 4.8,
-    reviews: 124,
-    tags: ["Resort", "Mountain View"],
-    image: PlaceHolderImages.find(i => i.id === 'hotel-tawang')?.imageUrl || ''
-  },
-  {
-    id: 2,
-    name: "Ziro Valley Eco-Stay",
-    location: "Ziro, Arunachal Pradesh",
-    price: "₹2,800",
-    rating: 4.6,
-    reviews: 89,
-    tags: ["Eco-friendly", "Valley View"],
-    image: PlaceHolderImages.find(i => i.id === 'hotel-ziro')?.imageUrl || ''
-  },
-  {
-    id: 3,
-    name: "Namdapha River Lodge",
-    location: "Miao, near Namdapha NP",
-    price: "₹3,500",
-    rating: 4.5,
-    reviews: 56,
-    tags: ["Lodge", "Riverside"],
-    image: "https://picsum.photos/seed/h3/800/600"
-  },
-  {
-    id: 4,
-    name: "Itanagar Heritage Hotel",
-    location: "Itanagar, Arunachal Pradesh",
-    price: "₹5,200",
-    rating: 4.7,
-    reviews: 210,
-    tags: ["Luxury", "Heritage"],
-    image: "https://picsum.photos/seed/h4/800/600"
-  }
-]
 
 export default function HotelsPage() {
   const { t } = useLanguage()
@@ -69,9 +27,9 @@ export default function HotelsPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {hotels.map((hotel) => (
+        {hotelsData.map((hotel) => (
           <Card key={hotel.id} className="overflow-hidden border-none shadow-md group bg-white flex flex-col h-full">
-            <div className="relative h-48 md:h-52 w-full overflow-hidden">
+            <Link href={`/hotels/${hotel.id}`} className="relative h-48 md:h-52 w-full overflow-hidden block">
               <Image 
                 src={hotel.image} 
                 alt={hotel.name} 
@@ -84,10 +42,12 @@ export default function HotelsPage() {
                   <Badge key={tag} className="bg-white/90 text-primary hover:bg-white text-[10px] py-0">{tag}</Badge>
                 ))}
               </div>
-            </div>
+            </Link>
             <CardHeader className="p-4 space-y-1">
               <div className="flex justify-between items-start gap-2">
-                <CardTitle className="text-lg font-bold font-headline leading-tight">{hotel.name}</CardTitle>
+                <CardTitle className="text-lg font-bold font-headline leading-tight">
+                  <Link href={`/hotels/${hotel.id}`} className="hover:text-primary transition-colors">{hotel.name}</Link>
+                </CardTitle>
                 <div className="flex items-center text-xs font-bold text-orange-500 shrink-0">
                   <Star className="h-3 w-3 fill-current mr-1" />
                   {hotel.rating}
@@ -105,10 +65,12 @@ export default function HotelsPage() {
             </CardContent>
             <CardFooter className="p-4 flex flex-col sm:flex-row items-center justify-between border-t mt-4 gap-4">
               <div className="w-full sm:w-auto text-left">
-                <span className="text-xl font-bold text-primary">{hotel.price}</span>
+                <span className="text-xl font-bold text-primary">₹{hotel.price.toLocaleString()}</span>
                 <span className="text-xs text-muted-foreground ml-1">{t.perNight}</span>
               </div>
-              <Button size="sm" className="w-full sm:w-auto">{t.bookNow}</Button>
+              <Link href={`/hotels/${hotel.id}/book?room=${encodeURIComponent(hotel.rooms[0].type)}&price=${hotel.rooms[0].price}`}>
+                <Button size="sm" className="w-full sm:w-auto">{t.bookNow}</Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}
