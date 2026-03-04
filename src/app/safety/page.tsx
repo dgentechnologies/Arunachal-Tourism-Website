@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Search, Phone, MapPin, ShieldAlert, HeartPulse, Building2 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { useLanguage } from "@/lib/language-context"
 
 const services = {
   hospitals: [
@@ -32,18 +33,19 @@ const services = {
 }
 
 export default function SafetyPage() {
+  const { t } = useLanguage()
   const [search, setSearch] = useState("")
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <div className="flex flex-col gap-4 mb-10">
-        <h1 className="text-4xl font-bold text-primary font-headline">Safety & Security</h1>
-        <p className="text-muted-foreground text-lg">Quick access to emergency services and medical help across Arunachal Pradesh.</p>
+        <h1 className="text-4xl font-bold text-primary font-headline">{t.safetyPageTitle}</h1>
+        <p className="text-muted-foreground text-lg">{t.safetyPageSubtitle}</p>
         
         <div className="relative max-w-md mt-4">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
-            placeholder="Search by city (e.g. Tawang)..." 
+            placeholder={t.searchPlaceholder} 
             className="pl-10"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -56,10 +58,10 @@ export default function SafetyPage() {
           <Tabs defaultValue="hospitals" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="hospitals" className="flex gap-2">
-                <HeartPulse className="h-4 w-4" /> Hospitals
+                <HeartPulse className="h-4 w-4" /> {t.hospitalsTab}
               </TabsTrigger>
               <TabsTrigger value="police" className="flex gap-2">
-                <ShieldAlert className="h-4 w-4" /> Police Stations
+                <ShieldAlert className="h-4 w-4" /> {t.policeTab}
               </TabsTrigger>
             </TabsList>
 
@@ -95,7 +97,7 @@ export default function SafetyPage() {
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-lg">{p.name}</h3>
-                        <Badge className="bg-green-100 text-green-700 hover:bg-green-100">24/7 Active</Badge>
+                        <Badge className="bg-green-100 text-green-700 hover:bg-green-100">{t.active24x7}</Badge>
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <MapPin className="h-3 w-3 mr-1" /> {p.location}
@@ -116,9 +118,9 @@ export default function SafetyPage() {
             <CardHeader>
               <CardTitle className="text-red-700 flex items-center gap-2">
                 <ShieldAlert className="h-5 w-5" />
-                Emergency Hotline
+                {t.emergencyHotline}
               </CardTitle>
-              <CardDescription className="text-red-600/80">State-wide unified emergency numbers</CardDescription>
+              <CardDescription className="text-red-600/80">{t.emergencySubtitle}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               {services.emergency.map((e, i) => (
@@ -132,20 +134,20 @@ export default function SafetyPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Safe Travel Tips</CardTitle>
+              <CardTitle className="text-lg">{t.safeTravelTips}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <div className="flex gap-3">
                 <div className="bg-primary/10 p-2 rounded-full h-fit"><Building2 className="h-4 w-4 text-primary" /></div>
-                <p>Register your contact details at the local police station upon arrival in remote districts.</p>
+                <p>{t.safeTip1}</p>
               </div>
               <div className="flex gap-3">
                 <div className="bg-primary/10 p-2 rounded-full h-fit"><ShieldAlert className="h-4 w-4 text-primary" /></div>
-                <p>Always carry a hard copy of your Inner Line Permit (ILP) and identity documents.</p>
+                <p>{t.safeTip2}</p>
               </div>
               <div className="flex gap-3">
                 <div className="bg-primary/10 p-2 rounded-full h-fit"><HeartPulse className="h-4 w-4 text-primary" /></div>
-                <p>Carry a basic medical kit including medicines for motion sickness and high altitude.</p>
+                <p>{t.safeTip3}</p>
               </div>
             </CardContent>
           </Card>
