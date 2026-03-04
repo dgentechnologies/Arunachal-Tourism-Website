@@ -71,6 +71,34 @@ export interface Translations {
   rareSpecies: string
   viewTravelGuides: string
 
+  // SCROLLYTELLING SECTION
+  stChapter1Badge: string
+  stChapter1Title: string
+  stChapter1Subtitle: string
+  stChapter1Body: string
+  stChapter2Badge: string
+  stChapter2Title: string
+  stChapter2Subtitle: string
+  stChapter2Body: string
+  stChapter3Badge: string
+  stChapter3Title: string
+  stChapter3Subtitle: string
+  stChapter3Body: string
+  stChapter4Badge: string
+  stChapter4Title: string
+  stChapter4Subtitle: string
+  stChapter4Body: string
+  stStat1Label: string
+  stStat2Label: string
+  stStat3Label: string
+  stStat4Label: string
+  stStat5Label: string
+  stStat6Label: string
+  stStat7Label: string
+  stStat8Label: string
+  stCTAButton: string
+  stScrollHint: string
+
   // DESTINATIONS CAROUSEL
   popularDestinations: string
   popularDestinationsSubtitle: string
@@ -239,6 +267,34 @@ const translations: Record<Language, Translations> = {
     rareSpecies: "Rare Species",
     viewTravelGuides: "View Travel Guides",
 
+    // SCROLLYTELLING SECTION
+    stChapter1Badge: "Chapter 01 · Landscape",
+    stChapter1Title: "Roof of the World",
+    stChapter1Subtitle: "Where the Himalayas meet the sky",
+    stChapter1Body: "Arunachal Pradesh rises from sub-tropical plains to alpine meadows, spanning peaks above 7,000 metres. This is a land where rivers carve gorges older than memory.",
+    stChapter2Badge: "Chapter 02 · Heritage",
+    stChapter2Title: "Living Traditions",
+    stChapter2Subtitle: "Centuries of faith and festivity",
+    stChapter2Body: "Over 26 distinct tribes celebrate their heritage through vibrant festivals, ancient monasteries, and oral traditions passed across generations.",
+    stChapter3Badge: "Chapter 03 · Nature",
+    stChapter3Title: "Wild & Untamed",
+    stChapter3Subtitle: "A biodiversity hotspot like no other",
+    stChapter3Body: "Namdapha Tiger Reserve shelters snow leopards, clouded leopards, and over 1,000 plant species inside one of the last true wilderness frontiers on Earth.",
+    stChapter4Badge: "Chapter 04 · Adventure",
+    stChapter4Title: "Your Story Begins",
+    stChapter4Subtitle: "Hidden valleys, infinite horizons",
+    stChapter4Body: "From the mystical Mechuka valley to high-altitude treks and the roaring Siang river, every turn reveals a landscape that rewards the bold.",
+    stStat1Label: "Metres Altitude",
+    stStat2Label: "Forest Cover",
+    stStat3Label: "Indigenous Tribes",
+    stStat4Label: "Years of History",
+    stStat5Label: "Bird Species",
+    stStat6Label: "Plant Species",
+    stStat7Label: "Trekking Routes",
+    stStat8Label: "Adventure Camps",
+    stCTAButton: "Plan My Journey",
+    stScrollHint: "Scroll to explore",
+
     // DESTINATIONS CAROUSEL
     popularDestinations: "Popular Destinations",
     popularDestinationsSubtitle: "Explore Arunachal's most beloved places",
@@ -405,6 +461,34 @@ const translations: Record<Language, Translations> = {
     majorTribes: "प्रमुख जनजातियां",
     rareSpecies: "दुर्लभ प्रजातियां",
     viewTravelGuides: "यात्रा गाइड देखें",
+
+    // SCROLLYTELLING SECTION
+    stChapter1Badge: "अध्याय 01 · भूदृश्य",
+    stChapter1Title: "दुनिया की छत",
+    stChapter1Subtitle: "जहाँ हिमालय और आकाश मिलते हैं",
+    stChapter1Body: "अरुणाचल प्रदेश उष्णकटिबंधीय मैदानों से शुरू होकर 7,000 मीटर से ऊँची चोटियों तक फैला है। यह वह भूमि है जहाँ नदियाँ सहस्राब्दियों पुरानी घाटियाँ बनाती हैं।",
+    stChapter2Badge: "अध्याय 02 · विरासत",
+    stChapter2Title: "जीवंत परंपराएँ",
+    stChapter2Subtitle: "सदियों की आस्था और उत्सव",
+    stChapter2Body: "26 से अधिक अलग-अलग जनजातियाँ अपनी विरासत को जीवंत उत्सवों, प्राचीन मठों और पीढ़ी-दर-पीढ़ी चली आ रही मौखिक परंपराओं के माध्यम से मनाती हैं।",
+    stChapter3Badge: "अध्याय 03 · प्रकृति",
+    stChapter3Title: "जंगली और अनछुआ",
+    stChapter3Subtitle: "एक अनूठा जैव विविधता केंद्र",
+    stChapter3Body: "नामदफा टाइगर रिजर्व हिम तेंदुए, बादल तेंदुए और 1,000 से अधिक पौधों की प्रजातियों का घर है।",
+    stChapter4Badge: "अध्याय 04 · साहसिक",
+    stChapter4Title: "आपकी कहानी शुरू होती है",
+    stChapter4Subtitle: "रहस्यमयी घाटियाँ, असीमित क्षितिज",
+    stChapter4Body: "मेचुका घाटी से लेकर ऊँचाई पर ट्रेक और सियांग नदी की गर्जना तक, हर मोड़ एक नया दृश्य प्रस्तुत करता है।",
+    stStat1Label: "मीटर ऊँचाई",
+    stStat2Label: "वन आवरण",
+    stStat3Label: "स्वदेशी जनजातियाँ",
+    stStat4Label: "वर्षों का इतिहास",
+    stStat5Label: "पक्षी प्रजातियाँ",
+    stStat6Label: "पौधों की प्रजातियाँ",
+    stStat7Label: "ट्रेकिंग मार्ग",
+    stStat8Label: "साहसिक शिविर",
+    stCTAButton: "यात्रा की योजना बनाएं",
+    stScrollHint: "देखने के लिए स्क्रॉल करें",
 
     // DESTINATIONS CAROUSEL
     popularDestinations: "लोकप्रिय गंतव्य",
@@ -573,6 +657,34 @@ const translations: Record<Language, Translations> = {
     rareSpecies: "বিরল প্রজাতি",
     viewTravelGuides: "ভ্রমণ গাইড দেখুন",
 
+    // SCROLLYTELLING SECTION
+    stChapter1Badge: "অধ্যায় 01 · ভূদৃশ্য",
+    stChapter1Title: "পৃথিবীর ছাদ",
+    stChapter1Subtitle: "যেখানে হিমালয় আকাশ ছুঁয়েছে",
+    stChapter1Body: "অরুণাচল প্রদেশ উপক্রান্তীয় সমভূমি থেকে ৭,০০০ মিটারের উপরে শৃঙ্গ পর্যন্ত বিস্তৃত। এটি এমন একটি ভূমি যেখানে নদীগুলি স্মৃতির চেয়ে পুরনো গিরিখাত খোদাই করেছে।",
+    stChapter2Badge: "অধ্যায় 02 · ঐতিহ্য",
+    stChapter2Title: "জীবন্ত ঐতিহ্য",
+    stChapter2Subtitle: "শতাব্দীর বিশ্বাস ও উৎসব",
+    stChapter2Body: "২৬টিরও বেশি স্বতন্ত্র উপজাতি তাদের ঐতিহ্য উজ্জীবিত উৎসব, প্রাচীন মঠ এবং প্রজন্মের পর প্রজন্ম ধরে চলে আসা মৌখিক ঐতিহ্যের মাধ্যমে উদযাপন করে।",
+    stChapter3Badge: "অধ্যায় 03 · প্রকৃতি",
+    stChapter3Title: "বন্য ও অদম্য",
+    stChapter3Subtitle: "এক অনন্য জীববৈচিত্র্য কেন্দ্র",
+    stChapter3Body: "নামদাফা টাইগার রিজার্ভে তুষার চিতা, মেঘচিতা এবং ১,০০০টিরও বেশি উদ্ভিদ প্রজাতি রয়েছে।",
+    stChapter4Badge: "অধ্যায় 04 · অ্যাডভেঞ্চার",
+    stChapter4Title: "আপনার গল্প শুরু হয়",
+    stChapter4Subtitle: "লুকানো উপত্যকা, অসীম দিগন্ত",
+    stChapter4Body: "রহস্যময় মেচুকা উপত্যকা থেকে উচ্চ-উচ্চতার ট্রেক এবং গর্জনশীল সিয়াং নদী পর্যন্ত, প্রতিটি বাঁকে একটি নতুন দৃশ্য উন্মোচিত হয়।",
+    stStat1Label: "মিটার উচ্চতা",
+    stStat2Label: "বনাবৃত এলাকা",
+    stStat3Label: "আদিবাসী উপজাতি",
+    stStat4Label: "বছরের ইতিহাস",
+    stStat5Label: "পাখির প্রজাতি",
+    stStat6Label: "উদ্ভিদ প্রজাতি",
+    stStat7Label: "ট্রেকিং রুট",
+    stStat8Label: "অ্যাডভেঞ্চার ক্যাম্প",
+    stCTAButton: "আমার যাত্রা পরিকল্পনা করুন",
+    stScrollHint: "দেখতে স্ক্রল করুন",
+
     // DESTINATIONS CAROUSEL
     popularDestinations: "জনপ্রিয় গন্তব্য",
     popularDestinationsSubtitle: "অরুণাচলের সবচেয়ে প্রিয় জায়গাগুলি অন্বেষণ করুন",
@@ -739,6 +851,34 @@ const translations: Record<Language, Translations> = {
     majorTribes: "প্ৰধান জনজাতি",
     rareSpecies: "বিৰল প্ৰজাতি",
     viewTravelGuides: "ভ্ৰমণ গাইড চাওক",
+
+    // SCROLLYTELLING SECTION
+    stChapter1Badge: "অধ্যায় 01 · ভূ-দৃশ্য",
+    stChapter1Title: "পৃথিৱীৰ চাল",
+    stChapter1Subtitle: "য'ত হিমালয় আকাশ স্পৰ্শ কৰে",
+    stChapter1Body: "অৰুণাচল প্ৰদেশ উষ্ণকটিবন্ধীয় সমতলভূমিৰ পৰা ৭,০০০ মিটাৰৰ ওপৰৰ শিখৰলৈ বিস্তৃত। এয়া এনে এখন ভূমি য'ত নৈবোৰে স্মৃতিতকৈও পুৰণি গিৰিখাত খান্দিছে।",
+    stChapter2Badge: "অধ্যায় 02 · ঐতিহ্য",
+    stChapter2Title: "জীৱন্ত পৰম্পৰা",
+    stChapter2Subtitle: "শতিকাৰ বিশ্বাস আৰু উৎসৱ",
+    stChapter2Body: "২৬টাতকৈও অধিক পৃথক জনজাতিয়ে তেওঁলোকৰ ঐতিহ্য জীৱন্ত উৎসৱ, প্ৰাচীন বিহাৰ আৰু প্ৰজন্মৰ পিছত প্ৰজন্ম ধৰি চলি অহা মৌখিক পৰম্পৰাৰ জৰিয়তে উদযাপন কৰে।",
+    stChapter3Badge: "অধ্যায় 03 · প্ৰকৃতি",
+    stChapter3Title: "বনৰীয়া আৰু অদম্য",
+    stChapter3Subtitle: "এক অনন্য জীৱবৈচিত্ৰ্যৰ কেন্দ্ৰ",
+    stChapter3Body: "নামদাফা ব্যাঘ্ৰ সংৰক্ষিত অৰণ্যত তুষাৰ চিতা, মেঘ চিতা আৰু ১,০০০তকৈও অধিক উদ্ভিদ প্ৰজাতি আছে।",
+    stChapter4Badge: "অধ্যায় 04 · অভিযান",
+    stChapter4Title: "আপোনাৰ কাহিনী আৰম্ভ হয়",
+    stChapter4Subtitle: "লুকাই থকা উপত্যকা, অসীম দিগন্ত",
+    stChapter4Body: "ৰহস্যময় মেচুকা উপত্যকাৰ পৰা উচ্চতাৰ ট্ৰেক আৰু গৰ্জনশীল চিয়াং নৈলৈকে, প্ৰতিটো বাঁকে এক নতুন দৃশ্য উন্মোচন কৰে।",
+    stStat1Label: "মিটাৰ উচ্চতা",
+    stStat2Label: "বনাচ্ছাদিত এলেকা",
+    stStat3Label: "আদিবাসী জনজাতি",
+    stStat4Label: "বছৰৰ ইতিহাস",
+    stStat5Label: "পক্ষী প্ৰজাতি",
+    stStat6Label: "উদ্ভিদ প্ৰজাতি",
+    stStat7Label: "ট্ৰেকিং পথ",
+    stStat8Label: "অভিযান শিবিৰ",
+    stCTAButton: "মোৰ যাত্ৰা পৰিকল্পনা কৰক",
+    stScrollHint: "দেখিবলৈ স্ক্ৰল কৰক",
 
     // DESTINATIONS CAROUSEL
     popularDestinations: "জনপ্ৰিয় গন্তব্য",

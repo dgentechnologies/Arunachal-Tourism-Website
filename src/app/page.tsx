@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 import { HeroCarousel } from "@/components/hero-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { ScrollytellingSection } from "@/components/scrollytelling-section"
 import { useLanguage } from "@/lib/language-context"
 
 export default function Home() {
@@ -67,6 +68,9 @@ export default function Home() {
       <ScrollReveal variant="up">
         <DestinationsCarousel />
       </ScrollReveal>
+
+      {/* Scrollytelling Section */}
+      <ScrollytellingSection />
 
       {/* Destination Preview */}
       <section className="bg-primary/5 py-12 md:py-20">
