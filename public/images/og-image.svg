@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background gradient (sky) -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F2B4A"/>
+      <stop offset="60%" stop-color="#1A6B4A"/>
+      <stop offset="100%" stop-color="#2D8B5F"/>
+    </linearGradient>
+    <linearGradient id="mtnFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A6B4A"/>
+      <stop offset="100%" stop-color="#0D3D28"/>
+    </linearGradient>
+    <linearGradient id="mtnBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2D8B5F"/>
+      <stop offset="100%" stop-color="#1A6B4A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#skyGrad)"/>
+
+  <!-- Stars -->
+  <circle cx="100" cy="60"  r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="250" cy="30"  r="1"   fill="white" opacity="0.5"/>
+  <circle cx="400" cy="80"  r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="600" cy="40"  r="1"   fill="white" opacity="0.4"/>
+  <circle cx="800" cy="70"  r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="1000" cy="50" r="1"   fill="white" opacity="0.5"/>
+  <circle cx="1100" cy="90" r="2"   fill="white" opacity="0.7"/>
+
+  <!-- Sun rising -->
+  <circle cx="600" cy="210" r="60" fill="#E8A020" opacity="0.9"/>
+  <circle cx="600" cy="210" r="75" fill="#E8A020" opacity="0.15"/>
+  <circle cx="600" cy="210" r="90" fill="#E8A020" opacity="0.08"/>
+
+  <!-- Back mountains -->
+  <path d="M0 450 L200 200 L350 300 L500 150 L650 280 L800 170 L950 300 L1100 200 L1200 320 L1200 630 L0 630 Z" fill="url(#mtnBack)" opacity="0.7"/>
+  <!-- Snow on back mountains -->
+  <path d="M480 175 L500 150 L520 175 Z" fill="white" opacity="0.8"/>
+  <path d="M780 195 L800 170 L820 195 Z" fill="white" opacity="0.8"/>
+  <path d="M180 225 L200 200 L220 225 Z" fill="white" opacity="0.7"/>
+
+  <!-- Front mountains -->
+  <path d="M0 500 L150 280 L280 380 L420 220 L580 360 L700 240 L860 380 L1050 260 L1200 380 L1200 630 L0 630 Z" fill="url(#mtnFront)"/>
+  <!-- Snow on front mountains -->
+  <path d="M400 248 L420 220 L440 248 Z" fill="white" opacity="0.9"/>
+  <path d="M680 268 L700 240 L720 268 Z" fill="white" opacity="0.9"/>
+  <path d="M1030 288 L1050 260 L1070 288 Z" fill="white" opacity="0.85"/>
+
+  <!-- Logo text -->
+  <text x="600" y="540" font-family="Georgia, serif" font-size="72" font-weight="700" fill="white" text-anchor="middle" letter-spacing="2">Arunachal Explore</text>
+  <text x="600" y="595" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="#E8A020" text-anchor="middle" letter-spacing="8">LAND OF THE RISING SUN</text>
+</svg>

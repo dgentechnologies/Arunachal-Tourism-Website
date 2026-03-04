@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="Arunachal Explore">
+  <!-- Sun -->
+  <circle cx="24" cy="14" r="5" fill="#E8A020"/>
+  <line x1="24" y1="5"  x2="24" y2="2"  stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="24" y1="26" x2="24" y2="29" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="13" y1="14" x2="10" y2="14" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="35" y1="14" x2="38" y2="14" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="16.2" y1="7.2"  x2="14"  y2="5"   stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="31.8" y1="20.8" x2="34"  y2="23"  stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="31.8" y1="7.2"  x2="34"  y2="5"   stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <line x1="16.2" y1="20.8" x2="14"  y2="23"  stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+  <!-- Mountains -->
+  <path d="M4 44 L16 22 L22 30 L30 16 L44 44 Z" fill="url(#iconGrad)"/>
+  <path d="M27 20 L30 16 L33 20 Z" fill="white" opacity="0.9"/>
+  <defs>
+    <linearGradient id="iconGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2D8B5F"/>
+      <stop offset="100%" stop-color="#1A6B4A"/>
+    </linearGradient>
+  </defs>
+</svg>
