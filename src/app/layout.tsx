@@ -59,7 +59,7 @@ export const metadata: Metadata = {
       'Official tourism portal for Arunachal Pradesh. Discover Tawang, Ziro Valley, Namdapha. Book hotels, arrange transport, and apply for Inner Line Permits online.',
     images: [
       {
-        url: 'https://picsum.photos/seed/arunachal-og/1200/630',
+        url: '/images/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'Arunachal Pradesh — Land of the Rising Sun',
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: 'Arunachal Explore | Land of the Rising Sun',
     description:
       'Official tourism portal for Arunachal Pradesh. Discover Tawang, Ziro Valley, Namdapha.',
-    images: ['https://picsum.photos/seed/arunachal-og/1200/630'],
+    images: ['/images/og-image.svg'],
   },
   alternates: {
     canonical: BASE_URL,

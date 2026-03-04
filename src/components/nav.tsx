@@ -2,9 +2,10 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Mountain, Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe } from "lucide-react"
+import { Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe, Mountain } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -53,8 +54,11 @@ export function Nav() {
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <Mountain className={cn("h-8 w-8", transparent ? "text-white" : "text-primary")} />
-          <span className={cn("text-xl font-bold tracking-tight font-headline", transparent ? "text-white" : "text-primary")}>Arunachal Explore</span>
+          {transparent ? (
+            <Image src="/logos/logo-white.svg" alt="Arunachal Explore" width={160} height={42} priority />
+          ) : (
+            <Image src="/logos/logo.svg" alt="Arunachal Explore" width={160} height={42} priority />
+          )}
         </Link>
 
         {/* Desktop Nav */}
