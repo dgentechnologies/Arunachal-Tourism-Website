@@ -12,6 +12,7 @@ import { DestinationsCarousel } from "@/components/destinations-carousel"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ScrollytellingSection } from "@/components/scrollytelling-section"
 import { useLanguage } from "@/lib/language-context"
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
 
 export default function Home() {
   const { t } = useLanguage()
@@ -142,6 +143,49 @@ export default function Home() {
 
       {/* Scrollytelling Section */}
       <ScrollytellingSection />
+
+      {/* Traveller Photo Testimonials */}
+      <section className="container mx-auto px-4">
+        <ScrollReveal variant="up" className="text-center mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">Through the Lens of Our Travellers</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">Real photos and stories shared by visitors who have experienced the magic of Arunachal Pradesh.</p>
+        </ScrollReveal>
+        <AnimatedTestimonials
+          autoplay
+          testimonials={[
+            {
+              quote: "Tawang took my breath away — the monastery at sunrise, draped in mist with monks chanting, felt like stepping into another world entirely.",
+              name: "Priya Sharma",
+              designation: "Travel Blogger, Delhi",
+              src: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2670&auto=format&fit=crop",
+            },
+            {
+              quote: "The Ziro Valley during the festival is unlike anything I've experienced. The Apatani tribe's hospitality and culture left a permanent mark on my heart.",
+              name: "Rahul Menon",
+              designation: "Photographer, Bengaluru",
+              src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2670&auto=format&fit=crop",
+            },
+            {
+              quote: "Mechuka feels like the last untouched frontier. Crystal clear rivers, snow-capped peaks, and the warmest people I've ever met on my travels.",
+              name: "Anjali Bose",
+              designation: "Adventure Traveller, Kolkata",
+              src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop",
+            },
+            {
+              quote: "The biodiversity here is staggering. I spotted hornbills and clouded leopards on the same trek — Arunachal is a nature lover's paradise.",
+              name: "Dev Krishnamurthy",
+              designation: "Wildlife Enthusiast, Chennai",
+              src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2671&auto=format&fit=crop",
+            },
+            {
+              quote: "Bomdila's apple orchards and Buddhist monasteries create a perfect blend of serenity and culture. This is my third visit and it never disappoints.",
+              name: "Meera Nair",
+              designation: "Solo Traveller, Mumbai",
+              src: "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop",
+            },
+          ]}
+        />
+      </section>
 
       {/* Destination Preview */}
       <section className="bg-primary/5 py-12 md:py-20">
