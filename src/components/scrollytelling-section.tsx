@@ -128,10 +128,19 @@ export function ScrollytellingSection() {
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
+  // Track which chapters have ever been activated so stat counters fire once
+  const [activatedChapters, setActivatedChapters] = useState<Set<number>>(new Set())
   const [progress, setProgress] = useState(0)
-  const [contentVisible, setContentVisible] = useState(false)
   const outerRef = useRef<HTMLDivElement>(null)
   const prevIndex = useRef(0)
+
+  // Activate the first chapter shortly after mount so its counters animate in
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setActivatedChapters(new Set([0]))
+    }, 350)
+    return () => clearTimeout(timer)
+  }, [])
 
   const updateScroll = useCallback(() => {
     const el = outerRef.current
@@ -148,11 +157,13 @@ export function ScrollytellingSection() {
     )
     if (idx !== prevIndex.current) {
       prevIndex.current = idx
-      setContentVisible(false)
-      setTimeout(() => {
-        setActiveIndex(idx)
-        setContentVisible(true)
-      }, 180)
+      // Update active chapter immediately — CSS handles the crossfade
+      setActiveIndex(idx)
+      setActivatedChapters(prev => {
+        const s = new Set(prev)
+        s.add(idx)
+        return s
+      })
     }
   }, [chapters.length])
 
@@ -160,24 +171,16 @@ export function ScrollytellingSection() {
     const onScroll = () => updateScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     updateScroll()
-    // Show initial content
-    const t = setTimeout(() => setContentVisible(true), 400)
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      clearTimeout(t)
-    }
+    return () => window.removeEventListener("scroll", onScroll)
   }, [updateScroll])
 
-  const chapter = chapters[activeIndex]
-  const scrollProgress = ((activeIndex + 1) / chapters.length) * 100
-  const intraChapterProgress = (progress * chapters.length - activeIndex) * 100
-  const displayProgress = ((activeIndex / chapters.length) + (intraChapterProgress / 100) / chapters.length) * 100
+  const activeChapter = chapters[activeIndex]
 
   return (
     <section ref={outerRef} style={{ height: `${chapters.length * 100}vh` }} className="relative">
       {/* Sticky viewport */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
-        {/* Background images — all pre-rendered, opacity toggled */}
+        {/* Background images — all rendered, crossfade via opacity */}
         {chapters.map((ch, idx) => {
           const bg = PlaceHolderImages.find((i) => i.id === ch.imageId)
           return bg ? (
@@ -187,25 +190,27 @@ export function ScrollytellingSection() {
               alt={bg.description}
               fill
               className={cn(
-                "object-cover transition-opacity duration-700 select-none pointer-events-none",
+                "object-cover select-none pointer-events-none",
                 idx === activeIndex ? "opacity-100" : "opacity-0"
               )}
+              style={{ transition: "opacity 1s cubic-bezier(0.4,0,0.2,1)" }}
               priority={idx === 0}
               data-ai-hint={bg.imageHint}
             />
           ) : null
         })}
 
-        {/* Gradient overlay — darkens more at the bottom for text legibility */}
+        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/80 z-10" />
 
-        {/* Coloured accent streak at the very top */}
+        {/* Accent progress bar — width follows scroll, color crossfades with accent */}
         <div
-          className="absolute top-0 left-0 h-1 z-30 transition-all duration-700 rounded-r-full"
+          className="absolute top-0 left-0 h-1 z-30 rounded-r-full"
           style={{
-            width: `${displayProgress}%`,
-            background: chapter.accentColor,
-            boxShadow: `0 0 12px ${chapter.accentColor}`,
+            width: `${progress * 100}%`,
+            background: activeChapter.accentColor,
+            boxShadow: `0 0 14px ${activeChapter.accentColor}`,
+            transition: "width 0.12s linear, background-color 0.9s ease, box-shadow 0.9s ease",
           }}
         />
 
@@ -222,86 +227,86 @@ export function ScrollytellingSection() {
                 const target = (idx / chapters.length) * totalHeight + el.offsetTop
                 window.scrollTo({ top: target, behavior: "smooth" })
               }}
-              className={cn(
-                "rounded-full transition-all duration-500 border",
-                idx === activeIndex
-                  ? "w-2.5 h-8 border-white/80"
-                  : "w-2.5 h-2.5 border-white/40 hover:border-white/70"
-              )}
+              className="rounded-full border"
               style={{
-                background: idx === activeIndex ? chapter.accentColor : "transparent",
-                boxShadow: idx === activeIndex ? `0 0 8px ${chapter.accentColor}` : "none",
+                width: "10px",
+                height: idx === activeIndex ? "32px" : "10px",
+                background: idx === activeIndex ? ch.accentColor : "transparent",
+                borderColor: idx === activeIndex ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.4)",
+                boxShadow: idx === activeIndex ? `0 0 8px ${ch.accentColor}` : "none",
+                transition: "height 0.55s cubic-bezier(0.4,0,0.2,1), background-color 0.55s ease, box-shadow 0.55s ease, border-color 0.55s ease",
               }}
             />
           ))}
         </div>
 
-        {/* Main content */}
-        <div className="absolute inset-0 z-20 flex items-end pb-16 md:pb-20 px-5 md:px-16">
-          <div className="w-full max-w-6xl mx-auto">
-            <div
-              className={cn(
-                "transition-all duration-500",
-                contentVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              )}
-            >
+        {/* Per-chapter content panels — all in the DOM, crossfade via opacity + translateY */}
+        {chapters.map((ch, idx) => (
+          <div
+            key={ch.id}
+            className="absolute inset-0 z-20 flex items-end pb-16 md:pb-20 px-5 md:px-16"
+            aria-hidden={idx !== activeIndex}
+            style={{
+              opacity: idx === activeIndex ? 1 : 0,
+              transform: idx === activeIndex ? "translateY(0px)" : "translateY(22px)",
+              transition: "opacity 0.75s cubic-bezier(0.4,0,0.2,1), transform 0.75s cubic-bezier(0.4,0,0.2,1)",
+              pointerEvents: idx === activeIndex ? "auto" : "none",
+            }}
+          >
+            <div className="w-full max-w-6xl mx-auto">
               {/* Badge */}
               <div
                 className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-4 border"
                 style={{
-                  background: `${chapter.accentColor}22`,
-                  borderColor: `${chapter.accentColor}55`,
-                  color: chapter.accentColor,
+                  background: `${ch.accentColor}22`,
+                  borderColor: `${ch.accentColor}55`,
+                  color: ch.accentColor,
                 }}
               >
                 <span
                   className="inline-block h-1.5 w-1.5 rounded-full animate-pulse"
-                  style={{ background: chapter.accentColor }}
+                  style={{ background: ch.accentColor }}
                 />
-                {chapter.badge}
+                {ch.badge}
               </div>
 
               {/* Headline */}
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold font-headline text-white leading-tight mb-3 drop-shadow-xl max-w-4xl">
-                {chapter.title}
+                {ch.title}
               </h2>
 
               {/* Subtitle */}
               <p className="text-lg md:text-2xl font-medium text-white/70 mb-3 max-w-2xl">
-                {chapter.subtitle}
+                {ch.subtitle}
               </p>
 
               {/* Body */}
               <p className="text-sm md:text-base text-white/60 leading-relaxed max-w-xl mb-8 hidden md:block">
-                {chapter.body}
+                {ch.body}
               </p>
 
               {/* Stats + CTA row */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
                 <div className="flex items-center gap-8 sm:gap-12">
                   <StatCounter
-                    key={`${chapter.id}-stat1`}
-                    value={chapter.stat1Value}
-                    label={chapter.stat1Label}
-                    isActive={contentVisible}
+                    value={ch.stat1Value}
+                    label={ch.stat1Label}
+                    isActive={activatedChapters.has(idx)}
                   />
                   <div className="w-px h-12 bg-white/20 hidden sm:block" />
                   <StatCounter
-                    key={`${chapter.id}-stat2`}
-                    value={chapter.stat2Value}
-                    label={chapter.stat2Label}
-                    isActive={contentVisible}
+                    value={ch.stat2Value}
+                    label={ch.stat2Label}
+                    isActive={activatedChapters.has(idx)}
                   />
                 </div>
 
-                {activeIndex === chapters.length - 1 && (
+                {idx === chapters.length - 1 && (
                   <Link href="/itinerary" className="mt-2 sm:mt-0 sm:ml-auto">
                     <Button
                       size="lg"
                       className="h-12 px-8 text-base font-semibold shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-accent/30 active:scale-95"
-                      style={{ background: chapter.accentColor, color: "#1a1a2e" }}
+                      style={{ background: ch.accentColor, color: "#1a1a2e" }}
                     >
                       {t.stCTAButton} <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
@@ -312,14 +317,14 @@ export function ScrollytellingSection() {
               {/* Chapter counter */}
               <div className="mt-6 flex items-center gap-3">
                 <span className="text-white/40 text-xs font-mono tabular-nums tracking-widest">
-                  {String(activeIndex + 1).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
+                  {String(idx + 1).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
                 </span>
                 <div className="flex-1 max-w-[120px] h-px bg-white/15 relative">
                   <div
-                    className="absolute inset-y-0 left-0 transition-all duration-700"
+                    className="absolute inset-y-0 left-0"
                     style={{
-                      width: `${scrollProgress}%`,
-                      background: chapter.accentColor,
+                      width: `${((idx + 1) / chapters.length) * 100}%`,
+                      background: ch.accentColor,
                     }}
                   />
                 </div>
@@ -330,7 +335,7 @@ export function ScrollytellingSection() {
               </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   )
