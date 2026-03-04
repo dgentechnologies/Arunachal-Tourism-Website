@@ -11,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['Inter', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'sans-serif'],
+        headline: ['Inter', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {

@@ -1,10 +1,13 @@
 
+"use client"
+
 import Image from "next/image"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Users, Fuel, Gauge, ShieldCheck, Map } from "lucide-react"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
+import { useLanguage } from "@/lib/language-context"
 
 const vehicles = [
   {
@@ -50,12 +53,13 @@ const vehicles = [
 ]
 
 export default function TransportPage() {
+  const { t } = useLanguage()
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold text-primary font-headline mb-4">Mountain-Ready Transport</h1>
+        <h1 className="text-4xl font-bold text-primary font-headline mb-4">{t.transportPageTitle}</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Choose from our fleet of reliable SUVs and adventure bikes designed to tackle the winding Himalayan roads with ease and safety.
+          {t.transportPageSubtitle}
         </p>
       </div>
 
@@ -95,7 +99,7 @@ export default function TransportPage() {
                 <div>
                   <span className="text-2xl font-bold text-primary">{v.price}</span>
                 </div>
-                <Button className="font-bold">Reserve Now</Button>
+                <Button className="font-bold">{t.reserveNow}</Button>
               </CardFooter>
             </div>
           </Card>
@@ -106,18 +110,18 @@ export default function TransportPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex flex-col items-center text-center space-y-3">
             <div className="bg-white p-4 rounded-2xl shadow-sm"><Map className="h-8 w-8 text-primary" /></div>
-            <h3 className="font-bold text-lg">GPS Enabled</h3>
-            <p className="text-sm text-muted-foreground">All vehicles come with pre-loaded offline maps for remote connectivity.</p>
+            <h3 className="font-bold text-lg">{t.gpsEnabled}</h3>
+            <p className="text-sm text-muted-foreground">{t.gpsDesc}</p>
           </div>
           <div className="flex flex-col items-center text-center space-y-3">
             <div className="bg-white p-4 rounded-2xl shadow-sm"><ShieldCheck className="h-8 w-8 text-primary" /></div>
-            <h3 className="font-bold text-lg">Fully Insured</h3>
-            <p className="text-sm text-muted-foreground">Comprehensive insurance coverage including roadside assistance.</p>
+            <h3 className="font-bold text-lg">{t.fullyInsured}</h3>
+            <p className="text-sm text-muted-foreground">{t.fullyInsuredDesc}</p>
           </div>
           <div className="flex flex-col items-center text-center space-y-3">
             <div className="bg-white p-4 rounded-2xl shadow-sm"><Gauge className="h-8 w-8 text-primary" /></div>
-            <h3 className="font-bold text-lg">Verified Drivers</h3>
-            <p className="text-sm text-muted-foreground">Our drivers are locals with years of mountain driving experience.</p>
+            <h3 className="font-bold text-lg">{t.verifiedDrivers}</h3>
+            <p className="text-sm text-muted-foreground">{t.verifiedDriversDesc}</p>
           </div>
         </div>
       </div>

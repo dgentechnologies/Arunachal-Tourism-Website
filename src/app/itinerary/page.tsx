@@ -13,6 +13,7 @@ import { Loader2, Sparkles, Calendar, MapPin, Utensils, BedDouble, CheckCircle2,
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
+import { useLanguage } from "@/lib/language-context"
 
 // Increase timeout for Vercel Server Actions
 export const maxDuration = 60;
@@ -24,6 +25,7 @@ const itinerarySchema = z.object({
 })
 
 export default function ItineraryPage() {
+  const { t } = useLanguage()
   const [result, setResult] = useState<PersonalizedItineraryGeneratorOutput | null>(null)
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
@@ -84,10 +86,10 @@ export default function ItineraryPage() {
       <div className="text-center space-y-4 mb-12">
         <h1 className="text-4xl font-bold text-primary font-headline flex items-center justify-center gap-3">
           <Sparkles className="text-accent h-8 w-8" />
-          AI Itinerary Planner
+          {t.itineraryPageTitle}
         </h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Craft your dream adventure in Arunachal Pradesh. Our AI suggests the best trips and daily plans tailored specifically for you.
+          {t.itineraryPageSubtitle}
         </p>
       </div>
 
@@ -95,7 +97,7 @@ export default function ItineraryPage() {
         <div className="lg:col-span-4">
           <Card className="border-none shadow-lg">
             <CardHeader>
-              <CardTitle className="font-headline">Your Preferences</CardTitle>
+              <CardTitle className="font-headline">{t.yourPreferences}</CardTitle>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -105,7 +107,7 @@ export default function ItineraryPage() {
                     name="interests"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>What interests you?</FormLabel>
+                        <FormLabel>{t.interestsLabel}</FormLabel>
                         <FormControl>
                           <Input placeholder="e.g. Wildlife, Tribal Culture..." {...field} />
                         </FormControl>
@@ -118,7 +120,7 @@ export default function ItineraryPage() {
                     name="durationDays"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Duration (Days)</FormLabel>
+                        <FormLabel>{t.durationLabel}</FormLabel>
                         <FormControl>
                           <Input type="number" {...field} />
                         </FormControl>
@@ -131,7 +133,7 @@ export default function ItineraryPage() {
                     name="preferredActivities"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Activities (Comma separated)</FormLabel>
+                        <FormLabel>{t.activitiesLabel}</FormLabel>
                         <FormControl>
                           <Input placeholder="Trekking, Cooking classes..." {...field} />
                         </FormControl>
@@ -141,7 +143,7 @@ export default function ItineraryPage() {
                   />
                   <Button type="submit" className="w-full font-bold h-12" disabled={loading}>
                     {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Sparkles className="mr-2 h-5 w-5" />}
-                    Generate Itinerary
+                    {t.generateItinerary}
                   </Button>
                 </form>
               </Form>
@@ -153,16 +155,16 @@ export default function ItineraryPage() {
           {!result && !loading && (
             <div className="h-full min-h-[400px] border-2 border-dashed rounded-2xl flex flex-col items-center justify-center text-muted-foreground p-8 text-center bg-secondary/10">
               <Calendar className="h-12 w-12 mb-4 opacity-20" />
-              <h3 className="text-xl font-headline font-semibold mb-2">Ready to plan?</h3>
-              <p>Enter your details on the left and our AI will build a custom trip for you.</p>
+              <h3 className="text-xl font-headline font-semibold mb-2">{t.readyToPlan}</h3>
+              <p>{t.readyToPlanDesc}</p>
             </div>
           )}
 
           {loading && (
             <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-8 space-y-4">
               <Loader2 className="h-12 w-12 animate-spin text-primary" />
-              <p className="text-lg font-medium animate-pulse">Mapping out your Himalayan adventure...</p>
-              <p className="text-sm text-muted-foreground">This may take up to a minute</p>
+              <p className="text-lg font-medium animate-pulse">{t.mappingAdventure}</p>
+              <p className="text-sm text-muted-foreground">{t.takesMinute}</p>
             </div>
           )}
 

@@ -15,6 +15,7 @@ import { permitPlanCompletenessCheck, PermitPlanOutput } from "@/ai/flows/permit
 import { AlertCircle, CheckCircle2, Loader2, Info } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useToast } from "@/hooks/use-toast"
+import { useLanguage } from "@/lib/language-context"
 
 // Increase timeout for Vercel Server Actions
 export const maxDuration = 60;
@@ -36,6 +37,7 @@ const permitFormSchema = z.object({
 })
 
 export default function PermitPage() {
+  const { t } = useLanguage()
   const [reviewResult, setReviewResult] = useState<PermitPlanOutput | null>(null)
   const [isReviewing, setIsReviewing] = useState(false)
   const { toast } = useToast()
@@ -106,9 +108,9 @@ export default function PermitPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <div className="space-y-6 mb-10">
-        <h1 className="text-4xl font-bold text-primary font-headline">Inner Line Permit (ILP) Application</h1>
+        <h1 className="text-4xl font-bold text-primary font-headline">{t.permitPageTitle}</h1>
         <p className="text-muted-foreground text-lg">
-          Apply for your entry permit to Arunachal Pradesh digitally. Use our AI assistant to review your plan for quick approval.
+          {t.permitPageSubtitle}
         </p>
       </div>
 
@@ -116,8 +118,8 @@ export default function PermitPage() {
         <div className="lg:col-span-2">
           <Card className="border-none shadow-lg">
             <CardHeader>
-              <CardTitle className="font-headline">Application Form</CardTitle>
-              <CardDescription>All fields marked with * are mandatory for processing.</CardDescription>
+              <CardTitle className="font-headline">{t.applicationForm}</CardTitle>
+              <CardDescription>{t.allFieldsMandatory}</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -128,7 +130,7 @@ export default function PermitPage() {
                       name="applicantName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name *</FormLabel>
+                          <FormLabel>{t.fullNameLabel}</FormLabel>
                           <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
@@ -139,7 +141,7 @@ export default function PermitPage() {
                       name="contactEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email *</FormLabel>
+                          <FormLabel>{t.emailLabel}</FormLabel>
                           <FormControl><Input placeholder="john@example.com" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
@@ -153,7 +155,7 @@ export default function PermitPage() {
                       name="travelStartDate"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Travel Start Date *</FormLabel>
+                          <FormLabel>{t.travelStartLabel}</FormLabel>
                           <FormControl><Input type="date" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
@@ -164,7 +166,7 @@ export default function PermitPage() {
                       name="travelEndDate"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Travel End Date *</FormLabel>
+                          <FormLabel>{t.travelEndLabel}</FormLabel>
                           <FormControl><Input type="date" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
@@ -177,9 +179,9 @@ export default function PermitPage() {
                     name="destinations"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Planned Destinations *</FormLabel>
+                        <FormLabel>{t.destinationsLabel}</FormLabel>
                         <FormControl><Input placeholder="Tawang, Ziro, Pasighat (Comma separated)" {...field} /></FormControl>
-                        <FormDescription>List all the districts/towns you plan to visit.</FormDescription>
+                        <FormDescription>{t.destinationsHint}</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -191,7 +193,7 @@ export default function PermitPage() {
                       name="idProofType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>ID Proof Type *</FormLabel>
+                          <FormLabel>{t.idTypeLabel}</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
@@ -214,7 +216,7 @@ export default function PermitPage() {
                       name="idProofNumber"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>ID Document Number *</FormLabel>
+                          <FormLabel>{t.idNumberLabel}</FormLabel>
                           <FormControl><Input placeholder="XXXX-XXXX-XXXX" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
@@ -235,7 +237,7 @@ export default function PermitPage() {
                         </FormControl>
                         <div className="space-y-1 leading-none">
                           <FormLabel>
-                            I acknowledge and agree to abide by all local regulations and safety guidelines of Arunachal Pradesh.
+                            {t.acknowledgeLabel}
                           </FormLabel>
                         </div>
                       </FormItem>
@@ -251,14 +253,14 @@ export default function PermitPage() {
                       className="flex-1 font-semibold border-primary text-primary hover:bg-secondary/20"
                     >
                       {isReviewing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Info className="mr-2 h-4 w-4" />}
-                      AI Pre-Check
+                      {t.aiPreCheck}
                     </Button>
                     <Button 
                       type="submit" 
                       className="flex-1 font-semibold"
                       disabled={isReviewing}
                     >
-                      Submit Application
+                      {t.submitApplication}
                     </Button>
                   </div>
                 </form>
@@ -273,21 +275,21 @@ export default function PermitPage() {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Info className="h-5 w-5 text-primary" />
-                  AI Review Tool
+                  {t.aiReviewTool}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {!reviewResult && !isReviewing && (
                   <p className="text-sm text-muted-foreground">
-                    Fill out the form and click "AI Pre-Check" to get instant feedback on your application completeness and compliance.
+                    {t.aiReviewFill}
                   </p>
                 )}
                 
                 {isReviewing && (
                   <div className="flex flex-col items-center justify-center py-8 text-center space-y-3">
                     <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                    <p className="text-sm font-medium">Reviewing your plan...</p>
-                    <p className="text-xs text-muted-foreground animate-pulse">Analyzing with AI...</p>
+                    <p className="text-sm font-medium">{t.reviewingPlan}</p>
+                    <p className="text-xs text-muted-foreground animate-pulse">{t.analyzingAI}</p>
                   </div>
                 )}
 
@@ -300,13 +302,13 @@ export default function PermitPage() {
                         <AlertCircle className="h-5 w-5 text-red-600" />
                       )}
                       <span className="font-semibold text-sm">
-                        {reviewResult.isComplete ? "Plan looks complete!" : "Action required"}
+                        {reviewResult.isComplete ? t.planComplete : t.actionRequired}
                       </span>
                     </div>
 
                     {reviewResult.missingInformation.length > 0 && (
                       <div className="space-y-1">
-                        <p className="text-xs font-bold uppercase text-muted-foreground">Missing Info:</p>
+                        <p className="text-xs font-bold uppercase text-muted-foreground">{t.missingInfo}</p>
                         <ul className="text-sm space-y-1 list-disc pl-4">
                           {reviewResult.missingInformation.map((info, i) => <li key={i}>{info}</li>)}
                         </ul>
@@ -315,7 +317,7 @@ export default function PermitPage() {
 
                     {reviewResult.potentialComplianceIssues.length > 0 && (
                       <Alert variant="destructive" className="py-2">
-                        <AlertTitle className="text-xs font-bold">Issues Found</AlertTitle>
+                        <AlertTitle className="text-xs font-bold">{t.issuesFound}</AlertTitle>
                         <AlertDescription className="text-xs">
                           {reviewResult.potentialComplianceIssues[0]}
                         </AlertDescription>
@@ -324,7 +326,7 @@ export default function PermitPage() {
 
                     {reviewResult.suggestionsForImprovement.length > 0 && (
                       <div className="space-y-1 pt-2">
-                        <p className="text-xs font-bold uppercase text-muted-foreground">Suggestions:</p>
+                        <p className="text-xs font-bold uppercase text-muted-foreground">{t.suggestions}</p>
                         <ul className="text-sm space-y-1 list-disc pl-4 italic">
                           {reviewResult.suggestionsForImprovement.map((sug, i) => <li key={i}>{sug}</li>)}
                         </ul>

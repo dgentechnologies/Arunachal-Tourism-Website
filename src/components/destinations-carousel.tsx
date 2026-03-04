@@ -6,43 +6,21 @@ import { useState, useRef } from "react"
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
-
-const destinations = [
-  {
-    name: "Tawang",
-    tagline: "Buddhism's Crown Jewel",
-    imageId: "dest-tawang",
-    href: "/guides",
-  },
-  {
-    name: "Ziro Valley",
-    tagline: "UNESCO Heritage Landscape",
-    imageId: "dest-ziro",
-    href: "/guides",
-  },
-  {
-    name: "Namdapha",
-    tagline: "Biodiversity Hotspot",
-    imageId: "dest-namdapha",
-    href: "/guides",
-  },
-  {
-    name: "Mechuka",
-    tagline: "Hidden Himalayan Paradise",
-    imageId: "dest-mechuka",
-    href: "/guides",
-  },
-  {
-    name: "Sangti Valley",
-    tagline: "Valley of the Cranes",
-    imageId: "dest-sangti",
-    href: "/guides",
-  },
-]
+import { useLanguage } from "@/lib/language-context"
 
 const SCROLL_AMOUNT_RATIO = 0.7
 
 export function DestinationsCarousel() {
+  const { t } = useLanguage()
+
+  const destinations = [
+    { name: "Tawang", tagline: t.destTawangTagline, imageId: "dest-tawang", href: "/guides" },
+    { name: "Ziro Valley", tagline: t.destZiroTagline, imageId: "dest-ziro", href: "/guides" },
+    { name: "Namdapha", tagline: t.destNamdaphaTagline, imageId: "dest-namdapha", href: "/guides" },
+    { name: "Mechuka", tagline: t.destMechukaTagline, imageId: "dest-mechuka", href: "/guides" },
+    { name: "Sangti Valley", tagline: t.destSangtiTagline, imageId: "dest-sangti", href: "/guides" },
+  ]
+
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
@@ -67,10 +45,10 @@ export function DestinationsCarousel() {
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline">
-              Popular Destinations
+              {t.popularDestinations}
             </h2>
             <p className="text-muted-foreground mt-2 text-sm md:text-base">
-              Explore Arunachal's most beloved places
+              {t.popularDestinationsSubtitle}
             </p>
           </div>
           <div className="flex gap-2">
@@ -138,7 +116,7 @@ export function DestinationsCarousel() {
                   <h3 className="text-xl font-bold font-headline">{dest.name}</h3>
                   <p className="text-sm text-white/80 mt-0.5">{dest.tagline}</p>
                   <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-white/50 group-hover:text-white/90 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                    Explore <ChevronRight className="h-3.5 w-3.5" />
+                    {t.exploreText} <ChevronRight className="h-3.5 w-3.5" />
                   </div>
                 </div>
               </Link>

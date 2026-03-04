@@ -7,37 +7,40 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
+import { useLanguage } from "@/lib/language-context"
 
 const AUTO_ADVANCE_INTERVAL = 5500
 
-const heroSlides = [
-  {
-    imageId: "hero-mountains",
-    headline: "Arunachal Pradesh",
-    subline: "The Land of the Rising Sun",
-    tagline: "Untouched landscapes, vibrant cultures, serene monasteries.",
-  },
-  {
-    imageId: "hero-himalaya",
-    headline: "Majestic Himalayas",
-    subline: "Where the Sky Meets the Earth",
-    tagline: "Journey to the roof of the world and beyond.",
-  },
-  {
-    imageId: "hero-valley",
-    headline: "Verdant Valleys",
-    subline: "Nature's Untouched Paradise",
-    tagline: "Discover lush forests, rivers and hidden gems.",
-  },
-  {
-    imageId: "hero-monastery",
-    headline: "Ancient Monasteries",
-    subline: "A Spiritual Odyssey",
-    tagline: "Experience centuries of Buddhist culture and heritage.",
-  },
-]
-
 export function HeroCarousel() {
+  const { t } = useLanguage()
+
+  const heroSlides = [
+    {
+      imageId: "hero-mountains",
+      headline: t.heroSlide1Headline,
+      subline: t.heroSlide1Subline,
+      tagline: t.heroSlide1Tagline,
+    },
+    {
+      imageId: "hero-himalaya",
+      headline: t.heroSlide2Headline,
+      subline: t.heroSlide2Subline,
+      tagline: t.heroSlide2Tagline,
+    },
+    {
+      imageId: "hero-valley",
+      headline: t.heroSlide3Headline,
+      subline: t.heroSlide3Subline,
+      tagline: t.heroSlide3Tagline,
+    },
+    {
+      imageId: "hero-monastery",
+      headline: t.heroSlide4Headline,
+      subline: t.heroSlide4Subline,
+      tagline: t.heroSlide4Tagline,
+    },
+  ]
+
   const [current, setCurrent] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -112,7 +115,7 @@ export function HeroCarousel() {
               size="lg"
               className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
             >
-              Get Your Permit <ArrowRight className="ml-2 h-5 w-5" />
+              {t.getYourPermit} <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
           <Link href="/itinerary" className="w-full sm:w-auto">
@@ -121,7 +124,7 @@ export function HeroCarousel() {
               variant="secondary"
               className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl bg-white/20 backdrop-blur-md text-white hover:bg-white/35 border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
             >
-              Plan My Trip
+              {t.planMyTrip}
             </Button>
           </Link>
         </div>

@@ -1,9 +1,12 @@
+"use client"
+
 import Image from "next/image"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Star, MapPin, Coffee, Wifi, Car } from "lucide-react"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
+import { useLanguage } from "@/lib/language-context"
 
 const hotels = [
   {
@@ -49,12 +52,13 @@ const hotels = [
 ]
 
 export default function HotelsPage() {
+  const { t } = useLanguage()
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-6">
         <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline">Stay in the Serene</h1>
-          <p className="text-muted-foreground text-base md:text-lg">Handpicked accommodations across the Land of the Rising Sun.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline">{t.hotelsPageTitle}</h1>
+          <p className="text-muted-foreground text-base md:text-lg">{t.hotelsPageSubtitle}</p>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-4 md:pb-0 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
           <Badge variant="outline" className="cursor-pointer hover:bg-primary hover:text-white px-4 py-1.5 whitespace-nowrap">Tawang</Badge>
@@ -102,9 +106,9 @@ export default function HotelsPage() {
             <CardFooter className="p-4 flex flex-col sm:flex-row items-center justify-between border-t mt-4 gap-4">
               <div className="w-full sm:w-auto text-left">
                 <span className="text-xl font-bold text-primary">{hotel.price}</span>
-                <span className="text-xs text-muted-foreground ml-1">/night</span>
+                <span className="text-xs text-muted-foreground ml-1">{t.perNight}</span>
               </div>
-              <Button size="sm" className="w-full sm:w-auto">Book Now</Button>
+              <Button size="sm" className="w-full sm:w-auto">{t.bookNow}</Button>
             </CardFooter>
           </Card>
         ))}
