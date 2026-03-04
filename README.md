@@ -57,7 +57,7 @@
     Create a `.env.local` file and add your keys:
     ```env
     GOOGLE_GENAI_API_KEY=your_gemini_api_key
-    NEXT_PUBLIC_SITE_URL=http://localhost:9002
+    NEXT_PUBLIC_SITE_URL=https://arunachal-test1.vercel.app
     ```
 4.  **Run the development server**:
     ```bash
