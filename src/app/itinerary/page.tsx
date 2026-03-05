@@ -321,7 +321,7 @@ export default function ItineraryPage() {
                         Ask me to customize or upgrade this plan!
                       </p>
                     </CardHeader>
-                    <CardContent className="p-0 flex flex-col" style={{ height: '520px' }}>
+                    <CardContent className="p-0 flex flex-col h-[420px] md:h-[520px]">
                       {/* Chat messages */}
                       <ScrollArea className="flex-1 p-4">
                         <div className="space-y-3">

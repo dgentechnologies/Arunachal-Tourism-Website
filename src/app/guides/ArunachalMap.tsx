@@ -134,10 +134,10 @@ function DetailDrawer({ loc, onClose }: DrawerProps) {
 
       {/* Drawer panel */}
       <div
-        className="absolute top-0 right-0 bottom-0 w-full sm:w-[380px] pointer-events-auto
+        className="absolute bottom-0 left-0 right-0 sm:top-0 sm:left-auto sm:right-0 sm:bottom-0 w-full sm:w-[380px] max-h-[70vh] sm:max-h-none pointer-events-auto
                    flex flex-col bg-white/95 backdrop-blur-md shadow-2xl
-                   animate-in slide-in-from-right-6 duration-300"
-        style={{ borderLeft: `3px solid ${loc.color}` }}
+                   animate-in slide-in-from-bottom-6 sm:slide-in-from-right-6 duration-300 rounded-t-2xl sm:rounded-none"
+        style={{ borderTop: `3px solid ${loc.color}` }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Hero image */}

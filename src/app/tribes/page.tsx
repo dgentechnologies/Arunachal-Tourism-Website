@@ -65,7 +65,7 @@ export default function TribesPage() {
     <div className="container mx-auto px-4 py-12">
       {/* Page Header */}
       <ScrollReveal variant="up" className="max-w-3xl mb-12">
-        <h1 className="text-4xl font-bold text-primary font-headline mb-4">{t.tribesPageTitle}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-4">{t.tribesPageTitle}</h1>
         <p className="text-muted-foreground text-lg leading-relaxed">{t.tribesPageSubtitle}</p>
       </ScrollReveal>
 
