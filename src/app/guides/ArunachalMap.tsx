@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { X, Calendar, MapPin, Utensils, Camera, Users, ChevronRight, Mountain } from "lucide-react";
+import {
+  X, Calendar, MapPin, Utensils, Camera, Users,
+  ChevronRight, Mountain, Info,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { locations, type Location } from "./guides-data";
 
@@ -14,6 +17,15 @@ const W = 800;
 const H = 384;
 function lonToX(lon: number) { return ((lon - 91.5) / 6) * W; }
 function latToY(lat: number) { return ((29.5 - lat) / 3) * H; }
+
+/** Convert a #RRGGBB hex color to rgba() with the given 0–1 alpha.
+ *  All loc.color values in guides-data are guaranteed #RRGGBB strings. */
+function hexAlpha(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
 
 const GRATICULE_LONS = [92, 93, 94, 95, 96, 97];
 const GRATICULE_LATS = [27, 28, 29];
@@ -70,75 +82,23 @@ const STATE_BOUNDARY =
   "L 512.2,383.4 L 502.7,379.1 Z";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   DISTRICT ZONE FILLS
-   10 non-overlapping rectangular bands, each clipped to the state boundary.
-   Colours follow a classic atlas / political-map palette.
+   DISTRICT ZONE FILLS — atlas political-map palette
 ───────────────────────────────────────────────────────────────────────── */
 const DISTRICT_ZONES = [
-  {
-    id: "a", label: "Tawang &\nWest Kameng",
-    color: "#CDDFF0", stroke: "#9BBBD8",
-    rect: { x: 0, y: 0, w: 133, h: H },
-    labelX: 52, labelY: 275,
-  },
-  {
-    id: "b", label: "East Kameng &\nPapum Pare",
-    color: "#CDEBD4", stroke: "#8FCCA0",
-    rect: { x: 133, y: 0, w: 134, h: H },
-    labelX: 200, labelY: 255,
-  },
-  {
-    id: "c", label: "Kra Daadi &\nUpper Subansiri",
-    color: "#F0E8C8", stroke: "#D4C47A",
-    rect: { x: 267, y: 0, w: 133, h: 192 },
-    labelX: 333, labelY: 100,
-  },
-  {
-    id: "d", label: "Lower Subansiri\n& Kamle",
-    color: "#C8EDE4", stroke: "#78C8B4",
-    rect: { x: 267, y: 192, w: 133, h: H - 192 },
-    labelX: 333, labelY: 310,
-  },
-  {
-    id: "e", label: "West Siang &\nShi-Yomi",
-    color: "#F0D0D8", stroke: "#D48898",
-    rect: { x: 400, y: 0, w: 133, h: 192 },
-    labelX: 466, labelY: 90,
-  },
-  {
-    id: "f", label: "East Siang &\nLower Siang",
-    color: "#DDD0F0", stroke: "#A888D4",
-    rect: { x: 400, y: 192, w: 133, h: H - 192 },
-    labelX: 466, labelY: 285,
-  },
-  {
-    id: "g", label: "Upper Siang &\nDibang Valley",
-    color: "#C8D8F0", stroke: "#7AA4D8",
-    rect: { x: 533, y: 0, w: 134, h: 192 },
-    labelX: 600, labelY: 88,
-  },
-  {
-    id: "h", label: "Lower Dibang\n& Lohit",
-    color: "#F0D8C8", stroke: "#D4A480",
-    rect: { x: 533, y: 192, w: 134, h: H - 192 },
-    labelX: 600, labelY: 268,
-  },
-  {
-    id: "i", label: "Anjaw",
-    color: "#C8F0D8", stroke: "#78D4A0",
-    rect: { x: 667, y: 0, w: 133, h: 192 },
-    labelX: 730, labelY: 90,
-  },
-  {
-    id: "j", label: "Changlang,\nTirap & Namsai",
-    color: "#F0F0C8", stroke: "#C8C870",
-    rect: { x: 667, y: 192, w: 133, h: H - 192 },
-    labelX: 712, labelY: 268,
-  },
+  { id: "a", label: "Tawang &\nWest Kameng",      color: "#CDDFF0", stroke: "#9BBBD8", rect: { x: 0,   y: 0,   w: 133,  h: H       }, labelX: 52,  labelY: 275 },
+  { id: "b", label: "East Kameng &\nPapum Pare",   color: "#CDEBD4", stroke: "#8FCCA0", rect: { x: 133, y: 0,   w: 134,  h: H       }, labelX: 200, labelY: 255 },
+  { id: "c", label: "Kra Daadi &\nUpper Subansiri",color: "#F0E8C8", stroke: "#D4C47A", rect: { x: 267, y: 0,   w: 133,  h: 192     }, labelX: 333, labelY: 100 },
+  { id: "d", label: "Lower Subansiri\n& Kamle",    color: "#C8EDE4", stroke: "#78C8B4", rect: { x: 267, y: 192, w: 133,  h: H - 192 }, labelX: 333, labelY: 310 },
+  { id: "e", label: "West Siang &\nShi-Yomi",      color: "#F0D0D8", stroke: "#D48898", rect: { x: 400, y: 0,   w: 133,  h: 192     }, labelX: 466, labelY: 90  },
+  { id: "f", label: "East Siang &\nLower Siang",   color: "#DDD0F0", stroke: "#A888D4", rect: { x: 400, y: 192, w: 133,  h: H - 192 }, labelX: 466, labelY: 285 },
+  { id: "g", label: "Upper Siang &\nDibang Valley",color: "#C8D8F0", stroke: "#7AA4D8", rect: { x: 533, y: 0,   w: 134,  h: 192     }, labelX: 600, labelY: 88  },
+  { id: "h", label: "Lower Dibang\n& Lohit",       color: "#F0D8C8", stroke: "#D4A480", rect: { x: 533, y: 192, w: 134,  h: H - 192 }, labelX: 600, labelY: 268 },
+  { id: "i", label: "Anjaw",                        color: "#C8F0D8", stroke: "#78D4A0", rect: { x: 667, y: 0,   w: 133,  h: 192     }, labelX: 730, labelY: 90  },
+  { id: "j", label: "Changlang,\nTirap & Namsai",  color: "#F0F0C8", stroke: "#C8C870", rect: { x: 667, y: 192, w: 133,  h: H - 192 }, labelX: 712, labelY: 268 },
 ] as const;
 
 /* ─────────────────────────────────────────────────────────────────────────
-   APPROXIMATE RIVER PATHS (major rivers of Arunachal Pradesh, N→S flow)
+   MAJOR RIVER PATHS (approximate, N→S flow)
 ───────────────────────────────────────────────────────────────────────── */
 const RIVERS = [
   { id: "kameng",  d: "M 213,85 C 208,130 215,175 210,220 S 205,280 208,345 L 210,370" },
@@ -149,11 +109,11 @@ const RIVERS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────────────────
-   DETAIL PANEL
+   FLOATING DETAIL DRAWER (overlays the map, slides in from the right)
 ───────────────────────────────────────────────────────────────────────── */
-interface PanelProps { loc: Location; onClose: () => void; }
+interface DrawerProps { loc: Location; onClose: () => void; }
 
-function DetailPanel({ loc, onClose }: PanelProps) {
+function DetailDrawer({ loc, onClose }: DrawerProps) {
   const [tab, setTab] = useState<"places" | "food" | "tribes" | "activities">("places");
 
   const tabs: { key: typeof tab; label: string; icon: React.ReactNode }[] = [
@@ -164,96 +124,118 @@ function DetailPanel({ loc, onClose }: PanelProps) {
   ];
 
   return (
-    <div
-      className="flex flex-col h-full overflow-hidden bg-white rounded-2xl shadow-2xl"
-      style={{ borderLeft: `4px solid ${loc.color}` }}
-    >
-      <div className="relative">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={loc.image} alt={loc.name} className="w-full h-36 object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 transition-colors"
-          aria-label="Close panel"
-        >
-          <X className="h-4 w-4" />
-        </button>
-        <div className="absolute bottom-3 left-4">
-          <Badge className="text-white border-0 text-[11px] mb-1" style={{ backgroundColor: loc.color }}>
-            {loc.category}
-          </Badge>
-          <h2 className="text-white text-xl font-bold font-headline leading-tight">{loc.name}</h2>
-          <p className="text-white/80 text-xs flex items-center gap-1 mt-0.5">
-            <MapPin className="h-3 w-3" />{loc.district}
-          </p>
-        </div>
-      </div>
+    /* Backdrop (click to close) */
+    <div className="absolute inset-0 z-20 pointer-events-none">
+      <div
+        className="absolute inset-0 pointer-events-auto"
+        onClick={onClose}
+        aria-hidden
+      />
 
-      <div className="flex items-center gap-2 px-4 py-2 border-b text-xs text-muted-foreground bg-muted/30">
-        <Calendar className="h-3.5 w-3.5 text-primary shrink-0" />
-        <span>Best time: <strong className="text-foreground">{loc.bestTime}</strong></span>
-      </div>
+      {/* Drawer panel */}
+      <div
+        className="absolute top-0 right-0 bottom-0 w-full sm:w-[380px] pointer-events-auto
+                   flex flex-col bg-white/95 backdrop-blur-md shadow-2xl
+                   animate-in slide-in-from-right-6 duration-300"
+        style={{ borderLeft: `3px solid ${loc.color}` }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Hero image */}
+        <div className="relative h-40 shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={loc.image} alt={loc.name} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
-      <p className="px-4 pt-3 pb-2 text-sm text-muted-foreground leading-relaxed">{loc.desc}</p>
-
-      <div className="flex gap-1 px-4 pb-2">
-        {tabs.map(({ key, label, icon }) => (
+          {/* Close button */}
           <button
-            key={key}
-            onClick={() => setTab(key)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-              tab === key ? "text-white shadow-sm" : "bg-muted text-muted-foreground hover:bg-muted/80"
-            }`}
-            style={tab === key ? { backgroundColor: loc.color } : undefined}
+            onClick={onClose}
+            className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white
+                       rounded-full p-1.5 transition-colors backdrop-blur-sm"
+            aria-label="Close panel"
           >
-            {icon}{label}
+            <X className="h-4 w-4" />
           </button>
-        ))}
-      </div>
 
-      <div className="flex-1 overflow-y-auto px-4 pb-4">
-        {tab === "places" && (
-          <ul className="space-y-2 mt-1">
-            {loc.placesToVisit.map((p) => (
-              <li key={p} className="flex items-start gap-2 text-sm">
-                <ChevronRight className="h-4 w-4 mt-0.5 shrink-0" style={{ color: loc.color }} />
-                <span>{p}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-        {tab === "food" && (
-          <ul className="space-y-2 mt-1">
-            {loc.foodAndDrinks.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-sm">
-                <Utensils className="h-3.5 w-3.5 mt-0.5 shrink-0" style={{ color: loc.color }} />
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-        {tab === "tribes" && (
-          <div className="space-y-3 mt-1">
-            {loc.tribes.map((t) => (
-              <div key={t.name} className="rounded-xl p-3 border"
-                style={{ borderColor: loc.color + "40", backgroundColor: loc.color + "0a" }}>
-                <p className="font-semibold text-sm mb-1" style={{ color: loc.color }}>{t.name}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">{t.desc}</p>
-              </div>
-            ))}
+          <div className="absolute bottom-3 left-4 right-12">
+            <Badge className="text-white border-0 text-[11px] mb-1.5" style={{ backgroundColor: loc.color }}>
+              {loc.category}
+            </Badge>
+            <h2 className="text-white text-xl font-bold font-headline leading-tight">{loc.name}</h2>
+            <p className="text-white/75 text-xs flex items-center gap-1 mt-0.5">
+              <MapPin className="h-3 w-3" />{loc.district}
+            </p>
           </div>
-        )}
-        {tab === "activities" && (
-          <ul className="space-y-2 mt-1">
-            {loc.activities.map((a) => (
-              <li key={a} className="flex items-start gap-2 text-sm">
-                <span className="h-2 w-2 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: loc.color }} />
-                <span>{a}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+        </div>
+
+        {/* Best time */}
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b text-xs text-muted-foreground bg-muted/20">
+          <Calendar className="h-3.5 w-3.5 text-primary shrink-0" />
+          <span>Best time: <strong className="text-foreground">{loc.bestTime}</strong></span>
+        </div>
+
+        {/* Description */}
+        <p className="px-4 pt-3 pb-2 text-sm text-muted-foreground leading-relaxed">{loc.desc}</p>
+
+        {/* Tabs */}
+        <div className="flex gap-1 px-4 pb-2">
+          {tabs.map(({ key, label, icon }) => (
+            <button
+              key={key}
+              onClick={() => setTab(key)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                tab === key ? "text-white shadow-sm scale-105" : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+              style={tab === key ? { backgroundColor: loc.color } : undefined}
+            >
+              {icon}{label}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab content */}
+        <div className="flex-1 overflow-y-auto px-4 pb-6">
+          {tab === "places" && (
+            <ul className="space-y-2 mt-1">
+              {loc.placesToVisit.map((p) => (
+                <li key={p} className="flex items-start gap-2 text-sm">
+                  <ChevronRight className="h-4 w-4 mt-0.5 shrink-0" style={{ color: loc.color }} />
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {tab === "food" && (
+            <ul className="space-y-2 mt-1">
+              {loc.foodAndDrinks.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm">
+                  <Utensils className="h-3.5 w-3.5 mt-0.5 shrink-0" style={{ color: loc.color }} />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {tab === "tribes" && (
+            <div className="space-y-3 mt-1">
+              {loc.tribes.map((t) => (
+                <div key={t.name} className="rounded-xl p-3 border"
+                  style={{ borderColor: hexAlpha(loc.color, 0.25), backgroundColor: hexAlpha(loc.color, 0.03) }}>
+                  <p className="font-semibold text-sm mb-1" style={{ color: loc.color }}>{t.name}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{t.desc}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {tab === "activities" && (
+            <ul className="space-y-2 mt-1">
+              {loc.activities.map((a) => (
+                <li key={a} className="flex items-start gap-2 text-sm">
+                  <span className="h-2 w-2 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: loc.color }} />
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -284,14 +266,9 @@ function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onC
       <circle r="2.5" fill="white" />
       <text
         x="0" y={isActive ? "-18" : "-14"}
-        textAnchor="middle"
-        fontSize="10"
-        fontWeight="700"
+        textAnchor="middle" fontSize="10" fontWeight="700"
         fill="#1e293b"
-        paintOrder="stroke"
-        stroke="white"
-        strokeWidth="3"
-        strokeLinejoin="round"
+        paintOrder="stroke" stroke="white" strokeWidth="3" strokeLinejoin="round"
         className="transition-all duration-200 select-none pointer-events-none"
         style={{ fontFamily: "system-ui, sans-serif" }}
       >
@@ -339,47 +316,25 @@ function ScaleBar({ x, y }: { x: number; y: number }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   MAIN MAP COMPONENT
+   MAIN MAP COMPONENT — full-viewport, floating drawer overlay
 ───────────────────────────────────────────────────────────────────────── */
 export default function ArunachalMap() {
-  const [active, setActive] = useState<Location | null>(null);
+  const [active, setActive]       = useState<Location | null>(null);
+  const [showLegend, setShowLegend] = useState(false);
 
   function handlePin(loc: Location) {
     setActive((prev) => (prev?.id === loc.id ? null : loc));
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 w-full min-h-[480px]">
+    <div className="flex flex-col gap-4">
 
-      {/* ── Map panel ── */}
+      {/* ── Full-viewport map container ── */}
       <div
-        className={`relative flex-1 min-h-[360px] lg:min-h-[480px] rounded-2xl overflow-hidden border border-border/60 shadow-xl transition-all duration-300 ${
-          active ? "lg:w-[58%]" : "lg:w-full"
-        }`}
-        style={{ background: "#E8E0CC" }}
+        className="relative w-full rounded-2xl overflow-hidden border border-border/50 shadow-2xl"
+        style={{ height: "calc(100vh - 220px)", minHeight: 480, background: "#E8E0CC" }}
       >
-        {/* Legend overlay */}
-        <div className="absolute top-3 left-3 z-10 bg-white/93 backdrop-blur-sm rounded-xl px-3 py-2.5 shadow-md text-xs text-muted-foreground space-y-1 max-h-[calc(100%-24px)] overflow-y-auto">
-          <p className="font-bold text-foreground text-[11px] mb-1.5">
-            <span aria-hidden="true">📍 </span>Tap a pin to explore
-          </p>
-          {locations.map((l) => (
-            <div
-              key={l.id}
-              className="flex items-center gap-1.5 cursor-pointer hover:opacity-75 transition-opacity"
-              onClick={() => handlePin(l)}
-            >
-              <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: l.color }} />
-              <span className={active?.id === l.id ? "font-bold text-foreground" : ""}>{l.name}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Map title badge */}
-        <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1 shadow text-[10px] font-bold text-slate-600 tracking-widest uppercase">
-          Arunachal Pradesh
-        </div>
-
+        {/* ────────────────────── SVG MAP ────────────────────── */}
         <svg
           viewBox={`-18 -18 ${W + 36} ${H + 36}`}
           className="w-full h-full"
@@ -387,48 +342,37 @@ export default function ArunachalMap() {
           aria-label="Political map of Arunachal Pradesh"
         >
           <defs>
-            {/* Graticule dashed grid */}
             <pattern id="grat-pat" width="133.3" height="128" patternUnits="userSpaceOnUse">
               <path d="M 133.3 0 L 0 0 0 128" fill="none" stroke="#C0B080" strokeWidth="0.35" strokeDasharray="3,5" />
             </pattern>
-
-            {/* Clip path — accurate state boundary */}
             <clipPath id="ap-clip">
               <path d={STATE_BOUNDARY} />
             </clipPath>
-
-            {/* Northern-highland terrain shading */}
             <linearGradient id="highland-grad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%"   stopColor="#C4B890" stopOpacity="0.40" />
               <stop offset="35%"  stopColor="#C4B890" stopOpacity="0.15" />
               <stop offset="100%" stopColor="#C4B890" stopOpacity="0" />
             </linearGradient>
-
-            {/* State drop-shadow */}
             <filter id="state-shadow" x="-6%" y="-6%" width="118%" height="118%">
               <feDropShadow dx="2" dy="4" stdDeviation="6" floodColor="#6A5840" floodOpacity="0.30" />
             </filter>
-
-            {/* River soft-glow */}
             <filter id="river-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur" />
               <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
           </defs>
 
-          {/* ── Background: surrounding countries / states ── */}
+          {/* Surrounding area */}
           <rect x="-18" y="-18" width={W + 36} height={H + 36} fill="#DDD4BC" />
-
-          {/* Subtle region tints for neighbours */}
-          <rect x="-18" y="-18" width={W + 36} height="28" fill="#EEEADA" />
+          <rect x="-18" y="-18" width={W + 36} height="28"      fill="#EEEADA" />
           <rect x="-18" y="-18" width="22"       height={H + 36} fill="#E4EADC" />
-          <rect x={W - 8}  y="-18" width="62"       height={H + 36} fill="#E8E0D0" />
-          <rect x="-18" y={H - 8}  width={W + 36} height="44"       fill="#DCE8D4" />
+          <rect x={W - 8}  y="-18" width="62"   height={H + 36} fill="#E8E0D0" />
+          <rect x="-18" y={H - 8} width={W + 36} height="44"    fill="#DCE8D4" />
 
           {/* Graticule */}
           <rect x="-18" y="-18" width={W + 36} height={H + 36} fill="url(#grat-pat)" />
 
-          {/* ── District zone fills (clipped to state boundary) ── */}
+          {/* District fills */}
           <g clipPath="url(#ap-clip)">
             {DISTRICT_ZONES.map((z) => (
               <rect key={z.id}
@@ -436,11 +380,9 @@ export default function ArunachalMap() {
                 fill={z.color}
               />
             ))}
-
-            {/* Northern highland overlay */}
             <rect x="0" y="0" width={W} height={H} fill="url(#highland-grad)" />
 
-            {/* District boundary lines */}
+            {/* District divider lines */}
             {[133, 267, 400, 533, 667].map((xv) => (
               <line key={`vl-${xv}`} x1={xv} y1={0} x2={xv} y2={H}
                 stroke="#6A7A8A" strokeWidth="0.7" strokeDasharray="4,4" />
@@ -448,49 +390,38 @@ export default function ArunachalMap() {
             <line x1={267} y1={192} x2={W} y2={192}
               stroke="#6A7A8A" strokeWidth="0.7" strokeDasharray="4,4" />
 
-            {/* Major rivers */}
+            {/* Rivers */}
             {RIVERS.map((r) => (
               <path key={r.id} d={r.d}
                 fill="none" stroke="#6AAEC8" strokeWidth="1.6"
-                strokeLinecap="round" opacity="0.80"
-                filter="url(#river-glow)"
-              />
+                strokeLinecap="round" opacity="0.80" filter="url(#river-glow)" />
             ))}
 
-            {/* State name watermark */}
+            {/* Watermark */}
             <text x={W / 2} y={H / 2 + 12}
-              textAnchor="middle" fontSize="16" fontWeight="800"
-              letterSpacing="5" fill="#2A5A4A" fillOpacity="0.15"
+              textAnchor="middle" fontSize="16" fontWeight="800" letterSpacing="5"
+              fill="#2A5A4A" fillOpacity="0.15"
               style={{ fontFamily: "system-ui, sans-serif", userSelect: "none", pointerEvents: "none" }}
-            >
-              ARUNACHAL PRADESH
-            </text>
+            >ARUNACHAL PRADESH</text>
           </g>
 
-          {/* ── State boundary outline ── */}
-          <path d={STATE_BOUNDARY}
-            fill="none" stroke="#2C4A6A" strokeWidth="1.8"
-            strokeLinejoin="round"
-            filter="url(#state-shadow)"
-          />
+          {/* State boundary */}
+          <path d={STATE_BOUNDARY} fill="none" stroke="#2C4A6A" strokeWidth="1.8"
+            strokeLinejoin="round" filter="url(#state-shadow)" />
 
-          {/* ── Graticule coordinate labels ── */}
+          {/* Graticule labels */}
           {GRATICULE_LONS.map((lon) => (
             <text key={lon} x={lonToX(lon)} y={H + 14}
               textAnchor="middle" fontSize="7.5" fill="#6A5840"
-              style={{ fontFamily: "system-ui, sans-serif" }}>
-              {lon}°E
-            </text>
+              style={{ fontFamily: "system-ui, sans-serif" }}>{lon}°E</text>
           ))}
           {GRATICULE_LATS.map((lat) => (
             <text key={lat} x={-14} y={latToY(lat) + 3}
               textAnchor="end" fontSize="7.5" fill="#6A5840"
-              style={{ fontFamily: "system-ui, sans-serif" }}>
-              {lat}°N
-            </text>
+              style={{ fontFamily: "system-ui, sans-serif" }}>{lat}°N</text>
           ))}
 
-          {/* ── Neighbouring border labels ── */}
+          {/* Neighbour labels */}
           <text x={360} y={-5} textAnchor="middle" fontSize="8.5" fill="#4A4A6A" fontStyle="italic"
             style={{ fontFamily: "Georgia, serif" }}>China (Tibet) ↑</text>
           <text x={-15} y={288} fontSize="8" fill="#4A6A4A" fontStyle="italic"
@@ -500,7 +431,7 @@ export default function ArunachalMap() {
           <text x={W + 15} y={215} fontSize="8" fill="#6A4A2A" fontStyle="italic"
             transform={`rotate(90 ${W + 15} 215)`} style={{ fontFamily: "Georgia, serif" }}>Myanmar →</text>
 
-          {/* ── District zone labels ── */}
+          {/* District labels */}
           <g clipPath="url(#ap-clip)" style={{ pointerEvents: "none" }}>
             {DISTRICT_ZONES.map((z) => {
               const lines = z.label.split("\n");
@@ -521,62 +452,86 @@ export default function ArunachalMap() {
             })}
           </g>
 
-          {/* ── Interactive location pins ── */}
+          {/* Pins */}
           {locations.map((loc) => (
             <Pin key={loc.id} loc={loc} isActive={active?.id === loc.id}
               onClick={() => handlePin(loc)} />
           ))}
 
-          {/* ── Compass rose ── */}
+          {/* Compass rose */}
           <CompassRose x={W - 22} y={32} />
 
-          {/* ── Scale bar ── */}
+          {/* Scale bar */}
           <ScaleBar x={W - 160} y={H + 22} />
         </svg>
-      </div>
 
-      {/* ── Detail panel ── */}
-      {active && (
-        <div className="lg:w-[42%] w-full animate-in slide-in-from-right-4 duration-300">
-          <DetailPanel loc={active} onClose={() => setActive(null)} />
-        </div>
-      )}
+        {/* ────────────── FLOATING CONTROLS (top-left) ────────────── */}
+        <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
+          {/* Legend toggle button */}
+          <button
+            onClick={() => setShowLegend((v) => !v)}
+            className="flex items-center gap-1.5 bg-white/95 backdrop-blur-sm border border-border/60
+                       rounded-xl px-3 py-2 shadow-md text-xs font-semibold text-foreground
+                       hover:bg-white transition-colors"
+            aria-label="Toggle legend"
+          >
+            <Info className="h-3.5 w-3.5 text-primary" />
+            Destinations
+          </button>
 
-      {/* ── Empty-state hint ── */}
-      {!active && (
-        <div className="hidden lg:flex flex-col items-center justify-center w-[38%] text-center text-muted-foreground gap-3 rounded-2xl border border-dashed border-border p-6">
-          <MapPin className="h-10 w-10 text-primary/40" />
-          <div>
-            <p className="font-semibold text-foreground">Select a destination</p>
-            <p className="text-sm mt-1">
-              Click any <span className="text-primary font-medium">pin</span> on the map or a
-              name in the legend to explore places, food, tribes, and activities.
-            </p>
-          </div>
-          {/* District legend */}
-          <div className="w-full mt-1 space-y-1 text-left">
-            <p className="text-[10px] font-semibold text-foreground/50 uppercase tracking-wider">Map Districts</p>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-0.5">
-              {DISTRICT_ZONES.map((z) => (
-                <div key={z.id} className="flex items-center gap-1.5 text-[10px]">
-                  <span className="h-3 w-4 rounded-sm shrink-0 border"
-                    style={{ backgroundColor: z.color, borderColor: z.stroke }} />
-                  <span className="truncate leading-tight">{z.label.replaceAll("\n", " / ")}</span>
+          {/* Expandable legend */}
+          {showLegend && (
+            <div className="bg-white/97 backdrop-blur-sm border border-border/50 rounded-xl
+                            px-3 py-2.5 shadow-lg text-xs text-muted-foreground space-y-1
+                            animate-in fade-in slide-in-from-top-2 duration-200">
+              {locations.map((l) => (
+                <div key={l.id}
+                  className="flex items-center gap-2 cursor-pointer hover:opacity-75 transition-opacity py-0.5"
+                  onClick={() => { handlePin(l); setShowLegend(false); }}
+                >
+                  <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: l.color }} />
+                  <span className={active?.id === l.id ? "font-bold text-foreground" : ""}>{l.name}</span>
                 </div>
               ))}
             </div>
-          </div>
-          <div className="flex flex-wrap gap-2 justify-center mt-1">
-            {locations.map((l) => (
-              <button key={l.id} onClick={() => setActive(l)}
-                className="text-xs px-2.5 py-1 rounded-full text-white font-medium hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: l.color }}>
-                {l.name}
-              </button>
-            ))}
-          </div>
+          )}
         </div>
-      )}
+
+        {/* ────────────── MAP TITLE BADGE (top-right) ────────────── */}
+        <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm rounded-lg
+                        px-2.5 py-1 shadow text-[10px] font-bold text-slate-600 tracking-widest uppercase">
+          Arunachal Pradesh
+        </div>
+
+        {/* ────────────── FLOATING DETAIL DRAWER ────────────── */}
+        {active && (
+          <DetailDrawer loc={active} onClose={() => setActive(null)} />
+        )}
+      </div>
+
+      {/* ── Destination quick-select bar ── */}
+      <div className="flex flex-wrap gap-2 px-1">
+        <span className="text-xs text-muted-foreground font-medium self-center mr-1">Explore:</span>
+        {locations.map((l) => (
+          <button
+            key={l.id}
+            onClick={() => setActive((prev) => prev?.id === l.id ? null : l)}
+            className={`text-xs px-3 py-1.5 rounded-full font-semibold transition-all duration-150
+                        border-2 ${
+              active?.id === l.id
+                ? "text-white shadow-md scale-105"
+                : "bg-white text-foreground hover:scale-105 hover:shadow-sm"
+            }`}
+            style={
+              active?.id === l.id
+                ? { backgroundColor: l.color, borderColor: l.color }
+                : { borderColor: hexAlpha(l.color, 0.38) }
+            }
+          >
+            {l.name}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
