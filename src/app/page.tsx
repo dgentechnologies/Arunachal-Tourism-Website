@@ -13,6 +13,7 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import { ScrollytellingSection } from "@/components/scrollytelling-section"
 import { useLanguage } from "@/lib/language-context"
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
+import { ReviewForm } from "@/components/review-form"
 
 export default function Home() {
   const { t } = useLanguage()
@@ -149,6 +150,9 @@ export default function Home() {
         <ScrollReveal variant="up" className="text-center mb-4">
           <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">Through the Lens of Our Travellers</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">Real photos and stories shared by visitors who have experienced the magic of Arunachal Pradesh.</p>
+          <div className="mt-6">
+            <ReviewForm />
+          </div>
         </ScrollReveal>
         <AnimatedTestimonials
           autoplay
