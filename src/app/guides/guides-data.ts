@@ -23,9 +23,9 @@ export interface Location {
 }
 
 /**
- * SVG viewport: 800 × 520
+ * SVG viewport: 800 × 384
  * Longitude 91.5°–97.5°  →  x = (lon − 91.5) / 6 × 800
- * Latitude  26.5°–29.5°  →  y = (29.5 − lat) / 3 × 520
+ * Latitude  26.5°–29.5°  →  y = (29.5 − lat) / 3 × 384
  *
  * Coordinates verified from provided lat/lon values.
  */
@@ -37,7 +37,7 @@ export const locations: Location[] = [
     category: "Mountain Destination",
     color: "#4F46E5",
     svgX: 49,   // lon 91.8697°E
-    svgY: 332,  // lat 27.5861°N
+    svgY: 245,  // lat 27.5861°N
     bestTime: "Mar – May, Sep – Oct",
     image: "https://picsum.photos/seed/tawang800/800/450",
     desc: "Home to India's largest Buddhist monastery, frozen glacial lakes, and snow-capped Himalayan passes at over 10,000 ft.",
@@ -78,7 +78,7 @@ export const locations: Location[] = [
     category: "Valley / Cultural",
     color: "#059669",
     svgX: 311,  // lon 93.8290°E
-    svgY: 340,  // lat 27.5360°N
+    svgY: 251,  // lat 27.5360°N
     bestTime: "Feb – Apr, Aug – Oct",
     image: "https://picsum.photos/seed/zirovalley/800/450",
     desc: "A UNESCO World Heritage tentative site — lush pine-dotted paddy fields, the iconic Apatani tribe, and the celebrated Ziro Music Festival.",
@@ -118,7 +118,7 @@ export const locations: Location[] = [
     category: "Wildlife / Nature",
     color: "#DC2626",
     svgX: 651,  // lon 96.3807°E
-    svgY: 350,  // lat 27.4816°N
+    svgY: 258,  // lat 27.4816°N
     bestTime: "Oct – Mar",
     image: "https://picsum.photos/seed/namdapha800/800/450",
     desc: "A biodiversity hotspot spanning tropical to alpine forests — home to Snow Leopards, Red Pandas, and over 1,000 plant species in a UNESCO-recognised park.",
@@ -162,7 +162,7 @@ export const locations: Location[] = [
     category: "Riverside / Adventure",
     color: "#D97706",
     svgX: 510,  // lon 95.3262°E
-    svgY: 249,  // lat 28.0617°N
+    svgY: 184,  // lat 28.0617°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/pasighat800/800/450",
     desc: "Arunachal's oldest town sits where the mighty Siang River bursts into the plains — a paradise for rafters, anglers, and culture seekers.",
@@ -202,7 +202,7 @@ export const locations: Location[] = [
     category: "Monastery & Nature",
     color: "#7C3AED",
     svgX: 122,  // lon 92.4159°E
-    svgY: 388,  // lat 27.2645°N
+    svgY: 286,  // lat 27.2645°N
     bestTime: "Apr – Oct",
     image: "https://picsum.photos/seed/bomdila800/800/450",
     desc: "Scenic hill town framed by apple orchards and rhododendrons — gateway to Tawang, famed for serene monasteries and the world-class Eaglenest birding corridor.",
@@ -254,7 +254,7 @@ export const locations: Location[] = [
     category: "Valley Adventure",
     color: "#0891B2",
     svgX: 440,  // lon 94.8010°E
-    svgY: 231,  // lat 28.1691°N
+    svgY: 170,  // lat 28.1691°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/aaloalong/800/450",
     desc: "Adventure hub of central Arunachal — the Galo tribe's heartland, known for cane suspension bridges, orange orchards, and river rafting on the wild Siyom.",
@@ -294,7 +294,7 @@ export const locations: Location[] = [
     category: "Capital / Heritage",
     color: "#92400E",
     svgX: 281,  // lon 93.6053°E
-    svgY: 419,  // lat 27.0844°N
+    svgY: 309,  // lat 27.0844°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/itanagar800/800/450",
     desc: "The state capital balances ancient heritage and modern governance — explore the historic Ita Fort, serene Ganga Lake, and the vibrant Nyishi cultural heartland.",
@@ -334,7 +334,7 @@ export const locations: Location[] = [
     category: "Hidden Valley",
     color: "#0D9488",
     svgX: 352,  // lon 94.1370°E
-    svgY: 156,  // lat 28.5975°N
+    svgY: 116,  // lat 28.5975°N
     bestTime: "Apr – Oct",
     image: "https://picsum.photos/seed/mechuka800/800/450",
     desc: "A surreal hidden valley near the Tibet border at 6,000 ft — rolling green meadows, ancient monasteries, and the Memba tribe's Tibetan-flavoured culture.",
@@ -374,7 +374,7 @@ export const locations: Location[] = [
     category: "Nature / Tribal",
     color: "#BE185D",
     svgX: 578,  // lon 95.8361°E
-    svgY: 236,  // lat 28.1365°N
+    svgY: 175,  // lat 28.1365°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/roing800/800/450",
     desc: "A paradise for nature lovers in the Dibang Valley — featuring Mehao Wildlife Sanctuary, the snow-capped Mayudia Pass, and the ancient Idu Mishmi tribe.",
