@@ -39,7 +39,7 @@ export default function SafetyPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <div className="flex flex-col gap-4 mb-10">
-        <h1 className="text-4xl font-bold text-primary font-headline">{t.safetyPageTitle}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline">{t.safetyPageTitle}</h1>
         <p className="text-muted-foreground text-lg">{t.safetyPageSubtitle}</p>
         
         <div className="relative max-w-md mt-4">
@@ -70,9 +70,9 @@ export default function SafetyPage() {
                 .filter(h => h.location.toLowerCase().includes(search.toLowerCase()) || h.name.toLowerCase().includes(search.toLowerCase()))
                 .map((h, i) => (
                 <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-6 flex justify-between items-center">
+                  <CardContent className="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="font-bold text-lg">{h.name}</h3>
                         <Badge variant="secondary" className="text-[10px]">{h.type}</Badge>
                       </div>
@@ -80,7 +80,7 @@ export default function SafetyPage() {
                         <MapPin className="h-3 w-3 mr-1" /> {h.location}
                       </div>
                     </div>
-                    <Button variant="outline" className="flex items-center gap-2 border-primary text-primary">
+                    <Button variant="outline" className="flex items-center gap-2 border-primary text-primary shrink-0 w-full sm:w-auto">
                       <Phone className="h-4 w-4" /> {h.contact}
                     </Button>
                   </CardContent>
@@ -93,9 +93,9 @@ export default function SafetyPage() {
                 .filter(p => p.location.toLowerCase().includes(search.toLowerCase()) || p.name.toLowerCase().includes(search.toLowerCase()))
                 .map((p, i) => (
                 <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-6 flex justify-between items-center">
+                  <CardContent className="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="font-bold text-lg">{p.name}</h3>
                         <Badge className="bg-green-100 text-green-700 hover:bg-green-100">{t.active24x7}</Badge>
                       </div>
@@ -103,7 +103,7 @@ export default function SafetyPage() {
                         <MapPin className="h-3 w-3 mr-1" /> {p.location}
                       </div>
                     </div>
-                    <Button variant="outline" className="flex items-center gap-2 border-primary text-primary">
+                    <Button variant="outline" className="flex items-center gap-2 border-primary text-primary shrink-0 w-full sm:w-auto">
                       <Phone className="h-4 w-4" /> {p.contact}
                     </Button>
                   </CardContent>

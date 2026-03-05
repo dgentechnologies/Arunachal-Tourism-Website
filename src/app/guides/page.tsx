@@ -46,7 +46,7 @@ export default function GuidesPage() {
             </div>
 
             {/* Stats row */}
-            <div className="flex gap-4 md:gap-6 shrink-0">
+            <div className="grid grid-cols-4 gap-3 md:flex md:gap-6 md:shrink-0">
               {STATS.map(({ icon: Icon, value, label }) => (
                 <div key={label} className="flex flex-col items-center text-center">
                   <div className="bg-white/10 border border-white/20 rounded-xl p-2 mb-1.5">
