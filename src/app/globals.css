@@ -5,26 +5,31 @@
 
 @layer base {
   :root {
-    --background: 90 15% 96%;
-    --foreground: 109 40% 10%;
+    /* Bamboo Resonance palette (HSL representations)
+       bamboo-beige  #F3EFE0 → 47 45% 92%
+       earthy-brown  #6B5B45 → 35 22% 35%
+       sage-green    #A3B18A → 82 20% 62%
+       river-stone   #D9D9D9 →  0  0% 85% */
+    --background: 47 45% 92%;
+    --foreground: 35 22% 35%;
     --card: 0 0% 100%;
-    --card-foreground: 109 40% 10%;
+    --card-foreground: 35 22% 35%;
     --popover: 0 0% 100%;
-    --popover-foreground: 109 40% 10%;
-    --primary: 109 40% 35%;
-    --primary-foreground: 90 15% 98%;
-    --secondary: 109 20% 90%;
-    --secondary-foreground: 109 40% 20%;
-    --muted: 109 10% 92%;
-    --muted-foreground: 109 20% 40%;
-    --accent: 80 70% 60%;
-    --accent-foreground: 109 40% 15%;
+    --popover-foreground: 35 22% 35%;
+    --primary: 82 20% 52%;
+    --primary-foreground: 47 45% 98%;
+    --secondary: 82 15% 88%;
+    --secondary-foreground: 35 22% 35%;
+    --muted: 47 20% 90%;
+    --muted-foreground: 35 15% 50%;
+    --accent: 82 25% 75%;
+    --accent-foreground: 35 22% 20%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 109 20% 85%;
-    --input: 109 20% 85%;
-    --ring: 109 40% 35%;
-    --radius: 0.75rem;
+    --border: 35 15% 82%;
+    --input: 35 15% 82%;
+    --ring: 82 20% 52%;
+    --radius: 1rem;
   }
 }
 
@@ -35,6 +40,28 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Bamboo Resonance: grain/paper texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'300'%20height%3D'300'%3E%3Cfilter%20id%3D'noise'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.65'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'300'%20height%3D'300'%20filter%3D'url(%23noise)'%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat;
+  }
+
+  /* Serif headings — Bamboo Resonance typography */
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: hsl(var(--foreground));
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 }
 
@@ -127,5 +154,24 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* ── Bamboo Resonance: Blob masks & Organic shapes ──────────────────────── */
+@layer utilities {
+  /* Organic blob shape 1 — top-heavy asymmetric */
+  .blob-mask-1 {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    overflow: hidden;
+  }
+  /* Organic blob shape 2 — bottom-heavy asymmetric */
+  .blob-mask-2 {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    overflow: hidden;
+  }
+  /* Organic blob shape 3 — wide asymmetric */
+  .blob-mask-3 {
+    border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
+    overflow: hidden;
   }
 }
