@@ -81,7 +81,7 @@ export default function Home() {
           {/* Tribes Card */}
           <ScrollReveal variant="left">
             <Link href="/tribes" className="block group">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <div className="relative blob-mask-2 shadow-soft hover:shadow-float transition-all duration-500 hover:-translate-y-2">
                 <div className="relative h-64 md:h-80 w-full">
                   <Image
                     src="https://picsum.photos/seed/tribes-landing/800/600"
@@ -112,7 +112,7 @@ export default function Home() {
           {/* Entrepreneurs Card */}
           <ScrollReveal variant="right">
             <Link href="/entrepreneurs" className="block group">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <div className="relative blob-mask-3 shadow-soft hover:shadow-float transition-all duration-500 hover:-translate-y-2">
                 <div className="relative h-64 md:h-80 w-full">
                   <Image
                     src="https://picsum.photos/seed/entrepreneurs-landing/800/600"
@@ -195,14 +195,16 @@ export default function Home() {
       <section className="bg-primary/5 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
-            <ScrollReveal variant="left" className="lg:w-1/2 relative h-[300px] md:h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl group">
-              <Image 
-                src={PlaceHolderImages.find(img => img.id === 'culture-monastery')?.imageUrl || ''}
-                alt="Tawang Monastery"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                data-ai-hint="buddhist monastery"
-              />
+            <ScrollReveal variant="left" className="lg:w-1/2">
+              <div className="relative h-[300px] md:h-[400px] w-full blob-mask-1 shadow-float group">
+                <Image 
+                  src={PlaceHolderImages.find(img => img.id === 'culture-monastery')?.imageUrl || ''}
+                  alt="Tawang Monastery"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  data-ai-hint="buddhist monastery"
+                />
+              </div>
             </ScrollReveal>
             <ScrollReveal variant="right" className="lg:w-1/2 space-y-6 text-center lg:text-left">
               <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline">{t.cultureTitle}</h2>
