@@ -163,39 +163,15 @@
   .blob-mask-1 {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     overflow: hidden;
-    transition: border-radius 1.2s ease-in-out;
-  }
-  .blob-mask-1:hover {
-    border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%;
   }
   /* Organic blob shape 2 — bottom-heavy asymmetric */
   .blob-mask-2 {
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     overflow: hidden;
-    transition: border-radius 1.2s ease-in-out;
-  }
-  .blob-mask-2:hover {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
   /* Organic blob shape 3 — wide asymmetric */
   .blob-mask-3 {
     border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
     overflow: hidden;
-    transition: border-radius 1.2s ease-in-out;
   }
-  .blob-mask-3:hover {
-    border-radius: 30% 70% 50% 50% / 30% 50% 70% 50%;
-  }
-  /* Blob that slowly morphs on its own */
-  .blob-animate {
-    overflow: hidden;
-    animation: blob-morph 8s ease-in-out infinite;
-  }
-}
-
-@keyframes blob-morph {
-  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  33%  { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-  66%  { border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%; }
-  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 }

@@ -87,17 +87,13 @@ export function DestinationsCarousel() {
           className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
           style={{ scrollbarWidth: "none" }}
         >
-        {destinations.map((dest, idx) => {
-            const blobMaskClass = (["blob-mask-1", "blob-mask-2", "blob-mask-3"] as const)[idx % 3]
+          {destinations.map((dest) => {
             const img = PlaceHolderImages.find(i => i.id === dest.imageId)
             return (
               <Link
                 key={dest.name}
                 href={dest.href}
-                className={cn(
-                  "group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] snap-start shadow-soft hover:shadow-float transition-all duration-500",
-                  blobMaskClass
-                )}
+                className="group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] rounded-2xl overflow-hidden shadow-md snap-start hover:shadow-2xl transition-shadow duration-500"
               >
                 {img && (
                   <Image
