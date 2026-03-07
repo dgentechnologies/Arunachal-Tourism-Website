@@ -12,10 +12,14 @@ export default {
     extend: {
       fontFamily: {
         body: ['Inter', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'sans-serif'],
-        headline: ['Inter', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'sans-serif'],
+        headline: ['Playfair Display', 'Georgia', 'serif'],
         code: ['monospace'],
       },
       colors: {
+        'sage-green': '#A3B18A',
+        'bamboo-beige': '#F3EFE0',
+        'river-stone-grey': '#D9D9D9',
+        'earthy-brown': '#6B5B45',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -54,6 +58,11 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      boxShadow: {
+        'soft': '0 8px 40px 0 rgba(107, 91, 69, 0.10)',
+        'float': '0 16px 60px 0 rgba(107, 91, 69, 0.15)',
+        'glow': '0 4px 24px 0 rgba(163, 177, 138, 0.30)',
       },
       keyframes: {
         'accordion-down': {
