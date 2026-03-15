@@ -28,6 +28,13 @@ const SCROLL_THRESHOLD = 60
 // Indian citizens: Official e-ILP (Electronic Inner Line Permit) portal
 const PERMIT_URL_INDIAN = "https://www.eilp.arunachal.gov.in/preTuristEIlpKYC"
 
+function badgeColorClass(badge: string, disabled?: boolean): string {
+  if (disabled) return "bg-muted text-muted-foreground/60"
+  if (badge === "External") return "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+  if (badge === "Sign In") return "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
+  return "bg-primary/10 text-primary"
+}
+
 interface NavSubItem {
   name: string
   href: string
@@ -49,6 +56,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [openGroup, setOpenGroup] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
   const isHome = pathname === "/"
   const { language, setLanguage, t } = useLanguage()
@@ -79,7 +87,6 @@ export function Nav() {
       label: t.navPlan,
       items: [
         { name: t.itinerary, href: "/itinerary", icon: Mountain, description: t.navItineraryDesc },
-        { name: t.navAiTripBuilderLabel, href: "/plan/ai", icon: Sparkles, description: t.navAiTripBuilderDesc, badge: "AI" },
         { name: t.hotels, href: "/hotels", icon: Hotel, description: t.navHotelsDesc },
         { name: t.transport, href: "/transport", icon: Car, description: t.navTransportDesc },
         { name: t.navDistrictMapLabel, href: "/map", icon: Map, description: t.navDistrictMapDesc, badge: "New" },
@@ -107,9 +114,9 @@ export function Nav() {
     {
       label: t.navAccount,
       items: [
-        { name: t.navSavedTripsLabel, href: "/account/trips", icon: Bookmark, description: t.navSavedTripsDesc, disabled: true, badge: "Phase 2" },
-        { name: t.navPermitTrackerLabel, href: "/account/permits", icon: Clock, description: t.navPermitTrackerDesc, disabled: true, badge: "Phase 2" },
-        { name: t.navProfilePrefsLabel, href: "/account", icon: UserCircle, description: t.navProfilePrefsDesc, disabled: true, badge: "Phase 2" },
+        { name: t.navSavedTripsLabel, href: "/account/trips", icon: Bookmark, description: t.navSavedTripsDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
+        { name: t.navPermitTrackerLabel, href: "/account/permits", icon: Clock, description: t.navPermitTrackerDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
+        { name: t.navProfilePrefsLabel, href: "/account", icon: UserCircle, description: t.navProfilePrefsDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
       ],
     },
   ]
@@ -191,8 +198,9 @@ export function Nav() {
 
                 {/* Dropdown panel */}
                 {isGroupOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-72 rounded-xl border bg-background shadow-xl py-2 z-50">
-                    {group.items.map((item, idx) => {
+                  <div className="absolute top-full left-0 mt-1 rounded-xl border bg-background shadow-xl p-2 z-50 min-w-[320px]">
+                    <div className={cn("grid gap-0.5", group.items.length <= 2 ? "grid-cols-1" : "grid-cols-2")}>
+                    {group.items.map((item) => {
                       const Icon = item.icon
                       const isItemActive = !item.external && !item.disabled && pathname === item.href
                       const inner = (
@@ -220,11 +228,7 @@ export function Nav() {
                               {item.badge && (
                                 <span className={cn(
                                   "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
-                                  item.disabled
-                                    ? "bg-muted text-muted-foreground/60"
-                                    : item.badge === "External"
-                                      ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
-                                      : "bg-primary/10 text-primary"
+                                  badgeColorClass(item.badge, item.disabled)
                                 )}>
                                   {item.badge}
                                 </span>
@@ -241,9 +245,8 @@ export function Nav() {
                       )
                       return (
                         <div key={item.href}>
-                          {idx > 0 && <div className="mx-3 border-t my-1" />}
                           {item.disabled ? (
-                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg mx-1 cursor-not-allowed opacity-60">
+                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-not-allowed opacity-60">
                               {inner}
                             </div>
                           ) : item.external ? (
@@ -252,7 +255,7 @@ export function Nav() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => setOpenGroup(null)}
-                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg mx-1 hover:bg-secondary/50 transition-colors"
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
                             >
                               {inner}
                             </a>
@@ -260,7 +263,7 @@ export function Nav() {
                             <Link
                               href={item.href}
                               onClick={() => setOpenGroup(null)}
-                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg mx-1 hover:bg-secondary/50 transition-colors"
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
                             >
                               {inner}
                             </Link>
@@ -268,13 +271,23 @@ export function Nav() {
                         </div>
                       )
                     })}
+                    </div>
                   </div>
                 )}
               </div>
             )
           })}
 
-          <div className="ml-3 pl-3 border-l border-current/20 flex items-center gap-2">
+          {/* Journey AI — standalone premium button */}
+          <Link
+            href="/plan/ai"
+            className="mx-1 flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 bg-gradient-to-r from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 hover:shadow-violet-500/50 hover:scale-105 transition-all duration-200 active:scale-95 shrink-0"
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>{t.navAiTripBuilderLabel}</span>
+          </Link>
+
+          <div className="ml-2 pl-3 border-l border-current/20 flex items-center gap-2">
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -309,15 +322,31 @@ export function Nav() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button
-              size="sm"
-              className={cn(
-                "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
-                transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
-              )}
-            >
-              {t.signIn}
-            </Button>
+            {isSignedIn ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsSignedIn(false)}
+                className={cn(
+                  "flex items-center gap-1.5 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
+                  transparent && "text-white hover:bg-white/20 border border-white/30"
+                )}
+              >
+                <UserCircle className="h-4 w-4" />
+                {t.myAccount}
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => setIsSignedIn(true)}
+                className={cn(
+                  "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
+                  transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
+                )}
+              >
+                {t.signIn}
+              </Button>
+            )}
           </div>
         </div>
 
@@ -382,11 +411,7 @@ export function Nav() {
                               {item.badge && (
                                 <span className={cn(
                                   "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
-                                  item.disabled
-                                    ? "bg-muted text-muted-foreground/60"
-                                    : item.badge === "External"
-                                      ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
-                                      : "bg-primary/10 text-primary"
+                                  badgeColorClass(item.badge, item.disabled)
                                 )}>
                                   {item.badge}
                                 </span>
@@ -439,6 +464,16 @@ export function Nav() {
             )
           })}
 
+          {/* Mobile Journey AI button */}
+          <Link
+            href="/plan/ai"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center justify-center gap-2 w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 bg-gradient-to-r from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 transition-all duration-200 active:scale-95"
+          >
+            <Sparkles className="h-4 w-4" />
+            {t.navAiTripBuilderLabel}
+          </Link>
+
           {/* Mobile Language Selector */}
           <div className="pt-1 border-t">
             <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
@@ -463,7 +498,14 @@ export function Nav() {
             </div>
           </div>
           <div className="pt-1 border-t">
-            <Button className="w-full font-semibold">{t.signIn}</Button>
+            {isSignedIn ? (
+              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={() => setIsSignedIn(false)}>
+                <UserCircle className="h-4 w-4" />
+                {t.signOut}
+              </Button>
+            ) : (
+              <Button className="w-full font-semibold" onClick={() => setIsSignedIn(true)}>{t.signIn}</Button>
+            )}
           </div>
         </div>
       )}

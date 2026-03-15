@@ -18,6 +18,8 @@ export interface Translations {
   tribes: string
   entrepreneurs: string
   signIn: string
+  signOut: string
+  myAccount: string
   languageLabel: string
   navExplore: string
   navPlan: string
@@ -328,6 +330,8 @@ const translations: Record<Language, Translations> = {
     tribes: "Tribes",
     entrepreneurs: "Entrepreneurs",
     signIn: "Sign In",
+    signOut: "Sign Out",
+    myAccount: "My Account",
     languageLabel: "English",
     navExplore: "Explore",
     navPlan: "Plan",
@@ -362,8 +366,8 @@ const translations: Record<Language, Translations> = {
     navParaglidingDesc: "Soar above the Eastern Himalayas",
     navAllActivitiesLabel: "All Activities",
     navAllActivitiesDesc: "Browse the complete adventure hub",
-    navAiTripBuilderLabel: "AI Trip Builder",
-    navAiTripBuilderDesc: "Genkit-powered personalised itineraries",
+    navAiTripBuilderLabel: "Journey AI",
+    navAiTripBuilderDesc: "AI-powered personalised itineraries",
     navDistrictMapLabel: "District Map",
     navDistrictMapDesc: "Interactive map of all 26 districts",
     navArrivalFormalitiesLabel: "Arrival Formalities",
@@ -637,6 +641,8 @@ const translations: Record<Language, Translations> = {
     tribes: "जनजातियाँ",
     entrepreneurs: "उद्यमी",
     signIn: "साइन इन",
+    signOut: "साइन आउट",
+    myAccount: "मेरा खाता",
     languageLabel: "हिंदी",
     navExplore: "अन्वेषण",
     navPlan: "योजना",
@@ -946,6 +952,8 @@ const translations: Record<Language, Translations> = {
     tribes: "উপজাতি",
     entrepreneurs: "উদ্যোক্তা",
     signIn: "সাইন ইন",
+    signOut: "সাইন আউট",
+    myAccount: "আমার অ্যাকাউন্ট",
     languageLabel: "বাংলা",
     navExplore: "অন্বেষণ",
     navPlan: "পরিকল্পনা",
@@ -1255,6 +1263,8 @@ const translations: Record<Language, Translations> = {
     tribes: "জনজাতি",
     entrepreneurs: "উদ্যোক্তা",
     signIn: "চাইন ইন",
+    signOut: "চাইন আউট",
+    myAccount: "মোৰ একাউণ্ট",
     languageLabel: "অসমীয়া",
     navExplore: "অন্বেষণ",
     navPlan: "পৰিকল্পনা",
