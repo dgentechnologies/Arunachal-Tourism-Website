@@ -18,7 +18,64 @@ export interface Translations {
   tribes: string
   entrepreneurs: string
   signIn: string
+  signOut: string
+  myAccount: string
   languageLabel: string
+  navExplore: string
+  navPlan: string
+  navEssentials: string
+  navGuidesDesc: string
+  navTribesDesc: string
+  navEntrepreneursDesc: string
+  navItineraryDesc: string
+  navHotelsDesc: string
+  navTransportDesc: string
+  navPermitIndianLabel: string
+  navPermitIndianDesc: string
+  navPermitForeignLabel: string
+  navPermitForeignDesc: string
+  navSafetyDesc: string
+  navAdventures: string
+  navResources: string
+  navAccount: string
+  navWildlifeLabel: string
+  navWildlifeDesc: string
+  navEventsLabel: string
+  navEventsDesc: string
+  navHeritageLabel: string
+  navHeritageDesc: string
+  navTrekkingLabel: string
+  navTrekkingDesc: string
+  navRaftingLabel: string
+  navRaftingDesc: string
+  navAnglingLabel: string
+  navAnglingDesc: string
+  navParaglidingLabel: string
+  navParaglidingDesc: string
+  navAllActivitiesLabel: string
+  navAllActivitiesDesc: string
+  navAiTripBuilderLabel: string
+  navAiTripBuilderDesc: string
+  navDistrictMapLabel: string
+  navDistrictMapDesc: string
+  navArrivalFormalitiesLabel: string
+  navArrivalFormalitiesDesc: string
+  navSmartIlpCheckLabel: string
+  navSmartIlpCheckDesc: string
+  navEguidesLabel: string
+  navEguidesDesc: string
+  navFactsLabel: string
+  navFactsDesc: string
+  navVideoGalleryLabel: string
+  navVideoGalleryDesc: string
+  navNewsletterLabel: string
+  navNewsletterDesc: string
+  navSavedTripsLabel: string
+  navSavedTripsDesc: string
+  navPermitTrackerLabel: string
+  navPermitTrackerDesc: string
+  navProfilePrefsLabel: string
+  navProfilePrefsDesc: string
 
   // FOOTER
   footerTagline: string
@@ -273,7 +330,64 @@ const translations: Record<Language, Translations> = {
     tribes: "Tribes",
     entrepreneurs: "Entrepreneurs",
     signIn: "Sign In",
+    signOut: "Sign Out",
+    myAccount: "My Account",
     languageLabel: "English",
+    navExplore: "Explore",
+    navPlan: "Plan",
+    navEssentials: "Essentials",
+    navGuidesDesc: "14 tourist circuits & destination guides",
+    navTribesDesc: "Profiles of 26+ tribal communities",
+    navEntrepreneursDesc: "Local businesses & experiences",
+    navItineraryDesc: "AI-powered trip itineraries",
+    navHotelsDesc: "Accommodation across all circuits",
+    navTransportDesc: "4×4s, bikes & APST bus routes",
+    navPermitIndianLabel: "Indian Citizens — ILP",
+    navPermitIndianDesc: "Inner Line Permit (e-ILP)",
+    navPermitForeignLabel: "Foreign Citizens — PAP",
+    navPermitForeignDesc: "Protected Area Permit",
+    navSafetyDesc: "Emergency contacts by district",
+    navAdventures: "Adventures",
+    navResources: "Resources",
+    navAccount: "Account",
+    navWildlifeLabel: "Wildlife & Nature",
+    navWildlifeDesc: "Rare species in pristine Himalayan habitats",
+    navEventsLabel: "Festivals & Events",
+    navEventsDesc: "Tribal festivals and cultural celebrations",
+    navHeritageLabel: "Heritage & Spiritual",
+    navHeritageDesc: "Monasteries, war memorials & sacred sites",
+    navTrekkingLabel: "Trekking",
+    navTrekkingDesc: "High-altitude trails across remote valleys",
+    navRaftingLabel: "River Rafting",
+    navRaftingDesc: "Grade IV+ rapids on the Siang & Kameng",
+    navAnglingLabel: "Angling",
+    navAnglingDesc: "World-class mahseer fishing in pristine rivers",
+    navParaglidingLabel: "Paragliding",
+    navParaglidingDesc: "Soar above the Eastern Himalayas",
+    navAllActivitiesLabel: "All Activities",
+    navAllActivitiesDesc: "Browse the complete adventure hub",
+    navAiTripBuilderLabel: "Journey AI",
+    navAiTripBuilderDesc: "AI-powered personalised itineraries",
+    navDistrictMapLabel: "District Map",
+    navDistrictMapDesc: "Interactive map of all 26 districts",
+    navArrivalFormalitiesLabel: "Arrival Formalities",
+    navArrivalFormalitiesDesc: "ILP & PAP permit overview",
+    navSmartIlpCheckLabel: "Smart ILP Pre-Check",
+    navSmartIlpCheckDesc: "AI-powered permit requirement checker",
+    navEguidesLabel: "E-Guides & Brochures",
+    navEguidesDesc: "Download official PDF travel guides",
+    navFactsLabel: "Facts About AP",
+    navFactsDesc: "Geography, culture & visitor essentials",
+    navVideoGalleryLabel: "Video Gallery",
+    navVideoGalleryDesc: "Immersive videos of landscapes & culture",
+    navNewsletterLabel: "Newsletter",
+    navNewsletterDesc: "Seasonal tips, festival dates & new guides",
+    navSavedTripsLabel: "Saved Trips",
+    navSavedTripsDesc: "Your bookmarked itineraries — Phase 2",
+    navPermitTrackerLabel: "Permit Tracker",
+    navPermitTrackerDesc: "Track ILP/PAP status — Phase 2",
+    navProfilePrefsLabel: "Profile & Preferences",
+    navProfilePrefsDesc: "Account settings — Phase 2",
 
     // FOOTER
     footerTagline: "Discover the Land of the Rising Sun. Experience the unparalleled natural beauty and rich cultural heritage of Arunachal Pradesh.",
@@ -527,7 +641,64 @@ const translations: Record<Language, Translations> = {
     tribes: "जनजातियाँ",
     entrepreneurs: "उद्यमी",
     signIn: "साइन इन",
+    signOut: "साइन आउट",
+    myAccount: "मेरा खाता",
     languageLabel: "हिंदी",
+    navExplore: "अन्वेषण",
+    navPlan: "योजना",
+    navEssentials: "आवश्यकताएँ",
+    navGuidesDesc: "14 पर्यटन सर्किट और गंतव्य गाइड",
+    navTribesDesc: "26+ जनजातीय समुदायों का परिचय",
+    navEntrepreneursDesc: "स्थानीय व्यवसाय और अनुभव",
+    navItineraryDesc: "AI-संचालित यात्रा कार्यक्रम",
+    navHotelsDesc: "सभी सर्किट में आवास",
+    navTransportDesc: "4×4, बाइक और APST बस मार्ग",
+    navPermitIndianLabel: "भारतीय नागरिक — ILP",
+    navPermitIndianDesc: "इनर लाइन परमिट (e-ILP)",
+    navPermitForeignLabel: "विदेशी नागरिक — PAP",
+    navPermitForeignDesc: "संरक्षित क्षेत्र परमिट",
+    navSafetyDesc: "जिलेवार आपातकालीन संपर्क",
+    navAdventures: "साहसिक",
+    navResources: "संसाधन",
+    navAccount: "खाता",
+    navWildlifeLabel: "वन्यजीव और प्रकृति",
+    navWildlifeDesc: "हिमालयी वनों में दुर्लभ प्रजातियाँ",
+    navEventsLabel: "त्यौहार और कार्यक्रम",
+    navEventsDesc: "जनजातीय उत्सव और सांस्कृतिक समारोह",
+    navHeritageLabel: "विरासत और आध्यात्मिक",
+    navHeritageDesc: "मठ, युद्ध स्मारक और पवित्र स्थल",
+    navTrekkingLabel: "ट्रेकिंग",
+    navTrekkingDesc: "दूरस्थ घाटियों में ऊँचाई के रास्ते",
+    navRaftingLabel: "नदी राफ्टिंग",
+    navRaftingDesc: "सियांग और कामेंग पर ग्रेड IV+ रैपिड्स",
+    navAnglingLabel: "मछली पकड़ना",
+    navAnglingDesc: "प्रदूषणमुक्त नदियों में विश्वस्तरीय महासीर मछली पकड़ना",
+    navParaglidingLabel: "पैराग्लाइडिंग",
+    navParaglidingDesc: "पूर्वी हिमालय के ऊपर उड़ान",
+    navAllActivitiesLabel: "सभी गतिविधियाँ",
+    navAllActivitiesDesc: "पूर्ण साहसिक केंद्र देखें",
+    navAiTripBuilderLabel: "AI यात्रा निर्माता",
+    navAiTripBuilderDesc: "Genkit-संचालित व्यक्तिगत यात्रा कार्यक्रम",
+    navDistrictMapLabel: "जिला मानचित्र",
+    navDistrictMapDesc: "सभी 26 जिलों का इंटरैक्टिव मानचित्र",
+    navArrivalFormalitiesLabel: "आगमन औपचारिकताएँ",
+    navArrivalFormalitiesDesc: "ILP और PAP परमिट अवलोकन",
+    navSmartIlpCheckLabel: "स्मार्ट ILP प्री-चेक",
+    navSmartIlpCheckDesc: "AI-संचालित परमिट आवश्यकता जाँचकर्ता",
+    navEguidesLabel: "ई-गाइड और ब्रोशर",
+    navEguidesDesc: "आधिकारिक PDF यात्रा गाइड डाउनलोड करें",
+    navFactsLabel: "AP के बारे में तथ्य",
+    navFactsDesc: "भूगोल, संस्कृति और पर्यटक जानकारी",
+    navVideoGalleryLabel: "वीडियो गैलरी",
+    navVideoGalleryDesc: "परिदृश्य और संस्कृति के immersive वीडियो",
+    navNewsletterLabel: "न्यूज़लेटर",
+    navNewsletterDesc: "मौसमी सुझाव, त्यौहार तिथियाँ और नई गाइड",
+    navSavedTripsLabel: "सहेजी गई यात्राएँ",
+    navSavedTripsDesc: "आपकी बुकमार्क यात्राएँ — चरण 2",
+    navPermitTrackerLabel: "परमिट ट्रैकर",
+    navPermitTrackerDesc: "ILP/PAP स्थिति ट्रैक करें — चरण 2",
+    navProfilePrefsLabel: "प्रोफ़ाइल और प्राथमिकताएँ",
+    navProfilePrefsDesc: "खाता सेटिंग — चरण 2",
 
     // FOOTER
     footerTagline: "उगते सूरज की भूमि की खोज करें। अरुणाचल प्रदेश की अतुलनीय प्राकृतिक सुंदरता और समृद्ध सांस्कृतिक विरासत का अनुभव करें।",
@@ -781,7 +952,64 @@ const translations: Record<Language, Translations> = {
     tribes: "উপজাতি",
     entrepreneurs: "উদ্যোক্তা",
     signIn: "সাইন ইন",
+    signOut: "সাইন আউট",
+    myAccount: "আমার অ্যাকাউন্ট",
     languageLabel: "বাংলা",
+    navExplore: "অন্বেষণ",
+    navPlan: "পরিকল্পনা",
+    navEssentials: "প্রয়োজনীয়",
+    navGuidesDesc: "১৪টি পর্যটন সার্কিট ও গন্তব্য গাইড",
+    navTribesDesc: "২৬+ আদিবাসী সম্প্রদায়ের পরিচিতি",
+    navEntrepreneursDesc: "স্থানীয় ব্যবসা ও অভিজ্ঞতা",
+    navItineraryDesc: "AI-চালিত ভ্রমণ পরিকল্পনা",
+    navHotelsDesc: "সকল সার্কিটে আবাসন",
+    navTransportDesc: "4×4, বাইক ও APST বাস রুট",
+    navPermitIndianLabel: "ভারতীয় নাগরিক — ILP",
+    navPermitIndianDesc: "ইনার লাইন পারমিট (e-ILP)",
+    navPermitForeignLabel: "বিদেশী নাগরিক — PAP",
+    navPermitForeignDesc: "সুরক্ষিত এলাকা পারমিট",
+    navSafetyDesc: "জেলাভিত্তিক জরুরি যোগাযোগ",
+    navAdventures: "অ্যাডভেঞ্চার",
+    navResources: "সম্পদ",
+    navAccount: "অ্যাকাউন্ট",
+    navWildlifeLabel: "বন্যপ্রাণী ও প্রকৃতি",
+    navWildlifeDesc: "হিমালয়ের অরণ্যে বিরল প্রজাতি",
+    navEventsLabel: "উৎসব ও অনুষ্ঠান",
+    navEventsDesc: "আদিবাসী উৎসব ও সাংস্কৃতিক অনুষ্ঠান",
+    navHeritageLabel: "ঐতিহ্য ও আধ্যাত্মিক",
+    navHeritageDesc: "মঠ, যুদ্ধ স্মারক ও পবিত্র স্থান",
+    navTrekkingLabel: "ট্রেকিং",
+    navTrekkingDesc: "দূরবর্তী উপত্যকায় উচ্চতার পথ",
+    navRaftingLabel: "নদী র‍্যাফটিং",
+    navRaftingDesc: "সিয়াং ও কামেং-এ গ্রেড IV+ র‍্যাপিড",
+    navAnglingLabel: "মাছ ধরা",
+    navAnglingDesc: "প্রাকৃতিক নদীতে বিশ্বমানের মাহশীর মাছ ধরা",
+    navParaglidingLabel: "প্যারাগ্লাইডিং",
+    navParaglidingDesc: "পূর্ব হিমালয়ের উপর দিয়ে উড়ান",
+    navAllActivitiesLabel: "সব কার্যক্রম",
+    navAllActivitiesDesc: "সম্পূর্ণ অ্যাডভেঞ্চার হাব দেখুন",
+    navAiTripBuilderLabel: "AI ট্রিপ বিল্ডার",
+    navAiTripBuilderDesc: "Genkit-চালিত ব্যক্তিগতকৃত ভ্রমণসূচি",
+    navDistrictMapLabel: "জেলা মানচিত্র",
+    navDistrictMapDesc: "সব ২৬টি জেলার ইন্টারেক্টিভ মানচিত্র",
+    navArrivalFormalitiesLabel: "আগমন আনুষ্ঠানিকতা",
+    navArrivalFormalitiesDesc: "ILP ও PAP পারমিটের সারসংক্ষেপ",
+    navSmartIlpCheckLabel: "স্মার্ট ILP প্রি-চেক",
+    navSmartIlpCheckDesc: "AI-চালিত পারমিট প্রয়োজনীয়তা পরীক্ষক",
+    navEguidesLabel: "ই-গাইড ও ব্রোশার",
+    navEguidesDesc: "অফিসিয়াল PDF ভ্রমণ গাইড ডাউনলোড করুন",
+    navFactsLabel: "AP সম্পর্কে তথ্য",
+    navFactsDesc: "ভূগোল, সংস্কৃতি ও দর্শনার্থীর তথ্য",
+    navVideoGalleryLabel: "ভিডিও গ্যালারি",
+    navVideoGalleryDesc: "প্রকৃতি ও সংস্কৃতির নিমজ্জিত ভিডিও",
+    navNewsletterLabel: "নিউজলেটার",
+    navNewsletterDesc: "মৌসুমী টিপস, উৎসবের তারিখ ও নতুন গাইড",
+    navSavedTripsLabel: "সংরক্ষিত ভ্রমণ",
+    navSavedTripsDesc: "আপনার বুকমার্ক করা ভ্রমণসূচি — পর্যায় ২",
+    navPermitTrackerLabel: "পারমিট ট্র্যাকার",
+    navPermitTrackerDesc: "ILP/PAP স্ট্যাটাস ট্র্যাক করুন — পর্যায় ২",
+    navProfilePrefsLabel: "প্রোফাইল ও পছন্দ",
+    navProfilePrefsDesc: "অ্যাকাউন্ট সেটিংস — পর্যায় ২",
 
     // FOOTER
     footerTagline: "উদীয়মান সূর্যের ভূমি আবিষ্কার করুন। অরুণাচল প্রদেশের অতুলনীয় প্রাকৃতিক সৌন্দর্য ও সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য উপভোগ করুন।",
@@ -1035,7 +1263,64 @@ const translations: Record<Language, Translations> = {
     tribes: "জনজাতি",
     entrepreneurs: "উদ্যোক্তা",
     signIn: "চাইন ইন",
+    signOut: "চাইন আউট",
+    myAccount: "মোৰ একাউণ্ট",
     languageLabel: "অসমীয়া",
+    navExplore: "অন্বেষণ",
+    navPlan: "পৰিকল্পনা",
+    navEssentials: "আৱশ্যকীয়",
+    navGuidesDesc: "১৪টি পৰ্যটন চাৰ্কিট আৰু গন্তব্য গাইড",
+    navTribesDesc: "২৬+ জনজাতীয় সম্প্ৰদায়ৰ পৰিচয়",
+    navEntrepreneursDesc: "স্থানীয় ব্যৱসায় আৰু অভিজ্ঞতা",
+    navItineraryDesc: "AI-চালিত ভ্ৰমণ পৰিকল্পনা",
+    navHotelsDesc: "সকলো চাৰ্কিটত আৱাসন",
+    navTransportDesc: "4×4, বাইক আৰু APST বাছ ৰুট",
+    navPermitIndianLabel: "ভাৰতীয় নাগৰিক — ILP",
+    navPermitIndianDesc: "ইনাৰ লাইন পাৰমিট (e-ILP)",
+    navPermitForeignLabel: "বিদেশী নাগৰিক — PAP",
+    navPermitForeignDesc: "সুৰক্ষিত এলেকা পাৰমিট",
+    navSafetyDesc: "জিলাভিত্তিক জৰুৰী যোগাযোগ",
+    navAdventures: "অভিযান",
+    navResources: "সম্পদ",
+    navAccount: "একাউণ্ট",
+    navWildlifeLabel: "বন্যপ্ৰাণী আৰু প্ৰকৃতি",
+    navWildlifeDesc: "হিমালয়ৰ অৰণ্যত বিৰল প্ৰজাতি",
+    navEventsLabel: "উৎসৱ আৰু অনুষ্ঠান",
+    navEventsDesc: "জনজাতীয় উৎসৱ আৰু সাংস্কৃতিক অনুষ্ঠান",
+    navHeritageLabel: "ঐতিহ্য আৰু আধ্যাত্মিক",
+    navHeritageDesc: "মঠ, যুদ্ধ স্মাৰক আৰু পৱিত্ৰ স্থান",
+    navTrekkingLabel: "ট্ৰেকিং",
+    navTrekkingDesc: "দূৰৱৰ্তী উপত্যকাত উচ্চতাৰ পথ",
+    navRaftingLabel: "নদী ৰাফটিং",
+    navRaftingDesc: "চিয়াং আৰু কামেংত গ্ৰেড IV+ ৰেপিড",
+    navAnglingLabel: "মাছ ধৰা",
+    navAnglingDesc: "বিশুদ্ধ নদীত বিশ্বমানৰ মহাশীৰ মাছ ধৰা",
+    navParaglidingLabel: "পেৰাগ্লাইডিং",
+    navParaglidingDesc: "পূব হিমালয়ৰ ওপৰেদি উৰণ",
+    navAllActivitiesLabel: "সকলো কাৰ্যকলাপ",
+    navAllActivitiesDesc: "সম্পূৰ্ণ অভিযান কেন্দ্ৰ চাওক",
+    navAiTripBuilderLabel: "AI ভ্ৰমণ নিৰ্মাতা",
+    navAiTripBuilderDesc: "Genkit-চালিত ব্যক্তিগতকৃত ভ্ৰমণ পৰিকল্পনা",
+    navDistrictMapLabel: "জিলা মানচিত্ৰ",
+    navDistrictMapDesc: "সকলো ২৬টি জিলাৰ ইন্টাৰেক্টিভ মানচিত্ৰ",
+    navArrivalFormalitiesLabel: "আগমনৰ আনুষ্ঠানিকতা",
+    navArrivalFormalitiesDesc: "ILP আৰু PAP পাৰমিটৰ সংক্ষিপ্তসাৰ",
+    navSmartIlpCheckLabel: "স্মাৰ্ট ILP প্ৰি-চেক",
+    navSmartIlpCheckDesc: "AI-চালিত পাৰমিট প্ৰয়োজনীয়তা পৰীক্ষক",
+    navEguidesLabel: "ই-গাইড আৰু ব্ৰোচাৰ",
+    navEguidesDesc: "চৰকাৰী PDF ভ্ৰমণ গাইড ডাউনলোড কৰক",
+    navFactsLabel: "AP সম্পৰ্কে তথ্য",
+    navFactsDesc: "ভূগোল, সংস্কৃতি আৰু দৰ্শনাৰ্থীৰ তথ্য",
+    navVideoGalleryLabel: "ভিডিঅ' গেলেৰী",
+    navVideoGalleryDesc: "প্ৰকৃতি আৰু সংস্কৃতিৰ ভিডিঅ'",
+    navNewsletterLabel: "নিউজলেটাৰ",
+    navNewsletterDesc: "ঋতু পৰামৰ্শ, উৎসৱৰ তাৰিখ আৰু নতুন গাইড",
+    navSavedTripsLabel: "সংৰক্ষিত ভ্ৰমণ",
+    navSavedTripsDesc: "আপোনাৰ বুকমাৰ্ক কৰা ভ্ৰমণসূচি — পৰ্যায় ২",
+    navPermitTrackerLabel: "পাৰমিট ট্ৰেকাৰ",
+    navPermitTrackerDesc: "ILP/PAP স্থিতি ট্ৰেক কৰক — পৰ্যায় ২",
+    navProfilePrefsLabel: "প্ৰফাইল আৰু পছন্দ",
+    navProfilePrefsDesc: "একাউণ্ট ছেটিং — পৰ্যায় ২",
 
     // FOOTER
     footerTagline: "উদীয়মান সূৰ্যৰ ভূমি আৱিষ্কাৰ কৰক। অৰুণাচল প্ৰদেশৰ অতুলনীয় প্ৰাকৃতিক সৌন্দৰ্য আৰু সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য উপভোগ কৰক।",

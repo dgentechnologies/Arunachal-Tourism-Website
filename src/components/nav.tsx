@@ -5,7 +5,14 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Hotel, Car, ShieldAlert, FileText, Compass, Menu, X, Globe, Mountain, Users, Lightbulb, ChevronDown, Flag, Plane } from "lucide-react"
+import {
+  Hotel, Car, ShieldAlert, Compass, Menu, X,
+  Globe, Mountain, Users, Lightbulb, ChevronDown,
+  Flag, Plane, ChevronRight, Leaf, Calendar, Landmark,
+  TreePine, Waves, Fish, Wind, LayoutGrid, Sparkles,
+  Map, FileText, ScanSearch, BookOpen, Info, Video,
+  Mail, Bookmark, Clock, UserCircle,
+} from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -20,26 +27,98 @@ const SCROLL_THRESHOLD = 60
 
 // Indian citizens: Official e-ILP (Electronic Inner Line Permit) portal
 const PERMIT_URL_INDIAN = "https://www.eilp.arunachal.gov.in/preTuristEIlpKYC"
-// Foreign citizens: Dedicated internal page with PAP (Protected Area Permit) details
-const PERMIT_URL_FOREIGN = "/permit/foreign"
+
+function badgeColorClass(badge: string, disabled?: boolean): string {
+  if (disabled) return "bg-muted text-muted-foreground/60"
+  if (badge === "External") return "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+  if (badge === "Sign In") return "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
+  return "bg-primary/10 text-primary"
+}
+
+interface NavSubItem {
+  name: string
+  href: string
+  icon: React.ElementType
+  description: string
+  external?: boolean
+  badge?: string
+  disabled?: boolean
+}
+
+interface NavGroup {
+  label: string
+  items: NavSubItem[]
+}
 
 export function Nav() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [permitOpen, setPermitOpen] = useState(false)
-  const permitRef = useRef<HTMLDivElement>(null)
+  const [openGroup, setOpenGroup] = useState<string | null>(null)
+  const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
   const isHome = pathname === "/"
   const { language, setLanguage, t } = useLanguage()
 
-  const navItems = [
-    { name: t.guides, href: "/guides", icon: Compass },
-    { name: t.hotels, href: "/hotels", icon: Hotel },
-    { name: t.transport, href: "/transport", icon: Car },
-    { name: t.itinerary, href: "/itinerary", icon: Mountain },
-    { name: t.safety, href: "/safety", icon: ShieldAlert },
-    { name: t.tribes, href: "/tribes", icon: Users },
-    { name: t.entrepreneurs, href: "/entrepreneurs", icon: Lightbulb },
+  const navGroups: NavGroup[] = [
+    {
+      label: t.navExplore,
+      items: [
+        { name: t.guides, href: "/guides", icon: Compass, description: t.navGuidesDesc },
+        { name: t.tribes, href: "/tribes", icon: Users, description: t.navTribesDesc },
+        { name: t.entrepreneurs, href: "/entrepreneurs", icon: Lightbulb, description: t.navEntrepreneursDesc },
+        { name: t.navWildlifeLabel, href: "/wildlife", icon: Leaf, description: t.navWildlifeDesc, badge: "New" },
+        { name: t.navEventsLabel, href: "/events", icon: Calendar, description: t.navEventsDesc, badge: "New" },
+        { name: t.navHeritageLabel, href: "/heritage", icon: Landmark, description: t.navHeritageDesc, badge: "New" },
+      ],
+    },
+    {
+      label: t.navAdventures,
+      items: [
+        { name: t.navTrekkingLabel, href: "/adventures/trekking", icon: TreePine, description: t.navTrekkingDesc },
+        { name: t.navRaftingLabel, href: "/adventures/rafting", icon: Waves, description: t.navRaftingDesc },
+        { name: t.navAnglingLabel, href: "/adventures/angling", icon: Fish, description: t.navAnglingDesc },
+        { name: t.navParaglidingLabel, href: "/adventures/paragliding", icon: Wind, description: t.navParaglidingDesc },
+        { name: t.navAllActivitiesLabel, href: "/adventures", icon: LayoutGrid, description: t.navAllActivitiesDesc, badge: "Hub" },
+      ],
+    },
+    {
+      label: t.navPlan,
+      items: [
+        { name: t.itinerary, href: "/itinerary", icon: Mountain, description: t.navItineraryDesc },
+        { name: t.hotels, href: "/hotels", icon: Hotel, description: t.navHotelsDesc },
+        { name: t.transport, href: "/transport", icon: Car, description: t.navTransportDesc },
+        { name: t.navDistrictMapLabel, href: "/map", icon: Map, description: t.navDistrictMapDesc, badge: "New" },
+      ],
+    },
+    {
+      label: t.navEssentials,
+      items: [
+        { name: t.navArrivalFormalitiesLabel, href: "/permit", icon: FileText, description: t.navArrivalFormalitiesDesc },
+        { name: t.navSmartIlpCheckLabel, href: "/permit/check", icon: ScanSearch, description: t.navSmartIlpCheckDesc, badge: "AI" },
+        { name: t.navPermitIndianLabel, href: PERMIT_URL_INDIAN, icon: Flag, description: t.navPermitIndianDesc, external: true, badge: "External" },
+        { name: t.navPermitForeignLabel, href: "/permit/foreign", icon: Plane, description: t.navPermitForeignDesc },
+        { name: t.safety, href: "/safety", icon: ShieldAlert, description: t.navSafetyDesc },
+      ],
+    },
+    {
+      label: t.navResources,
+      items: [
+        { name: t.navEguidesLabel, href: "/guides/ebooks", icon: BookOpen, description: t.navEguidesDesc },
+        { name: t.navFactsLabel, href: "/about", icon: Info, description: t.navFactsDesc },
+        { name: t.navVideoGalleryLabel, href: "/media", icon: Video, description: t.navVideoGalleryDesc, badge: "New" },
+        { name: t.navNewsletterLabel, href: "/newsletter", icon: Mail, description: t.navNewsletterDesc },
+      ],
+    },
+    {
+      label: t.navAccount,
+      items: [
+        { name: t.navSavedTripsLabel, href: "/account/trips", icon: Bookmark, description: t.navSavedTripsDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
+        { name: t.navPermitTrackerLabel, href: "/account/permits", icon: Clock, description: t.navPermitTrackerDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
+        { name: t.navProfilePrefsLabel, href: "/account", icon: UserCircle, description: t.navProfilePrefsDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
+      ],
+    },
   ]
 
   useEffect(() => {
@@ -49,11 +128,11 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handler)
   }, [])
 
-  // Close permit dropdown when clicking outside
+  // Close group dropdown when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (permitRef.current && !permitRef.current.contains(e.target as Node)) {
-        setPermitOpen(false)
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenGroup(null)
       }
     }
     document.addEventListener("mousedown", handler)
@@ -61,6 +140,9 @@ export function Nav() {
   }, [])
 
   const transparent = isHome && !scrolled && !isOpen
+
+  const isGroupActive = (group: NavGroup) =>
+    group.items.some((item) => !item.external && !item.disabled && pathname === item.href)
 
   return (
     <nav
@@ -71,8 +153,8 @@ export function Nav() {
           : "border-b bg-background/90 backdrop-blur-md shadow-sm"
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4" ref={navRef}>
+        <Link href="/" className="flex items-center space-x-2 shrink-0">
           {transparent ? (
             <Image src="/logos/logo-white.svg" alt="Arunachal Explore" width={160} height={42} priority />
           ) : (
@@ -80,82 +162,132 @@ export function Nav() {
           )}
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex md:items-center md:space-x-1">
-          {navItems.map((item) => {
-            const Icon = item.icon
+        {/* Desktop Nav — grouped dropdowns */}
+        <div className="hidden md:flex md:items-center md:gap-0.5">
+          {navGroups.map((group) => {
+            const isActive = isGroupActive(group)
+            const isGroupOpen = openGroup === group.label
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md hover:scale-105",
-                  transparent
-                    ? pathname === item.href
-                      ? "text-white bg-white/20"
-                      : "text-white/80 hover:text-white hover:bg-white/15"
-                    : pathname === item.href
-                      ? "text-primary bg-secondary/50"
-                      : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
-                )}
+              <div
+                key={group.label}
+                className="relative"
+                onMouseEnter={() => setOpenGroup(group.label)}
+                onMouseLeave={() => setOpenGroup(null)}
               >
-                <Icon className="h-4 w-4 transition-transform duration-200" />
-                <span>{item.name}</span>
-              </Link>
+                <button
+                  onClick={() => setOpenGroup(isGroupOpen ? null : group.label)}
+                  className={cn(
+                    "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 hover:scale-105",
+                    transparent
+                      ? isActive
+                        ? "text-white bg-white/20"
+                        : "text-white/80 hover:text-white hover:bg-white/15"
+                      : isActive
+                        ? "text-primary bg-secondary/50"
+                        : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
+                  )}
+                >
+                  <span>{group.label}</span>
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 transition-transform duration-200",
+                      isGroupOpen && "rotate-180"
+                    )}
+                  />
+                </button>
+
+                {/* Dropdown panel */}
+                {isGroupOpen && (
+                  <div className="absolute top-full left-0 mt-1 rounded-xl border bg-background shadow-xl p-2 z-50 min-w-[320px]">
+                    <div className={cn("grid gap-0.5", group.items.length <= 2 ? "grid-cols-1" : "grid-cols-2")}>
+                    {group.items.map((item) => {
+                      const Icon = item.icon
+                      const isItemActive = !item.external && !item.disabled && pathname === item.href
+                      const inner = (
+                        <>
+                          <span
+                            className={cn(
+                              "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+                              item.disabled
+                                ? "bg-muted text-muted-foreground/50"
+                                : isItemActive
+                                  ? "bg-primary/15 text-primary"
+                                  : "bg-secondary/60 text-muted-foreground"
+                            )}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <p className={cn(
+                                "text-sm font-semibold leading-tight",
+                                item.disabled ? "text-muted-foreground/60" : isItemActive ? "text-primary" : "text-foreground"
+                              )}>
+                                {item.name}
+                              </p>
+                              {item.badge && (
+                                <span className={cn(
+                                  "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
+                                  badgeColorClass(item.badge, item.disabled)
+                                )}>
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className={cn(
+                              "text-xs mt-0.5 leading-tight",
+                              item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
+                            )}>
+                              {item.description}
+                            </p>
+                          </div>
+                        </>
+                      )
+                      return (
+                        <div key={item.href}>
+                          {item.disabled ? (
+                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-not-allowed opacity-60">
+                              {inner}
+                            </div>
+                          ) : item.external ? (
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setOpenGroup(null)}
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                            >
+                              {inner}
+                            </a>
+                          ) : (
+                            <Link
+                              href={item.href}
+                              onClick={() => setOpenGroup(null)}
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                            >
+                              {inner}
+                            </Link>
+                          )}
+                        </div>
+                      )
+                    })}
+                    </div>
+                  </div>
+                )}
+              </div>
             )
           })}
 
-          {/* Permit Dropdown */}
-          <div
-            ref={permitRef}
-            className="relative"
-            onMouseEnter={() => setPermitOpen(true)}
-            onMouseLeave={() => setPermitOpen(false)}
+          {/* Journey AI — standalone premium button */}
+          <Link
+            href="/plan/ai"
+            className="mx-1 flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 bg-gradient-to-r from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 hover:shadow-violet-500/50 hover:scale-105 transition-all duration-200 active:scale-95 shrink-0"
           >
-            <button
-              onClick={() => setPermitOpen(!permitOpen)}
-              className={cn(
-                "flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md hover:scale-105",
-                transparent
-                  ? "text-white/80 hover:text-white hover:bg-white/15"
-                  : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
-              )}
-            >
-              <FileText className="h-4 w-4" />
-              <span>{t.permit}</span>
-              <ChevronDown className={cn("h-3 w-3 transition-transform duration-200", permitOpen && "rotate-180")} />
-            </button>
-            {permitOpen && (
-              <div className="absolute top-full left-0 mt-1 w-52 rounded-lg border bg-background shadow-lg py-1 z-50">
-                <a
-                  href={PERMIT_URL_INDIAN}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors"
-                  onClick={() => setPermitOpen(false)}
-                >
-                  <Flag className="h-4 w-4 text-primary shrink-0" />
-                  <div>
-                    <p className="font-semibold">Indian Citizens</p>
-                    <p className="text-xs text-muted-foreground">Inner Line Permit</p>
-                  </div>
-                </a>
-                <div className="mx-3 border-t my-1" />
-                <Link
-                  href={PERMIT_URL_FOREIGN}
-                  className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors"
-                  onClick={() => setPermitOpen(false)}
-                >
-                  <Plane className="h-4 w-4 text-primary shrink-0" />
-                  <div>
-                    <p className="font-semibold">Foreign Citizens</p>
-                    <p className="text-xs text-muted-foreground">Protected Area Permit</p>
-                  </div>
-                </Link>
-              </div>
-            )}
-          </div>
-          <div className="ml-4 pl-4 border-l border-current/20 flex items-center gap-2">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>{t.navAiTripBuilderLabel}</span>
+          </Link>
+
+          <div className="ml-2 pl-3 border-l border-current/20 flex items-center gap-2">
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -190,15 +322,31 @@ export function Nav() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button
-              size="sm"
-              className={cn(
-                "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
-                transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
-              )}
-            >
-              {t.signIn}
-            </Button>
+            {isSignedIn ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsSignedIn(false)}
+                className={cn(
+                  "flex items-center gap-1.5 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
+                  transparent && "text-white hover:bg-white/20 border border-white/30"
+                )}
+              >
+                <UserCircle className="h-4 w-4" />
+                {t.myAccount}
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => setIsSignedIn(true)}
+                className={cn(
+                  "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
+                  transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
+                )}
+              >
+                {t.signIn}
+              </Button>
+            )}
           </div>
         </div>
 
@@ -216,58 +364,118 @@ export function Nav() {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden border-b bg-background px-4 py-4 space-y-2">
-          {navItems.map((item) => {
-            const Icon = item.icon
+        <div className="md:hidden border-b bg-background px-4 py-3 space-y-1">
+          {navGroups.map((group) => {
+            const isMobileGroupOpen = mobileOpenGroup === group.label
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "flex items-center space-x-3 p-3 text-base font-medium rounded-lg transition-colors",
-                  pathname === item.href ? "text-primary bg-secondary/50" : "text-muted-foreground hover:bg-muted"
+              <div key={group.label} className="rounded-xl border border-border/60 overflow-hidden">
+                <button
+                  onClick={() => setMobileOpenGroup(isMobileGroupOpen ? null : group.label)}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-secondary/20 hover:bg-secondary/30 transition-colors"
+                >
+                  <span className="text-sm font-semibold text-foreground">{group.label}</span>
+                  <ChevronRight
+                    className={cn(
+                      "h-4 w-4 text-muted-foreground transition-transform duration-200",
+                      isMobileGroupOpen && "rotate-90"
+                    )}
+                  />
+                </button>
+                {isMobileGroupOpen && (
+                  <div className="divide-y divide-border/40">
+                    {group.items.map((item) => {
+                      const Icon = item.icon
+                      const isItemActive = !item.external && !item.disabled && pathname === item.href
+                      const inner = (
+                        <>
+                          <span
+                            className={cn(
+                              "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+                              item.disabled
+                                ? "bg-muted text-muted-foreground/50"
+                                : isItemActive
+                                  ? "bg-primary/15 text-primary"
+                                  : "bg-secondary/50 text-muted-foreground"
+                            )}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </span>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <p className={cn(
+                                "text-sm font-semibold",
+                                item.disabled ? "text-muted-foreground/60" : isItemActive ? "text-primary" : "text-foreground"
+                              )}>
+                                {item.name}
+                              </p>
+                              {item.badge && (
+                                <span className={cn(
+                                  "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
+                                  badgeColorClass(item.badge, item.disabled)
+                                )}>
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className={cn(
+                              "text-xs",
+                              item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
+                            )}>
+                              {item.description}
+                            </p>
+                          </div>
+                        </>
+                      )
+                      if (item.disabled) {
+                        return (
+                          <div
+                            key={item.href}
+                            className="flex items-center gap-3 px-4 py-3 cursor-not-allowed opacity-60"
+                          >
+                            {inner}
+                          </div>
+                        )
+                      }
+                      return item.external ? (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors"
+                        >
+                          {inner}
+                        </a>
+                      ) : (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors"
+                        >
+                          {inner}
+                        </Link>
+                      )
+                    })}
+                  </div>
                 )}
-              >
-                <Icon className="h-5 w-5" />
-                <span>{item.name}</span>
-              </Link>
+              </div>
             )
           })}
 
-          {/* Mobile Permit Options */}
-          <div className="rounded-lg border border-border/60 overflow-hidden">
-            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/20">
-              <FileText className="h-4 w-4 text-primary" />
-              <span className="text-sm font-semibold text-foreground">{t.permit}</span>
-            </div>
-            <a
-              href={PERMIT_URL_INDIAN}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 p-3 text-sm font-medium text-muted-foreground hover:bg-muted border-t"
-            >
-              <Flag className="h-4 w-4 text-primary" />
-              <div>
-                <p className="font-semibold text-foreground">Indian Citizens</p>
-                <p className="text-xs text-muted-foreground">Inner Line Permit →</p>
-              </div>
-            </a>
-            <Link
-              href={PERMIT_URL_FOREIGN}
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 p-3 text-sm font-medium text-muted-foreground hover:bg-muted border-t"
-            >
-              <Plane className="h-4 w-4 text-primary" />
-              <div>
-                <p className="font-semibold text-foreground">Foreign Citizens</p>
-                <p className="text-xs text-muted-foreground">Protected Area Permit →</p>
-              </div>
-            </Link>
-          </div>
+          {/* Mobile Journey AI button */}
+          <Link
+            href="/plan/ai"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center justify-center gap-2 w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 bg-gradient-to-r from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 transition-all duration-200 active:scale-95"
+          >
+            <Sparkles className="h-4 w-4" />
+            {t.navAiTripBuilderLabel}
+          </Link>
+
           {/* Mobile Language Selector */}
-          <div className="pt-2 border-t">
+          <div className="pt-1 border-t">
             <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
               <Globe className="h-3.5 w-3.5" /> Language
             </p>
@@ -289,8 +497,15 @@ export function Nav() {
               ))}
             </div>
           </div>
-          <div className="pt-2 border-t">
-            <Button className="w-full font-semibold">{t.signIn}</Button>
+          <div className="pt-1 border-t">
+            {isSignedIn ? (
+              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={() => setIsSignedIn(false)}>
+                <UserCircle className="h-4 w-4" />
+                {t.signOut}
+              </Button>
+            ) : (
+              <Button className="w-full font-semibold" onClick={() => setIsSignedIn(true)}>{t.signIn}</Button>
+            )}
           </div>
         </div>
       )}
