@@ -19,6 +19,20 @@ export interface Translations {
   entrepreneurs: string
   signIn: string
   languageLabel: string
+  navExplore: string
+  navPlan: string
+  navEssentials: string
+  navGuidesDesc: string
+  navTribesDesc: string
+  navEntrepreneursDesc: string
+  navItineraryDesc: string
+  navHotelsDesc: string
+  navTransportDesc: string
+  navPermitIndianLabel: string
+  navPermitIndianDesc: string
+  navPermitForeignLabel: string
+  navPermitForeignDesc: string
+  navSafetyDesc: string
 
   // FOOTER
   footerTagline: string
@@ -274,6 +288,20 @@ const translations: Record<Language, Translations> = {
     entrepreneurs: "Entrepreneurs",
     signIn: "Sign In",
     languageLabel: "English",
+    navExplore: "Explore",
+    navPlan: "Plan",
+    navEssentials: "Essentials",
+    navGuidesDesc: "14 tourist circuits & destination guides",
+    navTribesDesc: "Profiles of 26+ tribal communities",
+    navEntrepreneursDesc: "Local businesses & experiences",
+    navItineraryDesc: "AI-powered trip itineraries",
+    navHotelsDesc: "Accommodation across all circuits",
+    navTransportDesc: "4×4s, bikes & APST bus routes",
+    navPermitIndianLabel: "Indian Citizens — ILP",
+    navPermitIndianDesc: "Inner Line Permit (e-ILP)",
+    navPermitForeignLabel: "Foreign Citizens — PAP",
+    navPermitForeignDesc: "Protected Area Permit",
+    navSafetyDesc: "Emergency contacts by district",
 
     // FOOTER
     footerTagline: "Discover the Land of the Rising Sun. Experience the unparalleled natural beauty and rich cultural heritage of Arunachal Pradesh.",
@@ -528,6 +556,20 @@ const translations: Record<Language, Translations> = {
     entrepreneurs: "उद्यमी",
     signIn: "साइन इन",
     languageLabel: "हिंदी",
+    navExplore: "अन्वेषण",
+    navPlan: "योजना",
+    navEssentials: "आवश्यकताएँ",
+    navGuidesDesc: "14 पर्यटन सर्किट और गंतव्य गाइड",
+    navTribesDesc: "26+ जनजातीय समुदायों का परिचय",
+    navEntrepreneursDesc: "स्थानीय व्यवसाय और अनुभव",
+    navItineraryDesc: "AI-संचालित यात्रा कार्यक्रम",
+    navHotelsDesc: "सभी सर्किट में आवास",
+    navTransportDesc: "4×4, बाइक और APST बस मार्ग",
+    navPermitIndianLabel: "भारतीय नागरिक — ILP",
+    navPermitIndianDesc: "इनर लाइन परमिट (e-ILP)",
+    navPermitForeignLabel: "विदेशी नागरिक — PAP",
+    navPermitForeignDesc: "संरक्षित क्षेत्र परमिट",
+    navSafetyDesc: "जिलेवार आपातकालीन संपर्क",
 
     // FOOTER
     footerTagline: "उगते सूरज की भूमि की खोज करें। अरुणाचल प्रदेश की अतुलनीय प्राकृतिक सुंदरता और समृद्ध सांस्कृतिक विरासत का अनुभव करें।",
@@ -782,6 +824,20 @@ const translations: Record<Language, Translations> = {
     entrepreneurs: "উদ্যোক্তা",
     signIn: "সাইন ইন",
     languageLabel: "বাংলা",
+    navExplore: "অন্বেষণ",
+    navPlan: "পরিকল্পনা",
+    navEssentials: "প্রয়োজনীয়",
+    navGuidesDesc: "১৪টি পর্যটন সার্কিট ও গন্তব্য গাইড",
+    navTribesDesc: "২৬+ আদিবাসী সম্প্রদায়ের পরিচিতি",
+    navEntrepreneursDesc: "স্থানীয় ব্যবসা ও অভিজ্ঞতা",
+    navItineraryDesc: "AI-চালিত ভ্রমণ পরিকল্পনা",
+    navHotelsDesc: "সকল সার্কিটে আবাসন",
+    navTransportDesc: "4×4, বাইক ও APST বাস রুট",
+    navPermitIndianLabel: "ভারতীয় নাগরিক — ILP",
+    navPermitIndianDesc: "ইনার লাইন পারমিট (e-ILP)",
+    navPermitForeignLabel: "বিদেশী নাগরিক — PAP",
+    navPermitForeignDesc: "সুরক্ষিত এলাকা পারমিট",
+    navSafetyDesc: "জেলাভিত্তিক জরুরি যোগাযোগ",
 
     // FOOTER
     footerTagline: "উদীয়মান সূর্যের ভূমি আবিষ্কার করুন। অরুণাচল প্রদেশের অতুলনীয় প্রাকৃতিক সৌন্দর্য ও সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য উপভোগ করুন।",
@@ -1036,6 +1092,20 @@ const translations: Record<Language, Translations> = {
     entrepreneurs: "উদ্যোক্তা",
     signIn: "চাইন ইন",
     languageLabel: "অসমীয়া",
+    navExplore: "অন্বেষণ",
+    navPlan: "পৰিকল্পনা",
+    navEssentials: "আৱশ্যকীয়",
+    navGuidesDesc: "১৪টি পৰ্যটন চাৰ্কিট আৰু গন্তব্য গাইড",
+    navTribesDesc: "২৬+ জনজাতীয় সম্প্ৰদায়ৰ পৰিচয়",
+    navEntrepreneursDesc: "স্থানীয় ব্যৱসায় আৰু অভিজ্ঞতা",
+    navItineraryDesc: "AI-চালিত ভ্ৰমণ পৰিকল্পনা",
+    navHotelsDesc: "সকলো চাৰ্কিটত আৱাসন",
+    navTransportDesc: "4×4, বাইক আৰু APST বাছ ৰুট",
+    navPermitIndianLabel: "ভাৰতীয় নাগৰিক — ILP",
+    navPermitIndianDesc: "ইনাৰ লাইন পাৰমিট (e-ILP)",
+    navPermitForeignLabel: "বিদেশী নাগৰিক — PAP",
+    navPermitForeignDesc: "সুৰক্ষিত এলেকা পাৰমিট",
+    navSafetyDesc: "জিলাভিত্তিক জৰুৰী যোগাযোগ",
 
     // FOOTER
     footerTagline: "উদীয়মান সূৰ্যৰ ভূমি আৱিষ্কাৰ কৰক। অৰুণাচল প্ৰদেশৰ অতুলনীয় প্ৰাকৃতিক সৌন্দৰ্য আৰু সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য উপভোগ কৰক।",
