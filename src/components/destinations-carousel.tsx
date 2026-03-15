@@ -113,7 +113,7 @@ export function DestinationsCarousel() {
                     <MapPin className="h-3.5 w-3.5" />
                     Arunachal Pradesh
                   </div>
-                  <h3 className="text-xl font-bold font-headline">{dest.name}</h3>
+                  <h3 className="text-xl font-bold font-headline text-white">{dest.name}</h3>
                   <p className="text-sm text-white/80 mt-0.5">{dest.tagline}</p>
                   <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-white/50 group-hover:text-white/90 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                     {t.exploreText} <ChevronRight className="h-3.5 w-3.5" />
