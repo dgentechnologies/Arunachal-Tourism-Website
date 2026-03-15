@@ -103,7 +103,7 @@ export function HeroCarousel() {
           <span className="inline-block h-2 w-2 rounded-full bg-accent animate-pulse" />
           {slide.tagline}
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-headline mb-2 drop-shadow-lg max-w-4xl leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-headline mb-2 drop-shadow-lg max-w-4xl leading-tight text-white">
           {slide.headline}
         </h1>
         <p className="text-lg sm:text-xl md:text-3xl font-medium mb-4 drop-shadow-md text-white/80">

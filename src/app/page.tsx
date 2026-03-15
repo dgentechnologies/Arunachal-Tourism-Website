@@ -4,8 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
-import { Hotel, Car, ShieldCheck, FileText, Compass, MapPin, ArrowRight, Users, Lightbulb } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { Hotel, Car, ShieldCheck, FileText, Compass, MapPin, ArrowRight, Users, Lightbulb, MoveRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { HeroCarousel } from "@/components/hero-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
@@ -18,61 +17,52 @@ import { ReviewForm } from "@/components/review-form"
 export default function Home() {
   const { t } = useLanguage()
 
-  const features = [
-    { title: t.featGuidesTitle, desc: t.featGuidesDesc, icon: Compass, href: "/guides", color: "bg-blue-100 text-blue-700" },
-    { title: t.featHotelsTitle, desc: t.featHotelsDesc, icon: Hotel, href: "/hotels", color: "bg-orange-100 text-orange-700" },
-    { title: t.featTransportTitle, desc: t.featTransportDesc, icon: Car, href: "/transport", color: "bg-purple-100 text-purple-700" },
-    { title: t.featPermitTitle, desc: t.featPermitDesc, icon: FileText, href: "/permit", color: "bg-green-100 text-green-700" },
-    { title: t.featSafetyTitle, desc: t.featSafetyDesc, icon: ShieldCheck, href: "/safety", color: "bg-red-100 text-red-700" },
-    { title: t.featItineraryTitle, desc: t.featItineraryDesc, icon: MapPin, href: "/itinerary", color: "bg-yellow-100 text-yellow-700" },
+  const quickLinks = [
+    { title: t.featGuidesTitle, icon: Compass, href: "/guides" },
+    { title: t.featHotelsTitle, icon: Hotel, href: "/hotels" },
+    { title: t.featTransportTitle, icon: Car, href: "/transport" },
+    { title: t.featPermitTitle, icon: FileText, href: "/permit" },
+    { title: t.featSafetyTitle, icon: ShieldCheck, href: "/safety" },
+    { title: t.featItineraryTitle, icon: MapPin, href: "/itinerary" },
   ]
 
   return (
-    <div className="flex flex-col gap-12 md:gap-20 pb-20">
+    <div className="flex flex-col gap-0 pb-20">
       {/* Hero Carousel - bleeds up behind the transparent fixed nav */}
       <div className="-mt-16">
         <HeroCarousel />
       </div>
 
-      {/* Features Grid */}
-      <section className="container mx-auto px-4">
-        <ScrollReveal variant="up" className="text-center mb-10 md:mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">{t.homeExploreTitle}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">{t.homeExploreSubtitle}</p>
-        </ScrollReveal>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, idx) => (
-            <ScrollReveal key={idx} variant="up" delay={idx * 70} className="h-full">
-              <Link href={feature.href} className="block h-full">
-                <Card className="h-full group hover:shadow-2xl transition-all duration-500 border-none shadow-sm hover:-translate-y-2 bg-white shimmer-hover cursor-pointer">
-                  <CardContent className="p-6 md:p-8 flex flex-col gap-4">
-                    <div className={cn(
-                      "p-4 w-fit rounded-2xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-md",
-                      feature.color
-                    )}>
-                      <feature.icon className="h-6 md:h-8 w-6 md:w-8" />
-                    </div>
-                    <h3 className="text-lg md:text-xl font-bold font-headline group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{feature.desc}</p>
-                    <div className="flex items-center gap-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1 group-hover:translate-x-0">
-                      {t.learnMore} <ArrowRight className="h-3.5 w-3.5" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </ScrollReveal>
-          ))}
+      {/* Quick Services Bar */}
+      <section className="bg-white border-b border-border/60 shadow-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center md:justify-between divide-y md:divide-y-0 md:divide-x divide-border/40">
+            {quickLinks.map((link, idx) => {
+              const Icon = link.icon
+              return (
+                <Link
+                  key={idx}
+                  href={link.href}
+                  className="group flex flex-col items-center gap-2 py-5 px-6 flex-1 min-w-[calc(50%-1px)] md:min-w-0 hover:bg-primary/5 transition-colors duration-200"
+                >
+                  <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
+                  <span className="text-xs font-semibold uppercase tracking-wider text-foreground/70 group-hover:text-primary transition-colors duration-200 text-center">{link.title}</span>
+                </Link>
+              )
+            })}
+          </div>
         </div>
       </section>
 
       {/* Destinations Carousel */}
-      <ScrollReveal variant="up">
-        <DestinationsCarousel />
-      </ScrollReveal>
+      <div className="mt-16 md:mt-20">
+        <ScrollReveal variant="up">
+          <DestinationsCarousel />
+        </ScrollReveal>
+      </div>
 
       {/* Tribes & Entrepreneurs Section */}
-      <section className="container mx-auto px-4">
+      <section className="container mx-auto px-4 mt-16 md:mt-20">
         <ScrollReveal variant="up" className="text-center mb-10 md:mb-12">
           <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">{t.homeCultureSectionTitle}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">{t.homeCultureSectionSubtitle}</p>
@@ -99,7 +89,7 @@ export default function Home() {
                     </div>
                     <span className="text-xs font-semibold uppercase tracking-widest text-white/80">Culture</span>
                   </div>
-                  <h3 className="text-2xl font-bold font-headline mb-2">{t.featTribesTitle}</h3>
+                  <h3 className="text-2xl font-bold font-headline mb-2 text-white">{t.featTribesTitle}</h3>
                   <p className="text-white/80 text-sm mb-4 leading-relaxed">{t.featTribesDesc}</p>
                   <span className="inline-flex items-center gap-2 font-semibold text-sm bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors group-hover:bg-primary">
                     {t.exploreTribes} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -130,7 +120,7 @@ export default function Home() {
                     </div>
                     <span className="text-xs font-semibold uppercase tracking-widest text-white/80">Innovation</span>
                   </div>
-                  <h3 className="text-2xl font-bold font-headline mb-2">{t.featEntrepreneursTitle}</h3>
+                  <h3 className="text-2xl font-bold font-headline mb-2 text-white">{t.featEntrepreneursTitle}</h3>
                   <p className="text-white/80 text-sm mb-4 leading-relaxed">{t.featEntrepreneursDesc}</p>
                   <span className="inline-flex items-center gap-2 font-semibold text-sm bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors group-hover:bg-primary">
                     {t.exploreEntrepreneurs} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -143,10 +133,12 @@ export default function Home() {
       </section>
 
       {/* Scrollytelling Section */}
-      <ScrollytellingSection />
+      <div className="mt-16 md:mt-20">
+        <ScrollytellingSection />
+      </div>
 
       {/* Traveller Photo Testimonials */}
-      <section className="container mx-auto px-4">
+      <section className="container mx-auto px-4 mt-16 md:mt-20">
         <ScrollReveal variant="up" className="text-center mb-4">
           <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">Through the Lens of Our Travellers</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">Real photos and stories shared by visitors who have experienced the magic of Arunachal Pradesh.</p>
@@ -191,39 +183,37 @@ export default function Home() {
         />
       </section>
 
-      {/* Destination Preview */}
-      <section className="bg-primary/5 py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
-            <ScrollReveal variant="left" className="lg:w-1/2 relative h-[300px] md:h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl group">
-              <Image 
-                src={PlaceHolderImages.find(img => img.id === 'culture-monastery')?.imageUrl || ''}
-                alt="Tawang Monastery"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                data-ai-hint="buddhist monastery"
-              />
-            </ScrollReveal>
-            <ScrollReveal variant="right" className="lg:w-1/2 space-y-6 text-center lg:text-left">
-              <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline">{t.cultureTitle}</h2>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+      {/* Premium CTA Banner */}
+      <section className="mt-16 md:mt-20">
+        <div className="relative overflow-hidden bg-primary py-16 md:py-24">
+          <div className="absolute inset-0 opacity-10">
+            <Image
+              src={PlaceHolderImages.find(img => img.id === 'culture-monastery')?.imageUrl || ''}
+              alt=""
+              fill
+              className="object-cover"
+              aria-hidden="true"
+            />
+          </div>
+          <div className="container relative mx-auto px-4 text-center">
+            <ScrollReveal variant="up">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60 mb-3">Start Your Journey</p>
+              <h2 className="text-3xl md:text-5xl font-bold font-headline text-white mb-4 leading-tight">{t.cultureTitle}</h2>
+              <p className="text-white/70 max-w-xl mx-auto mb-8 text-base md:text-lg leading-relaxed">
                 {t.cultureDesc}
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                <ScrollReveal variant="scale" delay={100} className="p-4 bg-white rounded-xl shadow-sm border border-primary/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <span className="block text-xl md:text-2xl font-bold text-primary">26+</span>
-                  <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider">{t.majorTribes}</span>
-                </ScrollReveal>
-                <ScrollReveal variant="scale" delay={180} className="p-4 bg-white rounded-xl shadow-sm border border-primary/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <span className="block text-xl md:text-2xl font-bold text-primary">500+</span>
-                  <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider">{t.rareSpecies}</span>
-                </ScrollReveal>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/guides">
+                  <Button size="lg" variant="secondary" className="h-12 px-8 font-semibold bg-white text-primary hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
+                    {t.viewTravelGuides} <MoveRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/permit">
+                  <Button size="lg" className="h-12 px-8 font-semibold bg-white/15 text-white border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:scale-105 active:scale-95">
+                    {t.getYourPermit}
+                  </Button>
+                </Link>
               </div>
-              <Link href="/guides" className="inline-block">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white h-12 px-8 transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95">
-                  {t.viewTravelGuides}
-                </Button>
-              </Link>
             </ScrollReveal>
           </div>
         </div>
