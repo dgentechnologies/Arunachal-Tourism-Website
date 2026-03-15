@@ -8,7 +8,10 @@ import { cn } from "@/lib/utils"
 import {
   Hotel, Car, ShieldAlert, Compass, Menu, X,
   Globe, Mountain, Users, Lightbulb, ChevronDown,
-  Flag, Plane, ChevronRight,
+  Flag, Plane, ChevronRight, Leaf, Calendar, Landmark,
+  TreePine, Waves, Fish, Wind, LayoutGrid, Sparkles,
+  Map, FileText, ScanSearch, BookOpen, Info, Video,
+  Mail, Bookmark, Clock, UserCircle,
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
@@ -24,8 +27,6 @@ const SCROLL_THRESHOLD = 60
 
 // Indian citizens: Official e-ILP (Electronic Inner Line Permit) portal
 const PERMIT_URL_INDIAN = "https://www.eilp.arunachal.gov.in/preTuristEIlpKYC"
-// Foreign citizens: Dedicated internal page with PAP (Protected Area Permit) details
-const PERMIT_URL_FOREIGN = "/permit/foreign"
 
 interface NavSubItem {
   name: string
@@ -33,6 +34,8 @@ interface NavSubItem {
   icon: React.ElementType
   description: string
   external?: boolean
+  badge?: string
+  disabled?: boolean
 }
 
 interface NavGroup {
@@ -57,22 +60,56 @@ export function Nav() {
         { name: t.guides, href: "/guides", icon: Compass, description: t.navGuidesDesc },
         { name: t.tribes, href: "/tribes", icon: Users, description: t.navTribesDesc },
         { name: t.entrepreneurs, href: "/entrepreneurs", icon: Lightbulb, description: t.navEntrepreneursDesc },
+        { name: t.navWildlifeLabel, href: "/wildlife", icon: Leaf, description: t.navWildlifeDesc, badge: "New" },
+        { name: t.navEventsLabel, href: "/events", icon: Calendar, description: t.navEventsDesc, badge: "New" },
+        { name: t.navHeritageLabel, href: "/heritage", icon: Landmark, description: t.navHeritageDesc, badge: "New" },
+      ],
+    },
+    {
+      label: t.navAdventures,
+      items: [
+        { name: t.navTrekkingLabel, href: "/adventures/trekking", icon: TreePine, description: t.navTrekkingDesc },
+        { name: t.navRaftingLabel, href: "/adventures/rafting", icon: Waves, description: t.navRaftingDesc },
+        { name: t.navAnglingLabel, href: "/adventures/angling", icon: Fish, description: t.navAnglingDesc },
+        { name: t.navParaglidingLabel, href: "/adventures/paragliding", icon: Wind, description: t.navParaglidingDesc },
+        { name: t.navAllActivitiesLabel, href: "/adventures", icon: LayoutGrid, description: t.navAllActivitiesDesc, badge: "Hub" },
       ],
     },
     {
       label: t.navPlan,
       items: [
         { name: t.itinerary, href: "/itinerary", icon: Mountain, description: t.navItineraryDesc },
+        { name: t.navAiTripBuilderLabel, href: "/plan/ai", icon: Sparkles, description: t.navAiTripBuilderDesc, badge: "AI" },
         { name: t.hotels, href: "/hotels", icon: Hotel, description: t.navHotelsDesc },
         { name: t.transport, href: "/transport", icon: Car, description: t.navTransportDesc },
+        { name: t.navDistrictMapLabel, href: "/map", icon: Map, description: t.navDistrictMapDesc, badge: "New" },
       ],
     },
     {
       label: t.navEssentials,
       items: [
-        { name: t.navPermitIndianLabel, href: PERMIT_URL_INDIAN, icon: Flag, description: t.navPermitIndianDesc, external: true },
-        { name: t.navPermitForeignLabel, href: PERMIT_URL_FOREIGN, icon: Plane, description: t.navPermitForeignDesc },
+        { name: t.navArrivalFormalitiesLabel, href: "/permit", icon: FileText, description: t.navArrivalFormalitiesDesc },
+        { name: t.navSmartIlpCheckLabel, href: "/permit/check", icon: ScanSearch, description: t.navSmartIlpCheckDesc, badge: "AI" },
+        { name: t.navPermitIndianLabel, href: PERMIT_URL_INDIAN, icon: Flag, description: t.navPermitIndianDesc, external: true, badge: "External" },
+        { name: t.navPermitForeignLabel, href: "/permit/foreign", icon: Plane, description: t.navPermitForeignDesc },
         { name: t.safety, href: "/safety", icon: ShieldAlert, description: t.navSafetyDesc },
+      ],
+    },
+    {
+      label: t.navResources,
+      items: [
+        { name: t.navEguidesLabel, href: "/guides/ebooks", icon: BookOpen, description: t.navEguidesDesc },
+        { name: t.navFactsLabel, href: "/about", icon: Info, description: t.navFactsDesc },
+        { name: t.navVideoGalleryLabel, href: "/media", icon: Video, description: t.navVideoGalleryDesc, badge: "New" },
+        { name: t.navNewsletterLabel, href: "/newsletter", icon: Mail, description: t.navNewsletterDesc },
+      ],
+    },
+    {
+      label: t.navAccount,
+      items: [
+        { name: t.navSavedTripsLabel, href: "/account/trips", icon: Bookmark, description: t.navSavedTripsDesc, disabled: true, badge: "Phase 2" },
+        { name: t.navPermitTrackerLabel, href: "/account/permits", icon: Clock, description: t.navPermitTrackerDesc, disabled: true, badge: "Phase 2" },
+        { name: t.navProfilePrefsLabel, href: "/account", icon: UserCircle, description: t.navProfilePrefsDesc, disabled: true, badge: "Phase 2" },
       ],
     },
   ]
@@ -98,7 +135,7 @@ export function Nav() {
   const transparent = isHome && !scrolled && !isOpen
 
   const isGroupActive = (group: NavGroup) =>
-    group.items.some((item) => !item.external && pathname === item.href)
+    group.items.some((item) => !item.external && !item.disabled && pathname === item.href)
 
   return (
     <nav
@@ -154,32 +191,62 @@ export function Nav() {
 
                 {/* Dropdown panel */}
                 {isGroupOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-64 rounded-xl border bg-background shadow-xl py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-72 rounded-xl border bg-background shadow-xl py-2 z-50">
                     {group.items.map((item, idx) => {
                       const Icon = item.icon
-                      const isItemActive = !item.external && pathname === item.href
+                      const isItemActive = !item.external && !item.disabled && pathname === item.href
                       const inner = (
                         <>
                           <span
                             className={cn(
                               "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
-                              isItemActive ? "bg-primary/15 text-primary" : "bg-secondary/60 text-muted-foreground"
+                              item.disabled
+                                ? "bg-muted text-muted-foreground/50"
+                                : isItemActive
+                                  ? "bg-primary/15 text-primary"
+                                  : "bg-secondary/60 text-muted-foreground"
                             )}
                           >
                             <Icon className="h-4 w-4" />
                           </span>
-                          <div className="min-w-0">
-                            <p className={cn("text-sm font-semibold leading-tight", isItemActive ? "text-primary" : "text-foreground")}>
-                              {item.name}
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <p className={cn(
+                                "text-sm font-semibold leading-tight",
+                                item.disabled ? "text-muted-foreground/60" : isItemActive ? "text-primary" : "text-foreground"
+                              )}>
+                                {item.name}
+                              </p>
+                              {item.badge && (
+                                <span className={cn(
+                                  "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
+                                  item.disabled
+                                    ? "bg-muted text-muted-foreground/60"
+                                    : item.badge === "External"
+                                      ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                                      : "bg-primary/10 text-primary"
+                                )}>
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className={cn(
+                              "text-xs mt-0.5 leading-tight",
+                              item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
+                            )}>
+                              {item.description}
                             </p>
-                            <p className="text-xs text-muted-foreground mt-0.5 leading-tight">{item.description}</p>
                           </div>
                         </>
                       )
                       return (
                         <div key={item.href}>
                           {idx > 0 && <div className="mx-3 border-t my-1" />}
-                          {item.external ? (
+                          {item.disabled ? (
+                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg mx-1 cursor-not-allowed opacity-60">
+                              {inner}
+                            </div>
+                          ) : item.external ? (
                             <a
                               href={item.href}
                               target="_blank"
@@ -289,25 +356,61 @@ export function Nav() {
                   <div className="divide-y divide-border/40">
                     {group.items.map((item) => {
                       const Icon = item.icon
-                      const isItemActive = !item.external && pathname === item.href
+                      const isItemActive = !item.external && !item.disabled && pathname === item.href
                       const inner = (
                         <>
                           <span
                             className={cn(
                               "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
-                              isItemActive ? "bg-primary/15 text-primary" : "bg-secondary/50 text-muted-foreground"
+                              item.disabled
+                                ? "bg-muted text-muted-foreground/50"
+                                : isItemActive
+                                  ? "bg-primary/15 text-primary"
+                                  : "bg-secondary/50 text-muted-foreground"
                             )}
                           >
                             <Icon className="h-4 w-4" />
                           </span>
-                          <div>
-                            <p className={cn("text-sm font-semibold", isItemActive ? "text-primary" : "text-foreground")}>
-                              {item.name}
+                          <div className="flex-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <p className={cn(
+                                "text-sm font-semibold",
+                                item.disabled ? "text-muted-foreground/60" : isItemActive ? "text-primary" : "text-foreground"
+                              )}>
+                                {item.name}
+                              </p>
+                              {item.badge && (
+                                <span className={cn(
+                                  "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
+                                  item.disabled
+                                    ? "bg-muted text-muted-foreground/60"
+                                    : item.badge === "External"
+                                      ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                                      : "bg-primary/10 text-primary"
+                                )}>
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className={cn(
+                              "text-xs",
+                              item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
+                            )}>
+                              {item.description}
                             </p>
-                            <p className="text-xs text-muted-foreground">{item.description}</p>
                           </div>
                         </>
                       )
+                      if (item.disabled) {
+                        return (
+                          <div
+                            key={item.href}
+                            className="flex items-center gap-3 px-4 py-3 cursor-not-allowed opacity-60"
+                          >
+                            {inner}
+                          </div>
+                        )
+                      }
                       return item.external ? (
                         <a
                           key={item.href}
