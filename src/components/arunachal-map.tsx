@@ -6,7 +6,7 @@ import {
   ChevronRight, Mountain, Info,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { locations, type Location } from "./guides-data";
+import { locations, type Location } from "@/lib/guides-data";
 
 /* ─────────────────────────────────────────────────────────────────────────
    MAP DIMENSIONS  (matches public/images/arunachal.svg viewBox 0 0 800 384)
