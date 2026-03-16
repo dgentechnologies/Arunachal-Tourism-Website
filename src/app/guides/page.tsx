@@ -2,7 +2,7 @@
 "use client"
 
 import { useLanguage } from "@/lib/language-context"
-import ArunachalMap from "./ArunachalMap"
+import ArunachalMap from "@/components/arunachal-map"
 import { Mountain, Users, MapPin, Compass } from "lucide-react"
 
 const STATS = [
