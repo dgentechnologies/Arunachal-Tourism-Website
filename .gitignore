@@ -40,6 +40,10 @@ next-env.d.ts
 
 .genkit/*
 .env*
+
+desktop.ini
+*.ini
+Thumbs.db
 !.env.example
 
 # firebase
