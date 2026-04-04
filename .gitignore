@@ -45,7 +45,9 @@ desktop.ini
 *.ini
 Thumbs.db
 !.env.example
-
+# Drive temp
+.tmp.drivedownload
+.tmp.driveupload
 # firebase
 firebase-debug.log
 firestore-debug.log
