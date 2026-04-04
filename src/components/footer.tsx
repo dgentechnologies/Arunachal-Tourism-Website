@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/language-context"
 export function Footer() {
   const { t } = useLanguage()
   return (
-    <footer className="w-full border-t bg-secondary/20 py-12">
+    <footer className="w-full bg-[#f6f3f2] py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="space-y-4">
@@ -50,7 +50,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t pt-8 text-center text-xs text-muted-foreground">
+        <div className="mt-12 pt-8 text-center text-xs text-muted-foreground">
           {t.footerCopyright}
         </div>
       </div>

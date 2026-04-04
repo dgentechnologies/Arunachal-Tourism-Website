@@ -40,14 +40,14 @@ export function DestinationsCarousel() {
   }
 
   return (
-    <section className="py-12 md:py-20">
+    <section className="py-12 md:py-20 bg-[#f6f3f2]">
       <div className="container mx-auto px-4">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline">
+            <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline tracking-tight">
               {t.popularDestinations}
             </h2>
-            <p className="text-muted-foreground mt-2 text-sm md:text-base">
+            <p className="text-muted-foreground mt-2 text-sm md:text-base font-body">
               {t.popularDestinationsSubtitle}
             </p>
           </div>
@@ -57,10 +57,10 @@ export function DestinationsCarousel() {
               disabled={!canScrollLeft}
               aria-label="Scroll left"
               className={cn(
-                "p-2 rounded-full border transition-colors",
+                "p-2 rounded-full transition-colors",
                 canScrollLeft
-                  ? "border-primary text-primary hover:bg-primary hover:text-white"
-                  : "border-muted-foreground/20 text-muted-foreground/30 cursor-not-allowed"
+                  ? "bg-primary text-white hover:bg-primary/90"
+                  : "bg-muted text-muted-foreground/30 cursor-not-allowed"
               )}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -70,10 +70,10 @@ export function DestinationsCarousel() {
               disabled={!canScrollRight}
               aria-label="Scroll right"
               className={cn(
-                "p-2 rounded-full border transition-colors",
+                "p-2 rounded-full transition-colors",
                 canScrollRight
-                  ? "border-primary text-primary hover:bg-primary hover:text-white"
-                  : "border-muted-foreground/20 text-muted-foreground/30 cursor-not-allowed"
+                  ? "bg-primary text-white hover:bg-primary/90"
+                  : "bg-muted text-muted-foreground/30 cursor-not-allowed"
               )}
             >
               <ChevronRight className="h-5 w-5" />
@@ -87,13 +87,16 @@ export function DestinationsCarousel() {
           className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
           style={{ scrollbarWidth: "none" }}
         >
-          {destinations.map((dest) => {
+          {destinations.map((dest, idx) => {
             const img = PlaceHolderImages.find(i => i.id === dest.imageId)
             return (
               <Link
                 key={dest.name}
                 href={dest.href}
-                className="group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] rounded-2xl overflow-hidden shadow-md snap-start hover:shadow-2xl transition-shadow duration-500"
+                className={cn(
+                  "group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] snap-start overflow-hidden transition-all duration-500 hover:-translate-y-2",
+                  idx % 2 === 0 ? "organic-card" : "organic-card-alt"
+                )}
               >
                 {img && (
                   <Image
@@ -104,17 +107,15 @@ export function DestinationsCarousel() {
                     data-ai-hint={img.imageHint}
                   />
                 )}
-                {/* gradient overlay – slightly more opaque on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent group-hover:from-black/90 transition-all duration-500" />
-                {/* shimmer sweep */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-white/70 mb-1">
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-white/70 mb-1 font-body">
                     <MapPin className="h-3.5 w-3.5" />
                     Arunachal Pradesh
                   </div>
-                  <h3 className="text-xl font-bold font-headline text-white">{dest.name}</h3>
-                  <p className="text-sm text-white/80 mt-0.5">{dest.tagline}</p>
+                  <h3 className="text-xl font-bold font-headline text-white tracking-tight">{dest.name}</h3>
+                  <p className="text-sm text-white/80 mt-0.5 font-body">{dest.tagline}</p>
                   <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-white/50 group-hover:text-white/90 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                     {t.exploreText} <ChevronRight className="h-3.5 w-3.5" />
                   </div>

@@ -95,25 +95,25 @@ export function HeroCarousel() {
       {/* Content */}
       <div
         className={cn(
-          "container relative z-10 px-4 text-center text-white flex flex-col items-center transition-all duration-500",
-          isTransitioning ? "opacity-0 translate-y-4 scale-[0.98]" : "opacity-100 translate-y-0 scale-100"
+          "container relative z-10 px-4 text-center text-white flex flex-col items-center transition-all duration-300",
+          isTransitioning ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"
         )}
       >
         <div className="mb-3 inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium hover:bg-white/25 transition-colors duration-300 cursor-default">
           <span className="inline-block h-2 w-2 rounded-full bg-accent animate-pulse" />
           {slide.tagline}
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-headline mb-2 drop-shadow-lg max-w-4xl leading-tight text-white">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-headline mb-2 drop-shadow-lg max-w-4xl leading-tight text-white tracking-tight">
           {slide.headline}
         </h1>
-        <p className="text-lg sm:text-xl md:text-3xl font-medium mb-4 drop-shadow-md text-white/80">
+        <p className="text-lg sm:text-xl md:text-2xl font-medium mb-4 drop-shadow-md text-white/80 font-body">
           {slide.subline}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
           <Link href="/permit" className="w-full sm:w-auto">
             <Button
               size="lg"
-              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
+              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold rounded-full bg-primary text-primary-foreground shadow-none transition-all duration-300 hover:scale-105 hover:brightness-110 active:scale-95"
             >
               {t.getYourPermit} <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -122,7 +122,7 @@ export function HeroCarousel() {
             <Button
               size="lg"
               variant="secondary"
-              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold shadow-xl bg-white/20 backdrop-blur-md text-white hover:bg-white/35 border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
+              className="w-full h-12 md:h-14 px-8 text-base md:text-lg font-semibold rounded-full bg-white/20 backdrop-blur-[24px] text-white hover:bg-white/35 shadow-none transition-all duration-300 hover:scale-105 active:scale-95"
             >
               {t.planMyTrip}
             </Button>

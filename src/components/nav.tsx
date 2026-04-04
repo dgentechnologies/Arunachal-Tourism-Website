@@ -150,7 +150,7 @@ export function Nav() {
         "fixed top-0 z-50 w-full transition-all duration-300",
         transparent
           ? "border-transparent bg-transparent"
-          : "border-b bg-background/90 backdrop-blur-md shadow-sm"
+          : "border-transparent bg-[#fcf9f8]/70 backdrop-blur-[24px] shadow-ambient"
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4" ref={navRef}>
@@ -198,7 +198,7 @@ export function Nav() {
 
                 {/* Dropdown panel */}
                 {isGroupOpen && (
-                  <div className="absolute top-full left-0 mt-1 rounded-xl border bg-background shadow-xl p-2 z-50 min-w-[320px]">
+                  <div className="absolute top-full left-0 mt-1 rounded-xl bg-[#fcf9f8]/80 backdrop-blur-[24px] shadow-ambient p-2 z-50 min-w-[320px]">
                     <div className={cn("grid gap-0.5", group.items.length <= 2 ? "grid-cols-1" : "grid-cols-2")}>
                     {group.items.map((item) => {
                       const Icon = item.icon

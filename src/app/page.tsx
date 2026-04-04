@@ -33,10 +33,10 @@ export default function Home() {
         <HeroCarousel />
       </div>
 
-      {/* Quick Services Bar */}
-      <section className="bg-white border-b border-border/60 shadow-sm">
+      {/* Quick Services Bar — surface-container-low background, no border */}
+      <section className="bg-[#f6f3f2]">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center md:justify-between divide-y md:divide-y-0 md:divide-x divide-border/40">
+          <div className="flex flex-wrap justify-center md:justify-between divide-y md:divide-y-0 md:divide-x divide-[#cac4c0]/15">
             {quickLinks.map((link, idx) => {
               const Icon = link.icon
               return (
@@ -68,10 +68,10 @@ export default function Home() {
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">{t.homeCultureSectionSubtitle}</p>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Tribes Card */}
+          {/* Tribes Card — organic topography shape */}
           <ScrollReveal variant="left">
             <Link href="/tribes" className="block group">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <div className="organic-card hover:-translate-y-2 transition-all duration-500 hover:shadow-ambient">
                 <div className="relative h-64 md:h-80 w-full">
                   <Image
                     src="https://picsum.photos/seed/tribes-landing/800/600"
@@ -89,9 +89,9 @@ export default function Home() {
                     </div>
                     <span className="text-xs font-semibold uppercase tracking-widest text-white/80">Culture</span>
                   </div>
-                  <h3 className="text-2xl font-bold font-headline mb-2 text-white">{t.featTribesTitle}</h3>
-                  <p className="text-white/80 text-sm mb-4 leading-relaxed">{t.featTribesDesc}</p>
-                  <span className="inline-flex items-center gap-2 font-semibold text-sm bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors group-hover:bg-primary">
+                  <h3 className="text-2xl font-bold font-headline mb-2 text-white tracking-tight">{t.featTribesTitle}</h3>
+                  <p className="text-white/80 text-sm mb-4 leading-relaxed font-body">{t.featTribesDesc}</p>
+                  <span className="inline-flex items-center gap-2 font-semibold text-sm bg-primary hover:bg-primary/90 px-5 py-2 rounded-full transition-colors">
                     {t.exploreTribes} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
@@ -99,10 +99,10 @@ export default function Home() {
             </Link>
           </ScrollReveal>
 
-          {/* Entrepreneurs Card */}
+          {/* Entrepreneurs Card — organic topography alt shape */}
           <ScrollReveal variant="right">
             <Link href="/entrepreneurs" className="block group">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <div className="organic-card-alt hover:-translate-y-2 transition-all duration-500 hover:shadow-ambient">
                 <div className="relative h-64 md:h-80 w-full">
                   <Image
                     src="https://picsum.photos/seed/entrepreneurs-landing/800/600"
@@ -120,9 +120,9 @@ export default function Home() {
                     </div>
                     <span className="text-xs font-semibold uppercase tracking-widest text-white/80">Innovation</span>
                   </div>
-                  <h3 className="text-2xl font-bold font-headline mb-2 text-white">{t.featEntrepreneursTitle}</h3>
-                  <p className="text-white/80 text-sm mb-4 leading-relaxed">{t.featEntrepreneursDesc}</p>
-                  <span className="inline-flex items-center gap-2 font-semibold text-sm bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors group-hover:bg-primary">
+                  <h3 className="text-2xl font-bold font-headline mb-2 text-white tracking-tight">{t.featEntrepreneursTitle}</h3>
+                  <p className="text-white/80 text-sm mb-4 leading-relaxed font-body">{t.featEntrepreneursDesc}</p>
+                  <span className="inline-flex items-center gap-2 font-semibold text-sm bg-secondary hover:bg-secondary/90 text-secondary-foreground px-5 py-2 rounded-full transition-colors">
                     {t.exploreEntrepreneurs} <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
@@ -140,8 +140,8 @@ export default function Home() {
       {/* Traveller Photo Testimonials */}
       <section className="container mx-auto px-4 mt-16 md:mt-20">
         <ScrollReveal variant="up" className="text-center mb-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4">Through the Lens of Our Travellers</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">Real photos and stories shared by visitors who have experienced the magic of Arunachal Pradesh.</p>
+          <h2 className="text-2xl md:text-4xl font-bold text-primary font-headline mb-4 tracking-tight">Through the Lens of Our Travellers</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base font-body">Real photos and stories shared by visitors who have experienced the magic of Arunachal Pradesh.</p>
           <div className="mt-6">
             <ReviewForm />
           </div>
@@ -183,9 +183,9 @@ export default function Home() {
         />
       </section>
 
-      {/* Premium CTA Banner */}
+      {/* Premium CTA Banner — primary → primary-container gradient */}
       <section className="mt-16 md:mt-20">
-        <div className="relative overflow-hidden bg-primary py-16 md:py-24">
+        <div className="relative overflow-hidden cta-gradient py-16 md:py-24 rounded-none">
           <div className="absolute inset-0 opacity-10">
             <Image
               src={PlaceHolderImages.find(img => img.id === 'culture-monastery')?.imageUrl || ''}
@@ -197,19 +197,19 @@ export default function Home() {
           </div>
           <div className="container relative mx-auto px-4 text-center">
             <ScrollReveal variant="up">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60 mb-3">Start Your Journey</p>
-              <h2 className="text-3xl md:text-5xl font-bold font-headline text-white mb-4 leading-tight">{t.cultureTitle}</h2>
-              <p className="text-white/70 max-w-xl mx-auto mb-8 text-base md:text-lg leading-relaxed">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60 mb-3 font-headline">Start Your Journey</p>
+              <h2 className="text-3xl md:text-5xl font-bold font-headline text-white mb-4 leading-tight tracking-tight">{t.cultureTitle}</h2>
+              <p className="text-white/70 max-w-xl mx-auto mb-8 text-base md:text-lg leading-relaxed font-body">
                 {t.cultureDesc}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/guides">
-                  <Button size="lg" variant="secondary" className="h-12 px-8 font-semibold bg-white text-primary hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
+                  <Button size="lg" variant="secondary" className="h-12 px-8 font-semibold rounded-full bg-white text-primary shadow-none hover:bg-white/90 transition-all duration-300 hover:scale-105 active:scale-95">
                     {t.viewTravelGuides} <MoveRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href="/permit">
-                  <Button size="lg" className="h-12 px-8 font-semibold bg-white/15 text-white border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:scale-105 active:scale-95">
+                  <Button size="lg" className="h-12 px-8 font-semibold rounded-full bg-transparent text-white shadow-none border-2 border-white/40 hover:bg-white/15 transition-all duration-300 hover:scale-105 active:scale-95">
                     {t.getYourPermit}
                   </Button>
                 </Link>

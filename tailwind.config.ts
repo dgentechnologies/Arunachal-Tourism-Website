@@ -11,15 +11,22 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'sans-serif'],
-        headline: ['Playfair Display', 'Georgia', 'serif'],
+        /* Topographic Poetry typography (DESIGN.md §3) */
+        headline: ['Space Grotesk', 'sans-serif'],
+        body: ['Manrope', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
-        'sage-green': '#A3B18A',
-        'bamboo-beige': '#F3EFE0',
-        'river-stone-grey': '#D9D9D9',
-        'earthy-brown': '#6B5B45',
+        /* Design-system surface tokens */
+        'surface': 'var(--surface)',
+        'surface-low': 'var(--surface-low)',
+        'surface-lowest': 'var(--surface-lowest)',
+        'surface-highest': 'var(--surface-highest)',
+        'on-surface': 'var(--on-surface)',
+        'outline-variant': 'var(--outline-variant)',
+        'secondary-fixed': 'var(--secondary-fixed)',
+        'primary-container': 'var(--primary-container)',
+        /* Shadcn tokens */
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -55,14 +62,20 @@ export default {
         ring: 'hsl(var(--ring))',
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        /* Topographic Poetry border-radius scale (DESIGN.md §5) */
+        xl: '3rem',
+        lg: '1.5rem',    /* var(--radius) */
+        md: '1.5rem',
+        sm: '0.5rem',
+        full: '9999px',
       },
       boxShadow: {
-        'soft': '0 8px 40px 0 rgba(107, 91, 69, 0.10)',
-        'float': '0 16px 60px 0 rgba(107, 91, 69, 0.15)',
-        'glow': '0 4px 24px 0 rgba(163, 177, 138, 0.30)',
+        /* Ambient shadow for floating elements (DESIGN.md §4) */
+        'ambient': '0 0 40px -10px rgba(28, 27, 27, 0.06)',
+        /* Legacy — kept so existing usages don't break */
+        'soft': '0 8px 40px 0 rgba(0, 106, 98, 0.08)',
+        'float': '0 16px 60px 0 rgba(0, 106, 98, 0.12)',
+        'glow': '0 4px 24px 0 rgba(64, 224, 208, 0.25)',
       },
       keyframes: {
         'accordion-down': {
@@ -73,25 +86,14 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'fade-up': {
-          from: { opacity: '0', transform: 'translateY(32px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+        /* Mist effect: fade + scale from 98% → 100% (DESIGN.md §7) */
+        'mist-in': {
+          from: { opacity: '0', transform: 'scale(0.98) translateY(12px)' },
+          to: { opacity: '1', transform: 'scale(1) translateY(0)' },
         },
         'fade-in': {
           from: { opacity: '0' },
           to: { opacity: '1' },
-        },
-        'slide-in-left': {
-          from: { opacity: '0', transform: 'translateX(-40px)' },
-          to: { opacity: '1', transform: 'translateX(0)' },
-        },
-        'slide-in-right': {
-          from: { opacity: '0', transform: 'translateX(40px)' },
-          to: { opacity: '1', transform: 'translateX(0)' },
-        },
-        'scale-in': {
-          from: { opacity: '0', transform: 'scale(0.92)' },
-          to: { opacity: '1', transform: 'scale(1)' },
         },
         'shimmer': {
           from: { transform: 'translateX(-100%)' },
@@ -105,11 +107,8 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-up': 'fade-up 0.6s ease-out forwards',
-        'fade-in': 'fade-in 0.5s ease-out forwards',
-        'slide-in-left': 'slide-in-left 0.6s ease-out forwards',
-        'slide-in-right': 'slide-in-right 0.6s ease-out forwards',
-        'scale-in': 'scale-in 0.5s ease-out forwards',
+        'mist-in': 'mist-in 0.6s ease-out forwards',
+        'fade-in': 'fade-in 0.3s ease-out forwards',
         'shimmer': 'shimmer 2s infinite',
         'float': 'float 4s ease-in-out infinite',
       },
