@@ -94,7 +94,7 @@ export function DestinationsCarousel() {
                 key={dest.name}
                 href={dest.href}
                 className={cn(
-                  "group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] snap-start overflow-hidden transition-all duration-500 hover:-translate-y-2",
+                  "group relative flex-shrink-0 w-[260px] md:w-[300px] h-[380px] md:h-[420px] snap-start transition-all duration-500 hover:-translate-y-2",
                   idx % 2 === 0 ? "organic-card" : "organic-card-alt"
                 )}
               >

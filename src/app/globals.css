@@ -167,14 +167,19 @@
 
 /* ── Topographic Poetry: Organic topology & ghost-border helpers ─ */
 @layer utilities {
+  /* Shared base for organic card shapes */
+  .organic-card,
+  .organic-card-alt {
+    position: relative;
+    overflow: hidden;
+  }
+
   /* Organic topography card shape: xl on one corner, md on the rest */
   .organic-card {
     border-radius: 3rem 1.5rem 1.5rem 1.5rem;
-    overflow: hidden;
   }
   .organic-card-alt {
     border-radius: 1.5rem 3rem 1.5rem 1.5rem;
-    overflow: hidden;
   }
 
   /* Ghost border fallback for accessibility (outline-variant @ 15%) */

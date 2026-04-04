@@ -64,7 +64,7 @@ export default {
       borderRadius: {
         /* Topographic Poetry border-radius scale (DESIGN.md §5) */
         xl: '3rem',
-        lg: '1.5rem',    /* var(--radius) */
+        lg: '1.5rem', /* var(--radius) */
         md: '1.5rem',
         sm: '0.5rem',
         full: '9999px',
