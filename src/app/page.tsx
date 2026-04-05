@@ -84,10 +84,10 @@ export default function Home() {
                 <Link
                   key={idx}
                   href={link.href}
-                  className="group flex flex-col items-center gap-2 py-5 px-6 flex-1 min-w-[calc(50%-1px)] md:min-w-0 hover:bg-primary/5 transition-colors duration-200"
+                  className="group flex flex-col items-center gap-4 py-10 px-8 flex-1 min-w-[calc(50%-1px)] md:min-w-0 hover:bg-primary/5 transition-colors duration-200"
                 >
-                  <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-foreground/70 group-hover:text-primary transition-colors duration-200 text-center">{link.title}</span>
+                  <Icon className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
+                  <span className="text-sm font-semibold uppercase tracking-wider text-foreground/70 group-hover:text-primary transition-colors duration-200 text-center">{link.title}</span>
                 </Link>
               )
             })}

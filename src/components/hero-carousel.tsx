@@ -6,7 +6,6 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { useLanguage } from "@/lib/language-context"
-import { ArrowDown } from "lucide-react"
 
 const AUTO_ADVANCE_INTERVAL = 5500
 
@@ -156,11 +155,7 @@ export function HeroCarousel() {
         ))}
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-        <span className="text-white/50 text-xs font-headline tracking-[0.3em] uppercase">Scroll to descend</span>
-        <ArrowDown className="h-4 w-4 text-white/50 animate-bounce" />
-      </div>
+      {/* Scroll indicator removed */}
     </section>
   )
 }
