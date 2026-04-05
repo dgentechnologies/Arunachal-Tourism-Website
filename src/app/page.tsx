@@ -165,7 +165,7 @@ export default function Home() {
                   Sustainable<br />Tribal Wisdom
                 </h3>
                 <p className="text-muted-foreground text-base mb-8 max-w-xl leading-relaxed font-body">
-                  Experience the &apos;no-nails&apos; architecture of the Adi tribe and the delicate weaving of the Monpas. We don&apos;t just visit; we respect the ancient pact between man and forest.
+                  Experience the &apos;no-nails&apos; architecture of the Adi tribe and the delicate weaving of the Monpas. We don&apos;t just visit; we respect the ancient pact between people and forest.
                 </p>
                 <div className="flex flex-wrap gap-8">
                   <div className="flex items-center gap-3">
