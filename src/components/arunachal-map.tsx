@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   X, Calendar, MapPin, Utensils, Camera, Users,
   ChevronRight, Mountain, Layers, Navigation2, Compass,
@@ -236,29 +236,44 @@ function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onC
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   MAIN MAP COMPONENT — full-viewport with image background
+   LEFT PANEL CONTROLS  (defined outside component to avoid re-creation)
+───────────────────────────────────────────────────────────────────────── */
+const MAP_CONTROLS = [
+  { key: "layers" as const,  icon: <Layers      className="h-5 w-5" />, label: "Map Layers" },
+  { key: "routes" as const,  icon: <Navigation2 className="h-5 w-5" />, label: "Routes" },
+  { key: "compass" as const, icon: <Compass     className="h-5 w-5" />, label: "Compass" },
+] as const;
+
+/* ─────────────────────────────────────────────────────────────────────────
+   MAIN MAP COMPONENT — true full-viewport, image covers screen edge-to-edge
 ───────────────────────────────────────────────────────────────────────── */
 export default function ArunachalMap() {
   const [active, setActive] = useState<Location | null>(null);
   const [activeControl, setActiveControl] = useState<"layers" | "routes" | "compass">("layers");
+
+  /* Lock page scroll while the full-screen map is mounted */
+  useEffect(() => {
+    const html = document.documentElement;
+    html.style.overflow = "hidden";
+    return () => { html.style.overflow = ""; };
+  }, []);
 
   function handlePin(loc: Location) {
     setActive((prev) => (prev?.id === loc.id ? null : loc));
   }
 
   return (
-    <div
-      className="relative w-full"
-      style={{ height: "100vh", background: "#D4E8E6" }}
-    >
-      {/* ── SVG MAP — image fills the full viewBox (989×526 = native PNG size) ── */}
+    /* Dark fall-back colour shows only if image fails to load */
+    <div className="relative w-full h-full" style={{ background: "#0e1c20" }}>
+
+      {/* ── SVG MAP — xMidYMid slice = object-fit: cover, no letterboxing ── */}
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        className="w-full h-full"
-        preserveAspectRatio="xMidYMid meet"
+        className="absolute inset-0 w-full h-full"
+        preserveAspectRatio="xMidYMid slice"
         aria-label="Interactive map of Arunachal Pradesh"
       >
-        {/* Actual Arunachal Pradesh map image at its native resolution */}
+        {/* Arunachal Pradesh political map image */}
         <image
           href="/images/image.png"
           x="0"
@@ -278,55 +293,53 @@ export default function ArunachalMap() {
         ))}
       </svg>
 
+      {/* ── EDGE VIGNETTE — adds premium depth / focus ── */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[2]"
+        style={{
+          background: [
+            "linear-gradient(to right,  rgba(0,0,0,0.30) 0%,  transparent 16%, transparent 84%, rgba(0,0,0,0.30) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%,  transparent 14%, transparent 86%, rgba(0,0,0,0.35) 100%)",
+          ].join(", "),
+        }}
+      />
+
       {/* ── LEFT CONTROL PANEL — glassmorphism ── */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10
-                      bg-white/15 backdrop-blur-md rounded-2xl shadow-xl p-2
-                      flex flex-col gap-1 border border-white/25">
-        <button
-          onClick={() => setActiveControl("layers")}
-          className={`p-3 rounded-xl transition-all duration-150 ${
-            activeControl === "layers"
-              ? "bg-primary text-white shadow-sm"
-              : "text-slate-700 hover:bg-white/40 hover:text-slate-900"
-          }`}
-          aria-label="Map layers"
-        >
-          <Layers className="h-5 w-5" />
-        </button>
-
-        <div className="h-px bg-white/30 mx-1" />
-
-        <button
-          onClick={() => setActiveControl("routes")}
-          className={`p-3 rounded-xl transition-all duration-150 ${
-            activeControl === "routes"
-              ? "bg-primary text-white shadow-sm"
-              : "text-slate-700 hover:bg-white/40 hover:text-slate-900"
-          }`}
-          aria-label="Routes"
-        >
-          <Navigation2 className="h-5 w-5" />
-        </button>
-
-        <div className="h-px bg-white/30 mx-1" />
-
-        <button
-          onClick={() => setActiveControl("compass")}
-          className={`p-3 rounded-xl transition-all duration-150 ${
-            activeControl === "compass"
-              ? "bg-primary text-white shadow-sm"
-              : "text-slate-700 hover:bg-white/40 hover:text-slate-900"
-          }`}
-          aria-label="Compass"
-        >
-          <Compass className="h-5 w-5" />
-        </button>
+      <div
+        className="absolute left-5 top-1/2 -translate-y-1/2 z-10
+                   flex flex-col gap-1 p-2 rounded-2xl shadow-2xl
+                   border border-white/20"
+        style={{ background: "rgba(255,255,255,0.13)", backdropFilter: "blur(18px)" }}
+      >
+        {MAP_CONTROLS.map(({ key, icon, label }, idx) => (
+          <div key={key}>
+            <button
+              onClick={() => setActiveControl(key)}
+              className={`p-3 rounded-xl transition-all duration-150 ${
+                activeControl === key
+                  ? "bg-teal-600 text-white shadow-md"
+                  : "text-white/85 hover:bg-white/20 hover:text-white"
+              }`}
+              aria-label={label}
+            >
+              {icon}
+            </button>
+            {idx < MAP_CONTROLS.length - 1 && (
+              <div className="h-px bg-white/15 mx-1 mt-1" />
+            )}
+          </div>
+        ))}
       </div>
 
-      {/* ── FOOTER TEXT ── */}
-      <div className="absolute bottom-4 left-0 right-0 text-center z-10 pointer-events-none">
-        <span className="text-[11px] tracking-[0.2em] text-slate-500/80 uppercase font-medium">
-          Arunachal Interactive Map © 2024
+      {/* ── DESTINATIONS COUNT BADGE — bottom-left glassmorphism ── */}
+      <div
+        className="absolute bottom-6 left-5 z-10 flex items-center gap-2
+                   px-3 py-2 rounded-xl border border-white/20 shadow-xl"
+        style={{ background: "rgba(255,255,255,0.13)", backdropFilter: "blur(18px)" }}
+      >
+        <MapPin className="h-3.5 w-3.5 text-teal-300" />
+        <span className="text-[11px] font-semibold tracking-widest text-white/90 uppercase">
+          {locations.length} Destinations
         </span>
       </div>
 
@@ -337,3 +350,4 @@ export default function ArunachalMap() {
     </div>
   );
 }
+

@@ -5,8 +5,11 @@ import ArunachalMap from "@/components/arunachal-map"
 
 export default function GuidesPage() {
   return (
-    /* -mt-16 pulls the map behind the fixed nav (h-16 = 64px) so it fills 100vh */
-    <div className="-mt-16 h-screen overflow-hidden" style={{ background: "#D4E8E6" }}>
+    /*
+     * fixed inset-0 z-[1]  → covers the full viewport including where the
+     * site footer lives; the nav (z-50) floats above it. No scrolling needed.
+     */
+    <div className="fixed inset-0 z-[1]">
       <ArunachalMap />
     </div>
   )
