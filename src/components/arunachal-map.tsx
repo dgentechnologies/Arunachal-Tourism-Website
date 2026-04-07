@@ -256,6 +256,7 @@ const MAP_CONTROLS = [
 export default function ArunachalMap() {
   const [active, setActive] = useState<Location | null>(null);
   const [activeControl, setActiveControl] = useState<"layers" | "routes" | "compass">("layers");
+  const [showDestinations, setShowDestinations] = useState(false);
 
   /* Lock page scroll while the full-screen map is mounted */
   useEffect(() => {
@@ -350,20 +351,93 @@ export default function ArunachalMap() {
         ))}
       </div>
 
-      {/* ── DESTINATIONS COUNT BADGE — premium glassmorphism ── */}
-      <div
+      {/* ── DESTINATIONS TOGGLE BUTTON — premium glassmorphism ── */}
+      <button
+        onClick={() => setShowDestinations(!showDestinations)}
         className="absolute bottom-7 left-6 z-10 flex items-center gap-2.5
-                   px-4 py-2.5 rounded-xl border border-white/25 shadow-2xl backdrop-blur-xl"
+                   px-4 py-2.5 rounded-xl border border-white/25 shadow-2xl backdrop-blur-xl
+                   transition-all duration-300 hover:scale-105 hover:border-white/40
+                   active:scale-95"
         style={{
-          background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3)"
+          background: showDestinations
+            ? "linear-gradient(135deg, rgba(20,184,166,0.35) 0%, rgba(20,184,166,0.25) 100%)"
+            : "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)",
+          boxShadow: showDestinations
+            ? "0 8px 32px rgba(20,184,166,0.3), inset 0 1px 1px rgba(255,255,255,0.3)"
+            : "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3)"
         }}
       >
         <MapPin className="h-4 w-4 text-teal-300 drop-shadow-sm" />
         <span className="text-xs font-semibold tracking-wider text-white/95 uppercase drop-shadow-sm">
           {locations.length} Destinations
         </span>
-      </div>
+        <ChevronRight
+          className={`h-3.5 w-3.5 text-white/80 transition-transform duration-300 ${
+            showDestinations ? 'rotate-90' : ''
+          }`}
+        />
+      </button>
+
+      {/* ── HORIZONTAL DESTINATIONS LIST ── */}
+      {showDestinations && (
+        <div
+          className="absolute bottom-24 left-6 right-6 z-10
+                     flex gap-3 p-3 rounded-xl border border-white/25 shadow-2xl backdrop-blur-xl
+                     overflow-x-auto animate-in slide-in-from-bottom-4 duration-300"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3)",
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.3) rgba(255,255,255,0.1)"
+          }}
+        >
+          {locations.map((loc) => (
+            <button
+              key={loc.id}
+              onClick={() => {
+                handlePin(loc);
+                setShowDestinations(false);
+              }}
+              className="flex-shrink-0 group relative overflow-hidden rounded-lg
+                         transition-all duration-300 hover:scale-105 active:scale-95"
+              style={{ width: "180px", height: "120px" }}
+            >
+              {/* Background image with overlay */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style={{
+                  backgroundImage: `url(${loc.image})`,
+                }}
+              />
+              <div
+                className="absolute inset-0 transition-opacity duration-300"
+                style={{
+                  background: `linear-gradient(to top, ${loc.color}dd 0%, ${loc.color}88 50%, transparent 100%)`
+                }}
+              />
+
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-3">
+                <div
+                  className="text-xs font-bold uppercase tracking-wide mb-0.5 text-white drop-shadow-lg"
+                  style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
+                >
+                  {loc.name}
+                </div>
+                <div className="text-[10px] text-white/90 drop-shadow-md flex items-center gap-1">
+                  <MapPin className="h-2.5 w-2.5" />
+                  {loc.district}
+                </div>
+              </div>
+
+              {/* Hover indicator */}
+              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ChevronRight className="h-4 w-4 text-white drop-shadow-lg" />
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* ── FLOATING DETAIL DRAWER ── */}
       {active && (
