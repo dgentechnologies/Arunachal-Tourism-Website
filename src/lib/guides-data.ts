@@ -23,11 +23,11 @@ export interface Location {
 }
 
 /**
- * SVG viewport: 800 × 384
- * Longitude 91.5°–97.5°  →  x = (lon − 91.5) / 6 × 800
- * Latitude  26.5°–29.5°  →  y = (29.5 − lat) / 3 × 384
+ * SVG viewport: 989 × 526  (matches public/images/image.png native resolution)
  *
- * Coordinates verified from provided lat/lon values.
+ * Image geographic bounds (calibrated from design):
+ *   Longitude 90.135°–98.808°E  →  x = (lon − 90.135) / 8.673 × 989
+ *   Latitude  25.79°–30.18°N   →  y = (30.181 − lat)  / 4.391 × 526
  */
 export const locations: Location[] = [
   {
@@ -36,8 +36,8 @@ export const locations: Location[] = [
     district: "Tawang District",
     category: "Mountain Destination",
     color: "#4F46E5",
-    svgX: 49,   // lon 91.8697°E
-    svgY: 245,  // lat 27.5861°N
+    svgX: 198,  // lon 91.8697°E
+    svgY: 311,  // lat 27.5861°N
     bestTime: "Mar – May, Sep – Oct",
     image: "https://picsum.photos/seed/tawang800/800/450",
     desc: "Home to India's largest Buddhist monastery, frozen glacial lakes, and snow-capped Himalayan passes at over 10,000 ft.",
@@ -77,8 +77,8 @@ export const locations: Location[] = [
     district: "Lower Subansiri District",
     category: "Valley / Cultural",
     color: "#059669",
-    svgX: 311,  // lon 93.8290°E
-    svgY: 251,  // lat 27.5360°N
+    svgX: 422,  // lon 93.8290°E
+    svgY: 317,  // lat 27.5360°N
     bestTime: "Feb – Apr, Aug – Oct",
     image: "https://picsum.photos/seed/zirovalley/800/450",
     desc: "A UNESCO World Heritage tentative site — lush pine-dotted paddy fields, the iconic Apatani tribe, and the celebrated Ziro Music Festival.",
@@ -117,8 +117,8 @@ export const locations: Location[] = [
     district: "Changlang District",
     category: "Wildlife / Nature",
     color: "#DC2626",
-    svgX: 651,  // lon 96.3807°E
-    svgY: 258,  // lat 27.4816°N
+    svgX: 713,  // lon 96.3807°E
+    svgY: 352,  // lat 27.4816°N
     bestTime: "Oct – Mar",
     image: "https://picsum.photos/seed/namdapha800/800/450",
     desc: "A biodiversity hotspot spanning tropical to alpine forests — home to Snow Leopards, Red Pandas, and over 1,000 plant species in a UNESCO-recognised park.",
@@ -161,8 +161,8 @@ export const locations: Location[] = [
     district: "East Siang District",
     category: "Riverside / Adventure",
     color: "#D97706",
-    svgX: 510,  // lon 95.3262°E
-    svgY: 184,  // lat 28.0617°N
+    svgX: 593,  // lon 95.3262°E
+    svgY: 254,  // lat 28.0617°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/pasighat800/800/450",
     desc: "Arunachal's oldest town sits where the mighty Siang River bursts into the plains — a paradise for rafters, anglers, and culture seekers.",
@@ -201,8 +201,8 @@ export const locations: Location[] = [
     district: "West Kameng District",
     category: "Monastery & Nature",
     color: "#7C3AED",
-    svgX: 122,  // lon 92.4159°E
-    svgY: 286,  // lat 27.2645°N
+    svgX: 260,  // lon 92.4159°E
+    svgY: 350,  // lat 27.2645°N
     bestTime: "Apr – Oct",
     image: "https://picsum.photos/seed/bomdila800/800/450",
     desc: "Scenic hill town framed by apple orchards and rhododendrons — gateway to Tawang, famed for serene monasteries and the world-class Eaglenest birding corridor.",
@@ -253,8 +253,8 @@ export const locations: Location[] = [
     district: "West Siang District",
     category: "Valley Adventure",
     color: "#0891B2",
-    svgX: 440,  // lon 94.8010°E
-    svgY: 170,  // lat 28.1691°N
+    svgX: 533,  // lon 94.8010°E
+    svgY: 241,  // lat 28.1691°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/aaloalong/800/450",
     desc: "Adventure hub of central Arunachal — the Galo tribe's heartland, known for cane suspension bridges, orange orchards, and river rafting on the wild Siyom.",
@@ -293,8 +293,8 @@ export const locations: Location[] = [
     district: "Papum Pare District",
     category: "Capital / Heritage",
     color: "#92400E",
-    svgX: 281,  // lon 93.6053°E
-    svgY: 309,  // lat 27.0844°N
+    svgX: 396,  // lon 93.6053°E
+    svgY: 371,  // lat 27.0844°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/itanagar800/800/450",
     desc: "The state capital balances ancient heritage and modern governance — explore the historic Ita Fort, serene Ganga Lake, and the vibrant Nyishi cultural heartland.",
@@ -333,8 +333,8 @@ export const locations: Location[] = [
     district: "Shi-Yomi District",
     category: "Hidden Valley",
     color: "#0D9488",
-    svgX: 352,  // lon 94.1370°E
-    svgY: 116,  // lat 28.5975°N
+    svgX: 457,  // lon 94.1370°E
+    svgY: 190,  // lat 28.5975°N
     bestTime: "Apr – Oct",
     image: "https://picsum.photos/seed/mechuka800/800/450",
     desc: "A surreal hidden valley near the Tibet border at 6,000 ft — rolling green meadows, ancient monasteries, and the Memba tribe's Tibetan-flavoured culture.",
@@ -373,8 +373,8 @@ export const locations: Location[] = [
     district: "Lower Dibang Valley District",
     category: "Nature / Tribal",
     color: "#BE185D",
-    svgX: 578,  // lon 95.8361°E
-    svgY: 175,  // lat 28.1365°N
+    svgX: 651,  // lon 95.8361°E
+    svgY: 245,  // lat 28.1365°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/roing800/800/450",
     desc: "A paradise for nature lovers in the Dibang Valley — featuring Mehao Wildlife Sanctuary, the snow-capped Mayudia Pass, and the ancient Idu Mishmi tribe.",

@@ -9,12 +9,13 @@ import { Badge } from "@/components/ui/badge";
 import { locations, type Location } from "@/lib/guides-data";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   MAP DIMENSIONS  (matches public/images/image.png coordinate system)
-   lon 91.5°–97.5°E  →  x = (lon − 91.5) / 6 × 800
-   lat 26.5°–29.5°N  →  y = (29.5 − lat) / 3 × 384
+   MAP DIMENSIONS  (matches public/images/image.png native resolution)
+   Image geographic bounds (calibrated from design):
+   lon 90.135°–98.808°E  →  x = (lon − 90.135) / 8.673 × 989
+   lat 25.79°–30.18°N   →  y = (30.181 − lat)  / 4.391 × 526
 ───────────────────────────────────────────────────────────────────────── */
-const W = 800;
-const H = 384;
+const W = 989;
+const H = 526;
 
 /** Convert a #RRGGBB hex color to rgba() with the given 0–1 alpha. */
 function hexAlpha(hex: string, alpha: number): string {
@@ -161,9 +162,9 @@ function DetailDrawer({ loc, onClose }: DrawerProps) {
    MAP PIN — circular badge with navigation arrow and label
 ───────────────────────────────────────────────────────────────────────── */
 function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onClick: () => void }) {
-  const r = isActive ? 16 : 12;
+  const r = isActive ? 20 : 15;
   const name = loc.name.toUpperCase();
-  const labelWidth = Math.max(name.length * 7.2 + 24, 56);
+  const labelWidth = Math.max(name.length * 9 + 28, 70);
 
   return (
     <g
@@ -175,12 +176,12 @@ function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onC
     >
       {/* Pulse ring when active */}
       {isActive && (
-        <circle r="30" fill={loc.color} fillOpacity="0.15" className="animate-ping" />
+        <circle r="38" fill={loc.color} fillOpacity="0.15" className="animate-ping" />
       )}
 
       {/* Outer halo */}
       <circle
-        r={r + 7}
+        r={r + 8}
         fill={loc.color}
         fillOpacity="0.20"
         className="transition-all duration-200"
@@ -191,14 +192,14 @@ function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onC
         r={r}
         fill={loc.color}
         stroke="white"
-        strokeWidth="2"
+        strokeWidth="2.5"
         className="transition-all duration-200"
         style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.40))" }}
       />
 
       {/* Navigation arrow icon (pointing up) */}
       <path
-        d="M 0,-5.5 L 4,2.5 L 0,-1 L -4,2.5 Z"
+        d="M 0,-7 L 5,3 L 0,-1.5 L -5,3 Z"
         fill="white"
         style={{ pointerEvents: "none" }}
       />
@@ -206,25 +207,25 @@ function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onC
       {/* Label background */}
       <rect
         x={-labelWidth / 2}
-        y={r + 6}
+        y={r + 7}
         width={labelWidth}
-        height={17}
-        rx="4"
+        height={20}
+        rx="5"
         fill="white"
         fillOpacity="0.96"
         stroke={loc.color}
-        strokeWidth="1.2"
+        strokeWidth="1.4"
         style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.18))" }}
       />
 
       {/* Label text */}
       <text
         x="0"
-        y={r + 18}
+        y={r + 21}
         textAnchor="middle"
-        fontSize="8.5"
+        fontSize="10"
         fontWeight="700"
-        letterSpacing="1.2"
+        letterSpacing="1.4"
         fill="#1e293b"
         style={{ fontFamily: "system-ui, sans-serif", pointerEvents: "none", userSelect: "none" }}
       >
@@ -248,23 +249,22 @@ export default function ArunachalMap() {
   return (
     <div
       className="relative w-full"
-      style={{ height: "calc(100vh - 70px)", minHeight: 520, background: "#D4E8E6" }}
+      style={{ height: "100vh", background: "#D4E8E6" }}
     >
-      {/* ── SVG MAP (image background + interactive pins) ── */}
+      {/* ── SVG MAP — image fills the full viewBox (989×526 = native PNG size) ── */}
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="w-full h-full"
         preserveAspectRatio="xMidYMid meet"
         aria-label="Interactive map of Arunachal Pradesh"
       >
-        {/* Actual Arunachal Pradesh map image */}
+        {/* Actual Arunachal Pradesh map image at its native resolution */}
         <image
           href="/images/image.png"
           x="0"
           y="0"
           width={W}
           height={H}
-          preserveAspectRatio="xMidYMid meet"
         />
 
         {/* Interactive destination pins */}
@@ -278,52 +278,49 @@ export default function ArunachalMap() {
         ))}
       </svg>
 
-      {/* ── LEFT CONTROL PANEL ── */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg p-1.5 flex flex-col gap-0.5 border border-border/40">
+      {/* ── LEFT CONTROL PANEL — glassmorphism ── */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10
+                      bg-white/15 backdrop-blur-md rounded-2xl shadow-xl p-2
+                      flex flex-col gap-1 border border-white/25">
         <button
           onClick={() => setActiveControl("layers")}
           className={`p-3 rounded-xl transition-all duration-150 ${
             activeControl === "layers"
               ? "bg-primary text-white shadow-sm"
-              : "text-muted-foreground hover:bg-muted"
+              : "text-slate-700 hover:bg-white/40 hover:text-slate-900"
           }`}
           aria-label="Map layers"
         >
           <Layers className="h-5 w-5" />
         </button>
 
-        <div className="h-px bg-border/60 mx-1" />
+        <div className="h-px bg-white/30 mx-1" />
 
         <button
           onClick={() => setActiveControl("routes")}
           className={`p-3 rounded-xl transition-all duration-150 ${
             activeControl === "routes"
               ? "bg-primary text-white shadow-sm"
-              : "text-muted-foreground hover:bg-muted"
+              : "text-slate-700 hover:bg-white/40 hover:text-slate-900"
           }`}
           aria-label="Routes"
         >
           <Navigation2 className="h-5 w-5" />
         </button>
 
-        <div className="h-px bg-border/60 mx-1" />
+        <div className="h-px bg-white/30 mx-1" />
 
         <button
           onClick={() => setActiveControl("compass")}
           className={`p-3 rounded-xl transition-all duration-150 ${
             activeControl === "compass"
               ? "bg-primary text-white shadow-sm"
-              : "text-muted-foreground hover:bg-muted"
+              : "text-slate-700 hover:bg-white/40 hover:text-slate-900"
           }`}
           aria-label="Compass"
         >
           <Compass className="h-5 w-5" />
         </button>
-      </div>
-
-      {/* ── TOP-RIGHT BADGE ── */}
-      <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 shadow text-[11px] font-bold text-slate-600 tracking-widest uppercase">
-        Arunachal Pradesh
       </div>
 
       {/* ── FOOTER TEXT ── */}
