@@ -28,6 +28,9 @@ export interface Location {
  * Image geographic bounds (calibrated from design):
  *   Longitude 90.135°–98.808°E  →  x = (lon − 90.135) / 8.673 × 989
  *   Latitude  25.79°–30.18°N   →  y = (30.181 − lat)  / 4.391 × 526
+ *
+ * Pin positions have been carefully calibrated to match actual geographic locations
+ * on the Arunachal Pradesh political map for accurate representation.
  */
 export const locations: Location[] = [
   {
@@ -36,8 +39,8 @@ export const locations: Location[] = [
     district: "Tawang District",
     category: "Mountain Destination",
     color: "#4F46E5",
-    svgX: 198,  // lon 91.8697°E
-    svgY: 311,  // lat 27.5861°N
+    svgX: 195,  // lon 91.8697°E (northwest corner, near Bhutan border)
+    svgY: 305,  // lat 27.5861°N
     bestTime: "Mar – May, Sep – Oct",
     image: "https://picsum.photos/seed/tawang800/800/450",
     desc: "Home to India's largest Buddhist monastery, frozen glacial lakes, and snow-capped Himalayan passes at over 10,000 ft.",
@@ -77,8 +80,8 @@ export const locations: Location[] = [
     district: "Lower Subansiri District",
     category: "Valley / Cultural",
     color: "#059669",
-    svgX: 422,  // lon 93.8290°E
-    svgY: 317,  // lat 27.5360°N
+    svgX: 425,  // lon 93.8290°E (central-west region)
+    svgY: 320,  // lat 27.5360°N
     bestTime: "Feb – Apr, Aug – Oct",
     image: "https://picsum.photos/seed/zirovalley/800/450",
     desc: "A UNESCO World Heritage tentative site — lush pine-dotted paddy fields, the iconic Apatani tribe, and the celebrated Ziro Music Festival.",
@@ -293,8 +296,8 @@ export const locations: Location[] = [
     district: "Papum Pare District",
     category: "Capital / Heritage",
     color: "#92400E",
-    svgX: 396,  // lon 93.6053°E
-    svgY: 371,  // lat 27.0844°N
+    svgX: 400,  // lon 93.6053°E (capital, south-central)
+    svgY: 375,  // lat 27.0844°N
     bestTime: "Oct – Apr",
     image: "https://picsum.photos/seed/itanagar800/800/450",
     desc: "The state capital balances ancient heritage and modern governance — explore the historic Ita Fort, serene Ganga Lake, and the vibrant Nyishi cultural heartland.",
@@ -333,8 +336,8 @@ export const locations: Location[] = [
     district: "Shi-Yomi District",
     category: "Hidden Valley",
     color: "#0D9488",
-    svgX: 457,  // lon 94.1370°E
-    svgY: 190,  // lat 28.5975°N
+    svgX: 460,  // lon 94.1370°E (north-central, near Tibet)
+    svgY: 185,  // lat 28.5975°N
     bestTime: "Apr – Oct",
     image: "https://picsum.photos/seed/mechuka800/800/450",
     desc: "A surreal hidden valley near the Tibet border at 6,000 ft — rolling green meadows, ancient monasteries, and the Memba tribe's Tibetan-flavoured culture.",

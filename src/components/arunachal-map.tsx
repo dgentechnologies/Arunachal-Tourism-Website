@@ -159,12 +159,12 @@ function DetailDrawer({ loc, onClose }: DrawerProps) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   MAP PIN — circular badge with navigation arrow and label
+   MAP PIN — small, refined location markers with elegant labels
 ───────────────────────────────────────────────────────────────────────── */
 function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onClick: () => void }) {
-  const r = isActive ? 20 : 15;
+  const r = isActive ? 12 : 8;
   const name = loc.name.toUpperCase();
-  const labelWidth = Math.max(name.length * 9 + 28, 70);
+  const labelWidth = Math.max(name.length * 6.5 + 16, 50);
 
   return (
     <g
@@ -176,61 +176,67 @@ function Pin({ loc, isActive, onClick }: { loc: Location; isActive: boolean; onC
     >
       {/* Pulse ring when active */}
       {isActive && (
-        <circle r="38" fill={loc.color} fillOpacity="0.15" className="animate-ping" />
+        <circle r="28" fill={loc.color} fillOpacity="0.2" className="animate-ping" />
       )}
 
-      {/* Outer halo */}
+      {/* Outer glow halo */}
       <circle
-        r={r + 8}
+        r={r + 5}
         fill={loc.color}
-        fillOpacity="0.20"
-        className="transition-all duration-200"
+        fillOpacity={isActive ? "0.25" : "0.15"}
+        className="transition-all duration-300"
       />
 
-      {/* Main circle */}
+      {/* Main pin circle */}
       <circle
         r={r}
         fill={loc.color}
         stroke="white"
-        strokeWidth="2.5"
-        className="transition-all duration-200"
-        style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.40))" }}
+        strokeWidth="2"
+        className="transition-all duration-300"
+        style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.35))" }}
       />
 
-      {/* Navigation arrow icon (pointing up) */}
-      <path
-        d="M 0,-7 L 5,3 L 0,-1.5 L -5,3 Z"
+      {/* Center dot highlight */}
+      <circle
+        r={r * 0.35}
         fill="white"
+        fillOpacity="0.8"
         style={{ pointerEvents: "none" }}
       />
 
-      {/* Label background */}
-      <rect
-        x={-labelWidth / 2}
-        y={r + 7}
-        width={labelWidth}
-        height={20}
-        rx="5"
-        fill="white"
-        fillOpacity="0.96"
-        stroke={loc.color}
-        strokeWidth="1.4"
-        style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.18))" }}
-      />
+      {/* Label background - only show on hover/active */}
+      {isActive && (
+        <>
+          <rect
+            x={-labelWidth / 2}
+            y={r + 5}
+            width={labelWidth}
+            height={16}
+            rx="8"
+            fill="white"
+            fillOpacity="0.98"
+            stroke={loc.color}
+            strokeWidth="1"
+            style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.15))" }}
+            className="transition-all duration-200"
+          />
 
-      {/* Label text */}
-      <text
-        x="0"
-        y={r + 21}
-        textAnchor="middle"
-        fontSize="10"
-        fontWeight="700"
-        letterSpacing="1.4"
-        fill="#1e293b"
-        style={{ fontFamily: "system-ui, sans-serif", pointerEvents: "none", userSelect: "none" }}
-      >
-        {name}
-      </text>
+          {/* Label text */}
+          <text
+            x="0"
+            y={r + 16}
+            textAnchor="middle"
+            fontSize="7.5"
+            fontWeight="700"
+            letterSpacing="0.8"
+            fill={loc.color}
+            style={{ fontFamily: "system-ui, sans-serif", pointerEvents: "none", userSelect: "none" }}
+          >
+            {name}
+          </text>
+        </>
+      )}
     </g>
   );
 }
@@ -264,7 +270,7 @@ export default function ArunachalMap() {
 
   return (
     /* Dark fall-back colour shows only if image fails to load */
-    <div className="relative w-full h-full" style={{ background: "#0e1c20" }}>
+    <div className="relative w-full h-full" style={{ background: "linear-gradient(135deg, #0a1f2e 0%, #1a2f3e 100%)" }}>
 
       {/* ── SVG MAP — xMidYMid slice = object-fit: cover, no letterboxing ── */}
       <svg
@@ -280,6 +286,7 @@ export default function ArunachalMap() {
           y="0"
           width={W}
           height={H}
+          style={{ filter: "brightness(0.92) contrast(1.08) saturate(1.1)" }}
         />
 
         {/* Interactive destination pins */}
@@ -293,52 +300,67 @@ export default function ArunachalMap() {
         ))}
       </svg>
 
-      {/* ── EDGE VIGNETTE — adds premium depth / focus ── */}
+      {/* ── PREMIUM EDGE VIGNETTE — sophisticated depth and focus ── */}
       <div
         className="absolute inset-0 pointer-events-none z-[2]"
         style={{
           background: [
-            "linear-gradient(to right,  rgba(0,0,0,0.30) 0%,  transparent 16%, transparent 84%, rgba(0,0,0,0.30) 100%)",
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%,  transparent 14%, transparent 86%, rgba(0,0,0,0.35) 100%)",
+            "linear-gradient(to right,  rgba(0,0,0,0.45) 0%,  transparent 12%, transparent 88%, rgba(0,0,0,0.45) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.50) 0%,  transparent 10%, transparent 90%, rgba(0,0,0,0.50) 100%)",
           ].join(", "),
         }}
       />
 
-      {/* ── LEFT CONTROL PANEL — glassmorphism ── */}
+      {/* ── SUBTLE TOP GRADIENT for header integration ── */}
       <div
-        className="absolute left-5 top-1/2 -translate-y-1/2 z-10
-                   flex flex-col gap-1 p-2 rounded-2xl shadow-2xl
-                   border border-white/20"
-        style={{ background: "rgba(255,255,255,0.13)", backdropFilter: "blur(18px)" }}
+        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-[3]"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 100%)",
+        }}
+      />
+
+      {/* ── LEFT CONTROL PANEL — premium glassmorphism ── */}
+      <div
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-10
+                   flex flex-col gap-1.5 p-2.5 rounded-2xl shadow-2xl
+                   border border-white/25 backdrop-blur-xl"
+        style={{
+          background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3)"
+        }}
       >
         {MAP_CONTROLS.map(({ key, icon, label }, idx) => (
           <div key={key}>
             <button
               onClick={() => setActiveControl(key)}
-              className={`p-3 rounded-xl transition-all duration-150 ${
+              className={`p-3 rounded-xl transition-all duration-200 ${
                 activeControl === key
-                  ? "bg-teal-600 text-white shadow-md"
-                  : "text-white/85 hover:bg-white/20 hover:text-white"
+                  ? "bg-teal-600 text-white shadow-lg scale-105"
+                  : "text-white/90 hover:bg-white/25 hover:text-white hover:scale-105"
               }`}
               aria-label={label}
+              style={activeControl === key ? { boxShadow: "0 4px 12px rgba(20,184,166,0.4)" } : undefined}
             >
               {icon}
             </button>
             {idx < MAP_CONTROLS.length - 1 && (
-              <div className="h-px bg-white/15 mx-1 mt-1" />
+              <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-1 mt-1.5" />
             )}
           </div>
         ))}
       </div>
 
-      {/* ── DESTINATIONS COUNT BADGE — bottom-left glassmorphism ── */}
+      {/* ── DESTINATIONS COUNT BADGE — premium glassmorphism ── */}
       <div
-        className="absolute bottom-6 left-5 z-10 flex items-center gap-2
-                   px-3 py-2 rounded-xl border border-white/20 shadow-xl"
-        style={{ background: "rgba(255,255,255,0.13)", backdropFilter: "blur(18px)" }}
+        className="absolute bottom-7 left-6 z-10 flex items-center gap-2.5
+                   px-4 py-2.5 rounded-xl border border-white/25 shadow-2xl backdrop-blur-xl"
+        style={{
+          background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3)"
+        }}
       >
-        <MapPin className="h-3.5 w-3.5 text-teal-300" />
-        <span className="text-[11px] font-semibold tracking-widest text-white/90 uppercase">
+        <MapPin className="h-4 w-4 text-teal-300 drop-shadow-sm" />
+        <span className="text-xs font-semibold tracking-wider text-white/95 uppercase drop-shadow-sm">
           {locations.length} Destinations
         </span>
       </div>
