@@ -154,6 +154,19 @@
   to { transform: translateX(100%); }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px) rotate(3deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px) rotate(3deg);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
 /* ── Scrollbar utilities ─────────────────────────────────────────────────── */
 @layer utilities {
   .scrollbar-hide {
