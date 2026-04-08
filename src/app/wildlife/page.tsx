@@ -9,8 +9,9 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 export default function WildlifePage() {
   return (
     <main>
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      {/* Hero Section - bleeds up behind the transparent fixed nav */}
+      <div className="-mt-16">
+        <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             alt="Clouded Leopard in Arunachal Forest"
@@ -45,6 +46,7 @@ export default function WildlifePage() {
           </ScrollReveal>
         </div>
       </section>
+      </div>
 
       {/* Featured Species: Bento Grid */}
       <section className="py-24 px-8 md:px-12 max-w-screen-2xl mx-auto">
