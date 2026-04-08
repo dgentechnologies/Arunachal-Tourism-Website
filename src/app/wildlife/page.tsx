@@ -2,293 +2,376 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { MapPin, ArrowRight, Leaf, Shield, Camera, TreePine } from "lucide-react"
-import { useLanguage } from "@/lib/language-context"
+import { ArrowRight, ChevronLeft, ChevronRight, Star, CalendarDays, Leaf, Filter, TrendingUp, TreePine, Users, Trash2 } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { Button } from "@/components/ui/button"
 
 export default function WildlifePage() {
-  const { t } = useLanguage()
-
-  const wildlife = [
-    {
-      name: "Red Panda",
-      scientificName: "Ailurus fulgens",
-      status: "Endangered",
-      habitat: "Eastern Himalayan forests, 2,200-4,800m",
-      desc: "The adorable red panda thrives in the bamboo forests of Arunachal. These arboreal mammals are most active at dawn and dusk, spending their days sleeping in tree branches.",
-      image: "https://images.unsplash.com/photo-1612540393026-8f0e2e5d05c8?w=800&q=80",
-      color: "bg-red-100 text-red-700",
-      population: "Protected population",
-      bestSpot: "Eaglenest Wildlife Sanctuary"
-    },
-    {
-      name: "Snow Leopard",
-      scientificName: "Panthera uncia",
-      status: "Vulnerable",
-      habitat: "Alpine regions above 3,000m",
-      desc: "The elusive 'ghost of the mountains' roams the high-altitude regions. With thick fur and powerful build, these solitary predators are perfectly adapted to harsh mountain conditions.",
-      image: "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=800&q=80",
-      color: "bg-blue-100 text-blue-700",
-      population: "10-15 individuals estimated",
-      bestSpot: "Tawang District"
-    },
-    {
-      name: "Clouded Leopard",
-      scientificName: "Neofelis nebulosa",
-      status: "Vulnerable",
-      habitat: "Dense tropical and subtropical forests",
-      desc: "Named for their distinctive cloud-like spots, these medium-sized cats are excellent climbers. They possess the longest canine teeth relative to body size of any living feline.",
-      image: "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=800&q=80",
-      color: "bg-gray-100 text-gray-700",
-      population: "Stable population",
-      bestSpot: "Namdapha National Park"
-    },
-    {
-      name: "Hoolock Gibbon",
-      scientificName: "Hoolock hoolock",
-      status: "Endangered",
-      habitat: "Evergreen and semi-evergreen forests",
-      desc: "India's only ape species, these acrobatic primates swing through the forest canopy with incredible agility. Their haunting morning calls echo through the forests at dawn.",
-      image: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=800&q=80",
-      color: "bg-green-100 text-green-700",
-      population: "100+ individuals",
-      bestSpot: "Mehao Wildlife Sanctuary"
-    },
-    {
-      name: "Great Hornbill",
-      scientificName: "Buceros bicornis",
-      status: "Vulnerable",
-      habitat: "Tropical and subtropical forests",
-      desc: "With their impressive casque and loud calls, these magnificent birds are vital seed dispersers. Tribal communities consider them sacred, calling them the 'farmer's friend'.",
-      image: "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&q=80",
-      color: "bg-yellow-100 text-yellow-700",
-      population: "Breeding population present",
-      bestSpot: "Pakke Tiger Reserve"
-    },
-    {
-      name: "Mishmi Takin",
-      scientificName: "Budorcas taxicolor",
-      status: "Vulnerable",
-      habitat: "Temperate forests, 2,500-4,500m",
-      desc: "This rare goat-antelope found in the Mishmi Hills is Arunachal's state animal. With a distinctive golden coat and robust build, they navigate steep mountain terrain with ease.",
-      image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&q=80",
-      color: "bg-orange-100 text-orange-700",
-      population: "Endemic to region",
-      bestSpot: "Mishmi Hills"
-    },
-  ]
-
-  const sanctuaries = [
-    {
-      name: "Namdapha National Park",
-      area: "1,985 km²",
-      species: "1,000+",
-      highlight: "Four big cat species",
-      image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
-    },
-    {
-      name: "Eaglenest Wildlife Sanctuary",
-      area: "218 km²",
-      species: "600+ birds",
-      highlight: "Birding paradise",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-    },
-    {
-      name: "Pakke Tiger Reserve",
-      area: "862 km²",
-      species: "300+ birds",
-      highlight: "Hornbill haven",
-      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80",
-    },
-  ]
-
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Page Header */}
-      <ScrollReveal variant="up" className="max-w-4xl mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold text-primary font-headline mb-6 tracking-tight">
-          Wildlife & Nature
-        </h1>
-        <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
-          Arunachal Pradesh is one of the world's 25 biodiversity hotspots, home to rare species found nowhere else on Earth. From snow leopards in alpine peaks to clouded leopards in tropical forests, this pristine wilderness harbors nature's most magnificent creatures.
-        </p>
-      </ScrollReveal>
-
-      {/* Conservation Stats */}
-      <ScrollReveal variant="up" className="mb-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-gradient-to-br from-primary/10 via-[#40e0d0]/10 to-[#fccc38]/10 rounded-3xl p-8 md:p-12">
-          {[
-            { icon: TreePine, value: "80%", label: "Forest Cover" },
-            { icon: Shield, value: "11", label: "Protected Areas" },
-            { icon: Camera, value: "500+", label: "Bird Species" },
-            { icon: Leaf, value: "5,000+", label: "Plant Species" },
-          ].map((stat, i) => {
-            const Icon = stat.icon
-            return (
-              <div key={i} className="text-center">
-                <Icon className="h-8 w-8 text-primary mx-auto mb-3" />
-                <span className="block text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</span>
-                <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</span>
-              </div>
-            )
-          })}
+    <main>
+      {/* Hero Section */}
+      <section className="relative h-[921px] min-h-[700px] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            alt="Clouded Leopard in Arunachal Forest"
+            className="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOI1MI0tAfzfXDHAhtE5QFytzi0ZvAC4C3yEoaHC2kW0hiGrDbTuazpJRdc13CHbJBTDLze4RcGqH2Ca2mSFXlcTN75nZYCxapPG9eZcH_Fefzg9H-b6z1LkHW04warIJvGc3YMXx6P7sElXdKJEisM1xKFEascaTkGKcdqS25AT_61nb_8Ldoi92PlAYoJz16ZRCIiuNrNSzzEwjZ01OU6AazkuwGS8SjlKLlDirl4P2FZcBm6jqOoAWZJ537cjy_BxsuAIEWYVI"
+            fill
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
         </div>
-      </ScrollReveal>
-
-      {/* Protected Sanctuaries */}
-      <ScrollReveal variant="up" className="mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-8">Protected Sanctuaries</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {sanctuaries.map((sanctuary, idx) => (
-            <Card key={idx} className="overflow-hidden border-none shadow-lg group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={sanctuary.image}
-                  alt={sanctuary.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white text-xl font-bold font-headline">{sanctuary.name}</h3>
-                  <p className="text-white/80 text-sm mt-1">{sanctuary.highlight}</p>
-                </div>
-              </div>
-              <CardContent className="p-5">
-                <div className="flex justify-between text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Area</span>
-                    <p className="font-bold text-primary">{sanctuary.area}</p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-muted-foreground">Species</span>
-                    <p className="font-bold text-primary">{sanctuary.species}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </ScrollReveal>
-
-      {/* Wildlife Species Grid */}
-      <ScrollReveal variant="up" className="mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-8">Iconic Species</h2>
-      </ScrollReveal>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        {wildlife.map((animal, idx) => (
-          <ScrollReveal key={idx} variant="up" delay={idx * 70}>
-            <Card className="overflow-hidden border-none shadow-lg group h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-white">
-              <div className="relative w-full h-56 overflow-hidden">
-                <Image
-                  src={animal.image}
-                  alt={animal.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="absolute top-4 right-4">
-                  <Badge className={animal.color}>{animal.status}</Badge>
-                </div>
-                <div className="absolute bottom-4 left-4">
-                  <h3 className="text-white text-2xl font-bold font-headline">{animal.name}</h3>
-                  <p className="text-white/70 text-sm italic mt-1">{animal.scientificName}</p>
-                </div>
-              </div>
-              <CardContent className="p-6 flex flex-col gap-4">
-                <div className="flex items-start gap-2 text-sm">
-                  <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <span className="text-muted-foreground block mb-1">Habitat:</span>
-                    <span className="font-medium">{animal.habitat}</span>
-                  </div>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{animal.desc}</p>
-                <div className="border-t pt-3 mt-2 space-y-2">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Population:</span>
-                    <span className="font-semibold">{animal.population}</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Best viewing:</span>
-                    <span className="font-semibold text-primary">{animal.bestSpot}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
-        ))}
-      </div>
-
-      {/* Conservation Message */}
-      <ScrollReveal variant="up" className="mb-16">
-        <div className="bg-primary text-white rounded-3xl p-10 md:p-16 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="relative z-10 max-w-3xl">
-            <h2 className="text-3xl md:text-5xl font-bold font-headline mb-6">
-              Conservation Through Community
-            </h2>
-            <p className="text-white/80 text-lg leading-relaxed mb-8">
-              Arunachal's tribal communities have been the guardians of these forests for centuries. Their traditional ecological knowledge and sustainable practices have preserved this biodiversity hotspot. Every wildlife tour directly supports local conservation efforts and community livelihoods.
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 md:px-12 w-full">
+          <div className="max-w-3xl space-y-6">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm tracking-widest uppercase">
+              The Wild Pulse of the Eastern Himalayas
+            </span>
+            <h1 className="font-headline text-5xl md:text-8xl text-white font-bold leading-[1.1] tracking-tight">
+              Where the <br />
+              <span className="text-primary-container">Clouds Meet</span> the Earth.
+            </h1>
+            <p className="text-lg md:text-xl text-stone-200 max-w-xl font-light leading-relaxed">
+              Venture into the pristine sanctuaries of Arunachal Pradesh, where the rare Red Panda thrives and the elusive Snow Leopard patrols the peaks. An ecosystem untouched by time.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="flex items-start gap-3">
-                <Shield className="h-6 w-6 text-[#40e0d0] flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-lg mb-1">26 Major Tribes</h4>
-                  <p className="text-white/70 text-sm">Traditional forest guardians</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <TreePine className="h-6 w-6 text-[#40e0d0] flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-lg mb-1">Sacred Groves</h4>
-                  <p className="text-white/70 text-sm">Protected by tribal laws</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Leaf className="h-6 w-6 text-[#40e0d0] flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-lg mb-1">Carbon Sink</h4>
-                  <p className="text-white/70 text-sm">India's green lung</p>
-                </div>
-              </div>
+            <div className="pt-8 flex flex-col sm:flex-row gap-4">
+              <button className="bg-primary text-on-primary px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+                Explore the Wild Trails
+                <ArrowRight className="h-5 w-5" />
+              </button>
+              <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-all">
+                Watch the Documentary
+              </button>
             </div>
           </div>
         </div>
-      </ScrollReveal>
+      </section>
 
-      {/* CTA Section */}
-      <ScrollReveal variant="up">
-        <div className="py-16 bg-gradient-to-br from-[#f6f3f2] to-[#e8e4e1] text-foreground rounded-3xl px-8 md:px-16 flex flex-col items-center text-center space-y-6">
-          <Camera className="h-16 w-16 text-primary" />
-          <h2 className="text-3xl md:text-5xl font-bold font-headline max-w-2xl">
-            Experience Wildlife Responsibly
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Join expert-led wildlife tours that prioritize conservation and community benefit. Track rare species with trained naturalists while supporting habitat protection.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Link href="/itinerary">
-              <Button size="lg" className="h-12 px-8 font-semibold rounded-full bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 active:scale-95">
-                Plan Wildlife Safari <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/guides">
-              <Button size="lg" variant="outline" className="h-12 px-8 font-semibold rounded-full border-2 border-primary/20 hover:bg-primary/5 transition-all duration-300 hover:scale-105 active:scale-95">
-                View Travel Guides
-              </Button>
-            </Link>
+      {/* Featured Species: Bento Grid */}
+      <section className="py-24 px-8 md:px-12 max-w-screen-2xl mx-auto">
+        <ScrollReveal variant="up">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-2xl">
+              <h2 className="font-headline text-4xl md:text-6xl font-bold mb-6 text-on-surface">
+                Encounter the Unseen
+              </h2>
+              <p className="text-on-surface-variant text-lg">
+                From the rhythmic call of the Hoolock Gibbon to the silent glide of the Snow Leopard, discover species that exist nowhere else on Earth.
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground/70 max-w-md pt-4">
-            All tours follow responsible wildlife viewing guidelines and support local conservation initiatives
-          </p>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+          {/* Great Hornbill - Large Card */}
+          <ScrollReveal variant="left" className="md:col-span-8 group relative overflow-hidden rounded-xl md:rounded-[3rem] bg-surface-container-low shadow-sm">
+            <Image
+              alt="Great Hornbill"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr0W8iPi4qDg2cxHepS9IqTX4p6a3C8dTrmTSjNo9s-RpCPQVCYHdVQAKZBiSaj-dsU24x7lVa8ubUeKEchmum7yMFFHqBqIs7SmvQybbe49txVfNRIcUHj31cwzHDwOIY3j37amAXhgsIHrb1F0VMjrPpW8hDbfJy__rGqLfFjo_1EvR9CoQMt4bKXEwxfEqAYmbI6tk8-fmQ3feIatVFDfGjvL-KJku9_IVoKCZxHJXEpqjviuHnep2sStDiC4YY5yU9MrGmdFk"
+              fill
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-12 flex flex-col justify-end">
+              <h3 className="text-white font-headline text-3xl font-bold mb-2">Great Hornbill</h3>
+              <p className="text-stone-300 max-w-md">
+                The state bird and a cultural icon, known for its majestic presence and resonant calls echoing through the canopy.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Right Column */}
+          <div className="md:col-span-4 grid grid-rows-2 gap-6">
+            {/* Hoolock Gibbon */}
+            <ScrollReveal variant="right" delay={100} className="group relative overflow-hidden rounded-xl md:rounded-[2rem] bg-surface-container-low">
+              <Image
+                alt="Hoolock Gibbon"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4knN1-PdVuSPbNVjmH5Izs-m8DHd4CWnX0HYe90IUPwM0CB7SEzAzN3cgfJJD9ldp7DROt-2QVNL9-Z19HNTeRv4LCfSWAJEFA9Jn8XZ2QyblKsQ0qY7LsHjCbLr7E6w8fLCxx5274u0Va9i6nZMQJJ3QsFvoHUv_YQ0L5j0yWMNVN8Ri4JqrpOF851zHDBYtt6YNr04ht-5wEvqz1oZ7m7f3itOqYBYO8Sgwp1MAldktg_4EWOFUbU2CdIkcExoNxsVkCl702uE"
+                fill
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end">
+                <h3 className="text-white font-headline text-2xl font-bold mb-1">Hoolock Gibbon</h3>
+                <p className="text-stone-300 text-sm">
+                  India's only ape, performing acrobatic feats in the evergreen forests of Namdapha.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Red Panda */}
+            <ScrollReveal variant="right" delay={200} className="group relative overflow-hidden rounded-xl md:rounded-[2rem] bg-surface-container-low">
+              <Image
+                alt="Red Panda"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFxtMFJjK_L3jlu2IAOn0eHPxpBUoUjTulUUOaR7dQvTgomyBrRM393Gy4oDklyDehyTiwxbMttdT2PIjrndthFGcwadEaLGsOKBgKOeUVk_Z90gPUba-NWYrpP8P7mOO2042GbD2iyVCzsjXKBhL_4Nz27EvWaPuM_-b0yZwlE0ecbfLeQNcPUAyomKYwbZxT5Qv0YctOdPSqi06xlIwHTRiCCcTQXjXxGfSC4WIegJGxah3q9taTkYC02AUZW9dA8UA1pYhNwyM"
+                fill
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end">
+                <h3 className="text-white font-headline text-2xl font-bold mb-1">Red Panda</h3>
+                <p className="text-stone-300 text-sm">
+                  A shy inhabitant of the high-altitude bamboo thickets, emerging only at twilight.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
-      </ScrollReveal>
-    </div>
+      </section>
+
+      {/* National Parks Section */}
+      <section className="bg-surface-container-low py-24 px-8 md:px-12">
+        <div className="max-w-screen-2xl mx-auto">
+          <ScrollReveal variant="up">
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-4xl md:text-6xl font-bold text-on-surface mb-6">
+                Sanctuaries of the Sacred
+              </h2>
+              <p className="text-on-surface-variant max-w-2xl mx-auto text-lg">
+                Vast protected expanses that serve as the last refuge for endangered biodiversity across thousands of vertical meters.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Namdapha National Park */}
+            <ScrollReveal variant="up" delay={0}>
+              <div className="bg-surface-container-lowest p-6 rounded-xl md:rounded-tl-[3rem] md:rounded-br-[3rem] shadow-sm flex flex-col h-full hover:shadow-xl transition-shadow">
+                <div className="h-64 rounded-xl overflow-hidden mb-6">
+                  <Image
+                    alt="Namdapha Landscape"
+                    className="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvtnNWIjNqJ4egYlC-L9M8HsXvSFBooQ46Q7KQ35mtR1qAy_EZDCZsV33iqLstjXV43pO3-nSd_gT2FK4_yj3DJSLdFJ46VUc-CR3XTeXQQ2ByTMD4O-kdkvtpHmn5hpBxqKTJMZe4dR5ZHkMbLYtqJFqQfW6Xy__WjZK2m4rNzWVoSM73YV9vh1d0yB3HSg-gQ_Yw4nBY3r41eEcDOXLlZyUPCy2ToB_7VnuwXtkxate6oEOe0M7-ljPvSJCYW4-gBo2ECRqQlA"
+                    width={400}
+                    height={256}
+                  />
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-2">Namdapha National Park</h3>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-1 bg-secondary-container/30 text-on-secondary-container rounded">
+                    Hotspot
+                  </span>
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-1 bg-surface-container-high text-on-surface-variant rounded">
+                    Easternmost
+                  </span>
+                </div>
+                <p className="text-on-surface-variant mb-6 flex-grow">
+                  The largest protected area in the Eastern Himalaya biodiversity hotspot, featuring the widest altitudinal range of any park in the world.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <Star className="h-4 w-4 text-primary" />
+                    <span>Look for: Snow Leopards, Clouded Leopards</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <CalendarDays className="h-4 w-4 text-primary" />
+                    <span>Best Visit: November to March</span>
+                  </div>
+                </div>
+                <button className="w-full py-3 bg-surface-container-high hover:bg-primary hover:text-on-primary transition-colors rounded-full font-bold">
+                  Plan Visit
+                </button>
+              </div>
+            </ScrollReveal>
+
+            {/* Mouling National Park */}
+            <ScrollReveal variant="up" delay={100}>
+              <div className="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col h-full hover:shadow-xl transition-shadow border-t-4 border-secondary">
+                <div className="h-64 rounded-xl overflow-hidden mb-6">
+                  <Image
+                    alt="Mouling National Park"
+                    className="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAzRCtE-D6aTpINkXbbijIN6kWfOAizjuGx5Tt9P9j953vGAOUFNyXgYLj5gCrVceaMmMsafSg7m7uhZ-bQzoWbAgW6eN4Xvke6ssOm31KDKNjRwaakqMiDbioPaCRl5_I0rl6JBZfx1_ogFfNigdQjV-Qur-TSPJOIg0FTxZaDx4wkiNTnyJyt7qYfFoaLeMTwrtj-M-SVw7ljGeZvl8XZhfi4g8eFawBv3XOiPKPkTGomp7qRzclcTQXMNjsCwS31XwcCY8AbQ8"
+                    width={400}
+                    height={256}
+                  />
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-2">Mouling National Park</h3>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-1 bg-secondary-container/30 text-on-secondary-container rounded">
+                    Pristine
+                  </span>
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-1 bg-surface-container-high text-on-surface-variant rounded">
+                    Red Panda Habitat
+                  </span>
+                </div>
+                <p className="text-on-surface-variant mb-6 flex-grow">
+                  Meaning "Red Poison," this park is a dramatic landscape of steep slopes and high rainfall, creating a sanctuary for takins and pandas.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <Star className="h-4 w-4 text-primary" />
+                    <span>Look for: Takin, Mishmi Hill Giant Squirrel</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <Leaf className="h-4 w-4 text-primary" />
+                    <span>Access: Rugged trekking trails</span>
+                  </div>
+                </div>
+                <button className="w-full py-3 bg-surface-container-high hover:bg-primary hover:text-on-primary transition-colors rounded-full font-bold">
+                  Plan Visit
+                </button>
+              </div>
+            </ScrollReveal>
+
+            {/* Pakhui Tiger Reserve */}
+            <ScrollReveal variant="up" delay={200}>
+              <div className="bg-surface-container-lowest p-6 rounded-xl md:rounded-tr-[3rem] md:rounded-bl-[3rem] shadow-sm flex flex-col h-full hover:shadow-xl transition-shadow">
+                <div className="h-64 rounded-xl overflow-hidden mb-6">
+                  <Image
+                    alt="Pakhui Wildlife"
+                    className="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7ftQY3dEIcUmoQ5JMIDdBmMFasHYTWBDMYNzP9VxZclpOmD3MsT8kG_5cDvNv97poVg9DkVpYRPZwbCQ1W99I5yvbqbocv-ovy6a392OC68EF5xyCm1lFF-X01xj8svVkVs03kdRhQqPZ0ymw73Q6CvT0M543wT_ZphIkDq_srBVyGpGeHT4reyx6tbNxj5hJIA8diaf53gsA2fqOyHY4qrxTIAdluTCHMkJ9CJf5lGH68ydQnZTgFsiDXQZRPz4mlT3nqaIBy_o"
+                    width={400}
+                    height={256}
+                  />
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-2">Pakhui Tiger Reserve</h3>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-1 bg-secondary-container/30 text-on-secondary-container rounded">
+                    Tiger Haven
+                  </span>
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-1 bg-surface-container-high text-on-surface-variant rounded">
+                    Community Conservation
+                  </span>
+                </div>
+                <p className="text-on-surface-variant mb-6 flex-grow">
+                  A landscape of semi-evergreen and evergreen forests, world-renowned for its successful community-led hornbill nest adoption program.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <Star className="h-4 w-4 text-primary" />
+                    <span>Look for: Bengal Tiger, Hornbills</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <Leaf className="h-4 w-4 text-primary" />
+                    <span>Focus: Birdwatching Paradise</span>
+                  </div>
+                </div>
+                <button className="w-full py-3 bg-surface-container-high hover:bg-primary hover:text-on-primary transition-colors rounded-full font-bold">
+                  Plan Visit
+                </button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Botanical Wonders: Orchids */}
+      <section className="py-24 overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-8 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          {/* Images Grid */}
+          <ScrollReveal variant="left" className="relative order-2 lg:order-1">
+            <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl -z-10"></div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative w-full h-80 mt-12 rounded-2xl overflow-hidden">
+                <Image
+                  alt="Arunachal Orchid"
+                  className="object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdjZaRPUkHzo9MID6lz3vj9c2snqe0YkLX7gtM0WX4EvQmlaAlTQdC9RBobxBWbmcWW5Hb-lB4AD6j3p5wecTIjsEuxjsRUeEqMGJpFgURWouxX8PIKXoOJtdGgjK9K4FTT7pp3LoNw_bH7OElajDwRk2mZU9s7YYU94Zxz11kxleYSHdfpzrcNPAJ8jm0IEMb9gBS72qtYyyW8xJ--mGDKAX2MWOWJIATmocqul7IlESoqjJ2bPFxRxLYecw7MxFqnj03mAouxFE"
+                  fill
+                />
+              </div>
+              <div className="relative w-full h-80 rounded-2xl overflow-hidden">
+                <Image
+                  alt="Rhododendron"
+                  className="object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLK2hU8S8EdKS6FFp9LW2RIy9HeusYIW3ZyrYL6_6CEenGqon9bJtWF3enDhicx2CfkWkJHbi_DLYOHXux2s9HhL7EyjDrb7FBbH42gS_QqbWU0yIBDCeweds070C2jtt63kdpGwf1TKE8-TG8NIWOlK2wiqfXqrlIP3J682SIwMcO4uU98psrcSVdMmhEA-lHykBH0lWMaC_Ejg41f0MtBcGbaOrROxvBytXZ3ZSEJFpu2DhXnv1KXaZlYnQ4xcPtGFfvEy_A2M"
+                  fill
+                />
+              </div>
+            </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-white shadow-2xl rounded-2xl rotate-3">
+              <div className="bg-primary/5 p-6 rounded-xl border border-primary/10">
+                <p className="font-headline text-4xl font-bold text-primary">500+</p>
+                <p className="text-on-surface-variant font-medium">Orchid Species</p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Content */}
+          <ScrollReveal variant="right" className="order-1 lg:order-2 space-y-8">
+            <h2 className="font-headline text-4xl md:text-6xl font-bold leading-tight">The Orchid State</h2>
+            <p className="text-on-surface-variant text-lg leading-relaxed">
+              Arunachal Pradesh is a botanical paradise, home to nearly half of India's orchid species. From the ephemeral Lady's Slipper to the rare Blue Vanda, the state transforms into a tapestry of color every spring.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="flex items-start gap-4">
+                <Leaf className="text-secondary text-3xl flex-shrink-0" />
+                <div>
+                  <h4 className="font-bold text-primary">Rare Endemics</h4>
+                  <p className="text-sm text-on-surface-variant">
+                    Discover species that have evolved exclusively in these remote valleys.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Filter className="text-secondary text-3xl flex-shrink-0" />
+                <div>
+                  <h4 className="font-bold text-primary">Rhododendron Belts</h4>
+                  <p className="text-sm text-on-surface-variant">
+                    Traverse forests that turn bright red and pink during the summer bloom.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="pt-4">
+              <button className="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all group">
+                Explore Botanical Gardens
+                <TrendingUp className="h-5 w-5" />
+              </button>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Sustainable Tourism: Conservation Section */}
+      <section className="mb-24 px-8 md:px-12 max-w-screen-2xl mx-auto">
+        <ScrollReveal variant="up">
+          <div className="bg-primary-container/20 rounded-xl md:rounded-[4rem] p-8 md:p-20 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-20 opacity-10">
+              <div className="text-[300px] leading-none">🧠</div>
+            </div>
+            <div className="relative z-10 max-w-3xl">
+              <h2 className="font-headline text-3xl md:text-5xl font-bold text-on-primary-container mb-8">
+                Leave Only Footprints
+              </h2>
+              <p className="text-on-primary-container text-lg mb-12 opacity-90 leading-relaxed">
+                Arunachal's beauty is as fragile as it is magnificent. We invite you to be a custodian of this land. Our sustainable tourism initiatives focus on community-owned homestays, wildlife guardianship, and plastic-free trails to ensure the "Land of the Rising Sun" remains pristine for generations.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div className="bg-white/40 backdrop-blur-sm p-6 rounded-2xl">
+                  <TreePine className="h-6 w-6 text-primary mb-3" />
+                  <h4 className="font-bold mb-1">Protect Habitat</h4>
+                  <p className="text-xs text-on-surface-variant">
+                    Stay on marked trails to avoid disturbing nesting wildlife.
+                  </p>
+                </div>
+                <div className="bg-white/40 backdrop-blur-sm p-6 rounded-2xl">
+                  <Users className="h-6 w-6 text-primary mb-3" />
+                  <h4 className="font-bold mb-1">Local Guides</h4>
+                  <p className="text-xs text-on-surface-variant">
+                    Hire local experts to support the community economy.
+                  </p>
+                </div>
+                <div className="bg-white/40 backdrop-blur-sm p-6 rounded-2xl">
+                  <Trash2 className="h-6 w-6 text-primary mb-3" />
+                  <h4 className="font-bold mb-1">Zero Waste</h4>
+                  <p className="text-xs text-on-surface-variant">
+                    Pack out everything you pack in. No exceptions.
+                  </p>
+                </div>
+              </div>
+              <button className="bg-primary text-on-primary px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+                Become a Responsible Traveler
+              </button>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+    </main>
   )
 }
