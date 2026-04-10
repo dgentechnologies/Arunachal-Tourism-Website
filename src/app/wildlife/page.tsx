@@ -16,7 +16,7 @@ export default function WildlifePage() {
           <Image
             alt="Clouded Leopard in Arunachal Forest"
             className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOI1MI0tAfzfXDHAhtE5QFytzi0ZvAC4C3yEoaHC2kW0hiGrDbTuazpJRdc13CHbJBTDLze4RcGqH2Ca2mSFXlcTN75nZYCxapPG9eZcH_Fefzg9H-b6z1LkHW04warIJvGc3YMXx6P7sElXdKJEisM1xKFEascaTkGKcdqS25AT_61nb_8Ldoi92PlAYoJz16ZRCIiuNrNSzzEwjZ01OU6AazkuwGS8SjlKLlDirl4P2FZcBm6jqOoAWZJ537cjy_BxsuAIEWYVI"
+            src="https://picsum.photos/seed/wildlife-hero/1600/900"
             fill
             priority
           />
@@ -77,7 +77,7 @@ export default function WildlifePage() {
             <Image
               alt="Great Hornbill"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr0W8iPi4qDg2cxHepS9IqTX4p6a3C8dTrmTSjNo9s-RpCPQVCYHdVQAKZBiSaj-dsU24x7lVa8ubUeKEchmum7yMFFHqBqIs7SmvQybbe49txVfNRIcUHj31cwzHDwOIY3j37amAXhgsIHrb1F0VMjrPpW8hDbfJy__rGqLfFjo_1EvR9CoQMt4bKXEwxfEqAYmbI6tk8-fmQ3feIatVFDfGjvL-KJku9_IVoKCZxHJXEpqjviuHnep2sStDiC4YY5yU9MrGmdFk"
+              src="https://picsum.photos/seed/wildlife-hornbill/800/600"
               fill
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 md:p-10 lg:p-12 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
@@ -95,7 +95,7 @@ export default function WildlifePage() {
               <Image
                 alt="Hoolock Gibbon"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4knN1-PdVuSPbNVjmH5Izs-m8DHd4CWnX0HYe90IUPwM0CB7SEzAzN3cgfJJD9ldp7DROt-2QVNL9-Z19HNTeRv4LCfSWAJEFA9Jn8XZ2QyblKsQ0qY7LsHjCbLr7E6w8fLCxx5274u0Va9i6nZMQJJ3QsFvoHUv_YQ0L5j0yWMNVN8Ri4JqrpOF851zHDBYtt6YNr04ht-5wEvqz1oZ7m7f3itOqYBYO8Sgwp1MAldktg_4EWOFUbU2CdIkcExoNxsVkCl702uE"
+                src="https://picsum.photos/seed/wildlife-gibbon/800/600"
                 fill
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
@@ -111,7 +111,7 @@ export default function WildlifePage() {
               <Image
                 alt="Red Panda"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFxtMFJjK_L3jlu2IAOn0eHPxpBUoUjTulUUOaR7dQvTgomyBrRM393Gy4oDklyDehyTiwxbMttdT2PIjrndthFGcwadEaLGsOKBgKOeUVk_Z90gPUba-NWYrpP8P7mOO2042GbD2iyVCzsjXKBhL_4Nz27EvWaPuM_-b0yZwlE0ecbfLeQNcPUAyomKYwbZxT5Qv0YctOdPSqi06xlIwHTRiCCcTQXjXxGfSC4WIegJGxah3q9taTkYC02AUZW9dA8UA1pYhNwyM"
+                src="https://picsum.photos/seed/wildlife-redpanda/800/600"
                 fill
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
@@ -147,7 +147,7 @@ export default function WildlifePage() {
                   <Image
                     alt="Namdapha Landscape"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src={PlaceHolderImages.find(img => img.id === "dest-namdapha")?.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuDmvtnNWIjNqJ4egYlC-L9M8HsXvSFBooQ46Q7KQ35mtR1qAy_EZDCZsV33iqLstjXV43pO3-nSd_gT2FK4_yj3DJSLdFJ46VUc-CR3XTeXQQ2ByTMD4O-kdkvtpHmn5hpBxqKTJMZe4dR5ZHkMbLYtqJFqQfW6Xy__WjZK2m4rNzWVoSM73YV9vh1d0yB3HSg-gQ_Yw4nBY3r41eEcDOXLlZyUPCy2ToB_7VnuwXtkxate6oEOe0M7-ljPvSJCYW4-gBo2ECRqQlA"}
+                    src={PlaceHolderImages.find(img => img.id === "dest-namdapha")?.imageUrl || "https://picsum.photos/seed/dest-namdapha/800/600"}
                     width={400}
                     height={256}
                   />
@@ -187,7 +187,7 @@ export default function WildlifePage() {
                   <Image
                     alt="Mouling National Park"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src={PlaceHolderImages.find(img => img.id === "hero-valley")?.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuDAzRCtE-D6aTpINkXbbijIN6kWfOAizjuGx5Tt9P9j953vGAOUFNyXgYLj5gCrVceaMmMsafSg7m7uhZ-bQzoWbAgW6eN4Xvke6ssOm31KDKNjRwaakqMiDbioPaCRl5_I0rl6JBZfx1_ogFfNigdQjV-Qur-TSPJOIg0FTxZaDx4wkiNTnyJyt7qYfFoaLeMTwrtj-M-SVw7ljGeZvl8XZhfi4g8eFawBv3XOiPKPkTGomp7qRzclcTQXMNjsCwS31XwcCY8AbQ8"}
+                    src={PlaceHolderImages.find(img => img.id === "hero-valley")?.imageUrl || "https://picsum.photos/seed/hero-valley/800/600"}
                     width={400}
                     height={256}
                   />
@@ -227,7 +227,7 @@ export default function WildlifePage() {
                   <Image
                     alt="Pakhui Wildlife"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src={PlaceHolderImages.find(img => img.id === "hero-mountains")?.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuA7ftQY3dEIcUmoQ5JMIDdBmMFasHYTWBDMYNzP9VxZclpOmD3MsT8kG_5cDvNv97poVg9DkVpYRPZwbCQ1W99I5yvbqbocv-ovy6a392OC68EF5xyCm1lFF-X01xj8svVkVs03kdRhQqPZ0ymw73Q6CvT0M543wT_ZphIkDq_srBVyGpGeHT4reyx6tbNxj5hJIA8diaf53gsA2fqOyHY4qrxTIAdluTCHMkJ9CJf5lGH68ydQnZTgFsiDXQZRPz4mlT3nqaIBy_o"}
+                    src={PlaceHolderImages.find(img => img.id === "hero-mountains")?.imageUrl || "https://picsum.photos/seed/hero-mountains/800/600"}
                     width={400}
                     height={256}
                   />
@@ -274,7 +274,7 @@ export default function WildlifePage() {
                 <Image
                   alt="Arunachal Orchid"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdjZaRPUkHzo9MID6lz3vj9c2snqe0YkLX7gtM0WX4EvQmlaAlTQdC9RBobxBWbmcWW5Hb-lB4AD6j3p5wecTIjsEuxjsRUeEqMGJpFgURWouxX8PIKXoOJtdGgjK9K4FTT7pp3LoNw_bH7OElajDwRk2mZU9s7YYU94Zxz11kxleYSHdfpzrcNPAJ8jm0IEMb9gBS72qtYyyW8xJ--mGDKAX2MWOWJIATmocqul7IlESoqjJ2bPFxRxLYecw7MxFqnj03mAouxFE"
+                  src="https://picsum.photos/seed/wildlife-orchid/800/600"
                   fill
                 />
               </div>
@@ -282,7 +282,7 @@ export default function WildlifePage() {
                 <Image
                   alt="Rhododendron"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLK2hU8S8EdKS6FFp9LW2RIy9HeusYIW3ZyrYL6_6CEenGqon9bJtWF3enDhicx2CfkWkJHbi_DLYOHXux2s9HhL7EyjDrb7FBbH42gS_QqbWU0yIBDCeweds070C2jtt63kdpGwf1TKE8-TG8NIWOlK2wiqfXqrlIP3J682SIwMcO4uU98psrcSVdMmhEA-lHykBH0lWMaC_Ejg41f0MtBcGbaOrROxvBytXZ3ZSEJFpu2DhXnv1KXaZlYnQ4xcPtGFfvEy_A2M"
+                  src="https://picsum.photos/seed/wildlife-rhododendron/800/600"
                   fill
                 />
               </div>

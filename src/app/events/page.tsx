@@ -30,7 +30,7 @@ const events: Event[] = [
     location: "Tawang",
     category: "Festival",
     status: "upcoming",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAr0W8iPi4qDg2cxHepS9IqTX4p6a3C8dTrmTSjNo9s-RpCPQVCYHdVQAKZBiSaj-dsU24x7lVa8ubUeKEchmum7yMFFHqBqIs7SmvQybbe49txVfNRIcUHj31cwzHDwOIY3j37amAXhgsIHrb1F0VMjrPpW8hDbfJy__rGqLfFjo_1EvR9CoQMt4bKXEwxfEqAYmbI6tk8-fmQ3feIatVFDfGjvL-KJku9_IVoKCZxHJXEpqjviuHnep2sStDiC4YY5yU9MrGmdFk",
+    image: "https://picsum.photos/seed/event-losar/800/600",
     description: "Experience the vibrant Tibetan New Year celebration in the heart of the Eastern Himalayas. A spectacular display of Buddhist culture, masked dances, and ancient traditions.",
     highlights: ["Cham Dance performances", "Butter lamp offerings", "Traditional Tibetan cuisine", "Monastery rituals"],
     isFeatured: true,
@@ -43,7 +43,7 @@ const events: Event[] = [
     location: "Ziro Valley",
     category: "Art & Music",
     status: "ongoing",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD4knN1-PdVuSPbNVjmH5Izs-m8DHd4CWnX0HYe90IUPwM0CB7SEzAzN3cgfJJD9ldp7DROt-2QVNL9-Z19HNTeRv4LCfSWAJEFA9Jn8XZ2QyblKsQ0qY7LsHjCbLr7E6w8fLCxx5274u0Va9i6nZMQJJ3QsFvoHUv_YQ0L5j0yWMNVN8Ri4JqrpOF851zHDBYtt6YNr04ht-5wEvqz1oZ7m7f3itOqYBYO8Sgwp1MAldktg_4EWOFUbU2CdIkcExoNxsVkCl702uE",
+    image: "https://picsum.photos/seed/event-ziro/800/600",
     description: "India's most scenic outdoor music festival set amidst pine-covered mountains and rice fields. An unforgettable fusion of indie music and natural beauty.",
     highlights: ["40+ indie bands", "Camping under stars", "Apatani cultural performances", "Eco-friendly festival"],
     isFeatured: true,
@@ -56,7 +56,7 @@ const events: Event[] = [
     location: "Pasighat",
     category: "Festival",
     status: "recent",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCFxtMFJjK_L3jlu2IAOn0eHPxpBUoUjTulUUOaR7dQvTgomyBrRM393Gy4oDklyDehyTiwxbMttdT2PIjrndthFGcwadEaLGsOKBgKOeUVk_Z90gPUba-NWYrpP8P7mOO2042GbD2iyVCzsjXKBhL_4Nz27EvWaPuM_-b0yZwlE0ecbfLeQNcPUAyomKYwbZxT5Qv0YctOdPSqi06xlIwHTRiCCcTQXjXxGfSC4WIegJGxah3q9taTkYC02AUZW9dA8UA1pYhNwyM",
+    image: "https://picsum.photos/seed/event-solung/800/600",
     description: "The most important festival of the Adi tribe, celebrating harvest season with traditional rituals, folk songs, and community feasts.",
     highlights: ["Ponung dance performances", "Traditional Apong (rice beer)", "Agricultural rituals", "Community bonding"],
     isFeatured: false,
@@ -69,7 +69,7 @@ const events: Event[] = [
     location: "Tawang Monastery",
     category: "Cultural",
     status: "recent",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBOI1MI0tAfzfXDHAhtE5QFytzi0ZvAC4C3yEoaHC2kW0hiGrDbTuazpJRdc13CHbJBTDLze4RcGqH2Ca2mSFXlcTN75nZYCxapPG9eZcH_Fefzg9H-b6z1LkHW04warIJvGc3YMXx6P7sElXdKJEisM1xKFEascaTkGKcdqS25AT_61nb_8Ldoi92PlAYoJz16ZRCIiuNrNSzzEwjZ01OU6AazkuwGS8SjlKLlDirl4P2FZcBm6jqOoAWZJ537cjy_BxsuAIEWYVI",
+    image: "https://picsum.photos/seed/event-torgya/800/600",
     description: "Ancient monastic festival featuring masked dances that drive away evil spirits and bring prosperity to the community for the coming year.",
     highlights: ["Sacred mask dances", "Ritualistic ceremonies", "Monastery blessings", "Cultural heritage"],
   },
@@ -81,7 +81,7 @@ const events: Event[] = [
     location: "Itanagar",
     category: "Festival",
     status: "upcoming",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAzRCtE-D6aTpINkXbbijIN6kWfOAizjuGx5Tt9P9j953vGAOUFNyXgYLj5gCrVceaMmMsafSg7m7uhZ-bQzoWbAgW6eN4Xvke6ssOm31KDKNjRwaakqMiDbioPaCRl5_I0rl6JBZfx1_ogFfNigdQjV-Qur-TSPJOIg0FTxZaDx4wkiNTnyJyt7qYfFoaLeMTwrtj-M-SVw7ljGeZvl8XZhfi4g8eFawBv3XOiPKPkTGomp7qRzclcTQXMNjsCwS31XwcCY8AbQ8",
+    image: "https://picsum.photos/seed/event-nyokum/800/600",
     description: "The grand festival of the Nyishi tribe celebrating prosperity, well-being, and harmony with nature through traditional rituals and community gatherings.",
     highlights: ["Traditional Nyishi attire", "Folk music & dance", "Ritualistic prayers", "Community feast"],
   },
@@ -93,7 +93,7 @@ const events: Event[] = [
     location: "Along, West Siang",
     category: "Festival",
     status: "upcoming",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDmvtnNWIjNqJ4egYlC-L9M8HsXvSFBooQ46Q7KQ35mtR1qAy_EZDCZsV33iqLstjXV43pO3-nSd_gT2FK4_yj3DJSLdFJ46VUc-CR3XTeXQQ2ByTMD4O-kdkvtpHmn5hpBxqKTJMZe4dR5ZHkMbLYtqJFqQfW6Xy__WjZK2m4rNzWVoSM73YV9vh1d0yB3HSg-gQ_Yw4nBY3r41eEcDOXLlZyUPCy2ToB_7VnuwXtkxate6oEOe0M7-ljPvSJCYW4-gBo2ECRqQlA",
+    image: "https://picsum.photos/seed/event-mopin/800/600",
     description: "A vibrant harvest festival of the Galo tribe, invoking the goddess Mopin Ane for prosperity, well-being, and protection from natural calamities.",
     highlights: ["Popir dance", "Traditional brewing", "Folk performances", "Unity celebrations"],
   },
@@ -105,7 +105,7 @@ const events: Event[] = [
     location: "Ziro Valley",
     category: "Festival",
     status: "upcoming",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA7ftQY3dEIcUmoQ5JMIDdBmMFasHYTWBDMYNzP9VxZclpOmD3MsT8kG_5cDvNv97poVg9DkVpYRPZwbCQ1W99I5yvbqbocv-ovy6a392OC68EF5xyCm1lFF-X01xj8svVkVs03kdRhQqPZ0ymw73Q6CvT0M543wT_ZphIkDq_srBVyGpGeHT4reyx6tbNxj5hJIA8diaf53gsA2fqOyHY4qrxTIAdluTCHMkJ9CJf5lGH68ydQnZTgFsiDXQZRPz4mlT3nqaIBy_o",
+    image: "https://picsum.photos/seed/event-dree/800/600",
     description: "The agricultural festival of the Apatani tribe, celebrated for abundant harvest, peace, and prosperity with traditional dances and community bonding.",
     highlights: ["Daminda dance", "Agricultural prayers", "Unity celebrations", "Cultural showcase"],
   },
@@ -117,7 +117,7 @@ const events: Event[] = [
     location: "Pasighat",
     category: "Adventure",
     status: "recent",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDdjZaRPUkHzo9MID6lz3vj9c2snqe0YkLX7gtM0WX4EvQmlaAlTQdC9RBobxBWbmcWW5Hb-lB4AD6j3p5wecTIjsEuxjsRUeEqMGJpFgURWouxX8PIKXoOJtdGgjK9K4FTT7pp3LoNw_bH7OElajDwRk2mZU9s7YYU94Zxz11kxleYSHdfpzrcNPAJ8jm0IEMb9gBS72qtYyyW8xJ--mGDKAX2MWOWJIATmocqul7IlESoqjJ2bPFxRxLYecw7MxFqnj03mAouxFE",
+    image: "https://picsum.photos/seed/event-siang/800/600",
     description: "An adrenaline-packed adventure festival celebrating the mighty Siang River with rafting competitions, kayaking, and water sports.",
     highlights: ["River rafting competition", "Kayaking events", "Rock climbing", "Adventure sports"],
   },
@@ -137,7 +137,7 @@ export default function EventsPage() {
             <Image
               alt="Vibrant festival celebration in Arunachal Pradesh"
               className="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr0W8iPi4qDg2cxHepS9IqTX4p6a3C8dTrmTSjNo9s-RpCPQVCYHdVQAKZBiSaj-dsU24x7lVa8ubUeKEchmum7yMFFHqBqIs7SmvQybbe49txVfNRIcUHj31cwzHDwOIY3j37amAXhgsIHrb1F0VMjrPpW8hDbfJy__rGqLfFjo_1EvR9CoQMt4bKXEwxfEqAYmbI6tk8-fmQ3feIatVFDfGjvL-KJku9_IVoKCZxHJXEpqjviuHnep2sStDiC4YY5yU9MrGmdFk"
+              src="https://picsum.photos/seed/events-hero/1600/900"
               fill
               priority
             />
@@ -480,7 +480,7 @@ export default function EventsPage() {
                 <Image
                   alt="Traditional tribal dance"
                   className="object-cover transition-transform duration-700 group-hover/img:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdjZaRPUkHzo9MID6lz3vj9c2snqe0YkLX7gtM0WX4EvQmlaAlTQdC9RBobxBWbmcWW5Hb-lB4AD6j3p5wecTIjsEuxjsRUeEqMGJpFgURWouxX8PIKXoOJtdGgjK9K4FTT7pp3LoNw_bH7OElajDwRk2mZU9s7YYU94Zxz11kxleYSHdfpzrcNPAJ8jm0IEMb9gBS72qtYyyW8xJ--mGDKAX2MWOWJIATmocqul7IlESoqjJ2bPFxRxLYecw7MxFqnj03mAouxFE"
+                  src="https://picsum.photos/seed/events-tribal-dance/800/600"
                   fill
                 />
               </div>
@@ -488,7 +488,7 @@ export default function EventsPage() {
                 <Image
                   alt="Festival celebration"
                   className="object-cover transition-transform duration-700 group-hover/img:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLK2hU8S8EdKS6FFp9LW2RIy9HeusYIW3ZyrYL6_6CEenGqon9bJtWF3enDhicx2CfkWkJHbi_DLYOHXux2s9HhL7EyjDrb7FBbH42gS_QqbWU0yIBDCeweds070C2jtt63kdpGwf1TKE8-TG8NIWOlK2wiqfXqrlIP3J682SIwMcO4uU98psrcSVdMmhEA-lHykBH0lWMaC_Ejg41f0MtBcGbaOrROxvBytXZ3ZSEJFpu2DhXnv1KXaZlYnQ4xcPtGFfvEy_A2M"
+                  src="https://picsum.photos/seed/events-festival-celebration/800/600"
                   fill
                 />
               </div>

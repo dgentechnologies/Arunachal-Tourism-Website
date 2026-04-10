@@ -13,7 +13,7 @@ const treks = [
     difficultyColor: "bg-red-100 text-red-700",
     altitude: "5,150 m",
     desc: "Summit Gorichen — the highest peak in Arunachal Pradesh — through ancient rhododendron forests and alpine meadows.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    image: "https://picsum.photos/seed/trek-gorichen/800/600",
     imageHint: "high altitude mountain base camp",
     rating: 4.9,
   },
@@ -25,7 +25,7 @@ const treks = [
     difficultyColor: "bg-yellow-100 text-yellow-700",
     altitude: "2,600 m",
     desc: "Traverse the breathtaking Mechuka valley — a hidden Himalayan paradise surrounded by snowy peaks and traditional Memba villages.",
-    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    image: "https://picsum.photos/seed/trek-mechuka/800/600",
     imageHint: "green valley mountain trek",
     rating: 4.8,
   },
@@ -37,7 +37,7 @@ const treks = [
     difficultyColor: "bg-red-100 text-red-700",
     altitude: "4,800 m",
     desc: "A classic high-altitude circuit through Monpa villages, glacial lakes, and raw Himalayan landscapes near the Bhutan border.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    image: "https://picsum.photos/seed/trek-kangto/800/600",
     imageHint: "snowy mountain himalaya camp",
     rating: 4.7,
   },
@@ -49,7 +49,7 @@ const treks = [
     difficultyColor: "bg-green-100 text-green-700",
     altitude: "2,200 m",
     desc: "Explore the Talle Wildlife Sanctuary on well-marked forest paths, spotting hornbills, orchids, and rare primates along the way.",
-    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    image: "https://picsum.photos/seed/trek-talle/800/600",
     imageHint: "dense jungle forest trail",
     rating: 4.6,
   },
@@ -61,7 +61,7 @@ const treks = [
     difficultyColor: "bg-yellow-100 text-yellow-700",
     altitude: "1,600 m",
     desc: "A cross-district expedition through tribal heartlands, passing Apatani paddy fields, dense sal forests, and river crossings.",
-    image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    image: "https://picsum.photos/seed/trek-ziro-along/800/600",
     imageHint: "rice terraces valley trail",
     rating: 4.5,
   },
@@ -73,7 +73,7 @@ const treks = [
     difficultyColor: "bg-green-100 text-green-700",
     altitude: "4,170 m",
     desc: "A gentle high-altitude walk across the Sela plateau, visiting glacial lakes and a World War II memorial along the way.",
-    image: "https://images.unsplash.com/photo-1593285942976-70dbd769a590?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    image: "https://picsum.photos/seed/trek-sela/800/600",
     imageHint: "green mountains plateau path",
     rating: 4.4,
   },
@@ -85,7 +85,7 @@ export default function TrekkingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://images.unsplash.com/photo-1551632811-561732d1e306?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600"
+          src="https://picsum.photos/seed/trek-hero/1600/900"
           alt="Trekking in Arunachal Pradesh"
           fill
           className="object-cover"
