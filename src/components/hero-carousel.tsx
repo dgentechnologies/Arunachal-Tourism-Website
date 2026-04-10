@@ -109,29 +109,29 @@ export function HeroCarousel() {
         )}
       >
         {/* Badge */}
-        <span className="inline-block px-5 py-1.5 rounded-full bg-[#fccc38] text-[#6f5600] font-headline text-xs font-bold tracking-[0.25em] mb-8 uppercase">
+        <span className="inline-block px-4 py-1.5 md:px-5 rounded-full bg-[#fccc38] text-[#6f5600] font-headline text-[10px] md:text-xs font-bold tracking-[0.2em] md:tracking-[0.25em] mb-6 md:mb-8 uppercase">
           {slide.badge}
         </span>
 
         {/* Massive headline */}
-        <h1 className="text-[5rem] sm:text-[7rem] md:text-[10rem] lg:text-[12rem] font-headline font-bold text-white tracking-tighter leading-none mb-4 drop-shadow-2xl">
+        <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-headline font-bold text-white tracking-tighter leading-none mb-4 drop-shadow-2xl">
           {slide.headline}
         </h1>
 
         {/* Italic subtitle */}
-        <p className="text-xl md:text-3xl text-white/85 font-light max-w-2xl mx-auto font-body italic mb-12 drop-shadow-lg">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white/85 font-light max-w-2xl mx-auto font-body italic mb-8 md:mb-12 drop-shadow-lg px-4">
           {slide.subline}
         </p>
 
         {/* CTA buttons */}
-        <div className="flex flex-col md:flex-row gap-5 items-center">
-          <Link href={slide.cta1Href}>
-            <button className="px-10 py-4 bg-[#40e0d0] text-[#00201d] rounded-full font-headline font-bold text-base hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-5 items-center px-4 w-full sm:w-auto">
+          <Link href={slide.cta1Href} className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-[#40e0d0] text-[#00201d] rounded-full font-headline font-bold text-sm md:text-base hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
               {slide.cta1}
             </button>
           </Link>
-          <Link href={slide.cta2Href}>
-            <button className="px-10 py-4 border-2 border-white/30 text-white backdrop-blur-md rounded-full font-headline font-bold text-base hover:bg-white/15 hover:scale-105 active:scale-95 transition-all duration-200">
+          <Link href={slide.cta2Href} className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 border-2 border-white/30 text-white backdrop-blur-md rounded-full font-headline font-bold text-sm md:text-base hover:bg-white/15 hover:scale-105 active:scale-95 transition-all duration-200">
               {slide.cta2}
             </button>
           </Link>
@@ -139,7 +139,7 @@ export function HeroCarousel() {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-8 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {heroSlides.map((_, idx) => (
           <button
             key={idx}
@@ -148,7 +148,7 @@ export function HeroCarousel() {
             className={cn(
               "transition-all duration-300 rounded-full",
               idx === current
-                ? "w-8 h-2 bg-white"
+                ? "w-6 md:w-8 h-2 bg-white"
                 : "w-2 h-2 bg-white/40 hover:bg-white/70"
             )}
           />
