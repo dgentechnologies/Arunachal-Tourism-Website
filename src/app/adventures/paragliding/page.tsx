@@ -13,7 +13,7 @@ const launchSites = [
     level: "All Levels",
     levelColor: "bg-green-100 text-green-700",
     desc: "Launch from the ridge above Asia's largest monastery and soar over a valley dotted with prayer flags and ancient villages. The panoramic views of Gorichen and Kangto peaks are unparalleled.",
-    image: "https://picsum.photos/seed/para-tawang/800/600",
+    image: "https://images.unsplash.com/photo-1601024445121-e294d11ac7f7?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding mountain monastery valley",
     rating: 4.9,
   },
@@ -25,7 +25,7 @@ const launchSites = [
     level: "Beginner–Intermediate",
     levelColor: "bg-blue-100 text-blue-700",
     desc: "Float above the UNESCO heritage landscape of Ziro's pine-covered ridges and emerald rice terraces. Long, gentle thermals make this ideal for tandem flights and first-timers.",
-    image: "https://picsum.photos/seed/para-ziro/800/600",
+    image: "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding rice fields valley",
     rating: 4.7,
   },
@@ -37,7 +37,7 @@ const launchSites = [
     level: "Intermediate–Advanced",
     levelColor: "bg-orange-100 text-orange-700",
     desc: "One of the most remote paragliding sites in India. The Mechuka valley funnels powerful thermals off its surrounding peaks, rewarding experienced pilots with epic cross-country flights.",
-    image: "https://picsum.photos/seed/para-mechuka/800/600",
+    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding remote himalaya valley",
     rating: 4.8,
   },
@@ -49,7 +49,7 @@ const launchSites = [
     level: "All Levels",
     levelColor: "bg-green-100 text-green-700",
     desc: "Bomdila's south-facing escarpment catches reliable afternoon thermals year-round. Tandem instructors here are certified and cater to curious first-timers and seasoned cross-country pilots alike.",
-    image: "https://picsum.photos/seed/para-bomdila/800/600",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding escarpment mountain town",
     rating: 4.5,
   },
@@ -61,7 +61,7 @@ const launchSites = [
     level: "Intermediate",
     levelColor: "bg-yellow-100 text-yellow-700",
     desc: "A narrow river valley that creates powerful morning thermals, allowing altitude gains of over 1,500 m. Pilots regularly reach Sela Pass and back on a single flight.",
-    image: "https://picsum.photos/seed/para-dirang/800/600",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding mountain valley thermal",
     rating: 4.6,
   },
@@ -73,7 +73,7 @@ const launchSites = [
     level: "Beginner",
     levelColor: "bg-green-100 text-green-700",
     desc: "The most accessible launch site in Arunachal, just 20 minutes from the capital. Short training flights over forested hills make it the perfect introduction to paragliding.",
-    image: "https://picsum.photos/seed/para-itanagar/800/600",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding forested hills beginner",
     rating: 4.3,
   },
@@ -85,7 +85,7 @@ export default function ParaglidingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://picsum.photos/seed/para-hero/1600/900"
+          src="https://images.unsplash.com/photo-1601024445121-e294d11ac7f7?w=1600&h=900&fit=crop&auto=format&q=80"
           alt="Paragliding in Arunachal Pradesh"
           fill
           className="object-cover"

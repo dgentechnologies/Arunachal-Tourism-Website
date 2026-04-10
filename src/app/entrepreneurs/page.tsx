@@ -16,7 +16,7 @@ export default function EntrepreneursPage() {
       venture: t.entrepreneur1Venture,
       sector: t.entrepreneur1Sector,
       desc: t.entrepreneur1Desc,
-      image: "https://picsum.photos/seed/entre1/400/400",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&auto=format&q=80",
       color: "bg-green-100 text-green-700",
     },
     {
@@ -24,7 +24,7 @@ export default function EntrepreneursPage() {
       venture: t.entrepreneur2Venture,
       sector: t.entrepreneur2Sector,
       desc: t.entrepreneur2Desc,
-      image: "https://picsum.photos/seed/entre2/400/400",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format&q=80",
       color: "bg-blue-100 text-blue-700",
     },
     {
@@ -32,7 +32,7 @@ export default function EntrepreneursPage() {
       venture: t.entrepreneur3Venture,
       sector: t.entrepreneur3Sector,
       desc: t.entrepreneur3Desc,
-      image: "https://picsum.photos/seed/entre3/400/400",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&auto=format&q=80",
       color: "bg-orange-100 text-orange-700",
     },
     {
@@ -40,7 +40,7 @@ export default function EntrepreneursPage() {
       venture: t.entrepreneur4Venture,
       sector: t.entrepreneur4Sector,
       desc: t.entrepreneur4Desc,
-      image: "https://picsum.photos/seed/entre4/400/400",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&auto=format&q=80",
       color: "bg-yellow-100 text-yellow-700",
     },
   ]

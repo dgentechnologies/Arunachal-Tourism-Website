@@ -26,7 +26,7 @@ const heritageSites: HeritageSite[] = [
     location: "Tawang",
     category: "Monastery",
     era: "17th Century",
-    image: "https://picsum.photos/seed/heritage-tawang/800/600",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
     description: "The largest monastery in India and second-largest in the world, perched at 10,000 feet. A magnificent three-story complex housing over 500 monks and priceless Buddhist manuscripts.",
     highlights: ["400+ monks", "Ancient manuscripts", "Mahayana Buddhism", "Founded 1680-81"],
     isFeatured: true,
@@ -37,7 +37,7 @@ const heritageSites: HeritageSite[] = [
     location: "Itanagar",
     category: "Fort",
     era: "14th-15th Century",
-    image: "https://picsum.photos/seed/heritage-itafort/800/600",
+    image: "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&h=600&fit=crop&auto=format&q=80",
     description: "An irregular-shaped hilltop fort built with over 8 million bricks. The 'Fort of Bricks' stands as a testament to medieval architectural ingenuity in the Eastern Himalayas.",
     highlights: ["8 million bricks", "Irregular pentagonal shape", "Medieval architecture", "Strategic hilltop"],
     isFeatured: true,
@@ -48,7 +48,7 @@ const heritageSites: HeritageSite[] = [
     location: "West Siang",
     category: "Archaeological",
     era: "13th Century",
-    image: "https://picsum.photos/seed/heritage-malinithan/800/600",
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Ancient Hindu temple ruins dedicated to Goddess Durga, featuring exquisite stone carvings and sculptures that reveal the region's rich Hindu-Buddhist cultural synthesis.",
     highlights: ["Stone sculptures", "Archaeological wonder", "Hindu temple complex", "Protected monument"],
     isFeatured: false,
@@ -59,7 +59,7 @@ const heritageSites: HeritageSite[] = [
     location: "Bomdila",
     category: "Monastery",
     era: "1965",
-    image: "https://picsum.photos/seed/heritage-bomdila/800/600",
+    image: "https://images.unsplash.com/photo-1531761535209-83e3544ababd?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Replica of Tsona Gontse Monastery in Tibet, housing magnificent Buddha statues and offering panoramic views of the Himalayan landscape.",
     highlights: ["Buddha statues", "Tibetan architecture", "Himalayan views", "Prayer wheels"],
     isFeatured: false,
@@ -70,7 +70,7 @@ const heritageSites: HeritageSite[] = [
     location: "Lohit District",
     category: "Temple",
     era: "Ancient",
-    image: "https://picsum.photos/seed/heritage-parasuram/800/600",
+    image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Sacred pilgrimage site where Lord Parasuram is believed to have washed away his sins. Attracts hundreds of thousands during Makar Sankranti.",
     highlights: ["Pilgrimage site", "Holy river confluence", "Makar Sankranti fair", "Spiritual significance"],
     isFeatured: false,
@@ -81,7 +81,7 @@ const heritageSites: HeritageSite[] = [
     location: "Tawang",
     category: "Monastery",
     era: "15th Century",
-    image: "https://picsum.photos/seed/heritage-urgelling/800/600",
+    image: "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Birthplace of the 6th Dalai Lama, Tsangyang Gyatso. This monastery holds immense spiritual significance and features beautiful traditional Tibetan architecture.",
     highlights: ["Dalai Lama birthplace", "15th century", "Spiritual center", "Traditional architecture"],
     isFeatured: false,
@@ -102,7 +102,7 @@ export default function HeritagePage() {
             <Image
               alt="Ancient monastery in the Himalayas"
               className="w-full h-full object-cover"
-              src="https://picsum.photos/seed/heritage-hero/1600/900"
+              src="https://images.unsplash.com/photo-1548013146-72479768bada?w=1600&h=900&fit=crop&auto=format&q=80"
               fill
               priority
             />
@@ -325,7 +325,7 @@ export default function HeritagePage() {
                 <Image
                   alt="Traditional bamboo house"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://picsum.photos/seed/heritage-bamboo/800/600"
+                  src="https://images.unsplash.com/photo-1571988840298-3b5301d5109b?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>
@@ -333,7 +333,7 @@ export default function HeritagePage() {
                 <Image
                   alt="Traditional crafts"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://picsum.photos/seed/heritage-crafts/800/600"
+                  src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>

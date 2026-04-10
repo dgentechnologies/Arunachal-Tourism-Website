@@ -27,11 +27,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Diesel",
     price: 6500,
     priceUnit: "/day",
-    image: "https://picsum.photos/seed/transport-suv/1200/800",
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://picsum.photos/seed/transport-suv/1200/800",
-      "https://picsum.photos/seed/transport-suv2/1200/800",
-      "https://picsum.photos/seed/transport-suv3/1200/800",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "The most trusted 4x4 SUV for Himalayan mountain roads.",
     longDescription:
@@ -61,11 +61,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Petrol",
     price: 2200,
     priceUnit: "/day",
-    image: "https://picsum.photos/seed/transport-bike/1200/800",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://picsum.photos/seed/transport-bike/1200/800",
-      "https://picsum.photos/seed/transport-bike2/1200/800",
-      "https://picsum.photos/seed/transport-bike3/1200/800",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "Built for mountain exploration — the original adventure tourer.",
     longDescription:
@@ -95,11 +95,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Diesel",
     price: 4200,
     priceUnit: "/day",
-    image: "https://picsum.photos/seed/v3/1200/800",
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://picsum.photos/seed/v3/1200/800",
-      "https://picsum.photos/seed/v3b/1200/800",
-      "https://picsum.photos/seed/v3c/1200/800",
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "The workhorse of Northeast India — rugged, reliable, and spacious.",
     longDescription:
@@ -129,11 +129,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Petrol",
     price: 1800,
     priceUnit: "/day",
-    image: "https://picsum.photos/seed/v4/1200/800",
+    image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://picsum.photos/seed/v4/1200/800",
-      "https://picsum.photos/seed/v4b/1200/800",
-      "https://picsum.photos/seed/v4c/1200/800",
+      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "Timeless vintage cruiser — perfect for scenic valley rides.",
     longDescription:
