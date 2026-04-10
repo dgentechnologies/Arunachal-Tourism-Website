@@ -95,11 +95,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Diesel",
     price: 4200,
     priceUnit: "/day",
-    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
       "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "The workhorse of Northeast India — rugged, reliable, and spacious.",
     longDescription:

@@ -16,7 +16,7 @@ export default function WildlifePage() {
           <Image
             alt="Clouded Leopard in Arunachal Forest"
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=1600&h=900&fit=crop&auto=format&q=80"
+            src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&h=900&fit=crop&auto=format&q=80"
             fill
             priority
           />

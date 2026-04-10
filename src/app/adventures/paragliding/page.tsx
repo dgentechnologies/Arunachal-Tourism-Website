@@ -13,8 +13,7 @@ const launchSites = [
     level: "All Levels",
     levelColor: "bg-green-100 text-green-700",
     desc: "Launch from the ridge above Asia's largest monastery and soar over a valley dotted with prayer flags and ancient villages. The panoramic views of Gorichen and Kangto peaks are unparalleled.",
-    image: "https://images.unsplash.com/photo-1601024445121-e294d11ac7f7?w=800&h=600&fit=crop&auto=format&q=80",
-    imageHint: "paragliding mountain monastery valley",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
     rating: 4.9,
   },
   {
