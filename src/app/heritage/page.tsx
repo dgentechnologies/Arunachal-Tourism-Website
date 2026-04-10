@@ -26,7 +26,7 @@ const heritageSites: HeritageSite[] = [
     location: "Tawang",
     category: "Monastery",
     era: "17th Century",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBOI1MI0tAfzfXDHAhtE5QFytzi0ZvAC4C3yEoaHC2kW0hiGrDbTuazpJRdc13CHbJBTDLze4RcGqH2Ca2mSFXlcTN75nZYCxapPG9eZcH_Fefzg9H-b6z1LkHW04warIJvGc3YMXx6P7sElXdKJEisM1xKFEascaTkGKcdqS25AT_61nb_8Ldoi92PlAYoJz16ZRCIiuNrNSzzEwjZ01OU6AazkuwGS8SjlKLlDirl4P2FZcBm6jqOoAWZJ537cjy_BxsuAIEWYVI",
+    image: "https://picsum.photos/seed/heritage-tawang/800/600",
     description: "The largest monastery in India and second-largest in the world, perched at 10,000 feet. A magnificent three-story complex housing over 500 monks and priceless Buddhist manuscripts.",
     highlights: ["400+ monks", "Ancient manuscripts", "Mahayana Buddhism", "Founded 1680-81"],
     isFeatured: true,
@@ -37,7 +37,7 @@ const heritageSites: HeritageSite[] = [
     location: "Itanagar",
     category: "Fort",
     era: "14th-15th Century",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAr0W8iPi4qDg2cxHepS9IqTX4p6a3C8dTrmTSjNo9s-RpCPQVCYHdVQAKZBiSaj-dsU24x7lVa8ubUeKEchmum7yMFFHqBqIs7SmvQybbe49txVfNRIcUHj31cwzHDwOIY3j37amAXhgsIHrb1F0VMjrPpW8hDbfJy__rGqLfFjo_1EvR9CoQMt4bKXEwxfEqAYmbI6tk8-fmQ3feIatVFDfGjvL-KJku9_IVoKCZxHJXEpqjviuHnep2sStDiC4YY5yU9MrGmdFk",
+    image: "https://picsum.photos/seed/heritage-itafort/800/600",
     description: "An irregular-shaped hilltop fort built with over 8 million bricks. The 'Fort of Bricks' stands as a testament to medieval architectural ingenuity in the Eastern Himalayas.",
     highlights: ["8 million bricks", "Irregular pentagonal shape", "Medieval architecture", "Strategic hilltop"],
     isFeatured: true,
@@ -48,7 +48,7 @@ const heritageSites: HeritageSite[] = [
     location: "West Siang",
     category: "Archaeological",
     era: "13th Century",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD4knN1-PdVuSPbNVjmH5Izs-m8DHd4CWnX0HYe90IUPwM0CB7SEzAzN3cgfJJD9ldp7DROt-2QVNL9-Z19HNTeRv4LCfSWAJEFA9Jn8XZ2QyblKsQ0qY7LsHjCbLr7E6w8fLCxx5274u0Va9i6nZMQJJ3QsFvoHUv_YQ0L5j0yWMNVN8Ri4JqrpOF851zHDBYtt6YNr04ht-5wEvqz1oZ7m7f3itOqYBYO8Sgwp1MAldktg_4EWOFUbU2CdIkcExoNxsVkCl702uE",
+    image: "https://picsum.photos/seed/heritage-malinithan/800/600",
     description: "Ancient Hindu temple ruins dedicated to Goddess Durga, featuring exquisite stone carvings and sculptures that reveal the region's rich Hindu-Buddhist cultural synthesis.",
     highlights: ["Stone sculptures", "Archaeological wonder", "Hindu temple complex", "Protected monument"],
     isFeatured: false,
@@ -59,7 +59,7 @@ const heritageSites: HeritageSite[] = [
     location: "Bomdila",
     category: "Monastery",
     era: "1965",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCFxtMFJjK_L3jlu2IAOn0eHPxpBUoUjTulUUOaR7dQvTgomyBrRM393Gy4oDklyDehyTiwxbMttdT2PIjrndthFGcwadEaLGsOKBgKOeUVk_Z90gPUba-NWYrpP8P7mOO2042GbD2iyVCzsjXKBhL_4Nz27EvWaPuM_-b0yZwlE0ecbfLeQNcPUAyomKYwbZxT5Qv0YctOdPSqi06xlIwHTRiCCcTQXjXxGfSC4WIegJGxah3q9taTkYC02AUZW9dA8UA1pYhNwyM",
+    image: "https://picsum.photos/seed/heritage-bomdila/800/600",
     description: "Replica of Tsona Gontse Monastery in Tibet, housing magnificent Buddha statues and offering panoramic views of the Himalayan landscape.",
     highlights: ["Buddha statues", "Tibetan architecture", "Himalayan views", "Prayer wheels"],
     isFeatured: false,
@@ -70,7 +70,7 @@ const heritageSites: HeritageSite[] = [
     location: "Lohit District",
     category: "Temple",
     era: "Ancient",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAzRCtE-D6aTpINkXbbijIN6kWfOAizjuGx5Tt9P9j953vGAOUFNyXgYLj5gCrVceaMmMsafSg7m7uhZ-bQzoWbAgW6eN4Xvke6ssOm31KDKNjRwaakqMiDbioPaCRl5_I0rl6JBZfx1_ogFfNigdQjV-Qur-TSPJOIg0FTxZaDx4wkiNTnyJyt7qYfFoaLeMTwrtj-M-SVw7ljGeZvl8XZhfi4g8eFawBv3XOiPKPkTGomp7qRzclcTQXMNjsCwS31XwcCY8AbQ8",
+    image: "https://picsum.photos/seed/heritage-parasuram/800/600",
     description: "Sacred pilgrimage site where Lord Parasuram is believed to have washed away his sins. Attracts hundreds of thousands during Makar Sankranti.",
     highlights: ["Pilgrimage site", "Holy river confluence", "Makar Sankranti fair", "Spiritual significance"],
     isFeatured: false,
@@ -81,7 +81,7 @@ const heritageSites: HeritageSite[] = [
     location: "Tawang",
     category: "Monastery",
     era: "15th Century",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDmvtnNWIjNqJ4egYlC-L9M8HsXvSFBooQ46Q7KQ35mtR1qAy_EZDCZsV33iqLstjXV43pO3-nSd_gT2FK4_yj3DJSLdFJ46VUc-CR3XTeXQQ2ByTMD4O-kdkvtpHmn5hpBxqKTJMZe4dR5ZHkMbLYtqJFqQfW6Xy__WjZK2m4rNzWVoSM73YV9vh1d0yB3HSg-gQ_Yw4nBY3r41eEcDOXLlZyUPCy2ToB_7VnuwXtkxate6oEOe0M7-ljPvSJCYW4-gBo2ECRqQlA",
+    image: "https://picsum.photos/seed/heritage-urgelling/800/600",
     description: "Birthplace of the 6th Dalai Lama, Tsangyang Gyatso. This monastery holds immense spiritual significance and features beautiful traditional Tibetan architecture.",
     highlights: ["Dalai Lama birthplace", "15th century", "Spiritual center", "Traditional architecture"],
     isFeatured: false,
@@ -102,7 +102,7 @@ export default function HeritagePage() {
             <Image
               alt="Ancient monastery in the Himalayas"
               className="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOI1MI0tAfzfXDHAhtE5QFytzi0ZvAC4C3yEoaHC2kW0hiGrDbTuazpJRdc13CHbJBTDLze4RcGqH2Ca2mSFXlcTN75nZYCxapPG9eZcH_Fefzg9H-b6z1LkHW04warIJvGc3YMXx6P7sElXdKJEisM1xKFEascaTkGKcdqS25AT_61nb_8Ldoi92PlAYoJz16ZRCIiuNrNSzzEwjZ01OU6AazkuwGS8SjlKLlDirl4P2FZcBm6jqOoAWZJ537cjy_BxsuAIEWYVI"
+              src="https://picsum.photos/seed/heritage-hero/1600/900"
               fill
               priority
             />
@@ -325,7 +325,7 @@ export default function HeritagePage() {
                 <Image
                   alt="Traditional bamboo house"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdjZaRPUkHzo9MID6lz3vj9c2snqe0YkLX7gtM0WX4EvQmlaAlTQdC9RBobxBWbmcWW5Hb-lB4AD6j3p5wecTIjsEuxjsRUeEqMGJpFgURWouxX8PIKXoOJtdGgjK9K4FTT7pp3LoNw_bH7OElajDwRk2mZU9s7YYU94Zxz11kxleYSHdfpzrcNPAJ8jm0IEMb9gBS72qtYyyW8xJ--mGDKAX2MWOWJIATmocqul7IlESoqjJ2bPFxRxLYecw7MxFqnj03mAouxFE"
+                  src="https://picsum.photos/seed/heritage-bamboo/800/600"
                   fill
                 />
               </div>
@@ -333,7 +333,7 @@ export default function HeritagePage() {
                 <Image
                   alt="Traditional crafts"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLK2hU8S8EdKS6FFp9LW2RIy9HeusYIW3ZyrYL6_6CEenGqon9bJtWF3enDhicx2CfkWkJHbi_DLYOHXux2s9HhL7EyjDrb7FBbH42gS_QqbWU0yIBDCeweds070C2jtt63kdpGwf1TKE8-TG8NIWOlK2wiqfXqrlIP3J682SIwMcO4uU98psrcSVdMmhEA-lHykBH0lWMaC_Ejg41f0MtBcGbaOrROxvBytXZ3ZSEJFpu2DhXnv1KXaZlYnQ4xcPtGFfvEy_A2M"
+                  src="https://picsum.photos/seed/heritage-crafts/800/600"
                   fill
                 />
               </div>
