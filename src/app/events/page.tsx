@@ -143,24 +143,24 @@ export default function EventsPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
           </div>
-          <div className="relative z-10 max-w-screen-2xl mx-auto px-8 md:px-12 w-full">
-            <ScrollReveal variant="up" className="max-w-3xl space-y-6">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm tracking-widest uppercase animate-pulse">
+          <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 w-full">
+            <ScrollReveal variant="up" className="max-w-3xl space-y-4 md:space-y-6">
+              <span className="inline-block px-3 md:px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-medium text-xs md:text-sm tracking-widest uppercase animate-pulse">
                 Where Traditions Come Alive
               </span>
-              <h1 className="font-headline text-5xl md:text-8xl text-white font-bold leading-[1.1] tracking-tight">
+              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold leading-[1.1] tracking-tight">
                 Festivals & <br />
                 <span className="text-primary-container animate-pulse">Cultural Events</span>
               </h1>
-              <p className="text-lg md:text-xl text-stone-200 max-w-xl font-light leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl text-stone-200 max-w-xl font-light leading-relaxed">
                 Immerse yourself in the vibrant tapestry of Arunachal's living heritage. From sacred Buddhist ceremonies to electrifying music festivals, experience celebrations that have echoed through the valleys for generations.
               </p>
-              <div className="pt-8 flex flex-col sm:flex-row gap-4">
-                <button className="bg-primary text-on-primary px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-105 transition-all duration-300 active:scale-95">
+              <div className="pt-6 md:pt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
+                <button className="bg-primary text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-105 transition-all duration-300 active:scale-95">
                   Explore All Events
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 hover:scale-105 transition-all duration-300 active:scale-95">
+                <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-white/20 hover:scale-105 transition-all duration-300 active:scale-95">
                   Festival Calendar
                 </button>
               </div>
@@ -170,63 +170,63 @@ export default function EventsPage() {
       </div>
 
       {/* Featured Events: Bento Grid */}
-      <section className="py-24 px-8 md:px-12 max-w-screen-2xl mx-auto">
+      <section className="py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 max-w-screen-2xl mx-auto">
         <ScrollReveal variant="up">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
             <div className="max-w-2xl">
-              <h2 className="font-headline text-4xl md:text-6xl font-bold mb-6 text-on-surface">
+              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-on-surface">
                 Don't Miss These
               </h2>
-              <p className="text-on-surface-variant text-lg">
+              <p className="text-on-surface-variant text-base md:text-lg">
                 Experience the most spectacular celebrations of Arunachal Pradesh, where ancient traditions meet contemporary artistry in breathtaking settings.
               </p>
             </div>
-            <div className="flex gap-4">
-              <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
-                <ChevronLeft className="h-5 w-5" />
+            <div className="flex gap-4 self-start md:self-auto">
+              <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+                <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
               </button>
-              <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
-                <ChevronRight className="h-5 w-5" />
+              <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+                <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
               </button>
             </div>
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 h-auto md:h-[800px]">
           {/* Losar Festival - Large Card */}
           {featuredEvents[0] && (
-            <ScrollReveal variant="left" className="md:col-span-8 group relative overflow-hidden rounded-xl md:rounded-[3rem] bg-surface-container-low shadow-sm hover:shadow-2xl transition-all duration-500">
+            <ScrollReveal variant="left" className="md:col-span-8 group relative overflow-hidden rounded-2xl md:rounded-[3rem] bg-surface-container-low shadow-sm hover:shadow-2xl transition-all duration-500 min-h-[400px] md:min-h-0">
               <Image
                 alt={featuredEvents[0].title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
                 src={featuredEvents[0].image}
                 fill
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-12 flex flex-col justify-end transition-all duration-500 group-hover:from-black/95">
-                <div className="flex gap-2 mb-4">
-                  <Badge className="bg-primary text-on-primary animate-pulse">Featured</Badge>
-                  <Badge className="bg-secondary-container text-on-secondary-container">{featuredEvents[0].category}</Badge>
-                  <Badge className="bg-white/20 backdrop-blur-sm text-white border border-white/30">{featuredEvents[0].status}</Badge>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-8 md:p-10 lg:p-12 flex flex-col justify-end transition-all duration-500 group-hover:from-black/95">
+                <div className="flex flex-wrap gap-2 mb-3 md:mb-4">
+                  <Badge className="bg-primary text-on-primary animate-pulse text-xs">Featured</Badge>
+                  <Badge className="bg-secondary-container text-on-secondary-container text-xs">{featuredEvents[0].category}</Badge>
+                  <Badge className="bg-white/20 backdrop-blur-sm text-white border border-white/30 text-xs">{featuredEvents[0].status}</Badge>
                 </div>
-                <h3 className="text-white font-headline text-4xl md:text-5xl font-bold mb-3 transform transition-transform duration-300 group-hover:translate-y-[-4px]">
+                <h3 className="text-white font-headline text-3xl md:text-4xl lg:text-5xl font-bold mb-3 transform transition-transform duration-300 group-hover:translate-y-[-4px]">
                   {featuredEvents[0].title}
                 </h3>
-                <div className="flex gap-6 mb-4 text-stone-300">
+                <div className="flex flex-wrap gap-4 md:gap-6 mb-3 md:mb-4 text-stone-300">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span className="text-sm font-medium">{featuredEvents[0].dateRange}</span>
+                    <Calendar className="h-3 w-3 md:h-4 md:w-4" />
+                    <span className="text-xs md:text-sm font-medium">{featuredEvents[0].dateRange}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm font-medium">{featuredEvents[0].location}</span>
+                    <MapPin className="h-3 w-3 md:h-4 md:w-4" />
+                    <span className="text-xs md:text-sm font-medium">{featuredEvents[0].location}</span>
                   </div>
                 </div>
-                <p className="text-stone-300 max-w-2xl mb-6 transform transition-all duration-300 group-hover:text-white">
+                <p className="text-stone-300 max-w-2xl mb-4 md:mb-6 text-sm md:text-base transform transition-all duration-300 group-hover:text-white line-clamp-2 md:line-clamp-none">
                   {featuredEvents[0].description}
                 </p>
-                <button className="flex items-center gap-2 text-primary-container font-bold hover:gap-4 transition-all group/btn w-fit">
+                <button className="flex items-center gap-2 text-primary-container font-bold hover:gap-4 transition-all group/btn w-fit text-sm md:text-base">
                   Learn More
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
                 </button>
               </div>
             </ScrollReveal>
