@@ -37,7 +37,7 @@ const heritageSites: HeritageSite[] = [
     location: "Itanagar",
     category: "Fort",
     era: "14th-15th Century",
-    image: "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
     description: "An irregular-shaped hilltop fort built with over 8 million bricks. The 'Fort of Bricks' stands as a testament to medieval architectural ingenuity in the Eastern Himalayas.",
     highlights: ["8 million bricks", "Irregular pentagonal shape", "Medieval architecture", "Strategic hilltop"],
     isFeatured: true,
@@ -48,7 +48,7 @@ const heritageSites: HeritageSite[] = [
     location: "West Siang",
     category: "Archaeological",
     era: "13th Century",
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Ancient Hindu temple ruins dedicated to Goddess Durga, featuring exquisite stone carvings and sculptures that reveal the region's rich Hindu-Buddhist cultural synthesis.",
     highlights: ["Stone sculptures", "Archaeological wonder", "Hindu temple complex", "Protected monument"],
     isFeatured: false,
@@ -59,7 +59,7 @@ const heritageSites: HeritageSite[] = [
     location: "Bomdila",
     category: "Monastery",
     era: "1965",
-    image: "https://images.unsplash.com/photo-1531761535209-83e3544ababd?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Replica of Tsona Gontse Monastery in Tibet, housing magnificent Buddha statues and offering panoramic views of the Himalayan landscape.",
     highlights: ["Buddha statues", "Tibetan architecture", "Himalayan views", "Prayer wheels"],
     isFeatured: false,
@@ -325,7 +325,7 @@ export default function HeritagePage() {
                 <Image
                   alt="Traditional bamboo house"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://images.unsplash.com/photo-1571988840298-3b5301d5109b?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>
@@ -333,7 +333,7 @@ export default function HeritagePage() {
                 <Image
                   alt="Traditional crafts"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>

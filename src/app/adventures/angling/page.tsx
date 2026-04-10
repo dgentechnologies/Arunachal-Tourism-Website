@@ -13,7 +13,7 @@ const anglingSpots = [
     targetColor: "bg-amber-100 text-amber-700",
     permit: "Required",
     desc: "The Siang's wide, boulder-strewn runs below Pasighat are legendary for massive Golden Mahseer. The catch-and-release ethos keeps the fish population thriving.",
-    image: "https://images.unsplash.com/photo-1445308394109-4ec2920981b1?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "river fishing mountain",
     rating: 4.9,
   },
@@ -85,7 +85,7 @@ export default function AnglingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://images.unsplash.com/photo-1559825481-12a05cc00344?w=1600&h=900&fit=crop&auto=format&q=80"
+          src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&h=900&fit=crop&auto=format&q=80"
           alt="Angling in Arunachal Pradesh"
           fill
           className="object-cover"

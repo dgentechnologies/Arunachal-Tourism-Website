@@ -59,9 +59,9 @@ export const hotelsData: Hotel[] = [
     checkOut: "11:00 AM",
     cancellation: "Free cancellation up to 48 hours before check-in",
     rooms: [
-      { type: "Deluxe Mountain Suite", capacity: "2 Adults", price: 4500, image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=600&fit=crop&auto=format&q=80" },
-      { type: "Premium Valley Suite", capacity: "2 Adults + 1 Child", price: 6200, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop&auto=format&q=80" },
-      { type: "Monastery View Room", capacity: "2 Adults", price: 3800, image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Deluxe Mountain Suite", capacity: "2 Adults", price: 4500, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Premium Valley Suite", capacity: "2 Adults + 1 Child", price: 6200, image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Monastery View Room", capacity: "2 Adults", price: 3800, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80" },
     ],
   },
   {
@@ -76,7 +76,7 @@ export const hotelsData: Hotel[] = [
     image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
       "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
       "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
       "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
@@ -101,8 +101,8 @@ export const hotelsData: Hotel[] = [
     checkOut: "11:00 AM",
     cancellation: "Free cancellation up to 72 hours before check-in",
     rooms: [
-      { type: "Bamboo Cottage", capacity: "2 Adults", price: 2800, image: "https://images.unsplash.com/photo-1587474260584-136574297316?w=800&h=600&fit=crop&auto=format&q=80" },
-      { type: "Family Forest Cottage", capacity: "2 Adults + 2 Children", price: 4200, image: "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Bamboo Cottage", capacity: "2 Adults", price: 2800, image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Family Forest Cottage", capacity: "2 Adults + 2 Children", price: 4200, image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop&auto=format&q=80" },
     ],
   },
   {
@@ -142,8 +142,8 @@ export const hotelsData: Hotel[] = [
     checkOut: "10:00 AM",
     cancellation: "Free cancellation up to 5 days before check-in",
     rooms: [
-      { type: "River View Cottage", capacity: "2 Adults", price: 3500, image: "https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=800&h=600&fit=crop&auto=format&q=80" },
-      { type: "Jungle View Suite", capacity: "2 Adults + 1 Child", price: 4800, image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "River View Cottage", capacity: "2 Adults", price: 3500, image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Jungle View Suite", capacity: "2 Adults + 1 Child", price: 4800, image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop&auto=format&q=80" },
     ],
   },
   {
@@ -155,12 +155,12 @@ export const hotelsData: Hotel[] = [
     rating: 4.7,
     reviews: 210,
     tags: ["Luxury", "Heritage"],
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1551882547-ff40c63fe2e2?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1576675784201-0e142b423952?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "The capital's premier heritage hotel blending royal luxury with indigenous art.",
     longDescription:
@@ -183,9 +183,9 @@ export const hotelsData: Hotel[] = [
     checkOut: "12:00 PM",
     cancellation: "Free cancellation up to 24 hours before check-in",
     rooms: [
-      { type: "Heritage Deluxe Room", capacity: "2 Adults", price: 5200, image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&h=600&fit=crop&auto=format&q=80" },
-      { type: "Tribal Art Suite", capacity: "2 Adults + 1 Child", price: 7500, image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&h=600&fit=crop&auto=format&q=80" },
-      { type: "Presidential Suite", capacity: "4 Adults", price: 12000, image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Heritage Deluxe Room", capacity: "2 Adults", price: 5200, image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Tribal Art Suite", capacity: "2 Adults + 1 Child", price: 7500, image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Presidential Suite", capacity: "4 Adults", price: 12000, image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=600&fit=crop&auto=format&q=80" },
     ],
   },
 ]

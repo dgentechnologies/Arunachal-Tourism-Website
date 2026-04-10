@@ -27,13 +27,13 @@
     {
       "id": "dest-tawang",
       "description": "Tawang town and monastery panorama",
-      "imageUrl": "https://images.unsplash.com/photo-1531761535209-83e3544ababd?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "tawang monastery"
     },
     {
       "id": "dest-ziro",
       "description": "Ziro Valley rice fields and Apatani villages",
-      "imageUrl": "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "rice terraces valley"
     },
     {
@@ -69,13 +69,13 @@
     {
       "id": "transport-suv",
       "description": "SUV for mountain travel",
-      "imageUrl": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "mountain suv"
     },
     {
       "id": "transport-bike",
       "description": "Royal Enfield for Himalayan tours",
-      "imageUrl": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "adventure bike"
     },
     {

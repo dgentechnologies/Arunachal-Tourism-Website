@@ -43,7 +43,7 @@ const events: Event[] = [
     location: "Ziro Valley",
     category: "Art & Music",
     status: "ongoing",
-    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
     description: "India's most scenic outdoor music festival set amidst pine-covered mountains and rice fields. An unforgettable fusion of indie music and natural beauty.",
     highlights: ["40+ indie bands", "Camping under stars", "Apatani cultural performances", "Eco-friendly festival"],
     isFeatured: true,
@@ -56,7 +56,7 @@ const events: Event[] = [
     location: "Pasighat",
     category: "Festival",
     status: "recent",
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
     description: "The most important festival of the Adi tribe, celebrating harvest season with traditional rituals, folk songs, and community feasts.",
     highlights: ["Ponung dance performances", "Traditional Apong (rice beer)", "Agricultural rituals", "Community bonding"],
     isFeatured: false,
@@ -69,7 +69,7 @@ const events: Event[] = [
     location: "Tawang Monastery",
     category: "Cultural",
     status: "recent",
-    image: "https://images.unsplash.com/photo-1531761535209-83e3544ababd?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=800&h=600&fit=crop&auto=format&q=80",
     description: "Ancient monastic festival featuring masked dances that drive away evil spirits and bring prosperity to the community for the coming year.",
     highlights: ["Sacred mask dances", "Ritualistic ceremonies", "Monastery blessings", "Cultural heritage"],
   },
@@ -81,7 +81,7 @@ const events: Event[] = [
     location: "Itanagar",
     category: "Festival",
     status: "upcoming",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     description: "The grand festival of the Nyishi tribe celebrating prosperity, well-being, and harmony with nature through traditional rituals and community gatherings.",
     highlights: ["Traditional Nyishi attire", "Folk music & dance", "Ritualistic prayers", "Community feast"],
   },
@@ -93,7 +93,7 @@ const events: Event[] = [
     location: "Along, West Siang",
     category: "Festival",
     status: "upcoming",
-    image: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     description: "A vibrant harvest festival of the Galo tribe, invoking the goddess Mopin Ane for prosperity, well-being, and protection from natural calamities.",
     highlights: ["Popir dance", "Traditional brewing", "Folk performances", "Unity celebrations"],
   },
@@ -105,7 +105,7 @@ const events: Event[] = [
     location: "Ziro Valley",
     category: "Festival",
     status: "upcoming",
-    image: "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     description: "The agricultural festival of the Apatani tribe, celebrated for abundant harvest, peace, and prosperity with traditional dances and community bonding.",
     highlights: ["Daminda dance", "Agricultural prayers", "Unity celebrations", "Cultural showcase"],
   },
@@ -137,7 +137,7 @@ export default function EventsPage() {
             <Image
               alt="Vibrant festival celebration in Arunachal Pradesh"
               className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&h=900&fit=crop&auto=format&q=80"
+              src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&h=900&fit=crop&auto=format&q=80"
               fill
               priority
             />
@@ -480,7 +480,7 @@ export default function EventsPage() {
                 <Image
                   alt="Traditional tribal dance"
                   className="object-cover transition-transform duration-700 group-hover/img:scale-110"
-                  src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>
@@ -488,7 +488,7 @@ export default function EventsPage() {
                 <Image
                   alt="Festival celebration"
                   className="object-cover transition-transform duration-700 group-hover/img:scale-110"
-                  src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>

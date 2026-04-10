@@ -61,7 +61,7 @@ const treks = [
     difficultyColor: "bg-yellow-100 text-yellow-700",
     altitude: "1,600 m",
     desc: "A cross-district expedition through tribal heartlands, passing Apatani paddy fields, dense sal forests, and river crossings.",
-    image: "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "rice terraces valley trail",
     rating: 4.5,
   },

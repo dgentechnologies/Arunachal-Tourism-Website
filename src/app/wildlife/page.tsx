@@ -77,7 +77,7 @@ export default function WildlifePage() {
             <Image
               alt="Great Hornbill"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?w=800&h=600&fit=crop&auto=format&q=80"
+              src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80"
               fill
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 md:p-10 lg:p-12 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
@@ -95,7 +95,7 @@ export default function WildlifePage() {
               <Image
                 alt="Hoolock Gibbon"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-                src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=800&h=600&fit=crop&auto=format&q=80"
+                src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80"
                 fill
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
@@ -111,7 +111,7 @@ export default function WildlifePage() {
               <Image
                 alt="Red Panda"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-                src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=800&h=600&fit=crop&auto=format&q=80"
+                src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80"
                 fill
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
@@ -274,7 +274,7 @@ export default function WildlifePage() {
                 <Image
                   alt="Arunachal Orchid"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://images.unsplash.com/photo-1530023306756-8a9b41ac1484?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>
@@ -282,7 +282,7 @@ export default function WildlifePage() {
                 <Image
                   alt="Rhododendron"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80"
                   fill
                 />
               </div>

@@ -27,11 +27,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Diesel",
     price: 6500,
     priceUnit: "/day",
-    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "The most trusted 4x4 SUV for Himalayan mountain roads.",
     longDescription:
@@ -61,11 +61,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Petrol",
     price: 2200,
     priceUnit: "/day",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "Built for mountain exploration — the original adventure tourer.",
     longDescription:
@@ -95,11 +95,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Diesel",
     price: 4200,
     priceUnit: "/day",
-    image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "The workhorse of Northeast India — rugged, reliable, and spacious.",
     longDescription:
@@ -129,11 +129,11 @@ export const vehiclesData: Vehicle[] = [
     fuel: "Petrol",
     price: 1800,
     priceUnit: "/day",
-    image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&auto=format&q=80",
-      "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "Timeless vintage cruiser — perfect for scenic valley rides.",
     longDescription:

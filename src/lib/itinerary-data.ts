@@ -171,7 +171,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Easy',
     highlights: ['Ziro Valley (UNESCO Tentative List)', 'Apatani tribe villages', 'Dree Festival', 'Pasighat riverside', 'Adi tribal homestay'],
     bestTime: 'July (Dree Festival) / October – March',
-    coverImage: 'https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=800&h=500&fit=crop&auto=format&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=500&fit=crop&auto=format&q=80',
     tags: ['Culture', 'Tribal', 'Heritage', 'Festivals'],
     summary: '6-day deep dive into Arunachal\'s tribal heartland. Live with the Apatani tribe in Ziro Valley\'s bamboo villages, witness ancient fishing rituals at Pasighat, and participate in harvest festivals.',
     days: [

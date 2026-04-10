@@ -83,7 +83,7 @@ export const locations: Location[] = [
     svgX: 425,  // lon 93.8290°E (central-west region)
     svgY: 320,  // lat 27.5360°N
     bestTime: "Feb – Apr, Aug – Oct",
-    image: "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=800&h=450&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "A UNESCO World Heritage tentative site — lush pine-dotted paddy fields, the iconic Apatani tribe, and the celebrated Ziro Music Festival.",
     placesToVisit: [
       "Talley Valley Wildlife Sanctuary",
@@ -207,7 +207,7 @@ export const locations: Location[] = [
     svgX: 260,  // lon 92.4159°E
     svgY: 350,  // lat 27.2645°N
     bestTime: "Apr – Oct",
-    image: "https://images.unsplash.com/photo-1531761535209-83e3544ababd?w=800&h=450&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "Scenic hill town framed by apple orchards and rhododendrons — gateway to Tawang, famed for serene monasteries and the world-class Eaglenest birding corridor.",
     placesToVisit: [
       "Bomdila Monastery (Gentse Gaden Rabgyel Ling)",
@@ -299,7 +299,7 @@ export const locations: Location[] = [
     svgX: 400,  // lon 93.6053°E (capital, south-central)
     svgY: 375,  // lat 27.0844°N
     bestTime: "Oct – Apr",
-    image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=450&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "The state capital balances ancient heritage and modern governance — explore the historic Ita Fort, serene Ganga Lake, and the vibrant Nyishi cultural heartland.",
     placesToVisit: [
       "Ita Fort – 14th century historical brick fort",

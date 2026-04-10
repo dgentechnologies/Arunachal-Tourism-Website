@@ -24,7 +24,7 @@ const launchSites = [
     level: "Beginner–Intermediate",
     levelColor: "bg-blue-100 text-blue-700",
     desc: "Float above the UNESCO heritage landscape of Ziro's pine-covered ridges and emerald rice terraces. Long, gentle thermals make this ideal for tandem flights and first-timers.",
-    image: "https://images.unsplash.com/photo-1602507458095-a2c5de3a7ff5?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "paragliding rice fields valley",
     rating: 4.7,
   },
@@ -84,7 +84,7 @@ export default function ParaglidingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://images.unsplash.com/photo-1601024445121-e294d11ac7f7?w=1600&h=900&fit=crop&auto=format&q=80"
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&h=900&fit=crop&auto=format&q=80"
           alt="Paragliding in Arunachal Pradesh"
           fill
           className="object-cover"
