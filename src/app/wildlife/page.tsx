@@ -22,24 +22,24 @@ export default function WildlifePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 md:px-12 w-full">
-          <ScrollReveal variant="up" className="max-w-3xl space-y-6">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm tracking-widest uppercase animate-pulse">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 w-full">
+          <ScrollReveal variant="up" className="max-w-3xl space-y-4 md:space-y-6">
+            <span className="inline-block px-3 md:px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-medium text-xs md:text-sm tracking-widest uppercase animate-pulse">
               The Wild Pulse of the Eastern Himalayas
             </span>
-            <h1 className="font-headline text-5xl md:text-8xl text-white font-bold leading-[1.1] tracking-tight">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold leading-[1.1] tracking-tight">
               Where the <br />
               <span className="text-primary-container animate-pulse">Clouds Meet</span> the Earth.
             </h1>
-            <p className="text-lg md:text-xl text-stone-200 max-w-xl font-light leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-stone-200 max-w-xl font-light leading-relaxed">
               Venture into the pristine sanctuaries of Arunachal Pradesh, where the rare Red Panda thrives and the elusive Snow Leopard patrols the peaks. An ecosystem untouched by time.
             </p>
-            <div className="pt-8 flex flex-col sm:flex-row gap-4">
-              <button className="bg-primary text-on-primary px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-105 transition-all duration-300 active:scale-95">
+            <div className="pt-6 md:pt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
+              <button className="bg-primary text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-105 transition-all duration-300 active:scale-95">
                 Explore the Wild Trails
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 hover:scale-105 transition-all duration-300 active:scale-95">
+              <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-white/20 hover:scale-105 transition-all duration-300 active:scale-95">
                 Watch the Documentary
               </button>
             </div>
@@ -49,40 +49,40 @@ export default function WildlifePage() {
       </div>
 
       {/* Featured Species: Bento Grid */}
-      <section className="py-24 px-8 md:px-12 max-w-screen-2xl mx-auto">
+      <section className="py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 max-w-screen-2xl mx-auto">
         <ScrollReveal variant="up">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
             <div className="max-w-2xl">
-              <h2 className="font-headline text-4xl md:text-6xl font-bold mb-6 text-on-surface">
+              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-on-surface">
                 Encounter the Unseen
               </h2>
-              <p className="text-on-surface-variant text-lg">
+              <p className="text-on-surface-variant text-base md:text-lg">
                 From the rhythmic call of the Hoolock Gibbon to the silent glide of the Snow Leopard, discover species that exist nowhere else on Earth.
               </p>
             </div>
-            <div className="flex gap-4">
-              <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
-                <ChevronLeft className="h-5 w-5" />
+            <div className="flex gap-4 self-start md:self-auto">
+              <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+                <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
               </button>
-              <button className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
-                <ChevronRight className="h-5 w-5" />
+              <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-container/20 transition-all">
+                <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
               </button>
             </div>
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 h-auto md:h-[800px]">
           {/* Great Hornbill - Large Card */}
-          <ScrollReveal variant="left" className="md:col-span-8 group relative overflow-hidden rounded-xl md:rounded-[3rem] bg-surface-container-low shadow-sm hover:shadow-2xl transition-all duration-500">
+          <ScrollReveal variant="left" className="md:col-span-8 group relative overflow-hidden rounded-2xl md:rounded-[3rem] bg-surface-container-low shadow-sm hover:shadow-2xl transition-all duration-500 min-h-[400px] md:min-h-0">
             <Image
               alt="Great Hornbill"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr0W8iPi4qDg2cxHepS9IqTX4p6a3C8dTrmTSjNo9s-RpCPQVCYHdVQAKZBiSaj-dsU24x7lVa8ubUeKEchmum7yMFFHqBqIs7SmvQybbe49txVfNRIcUHj31cwzHDwOIY3j37amAXhgsIHrb1F0VMjrPpW8hDbfJy__rGqLfFjo_1EvR9CoQMt4bKXEwxfEqAYmbI6tk8-fmQ3feIatVFDfGjvL-KJku9_IVoKCZxHJXEpqjviuHnep2sStDiC4YY5yU9MrGmdFk"
               fill
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-12 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
-              <h3 className="text-white font-headline text-3xl font-bold mb-2 transform transition-transform duration-300 group-hover:translate-y-[-4px]">Great Hornbill</h3>
-              <p className="text-stone-300 max-w-md transform transition-all duration-300 group-hover:text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 md:p-10 lg:p-12 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
+              <h3 className="text-white font-headline text-2xl md:text-3xl font-bold mb-2 transform transition-transform duration-300 group-hover:translate-y-[-4px]">Great Hornbill</h3>
+              <p className="text-stone-300 text-sm md:text-base max-w-md transform transition-all duration-300 group-hover:text-white">
                 The state bird and a cultural icon, known for its majestic presence and resonant calls echoing through the canopy.
               </p>
             </div>
