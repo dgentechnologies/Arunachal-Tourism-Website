@@ -83,15 +83,15 @@ export default function PermitPage() {
         title: "AI Review Complete",
         description: res.isComplete ? "Your plan looks great!" : "Please review the missing items.",
       })
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("AI Review Error:", err)
       
-      const errorMessage = err.message || "";
+      const errorMessage = (err as { message?: string })?.message || "";
       const isQuotaError = errorMessage.includes("429") || 
                           errorMessage.includes("RESOURCE_EXHAUSTED") || 
                           errorMessage.includes("quota") ||
-                          err.status === 429 ||
-                          err.code === 429;
+                          (err as { status?: number })?.status === 429 ||
+                          (err as { code?: number })?.code === 429;
       
       toast({
         variant: "destructive",

@@ -146,7 +146,7 @@ export default function RaftingPage() {
               bottom: `-${Math.random() * 20}%`,
             }}
             animate={{
-              y: [0, -window.innerHeight - 100],
+              y: [0, -1000],
               x: [0, Math.sin(i) * 50, 0],
               scale: [0.8, 1.2, 0.8],
               opacity: [0, 0.7, 0],

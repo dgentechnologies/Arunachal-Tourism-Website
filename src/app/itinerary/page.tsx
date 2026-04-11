@@ -86,8 +86,8 @@ export default function ItineraryPage() {
         chatHistory: chatMessages.slice(-8),
       })
       setChatMessages([...newMessages, { role: 'assistant', content: res.reply }])
-    } catch (error: any) {
-      const isQuota = error?.status === 429 || error?.code === 429 || (error?.message || '').includes('quota')
+    } catch (error: unknown) {
+      const isQuota = (error as { status?: number; code?: number; message?: string })?.status === 429 || (error as { status?: number; code?: number; message?: string })?.code === 429 || ((error as { message?: string })?.message || '').includes('quota')
       toast({
         variant: "destructive",
         title: isQuota ? "API Quota Exceeded" : "Chat Error",

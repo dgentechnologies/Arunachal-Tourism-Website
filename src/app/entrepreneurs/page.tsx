@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 import { ArrowRight, Briefcase } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 import { ScrollReveal } from "@/components/scroll-reveal"
@@ -126,9 +127,9 @@ export default function EntrepreneursPage() {
             Every time you book a local homestay, hire a tribal guide, or buy handcrafted products, you directly support the economy of Arunachal Pradesh.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="/hotels" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
+            <Link href="/hotels" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
               {t.bookNow}
-            </a>
+            </Link>
             <a href="/guides" className="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-xl font-bold transition-all">
               {t.viewTravelGuides}
             </a>

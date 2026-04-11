@@ -100,7 +100,7 @@ export default function ParaglidingPage() {
             Paragliding in Arunachal
           </h1>
           <p className="text-white/80 max-w-xl text-sm md:text-base">
-            Soar on thermal currents above ancient monasteries, terraced valleys, and snow-draped Himalayan ridges — the Eastern Himalayas from a bird's eye view.
+            Soar on thermal currents above ancient monasteries, terraced valleys, and snow-draped Himalayan ridges — the Eastern Himalayas from a bird&apos;s eye view.
           </p>
         </div>
       </ScrollReveal>

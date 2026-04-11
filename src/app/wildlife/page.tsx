@@ -101,7 +101,7 @@ export default function WildlifePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end transition-all duration-500 group-hover:from-black/90">
                 <h3 className="text-white font-headline text-2xl font-bold mb-1 transform transition-transform duration-300 group-hover:translate-y-[-4px]">Hoolock Gibbon</h3>
                 <p className="text-stone-300 text-sm transform transition-all duration-300 group-hover:text-white">
-                  India's only ape, performing acrobatic feats in the evergreen forests of Namdapha.
+                  India&apos;s only ape, performing acrobatic feats in the evergreen forests of Namdapha.
                 </p>
               </div>
             </ScrollReveal>
@@ -202,7 +202,7 @@ export default function WildlifePage() {
                   </span>
                 </div>
                 <p className="text-on-surface-variant mb-6 flex-grow">
-                  Meaning "Red Poison," this park is a dramatic landscape of steep slopes and high rainfall, creating a sanctuary for takins and pandas.
+                  Meaning &quot;Red Poison,&quot; this park is a dramatic landscape of steep slopes and high rainfall, creating a sanctuary for takins and pandas.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center gap-3 text-sm text-on-surface-variant transition-colors duration-300 group-hover:text-primary">
@@ -299,7 +299,7 @@ export default function WildlifePage() {
           <ScrollReveal variant="right" className="order-1 lg:order-2 space-y-8">
             <h2 className="font-headline text-4xl md:text-6xl font-bold leading-tight">The Orchid State</h2>
             <p className="text-on-surface-variant text-lg leading-relaxed">
-              Arunachal Pradesh is a botanical paradise, home to nearly half of India's orchid species. From the ephemeral Lady's Slipper to the rare Blue Vanda, the state transforms into a tapestry of color every spring.
+              Arunachal Pradesh is a botanical paradise, home to nearly half of India&apos;s orchid species. From the ephemeral Lady&apos;s Slipper to the rare Blue Vanda, the state transforms into a tapestry of color every spring.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-start gap-4">
@@ -343,7 +343,7 @@ export default function WildlifePage() {
                 Leave Only Footprints
               </h2>
               <p className="text-on-primary-container text-lg mb-12 opacity-90 leading-relaxed">
-                Arunachal's beauty is as fragile as it is magnificent. We invite you to be a custodian of this land. Our sustainable tourism initiatives focus on community-owned homestays, wildlife guardianship, and plastic-free trails to ensure the "Land of the Rising Sun" remains pristine for generations.
+                Arunachal&apos;s beauty is as fragile as it is magnificent. We invite you to be a custodian of this land. Our sustainable tourism initiatives focus on community-owned homestays, wildlife guardianship, and plastic-free trails to ensure the &quot;Land of the Rising Sun&quot; remains pristine for generations.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div className="bg-white/40 backdrop-blur-sm p-6 rounded-2xl">
