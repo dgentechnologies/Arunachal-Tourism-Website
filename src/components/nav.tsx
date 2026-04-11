@@ -14,6 +14,7 @@ import {
   Mail, Bookmark, Clock, UserCircle,
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -22,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useLanguage, LANGUAGES } from "@/lib/language-context"
+import { useAuth } from "@/lib/auth-context"
 
 const SCROLL_THRESHOLD = 60
 
@@ -52,14 +54,22 @@ interface NavGroup {
 
 export function Nav() {
   const pathname = usePathname()
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [openGroup, setOpenGroup] = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup] = useState<string | null>(null)
-  const [isSignedIn, setIsSignedIn] = useState(false)
+  const { user, signOut } = useAuth()
+  const isSignedIn = !!user
   const navRef = useRef<HTMLDivElement>(null)
   const isHome = pathname === "/"
   const { language, setLanguage, t } = useLanguage()
+
+  async function handleSignOut() {
+    await signOut()
+    router.push("/")
+    setIsOpen(false)
+  }
 
   const navGroups: NavGroup[] = [
     {
@@ -326,7 +336,7 @@ export function Nav() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setIsSignedIn(false)}
+                onClick={handleSignOut}
                 className={cn(
                   "flex items-center gap-1.5 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
                   transparent && "text-white hover:bg-white/20 border border-white/30"
@@ -338,7 +348,7 @@ export function Nav() {
             ) : (
               <Button
                 size="sm"
-                onClick={() => setIsSignedIn(true)}
+                onClick={() => router.push("/login")}
                 className={cn(
                   "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
                   transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
@@ -499,12 +509,12 @@ export function Nav() {
           </div>
           <div className="pt-1 border-t">
             {isSignedIn ? (
-              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={() => setIsSignedIn(false)}>
+              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={handleSignOut}>
                 <UserCircle className="h-4 w-4" />
                 {t.signOut}
               </Button>
             ) : (
-              <Button className="w-full font-semibold" onClick={() => setIsSignedIn(true)}>{t.signIn}</Button>
+              <Button className="w-full font-semibold" onClick={() => { router.push("/login"); setIsOpen(false) }}>{t.signIn}</Button>
             )}
           </div>
         </div>

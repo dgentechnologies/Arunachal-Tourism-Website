@@ -1,0 +1,51 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Users ──────────────────────────────────────────────────────────────
+    // Each user can read and write only their own document.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ── Saved trips ────────────────────────────────────────────────────────
+    // Trips belong to a user. Only the owner may read or write.
+    match /users/{userId}/trips/{tripId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ── Permit applications ────────────────────────────────────────────────
+    // Permit documents belong to a user. Only the owner may read or write.
+    match /users/{userId}/permits/{permitId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ── Public content (read-only) ─────────────────────────────────────────
+    // Destinations, events, etc. are publicly readable but never client-writable.
+    match /destinations/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /events/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /hotels/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /guides/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ── Deny everything else ───────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
