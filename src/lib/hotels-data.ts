@@ -31,12 +31,12 @@ export const hotelsData: Hotel[] = [
     rating: 4.8,
     reviews: 124,
     tags: ["Resort", "Mountain View"],
-    image: "https://picsum.photos/seed/hotel-tawang/1200/800",
+    image: "https://picsum.photos/seed/mountain-resort-interior/1200/800",
     images: [
-      "https://picsum.photos/seed/hotel-tawang/1200/800",
-      "https://picsum.photos/seed/hotel-tawang2/1200/800",
-      "https://picsum.photos/seed/hotel-tawang3/1200/800",
-      "https://picsum.photos/seed/hotel-tawang4/1200/800",
+      "https://picsum.photos/seed/mountain-resort-interior/1200/800",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://picsum.photos/seed/arunachal-festival-culture/1200/800",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "Nestled at 10,000 ft with panoramic Himalayan views.",
     longDescription:
@@ -59,9 +59,9 @@ export const hotelsData: Hotel[] = [
     checkOut: "11:00 AM",
     cancellation: "Free cancellation up to 48 hours before check-in",
     rooms: [
-      { type: "Deluxe Mountain Suite", capacity: "2 Adults", price: 4500, image: "https://picsum.photos/seed/room-t1/800/600" },
-      { type: "Premium Valley Suite", capacity: "2 Adults + 1 Child", price: 6200, image: "https://picsum.photos/seed/room-t2/800/600" },
-      { type: "Monastery View Room", capacity: "2 Adults", price: 3800, image: "https://picsum.photos/seed/room-t3/800/600" },
+      { type: "Deluxe Mountain Suite", capacity: "2 Adults", price: 4500, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Premium Valley Suite", capacity: "2 Adults + 1 Child", price: 6200, image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Monastery View Room", capacity: "2 Adults", price: 3800, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80" },
     ],
   },
   {
@@ -73,12 +73,12 @@ export const hotelsData: Hotel[] = [
     rating: 4.6,
     reviews: 89,
     tags: ["Eco-friendly", "Valley View"],
-    image: "https://picsum.photos/seed/hotel-ziro/1200/800",
+    image: "https://picsum.photos/seed/valley-eco-lodge-stay/1200/800",
     images: [
-      "https://picsum.photos/seed/hotel-ziro/1200/800",
-      "https://picsum.photos/seed/hotel-ziro2/1200/800",
-      "https://picsum.photos/seed/hotel-ziro3/1200/800",
-      "https://picsum.photos/seed/hotel-ziro4/1200/800",
+      "https://picsum.photos/seed/valley-eco-lodge-stay/1200/800",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "Sustainable bamboo cottages within the UNESCO heritage landscape.",
     longDescription:
@@ -101,8 +101,8 @@ export const hotelsData: Hotel[] = [
     checkOut: "11:00 AM",
     cancellation: "Free cancellation up to 72 hours before check-in",
     rooms: [
-      { type: "Bamboo Cottage", capacity: "2 Adults", price: 2800, image: "https://picsum.photos/seed/room-z1/800/600" },
-      { type: "Family Forest Cottage", capacity: "2 Adults + 2 Children", price: 4200, image: "https://picsum.photos/seed/room-z2/800/600" },
+      { type: "Bamboo Cottage", capacity: "2 Adults", price: 2800, image: "https://picsum.photos/seed/valley-eco-lodge-stay/800/600" },
+      { type: "Family Forest Cottage", capacity: "2 Adults + 2 Children", price: 4200, image: "https://picsum.photos/seed/valley-eco-lodge-stay/800/600" },
     ],
   },
   {
@@ -114,12 +114,12 @@ export const hotelsData: Hotel[] = [
     rating: 4.5,
     reviews: 56,
     tags: ["Lodge", "Riverside"],
-    image: "https://picsum.photos/seed/h3/1200/800",
+    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
     images: [
-      "https://picsum.photos/seed/h3/1200/800",
-      "https://picsum.photos/seed/h3b/1200/800",
-      "https://picsum.photos/seed/h3c/1200/800",
-      "https://picsum.photos/seed/h3d/1200/800",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://picsum.photos/seed/arunachal-mountain-river/1200/800",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
     ],
     description: "A riverside sanctuary at the edge of India's richest national park.",
     longDescription:
@@ -142,8 +142,8 @@ export const hotelsData: Hotel[] = [
     checkOut: "10:00 AM",
     cancellation: "Free cancellation up to 5 days before check-in",
     rooms: [
-      { type: "River View Cottage", capacity: "2 Adults", price: 3500, image: "https://picsum.photos/seed/room-n1/800/600" },
-      { type: "Jungle View Suite", capacity: "2 Adults + 1 Child", price: 4800, image: "https://picsum.photos/seed/room-n2/800/600" },
+      { type: "River View Cottage", capacity: "2 Adults", price: 3500, image: "https://picsum.photos/seed/arunachal-mountain-river/800/600" },
+      { type: "Jungle View Suite", capacity: "2 Adults + 1 Child", price: 4800, image: "https://picsum.photos/seed/valley-eco-lodge-stay/800/600" },
     ],
   },
   {
@@ -155,12 +155,12 @@ export const hotelsData: Hotel[] = [
     rating: 4.7,
     reviews: 210,
     tags: ["Luxury", "Heritage"],
-    image: "https://picsum.photos/seed/h4/1200/800",
+    image: "https://picsum.photos/seed/mountain-resort-interior/1200/800",
     images: [
-      "https://picsum.photos/seed/h4/1200/800",
-      "https://picsum.photos/seed/h4b/1200/800",
-      "https://picsum.photos/seed/h4c/1200/800",
-      "https://picsum.photos/seed/h4d/1200/800",
+      "https://picsum.photos/seed/mountain-resort-interior/1200/800",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://picsum.photos/seed/arunachal-festival-culture/1200/800",
+      "https://picsum.photos/seed/valley-eco-lodge-stay/1200/800",
     ],
     description: "The capital's premier heritage hotel blending royal luxury with indigenous art.",
     longDescription:
@@ -183,9 +183,9 @@ export const hotelsData: Hotel[] = [
     checkOut: "12:00 PM",
     cancellation: "Free cancellation up to 24 hours before check-in",
     rooms: [
-      { type: "Heritage Deluxe Room", capacity: "2 Adults", price: 5200, image: "https://picsum.photos/seed/room-i1/800/600" },
-      { type: "Tribal Art Suite", capacity: "2 Adults + 1 Child", price: 7500, image: "https://picsum.photos/seed/room-i2/800/600" },
-      { type: "Presidential Suite", capacity: "4 Adults", price: 12000, image: "https://picsum.photos/seed/room-i3/800/600" },
+      { type: "Heritage Deluxe Room", capacity: "2 Adults", price: 5200, image: "https://picsum.photos/seed/mountain-resort-interior/800/600" },
+      { type: "Tribal Art Suite", capacity: "2 Adults + 1 Child", price: 7500, image: "https://picsum.photos/seed/valley-eco-lodge-stay/800/600" },
+      { type: "Presidential Suite", capacity: "4 Adults", price: 12000, image: "https://picsum.photos/seed/mountain-resort-interior/800/600" },
     ],
   },
 ]

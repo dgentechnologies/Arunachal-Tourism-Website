@@ -33,7 +33,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Moderate',
     highlights: ['Tawang Monastery', 'Sela Pass (4170m)', 'Bumla Pass', 'Sangestar Tso Lake', 'Bomdila Monastery'],
     bestTime: 'October – April',
-    coverImage: 'https://picsum.photos/seed/tawang-monastery/800/500',
+    coverImage: 'https://picsum.photos/seed/arunachal-festival-culture/800/500',
     tags: ['Spiritual', 'Photography', 'Mountains', 'Culture'],
     summary: '7-day journey through Arunachal\'s Buddhist heartland. Visit Asia\'s largest monastery at Tawang, cross the Sela Pass at 4170m, and discover sacred lakes along the India-China border.',
     days: [
@@ -111,7 +111,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Easy',
     highlights: ['Namdapha National Park', 'Pakke Tiger Reserve', 'Hoolock Gibbon tracking', 'Hornbill Festival', 'Glow-in-dark mushroom forest'],
     bestTime: 'November – April',
-    coverImage: 'https://picsum.photos/seed/namdapha-wildlife/800/500',
+    coverImage: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=500&fit=crop&auto=format&q=80',
     tags: ['Wildlife', 'Birding', 'Nature', 'Photography'],
     summary: '5-day wildlife immersion in Arunachal\'s biodiversity hotspots. Track tigers and elephants in Namdapha, spot the rare Hoolock Gibbon, and discover one of the richest bird habitats on Earth.',
     days: [
@@ -171,7 +171,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Easy',
     highlights: ['Ziro Valley (UNESCO Tentative List)', 'Apatani tribe villages', 'Dree Festival', 'Pasighat riverside', 'Adi tribal homestay'],
     bestTime: 'July (Dree Festival) / October – March',
-    coverImage: 'https://picsum.photos/seed/ziro-tribe/800/500',
+    coverImage: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=500&fit=crop&auto=format&q=80',
     tags: ['Culture', 'Tribal', 'Heritage', 'Festivals'],
     summary: '6-day deep dive into Arunachal\'s tribal heartland. Live with the Apatani tribe in Ziro Valley\'s bamboo villages, witness ancient fishing rituals at Pasighat, and participate in harvest festivals.',
     days: [
@@ -240,7 +240,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Challenging',
     highlights: ['Mechuka Valley', 'Samten Yongcha Monastery', 'Siyom River rafting', 'Kidi Village trek', 'Remote tribal homestays'],
     bestTime: 'October – December, March – May',
-    coverImage: 'https://picsum.photos/seed/mechuka-adventure/800/500',
+    coverImage: 'https://picsum.photos/seed/himalayan-trekking-trail/800/500',
     tags: ['Adventure', 'Trekking', 'Remote', 'Rafting'],
     summary: '8-day adventure into one of India\'s most remote valleys. Trek to hidden Memba tribe villages in Mechuka, raft the wild Siyom River, and discover untouched landscapes near the Tibet border.',
     days: [
@@ -327,7 +327,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Moderate',
     highlights: ['Tawang Monastery', 'Ziro Valley', 'Namdapha', 'Pasighat', 'Sela Pass', 'Tribal homestays'],
     bestTime: 'October – March',
-    coverImage: 'https://picsum.photos/seed/arunachal-grand/800/500',
+    coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop&auto=format&q=80',
     tags: ['Complete Circuit', 'Culture', 'Wildlife', 'Mountains'],
     summary: '10-day comprehensive circuit of Arunachal Pradesh\'s greatest hits. From the Buddhist monasteries of Tawang in the west to the wildlife forests of Namdapha in the east, with Ziro\'s tribal valleys in between.',
     days: [

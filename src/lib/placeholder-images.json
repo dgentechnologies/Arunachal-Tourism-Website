@@ -3,91 +3,91 @@
     {
       "id": "hero-mountains",
       "description": "Lush green mountains of Arunachal Pradesh",
-      "imageUrl": "https://picsum.photos/seed/hero-mountains/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "green mountains"
     },
     {
       "id": "hero-himalaya",
       "description": "Snow-capped Himalayan peaks at dawn",
-      "imageUrl": "https://picsum.photos/seed/hero-himalaya/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "himalaya snow peaks"
     },
     {
       "id": "hero-valley",
       "description": "Scenic valley with river and forest in North-East India",
-      "imageUrl": "https://picsum.photos/seed/hero-valley/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "green valley river"
     },
     {
       "id": "hero-monastery",
       "description": "Ancient monastery perched on a hilltop",
-      "imageUrl": "https://picsum.photos/seed/hero-monastery/1080/720",
+      "imageUrl": "https://picsum.photos/seed/arunachal-festival-culture/1080/720",
       "imageHint": "monastery hilltop"
     },
     {
       "id": "dest-tawang",
       "description": "Tawang town and monastery panorama",
-      "imageUrl": "https://picsum.photos/seed/dest-tawang/1080/720",
+      "imageUrl": "https://picsum.photos/seed/tawang-monastery-panorama/1080/720",
       "imageHint": "tawang monastery"
     },
     {
       "id": "dest-ziro",
       "description": "Ziro Valley rice fields and Apatani villages",
-      "imageUrl": "https://picsum.photos/seed/dest-ziro/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "rice terraces valley"
     },
     {
       "id": "dest-namdapha",
       "description": "Dense jungle of Namdapha National Park",
-      "imageUrl": "https://picsum.photos/seed/dest-namdapha/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "dense jungle forest"
     },
     {
       "id": "dest-mechuka",
       "description": "Mechuka valley surrounded by snowy mountains",
-      "imageUrl": "https://picsum.photos/seed/dest-mechuka/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "snowy mountain valley"
     },
     {
       "id": "dest-sangti",
       "description": "Sangti Valley with black-necked cranes",
-      "imageUrl": "https://picsum.photos/seed/dest-sangti/1080/720",
+      "imageUrl": "https://picsum.photos/seed/arunachal-mountain-river/1080/720",
       "imageHint": "serene mountain river"
     },
     {
       "id": "hotel-tawang",
       "description": "Cozy mountain resort in Tawang",
-      "imageUrl": "https://picsum.photos/seed/hotel-tawang/1080/720",
+      "imageUrl": "https://picsum.photos/seed/mountain-resort-interior/1080/720",
       "imageHint": "mountain resort"
     },
     {
       "id": "hotel-ziro",
       "description": "Eco-stay in Ziro valley",
-      "imageUrl": "https://picsum.photos/seed/hotel-ziro/1080/720",
+      "imageUrl": "https://picsum.photos/seed/valley-eco-lodge-stay/1080/720",
       "imageHint": "valley stay"
     },
     {
       "id": "transport-suv",
       "description": "SUV for mountain travel",
-      "imageUrl": "https://picsum.photos/seed/transport-suv/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "mountain suv"
     },
     {
       "id": "transport-bike",
       "description": "Royal Enfield for Himalayan tours",
-      "imageUrl": "https://picsum.photos/seed/transport-bike/1080/720",
+      "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=720&fit=crop&auto=format&q=80",
       "imageHint": "adventure bike"
     },
     {
       "id": "culture-monastery",
       "description": "Tawang Monastery landscape",
-      "imageUrl": "https://picsum.photos/seed/culture-monastery/1080/720",
+      "imageUrl": "https://picsum.photos/seed/tawang-monastery-panorama/1080/720",
       "imageHint": "buddhist monastery"
     },
     {
       "id": "hospital-safety",
       "description": "Modern hospital facility",
-      "imageUrl": "https://picsum.photos/seed/hospital-safety/1080/720",
+      "imageUrl": "https://picsum.photos/seed/hospital-medical-facility/1080/720",
       "imageHint": "hospital building"
     }
   ]

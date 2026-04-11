@@ -280,31 +280,31 @@ export default function Home() {
               quote: "Tawang took my breath away — the monastery at sunrise, draped in mist with monks chanting, felt like stepping into another world entirely.",
               name: "Priya Sharma",
               designation: "Travel Blogger, Delhi",
-              src: "https://picsum.photos/seed/testimonial-priya/400/400",
+              src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&auto=format&q=80",
             },
             {
               quote: "The Ziro Valley during the festival is unlike anything I've experienced. The Apatani tribe's hospitality and culture left a permanent mark on my heart.",
               name: "Rahul Menon",
               designation: "Photographer, Bengaluru",
-              src: "https://picsum.photos/seed/testimonial-rahul/400/400",
+              src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format&q=80",
             },
             {
               quote: "Mechuka feels like the last untouched frontier. Crystal clear rivers, snow-capped peaks, and the warmest people I've ever met on my travels.",
               name: "Anjali Bose",
               designation: "Adventure Traveller, Kolkata",
-              src: "https://picsum.photos/seed/testimonial-anjali/400/400",
+              src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&auto=format&q=80",
             },
             {
               quote: "The biodiversity here is staggering. I spotted hornbills and clouded leopards on the same trek — Arunachal is a nature lover's paradise.",
               name: "Dev Krishnamurthy",
               designation: "Wildlife Enthusiast, Chennai",
-              src: "https://picsum.photos/seed/testimonial-dev/400/400",
+              src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&auto=format&q=80",
             },
             {
               quote: "Bomdila's apple orchards and Buddhist monasteries create a perfect blend of serenity and culture. This is my third visit and it never disappoints.",
               name: "Meera Nair",
               designation: "Solo Traveller, Mumbai",
-              src: "https://picsum.photos/seed/testimonial-meera/400/400",
+              src: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=400&fit=crop&auto=format&q=80",
             },
           ]}
         />

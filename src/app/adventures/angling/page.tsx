@@ -13,7 +13,7 @@ const anglingSpots = [
     targetColor: "bg-amber-100 text-amber-700",
     permit: "Required",
     desc: "The Siang's wide, boulder-strewn runs below Pasighat are legendary for massive Golden Mahseer. The catch-and-release ethos keeps the fish population thriving.",
-    image: "https://picsum.photos/seed/angling-siang/800/600",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     imageHint: "river fishing mountain",
     rating: 4.9,
   },
@@ -25,7 +25,7 @@ const anglingSpots = [
     targetColor: "bg-orange-100 text-orange-700",
     permit: "Required",
     desc: "Bhalukpong's crystal-clear stretches running through Pakhui Tiger Reserve offer a chance at the elusive Chocolate Mahseer in a truly wild setting.",
-    image: "https://picsum.photos/seed/angling-kameng/800/600",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     imageHint: "clear river fishing",
     rating: 4.8,
   },
@@ -37,7 +37,7 @@ const anglingSpots = [
     targetColor: "bg-green-100 text-green-700",
     permit: "Required",
     desc: "The 'Gold River' is one of the finest sport-fishing destinations in Asia. Remote camps, pristine water, and trophy-sized Tor Putitora make this a bucket-list experience.",
-    image: "https://picsum.photos/seed/angling-subansiri/800/600",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "pristine river camp fishing",
     rating: 4.7,
   },
@@ -49,7 +49,7 @@ const anglingSpots = [
     targetColor: "bg-blue-100 text-blue-700",
     permit: "Required",
     desc: "The swift, gin-clear waters of the Lohit hold healthy populations of Mahseer and large barbs. Its accessibility makes it ideal for first-time anglers visiting Arunachal.",
-    image: "https://picsum.photos/seed/angling-lohit/800/600",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "swift river angling",
     rating: 4.5,
   },
@@ -61,7 +61,7 @@ const anglingSpots = [
     targetColor: "bg-cyan-100 text-cyan-700",
     permit: "Required",
     desc: "Roing sits at the confluence of the Dibang system. Fly-fishers come for the challenging Snow Trout in fast-flowing, oxygen-rich mountain water.",
-    image: "https://picsum.photos/seed/angling-dibang/800/600",
+    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "mountain river fly fishing",
     rating: 4.6,
   },
@@ -73,7 +73,7 @@ const anglingSpots = [
     targetColor: "bg-indigo-100 text-indigo-700",
     permit: "Required",
     desc: "High-altitude fly-fishing in the shadow of Tawang Monastery. The Tawang Chu's cold, fast currents harbour Snow Trout and the scenery is utterly unforgettable.",
-    image: "https://picsum.photos/seed/angling-tawang/800/600",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "high altitude river fishing monastery",
     rating: 4.4,
   },
@@ -85,7 +85,7 @@ export default function AnglingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://picsum.photos/seed/angling-hero/1600/900"
+          src="https://picsum.photos/seed/arunachal-mountain-river/1600/900"
           alt="Angling in Arunachal Pradesh"
           fill
           className="object-cover"

@@ -13,7 +13,7 @@ const rivers = [
     gradeColor: "bg-red-100 text-red-700",
     season: "Oct–Mar",
     desc: "The crown jewel of Arunachal rafting. The Siang thunders through deep gorges carved by the Tibetan plateau, delivering relentless rapids and jaw-dropping canyon scenery.",
-    image: "https://picsum.photos/seed/raft-siang/800/600",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     imageHint: "river rafting white water rapids",
     rating: 4.9,
   },
@@ -25,7 +25,7 @@ const rivers = [
     gradeColor: "bg-orange-100 text-orange-700",
     season: "Nov–Feb",
     desc: "Perfect for intermediate paddlers. The Kameng flows past elephant grasslands and dense subtropical forests before widening into serene flat-water stretches.",
-    image: "https://picsum.photos/seed/raft-kameng/800/600",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     imageHint: "river kayak nature scenic",
     rating: 4.7,
   },
@@ -37,7 +37,7 @@ const rivers = [
     gradeColor: "bg-orange-100 text-orange-700",
     season: "Oct–Mar",
     desc: "Multi-day expeditions on the 'Gold River' combine heart-pumping rapids with riverside camping in near-pristine wilderness frequented by elephants.",
-    image: "https://picsum.photos/seed/raft-subansiri/800/600",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "serene mountain river camping",
     rating: 4.6,
   },
@@ -49,7 +49,7 @@ const rivers = [
     gradeColor: "bg-yellow-100 text-yellow-700",
     season: "Nov–Apr",
     desc: "A gentler river with spectacular scenery — ideal for families or beginners wanting their first Himalayan rafting experience without sacrificing the grandeur.",
-    image: "https://picsum.photos/seed/raft-lohit/800/600",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "green valley river gentle",
     rating: 4.4,
   },
@@ -61,7 +61,7 @@ const rivers = [
     gradeColor: "bg-red-100 text-red-700",
     season: "Oct–Feb",
     desc: "One of the most remote rafting runs in India, the Dibang requires experienced paddlers and rewards them with untouched wilderness and rare wildlife sightings.",
-    image: "https://picsum.photos/seed/raft-dibang/800/600",
+    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "remote wilderness mountain river",
     rating: 4.8,
   },
@@ -73,7 +73,7 @@ const rivers = [
     gradeColor: "bg-green-100 text-green-700",
     season: "Year-round",
     desc: "Calm and welcoming, the Tirap offers scenic float trips through dense jungle dotted with Wancho tribal villages — a cultural and natural treat.",
-    image: "https://picsum.photos/seed/raft-tirap/800/600",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
     imageHint: "jungle river calm float",
     rating: 4.3,
   },
@@ -85,7 +85,7 @@ export default function RaftingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://picsum.photos/seed/raft-hero/1600/900"
+          src="https://picsum.photos/seed/arunachal-mountain-river/1600/900"
           alt="River Rafting in Arunachal Pradesh"
           fill
           className="object-cover"

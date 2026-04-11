@@ -42,7 +42,7 @@ export const locations: Location[] = [
     svgX: 195,  // lon 91.8697°E (northwest corner, near Bhutan border)
     svgY: 305,  // lat 27.5861°N
     bestTime: "Mar – May, Sep – Oct",
-    image: "https://picsum.photos/seed/tawang800/800/450",
+    image: "https://picsum.photos/seed/arunachal-festival-culture/800/450",
     desc: "Home to India's largest Buddhist monastery, frozen glacial lakes, and snow-capped Himalayan passes at over 10,000 ft.",
     placesToVisit: [
       "Tawang Monastery – India's largest Buddhist monastery (400 yrs old)",
@@ -83,7 +83,7 @@ export const locations: Location[] = [
     svgX: 425,  // lon 93.8290°E (central-west region)
     svgY: 320,  // lat 27.5360°N
     bestTime: "Feb – Apr, Aug – Oct",
-    image: "https://picsum.photos/seed/zirovalley/800/450",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "A UNESCO World Heritage tentative site — lush pine-dotted paddy fields, the iconic Apatani tribe, and the celebrated Ziro Music Festival.",
     placesToVisit: [
       "Talley Valley Wildlife Sanctuary",
@@ -123,7 +123,7 @@ export const locations: Location[] = [
     svgX: 713,  // lon 96.3807°E
     svgY: 352,  // lat 27.4816°N
     bestTime: "Oct – Mar",
-    image: "https://picsum.photos/seed/namdapha800/800/450",
+    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "A biodiversity hotspot spanning tropical to alpine forests — home to Snow Leopards, Red Pandas, and over 1,000 plant species in a UNESCO-recognised park.",
     placesToVisit: [
       "Namdapha National Park – biodiversity hotspot spanning 1,985 sq km",
@@ -167,7 +167,7 @@ export const locations: Location[] = [
     svgX: 593,  // lon 95.3262°E
     svgY: 254,  // lat 28.0617°N
     bestTime: "Oct – Apr",
-    image: "https://picsum.photos/seed/pasighat800/800/450",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/450",
     desc: "Arunachal's oldest town sits where the mighty Siang River bursts into the plains — a paradise for rafters, anglers, and culture seekers.",
     placesToVisit: [
       "Daying Ering Wildlife Sanctuary",
@@ -207,7 +207,7 @@ export const locations: Location[] = [
     svgX: 260,  // lon 92.4159°E
     svgY: 350,  // lat 27.2645°N
     bestTime: "Apr – Oct",
-    image: "https://picsum.photos/seed/bomdila800/800/450",
+    image: "https://picsum.photos/seed/tawang-monastery-panorama/800/450",
     desc: "Scenic hill town framed by apple orchards and rhododendrons — gateway to Tawang, famed for serene monasteries and the world-class Eaglenest birding corridor.",
     placesToVisit: [
       "Bomdila Monastery (Gentse Gaden Rabgyel Ling)",
@@ -259,7 +259,7 @@ export const locations: Location[] = [
     svgX: 533,  // lon 94.8010°E
     svgY: 241,  // lat 28.1691°N
     bestTime: "Oct – Apr",
-    image: "https://picsum.photos/seed/aaloalong/800/450",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "Adventure hub of central Arunachal — the Galo tribe's heartland, known for cane suspension bridges, orange orchards, and river rafting on the wild Siyom.",
     placesToVisit: [
       "Siyom River hanging bridges",
@@ -299,7 +299,7 @@ export const locations: Location[] = [
     svgX: 400,  // lon 93.6053°E (capital, south-central)
     svgY: 375,  // lat 27.0844°N
     bestTime: "Oct – Apr",
-    image: "https://picsum.photos/seed/itanagar800/800/450",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "The state capital balances ancient heritage and modern governance — explore the historic Ita Fort, serene Ganga Lake, and the vibrant Nyishi cultural heartland.",
     placesToVisit: [
       "Ita Fort – 14th century historical brick fort",
@@ -339,7 +339,7 @@ export const locations: Location[] = [
     svgX: 460,  // lon 94.1370°E (north-central, near Tibet)
     svgY: 185,  // lat 28.5975°N
     bestTime: "Apr – Oct",
-    image: "https://picsum.photos/seed/mechuka800/800/450",
+    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "A surreal hidden valley near the Tibet border at 6,000 ft — rolling green meadows, ancient monasteries, and the Memba tribe's Tibetan-flavoured culture.",
     placesToVisit: [
       "Mechuka Valley – stunning high-altitude meadows",
@@ -379,7 +379,7 @@ export const locations: Location[] = [
     svgX: 651,  // lon 95.8361°E
     svgY: 245,  // lat 28.1365°N
     bestTime: "Oct – Apr",
-    image: "https://picsum.photos/seed/roing800/800/450",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=450&fit=crop&auto=format&q=80",
     desc: "A paradise for nature lovers in the Dibang Valley — featuring Mehao Wildlife Sanctuary, the snow-capped Mayudia Pass, and the ancient Idu Mishmi tribe.",
     placesToVisit: [
       "Mehao Wildlife Sanctuary",
