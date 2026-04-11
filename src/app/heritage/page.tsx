@@ -242,7 +242,7 @@ export default function HeritagePage() {
                 <h3 className="font-headline text-4xl md:text-5xl font-bold text-white mb-2">50+</h3>
                 <p className="text-white/90 text-lg font-medium mb-4">Heritage Sites</p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  From ancient monasteries to medieval forts, each monument tells a unique story of Arunachal's rich cultural tapestry.
+                  From ancient monasteries to medieval forts, each monument tells a unique story of Arunachal&apos;s rich cultural tapestry.
                 </p>
               </div>
             </ScrollReveal>
@@ -352,7 +352,7 @@ export default function HeritagePage() {
               Living <span className="text-primary">Architecture</span>
             </h2>
             <p className="text-on-surface-variant text-lg leading-relaxed">
-              Beyond monuments of stone and brick, Arunachal's heritage lives in the sustainable bamboo homes, intricate tribal textiles, and age-old craftsmanship passed down through generations. Each tribe's unique architectural style reflects harmony with nature and centuries of environmental wisdom.
+              Beyond monuments of stone and brick, Arunachal&apos;s heritage lives in the sustainable bamboo homes, intricate tribal textiles, and age-old craftsmanship passed down through generations. Each tribe&apos;s unique architectural style reflects harmony with nature and centuries of environmental wisdom.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-start gap-4">
@@ -410,7 +410,7 @@ export default function HeritagePage() {
               More Hidden Treasures
             </h2>
             <p className="text-on-surface-variant max-w-2xl mx-auto text-lg">
-              Journey deeper into Arunachal's archaeological wonders, from ancient temple ruins to sacred pilgrimage sites that have drawn seekers for millennia.
+              Journey deeper into Arunachal&apos;s archaeological wonders, from ancient temple ruins to sacred pilgrimage sites that have drawn seekers for millennia.
             </p>
           </div>
         </ScrollReveal>

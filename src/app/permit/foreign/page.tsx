@@ -379,7 +379,7 @@ export default function ForeignPermitPage() {
             <Zap className="h-10 w-10 text-accent mx-auto mb-4" />
             <h2 className="text-2xl md:text-3xl font-bold font-headline mb-3">Ready to Explore Arunachal Pradesh?</h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Once your permit is secured, let us help you plan the perfect itinerary through India's most beautiful and unexplored state.
+              Once your permit is secured, let us help you plan the perfect itinerary through India&apos;s most beautiful and unexplored state.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/itinerary">

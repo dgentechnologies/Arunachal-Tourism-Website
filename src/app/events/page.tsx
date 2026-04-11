@@ -153,7 +153,7 @@ export default function EventsPage() {
                 <span className="text-primary-container animate-pulse">Cultural Events</span>
               </h1>
               <p className="text-base md:text-lg lg:text-xl text-stone-200 max-w-xl font-light leading-relaxed">
-                Immerse yourself in the vibrant tapestry of Arunachal's living heritage. From sacred Buddhist ceremonies to electrifying music festivals, experience celebrations that have echoed through the valleys for generations.
+                Immerse yourself in the vibrant tapestry of Arunachal&apos;s living heritage. From sacred Buddhist ceremonies to electrifying music festivals, experience celebrations that have echoed through the valleys for generations.
               </p>
               <div className="pt-6 md:pt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
                 <button className="bg-primary text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-105 transition-all duration-300 active:scale-95">
@@ -175,7 +175,7 @@ export default function EventsPage() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
             <div className="max-w-2xl">
               <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-on-surface">
-                Don't Miss These
+                Don&apos;t Miss These
               </h2>
               <p className="text-on-surface-variant text-base md:text-lg">
                 Experience the most spectacular celebrations of Arunachal Pradesh, where ancient traditions meet contemporary artistry in breathtaking settings.
@@ -352,10 +352,10 @@ export default function EventsPage() {
         <ScrollReveal variant="up">
           <div className="text-center mb-16">
             <h2 className="font-headline text-4xl md:text-6xl font-bold text-on-surface mb-6">
-              What's Coming Up
+              What&apos;s Coming Up
             </h2>
             <p className="text-on-surface-variant max-w-2xl mx-auto text-lg">
-              Plan your journey around these upcoming celebrations and be part of Arunachal's living cultural heritage.
+              Plan your journey around these upcoming celebrations and be part of Arunachal&apos;s living cultural heritage.
             </p>
           </div>
         </ScrollReveal>

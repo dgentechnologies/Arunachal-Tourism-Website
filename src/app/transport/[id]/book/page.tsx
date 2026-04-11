@@ -19,8 +19,6 @@ export default function TransportBookingPage({ params }: { params: Promise<{ id:
   const router = useRouter()
   const vehicle = vehiclesData.find((v) => v.id === Number(id))
 
-  if (!vehicle) return notFound()
-
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -34,6 +32,8 @@ export default function TransportBookingPage({ params }: { params: Promise<{ id:
     requests: "",
   })
   const [submitted, setSubmitted] = useState(false)
+
+  if (!vehicle) return notFound()
 
   const days = (() => {
     if (!form.pickupDate || !form.returnDate) return 1

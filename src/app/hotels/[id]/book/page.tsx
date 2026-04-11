@@ -23,11 +23,6 @@ export default function HotelBookingPage({ params, searchParams }: {
   const router = useRouter()
   const hotel = hotelsData.find((h) => h.id === Number(id))
 
-  if (!hotel) return notFound()
-
-  const selectedRoom = sp.room ? decodeURIComponent(sp.room) : hotel.rooms[0].type
-  const basePrice = Number(sp.price) || hotel.rooms[0].price
-
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -39,6 +34,11 @@ export default function HotelBookingPage({ params, searchParams }: {
     requests: "",
   })
   const [submitted, setSubmitted] = useState(false)
+
+  if (!hotel) return notFound()
+
+  const selectedRoom = sp.room ? decodeURIComponent(sp.room) : hotel.rooms[0].type
+  const basePrice = Number(sp.price) || hotel.rooms[0].price
 
   const nights = (() => {
     if (!form.checkIn || !form.checkOut) return 1
