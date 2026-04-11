@@ -13,7 +13,7 @@ const rivers = [
     gradeColor: "bg-red-100 text-red-700",
     season: "Oct–Mar",
     desc: "The crown jewel of Arunachal rafting. The Siang thunders through deep gorges carved by the Tibetan plateau, delivering relentless rapids and jaw-dropping canyon scenery.",
-    image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     imageHint: "river rafting white water rapids",
     rating: 4.9,
   },
@@ -25,7 +25,7 @@ const rivers = [
     gradeColor: "bg-orange-100 text-orange-700",
     season: "Nov–Feb",
     desc: "Perfect for intermediate paddlers. The Kameng flows past elephant grasslands and dense subtropical forests before widening into serene flat-water stretches.",
-    image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     imageHint: "river kayak nature scenic",
     rating: 4.7,
   },
@@ -85,7 +85,7 @@ export default function RaftingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&h=900&fit=crop&auto=format&q=80"
+          src="https://picsum.photos/seed/arunachal-mountain-river/1600/900"
           alt="River Rafting in Arunachal Pradesh"
           fill
           className="object-cover"

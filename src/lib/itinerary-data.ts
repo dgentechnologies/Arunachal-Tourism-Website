@@ -33,7 +33,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Moderate',
     highlights: ['Tawang Monastery', 'Sela Pass (4170m)', 'Bumla Pass', 'Sangestar Tso Lake', 'Bomdila Monastery'],
     bestTime: 'October – April',
-    coverImage: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=500&fit=crop&auto=format&q=80',
+    coverImage: 'https://picsum.photos/seed/arunachal-festival-culture/800/500',
     tags: ['Spiritual', 'Photography', 'Mountains', 'Culture'],
     summary: '7-day journey through Arunachal\'s Buddhist heartland. Visit Asia\'s largest monastery at Tawang, cross the Sela Pass at 4170m, and discover sacred lakes along the India-China border.',
     days: [
@@ -240,7 +240,7 @@ export const premadeItineraries: PremadeItinerary[] = [
     difficulty: 'Challenging',
     highlights: ['Mechuka Valley', 'Samten Yongcha Monastery', 'Siyom River rafting', 'Kidi Village trek', 'Remote tribal homestays'],
     bestTime: 'October – December, March – May',
-    coverImage: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=500&fit=crop&auto=format&q=80',
+    coverImage: 'https://picsum.photos/seed/himalayan-trekking-trail/800/500',
     tags: ['Adventure', 'Trekking', 'Remote', 'Rafting'],
     summary: '8-day adventure into one of India\'s most remote valleys. Trek to hidden Memba tribe villages in Mechuka, raft the wild Siyom River, and discover untouched landscapes near the Tibet border.',
     days: [

@@ -13,7 +13,7 @@ const treks = [
     difficultyColor: "bg-red-100 text-red-700",
     altitude: "5,150 m",
     desc: "Summit Gorichen — the highest peak in Arunachal Pradesh — through ancient rhododendron forests and alpine meadows.",
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/himalayan-trekking-trail/800/600",
     imageHint: "high altitude mountain base camp",
     rating: 4.9,
   },
@@ -85,7 +85,7 @@ export default function TrekkingPage() {
       {/* Hero Banner */}
       <ScrollReveal variant="up" className="relative rounded-3xl overflow-hidden mb-14 h-72 md:h-96">
         <Image
-          src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1600&h=900&fit=crop&auto=format&q=80"
+          src="https://picsum.photos/seed/himalayan-trekking-trail/1600/900"
           alt="Trekking in Arunachal Pradesh"
           fill
           className="object-cover"

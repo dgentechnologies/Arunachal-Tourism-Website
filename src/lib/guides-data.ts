@@ -42,7 +42,7 @@ export const locations: Location[] = [
     svgX: 195,  // lon 91.8697°E (northwest corner, near Bhutan border)
     svgY: 305,  // lat 27.5861°N
     bestTime: "Mar – May, Sep – Oct",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=450&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-festival-culture/800/450",
     desc: "Home to India's largest Buddhist monastery, frozen glacial lakes, and snow-capped Himalayan passes at over 10,000 ft.",
     placesToVisit: [
       "Tawang Monastery – India's largest Buddhist monastery (400 yrs old)",
@@ -167,7 +167,7 @@ export const locations: Location[] = [
     svgX: 593,  // lon 95.3262°E
     svgY: 254,  // lat 28.0617°N
     bestTime: "Oct – Apr",
-    image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=450&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/450",
     desc: "Arunachal's oldest town sits where the mighty Siang River bursts into the plains — a paradise for rafters, anglers, and culture seekers.",
     placesToVisit: [
       "Daying Ering Wildlife Sanctuary",
@@ -207,7 +207,7 @@ export const locations: Location[] = [
     svgX: 260,  // lon 92.4159°E
     svgY: 350,  // lat 27.2645°N
     bestTime: "Apr – Oct",
-    image: "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=800&h=450&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/tawang-monastery-panorama/800/450",
     desc: "Scenic hill town framed by apple orchards and rhododendrons — gateway to Tawang, famed for serene monasteries and the world-class Eaglenest birding corridor.",
     placesToVisit: [
       "Bomdila Monastery (Gentse Gaden Rabgyel Ling)",

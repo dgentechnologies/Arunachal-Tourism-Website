@@ -30,7 +30,7 @@ const events: Event[] = [
     location: "Tawang",
     category: "Festival",
     status: "upcoming",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-festival-culture/800/600",
     description: "Experience the vibrant Tibetan New Year celebration in the heart of the Eastern Himalayas. A spectacular display of Buddhist culture, masked dances, and ancient traditions.",
     highlights: ["Cham Dance performances", "Butter lamp offerings", "Traditional Tibetan cuisine", "Monastery rituals"],
     isFeatured: true,
@@ -43,7 +43,7 @@ const events: Event[] = [
     location: "Ziro Valley",
     category: "Art & Music",
     status: "ongoing",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-festival-culture/800/600",
     description: "India's most scenic outdoor music festival set amidst pine-covered mountains and rice fields. An unforgettable fusion of indie music and natural beauty.",
     highlights: ["40+ indie bands", "Camping under stars", "Apatani cultural performances", "Eco-friendly festival"],
     isFeatured: true,
@@ -56,7 +56,7 @@ const events: Event[] = [
     location: "Pasighat",
     category: "Festival",
     status: "recent",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-festival-culture/800/600",
     description: "The most important festival of the Adi tribe, celebrating harvest season with traditional rituals, folk songs, and community feasts.",
     highlights: ["Ponung dance performances", "Traditional Apong (rice beer)", "Agricultural rituals", "Community bonding"],
     isFeatured: false,
@@ -69,7 +69,7 @@ const events: Event[] = [
     location: "Tawang Monastery",
     category: "Cultural",
     status: "recent",
-    image: "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/tawang-monastery-panorama/800/600",
     description: "Ancient monastic festival featuring masked dances that drive away evil spirits and bring prosperity to the community for the coming year.",
     highlights: ["Sacred mask dances", "Ritualistic ceremonies", "Monastery blessings", "Cultural heritage"],
   },
@@ -117,7 +117,7 @@ const events: Event[] = [
     location: "Pasighat",
     category: "Adventure",
     status: "recent",
-    image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=600&fit=crop&auto=format&q=80",
+    image: "https://picsum.photos/seed/arunachal-mountain-river/800/600",
     description: "An adrenaline-packed adventure festival celebrating the mighty Siang River with rafting competitions, kayaking, and water sports.",
     highlights: ["River rafting competition", "Kayaking events", "Rock climbing", "Adventure sports"],
   },
@@ -480,7 +480,7 @@ export default function EventsPage() {
                 <Image
                   alt="Traditional tribal dance"
                   className="object-cover transition-transform duration-700 group-hover/img:scale-110"
-                  src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://picsum.photos/seed/arunachal-festival-culture/800/600"
                   fill
                 />
               </div>
@@ -488,7 +488,7 @@ export default function EventsPage() {
                 <Image
                   alt="Festival celebration"
                   className="object-cover transition-transform duration-700 group-hover/img:scale-110"
-                  src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop&auto=format&q=80"
+                  src="https://picsum.photos/seed/arunachal-festival-culture/800/600"
                   fill
                 />
               </div>

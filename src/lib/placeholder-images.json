@@ -21,13 +21,13 @@
     {
       "id": "hero-monastery",
       "description": "Ancient monastery perched on a hilltop",
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bada?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/arunachal-festival-culture/1080/720",
       "imageHint": "monastery hilltop"
     },
     {
       "id": "dest-tawang",
       "description": "Tawang town and monastery panorama",
-      "imageUrl": "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/tawang-monastery-panorama/1080/720",
       "imageHint": "tawang monastery"
     },
     {
@@ -51,19 +51,19 @@
     {
       "id": "dest-sangti",
       "description": "Sangti Valley with black-necked cranes",
-      "imageUrl": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/arunachal-mountain-river/1080/720",
       "imageHint": "serene mountain river"
     },
     {
       "id": "hotel-tawang",
       "description": "Cozy mountain resort in Tawang",
-      "imageUrl": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/mountain-resort-interior/1080/720",
       "imageHint": "mountain resort"
     },
     {
       "id": "hotel-ziro",
       "description": "Eco-stay in Ziro valley",
-      "imageUrl": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/valley-eco-lodge-stay/1080/720",
       "imageHint": "valley stay"
     },
     {
@@ -81,13 +81,13 @@
     {
       "id": "culture-monastery",
       "description": "Tawang Monastery landscape",
-      "imageUrl": "https://images.unsplash.com/photo-1545243424-0ce743bbb3e5?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/tawang-monastery-panorama/1080/720",
       "imageHint": "buddhist monastery"
     },
     {
       "id": "hospital-safety",
       "description": "Modern hospital facility",
-      "imageUrl": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1080&h=720&fit=crop&auto=format&q=80",
+      "imageUrl": "https://picsum.photos/seed/hospital-medical-facility/1080/720",
       "imageHint": "hospital building"
     }
   ]
