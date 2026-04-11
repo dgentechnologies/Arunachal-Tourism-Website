@@ -13,9 +13,26 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
+/**
+ * Returns the Firebase app singleton.
+ * Lazy — only calls initializeApp on first use, which happens exclusively
+ * from client-side code (useEffect / event handlers), so SSR / static
+ * generation never tries to initialize with missing env vars.
+ */
+function getFirebaseApp() {
+  return getApps().length ? getApp() : initializeApp(firebaseConfig)
+}
 
-export const auth = getAuth(app)
-export const db = getFirestore(app)
-export const storage = getStorage(app)
+export function getFirebaseAuth() {
+  return getAuth(getFirebaseApp())
+}
+
+export function getFirebaseDb() {
+  return getFirestore(getFirebaseApp())
+}
+
+export function getFirebaseStorage() {
+  return getStorage(getFirebaseApp())
+}
+
 export const googleProvider = new GoogleAuthProvider()

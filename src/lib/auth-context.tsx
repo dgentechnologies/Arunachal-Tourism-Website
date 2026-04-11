@@ -18,7 +18,7 @@ import {
   type User,
 } from "firebase/auth"
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore"
-import { auth, db, googleProvider } from "@/lib/firebase"
+import { getFirebaseAuth, getFirebaseDb, googleProvider } from "@/lib/firebase"
 
 interface AuthContextValue {
   user: User | null
@@ -33,7 +33,7 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 async function upsertUserDoc(user: User) {
-  const ref = doc(db, "users", user.uid)
+  const ref = doc(getFirebaseDb(), "users", user.uid)
   const snap = await getDoc(ref)
   if (!snap.exists()) {
     await setDoc(ref, {
@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(getFirebaseAuth(), async (firebaseUser) => {
       if (firebaseUser) {
         await upsertUserDoc(firebaseUser)
       }
@@ -69,26 +69,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   async function signInWithEmail(email: string, password: string) {
-    await signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(getFirebaseAuth(), email, password)
   }
 
   async function signUpWithEmail(email: string, password: string, displayName: string) {
-    const credential = await createUserWithEmailAndPassword(auth, email, password)
+    const credential = await createUserWithEmailAndPassword(getFirebaseAuth(), email, password)
     await updateProfile(credential.user, { displayName })
     await upsertUserDoc(credential.user)
   }
 
   async function signInWithGoogle() {
-    const credential = await signInWithPopup(auth, googleProvider)
+    const credential = await signInWithPopup(getFirebaseAuth(), googleProvider)
     await upsertUserDoc(credential.user)
   }
 
   async function signOut() {
-    await firebaseSignOut(auth)
+    await firebaseSignOut(getFirebaseAuth())
   }
 
   async function resetPassword(email: string) {
-    await sendPasswordResetEmail(auth, email)
+    await sendPasswordResetEmail(getFirebaseAuth(), email)
   }
 
   return (
