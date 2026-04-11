@@ -104,54 +104,75 @@ export default function RaftingPage() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Animated background gradients */}
+      {/* Animated water-themed background with flowing waves */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        {/* Flowing water layers */}
         <motion.div
-          className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full opacity-20"
+          className="absolute top-0 left-0 right-0 h-[400px] opacity-10"
           style={{
-            background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)",
+            background: "linear-gradient(180deg, rgba(6,182,212,0.4) 0%, rgba(14,165,233,0.2) 50%, transparent 100%)",
           }}
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0],
+            y: [0, 20, 0],
           }}
           transition={{
-            duration: 20,
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute -bottom-1/2 -left-1/4 w-[600px] h-[600px] rounded-full opacity-20"
+          className="absolute bottom-0 left-0 right-0 h-[300px] opacity-15"
           style={{
-            background: "radial-gradient(circle, rgba(14,165,233,0.3) 0%, transparent 70%)",
+            background: "linear-gradient(0deg, rgba(59,130,246,0.3) 0%, rgba(96,165,250,0.2) 50%, transparent 100%)",
           }}
           animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -30, 0],
-            y: [0, 50, 0],
+            y: [0, -15, 0],
           }}
           transition={{
-            duration: 25,
+            duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
+        {/* Bubble effects */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-3 h-3 rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(147,197,253,0.6) 0%, rgba(59,130,246,0.3) 70%, transparent 100%)",
+              left: `${10 + i * 12}%`,
+              bottom: `-${Math.random() * 20}%`,
+            }}
+            animate={{
+              y: [0, -window.innerHeight - 100],
+              x: [0, Math.sin(i) * 50, 0],
+              scale: [0.8, 1.2, 0.8],
+              opacity: [0, 0.7, 0],
+            }}
+            transition={{
+              duration: 15 + Math.random() * 10,
+              repeat: Infinity,
+              delay: i * 2,
+              ease: "linear",
+            }}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        {/* Enhanced Hero Banner with Parallax */}
+        {/* Enhanced Hero Banner with Wave Effects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <ScrollReveal variant="up" className="relative rounded-[3rem] overflow-hidden mb-14 h-[500px] group">
+          <ScrollReveal variant="up" className="relative rounded-[2.5rem] overflow-hidden mb-14 h-[450px] group">
             <motion.div
               className="absolute inset-0"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <Image
                 src="https://picsum.photos/seed/arunachal-mountain-river/1600/900"
@@ -162,27 +183,27 @@ export default function RaftingPage() {
                 priority
               />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-cyan-900/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-transparent to-transparent" />
 
-            {/* Floating particles effect */}
+            {/* Animated wave overlays */}
             <div className="absolute inset-0 overflow-hidden">
-              {[...Array(6)].map((_, i) => (
+              {[...Array(3)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 bg-white/30 rounded-full"
+                  className="absolute w-full h-32 bottom-0"
                   style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
+                    background: `linear-gradient(90deg, transparent, rgba(59,130,246,${0.1 - i * 0.03}), transparent)`,
+                    transform: `translateY(${i * 40}px)`,
                   }}
                   animate={{
-                    y: [0, -30, 0],
-                    opacity: [0.3, 0.6, 0.3],
+                    x: ["-100%", "200%"],
                   }}
                   transition={{
-                    duration: 3 + Math.random() * 2,
+                    duration: 8 + i * 3,
                     repeat: Infinity,
-                    delay: Math.random() * 2,
+                    ease: "linear",
+                    delay: i * 2,
                   }}
                 />
               ))}
@@ -194,67 +215,83 @@ export default function RaftingPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <span className="inline-block bg-primary-container/90 backdrop-blur-sm text-primary-foreground font-bold text-xs uppercase tracking-widest mb-4 px-4 py-2 rounded-full">
+                <span className="inline-block bg-cyan-600/90 backdrop-blur-sm text-white font-bold text-xs uppercase tracking-widest mb-4 px-4 py-2 rounded-full border border-cyan-400/30">
+                  <Waves className="inline h-3 w-3 mr-2 -mt-0.5" />
                   Adventures · River Rafting
                 </span>
               </motion.div>
 
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-bold font-headline text-white mb-4"
+                className="text-4xl md:text-6xl lg:text-7xl font-bold font-headline text-white mb-4 drop-shadow-2xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                River Rafting in Arunachal
+                Ride the Wild Rivers
               </motion.h1>
 
               <motion.p
-                className="text-white/90 max-w-2xl text-base md:text-lg leading-relaxed"
+                className="text-cyan-50/95 max-w-2xl text-base md:text-lg leading-relaxed drop-shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
               >
-                Conquer Grade II to Grade V rapids on ancient Himalayan rivers that have carved the landscape for millennia.
+                Navigate powerful Himalayan rapids where crystal-clear waters carve through ancient gorges, creating the ultimate white-water adventure.
               </motion.p>
             </div>
           </ScrollReveal>
         </motion.div>
 
-        {/* Enhanced Stats Section */}
+        {/* Unique Water-Flow Stats Section */}
         <ScrollReveal variant="up" className="mb-16">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 p-1">
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-indigo-500/10 p-1">
+            <div className="bg-gradient-to-br from-blue-50/90 via-cyan-50/80 to-white/90 backdrop-blur-xl rounded-[2rem] p-8 md:p-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
-                  { value: "6+", label: "Raftable Rivers", icon: Waves },
-                  { value: "Grade V", label: "Max Difficulty", icon: TrendingUp },
-                  { value: "Oct–Apr", label: "Best Season", icon: Calendar },
-                  { value: "2–7 Days", label: "Trip Duration", icon: Clock },
+                  { value: "6+", label: "Epic Rivers", icon: Waves, color: "from-cyan-500 to-blue-600" },
+                  { value: "Grade V", label: "Top Challenge", icon: TrendingUp, color: "from-blue-600 to-indigo-600" },
+                  { value: "Oct–Apr", label: "Prime Season", icon: Calendar, color: "from-indigo-600 to-purple-600" },
+                  { value: "2–7 Days", label: "Trip Length", icon: Clock, color: "from-purple-600 to-pink-600" },
                 ].map((stat, i) => {
                   const Icon = stat.icon
                   return (
                     <motion.div
                       key={i}
-                      className="text-center group cursor-default"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      className="text-center group cursor-default relative"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.1, duration: 0.5 }}
-                      whileHover={{ scale: 1.05 }}
+                      transition={{ delay: i * 0.15, duration: 0.6, type: "spring" }}
                     >
+                      {/* Ripple effect on hover */}
                       <motion.div
-                        className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent mb-4"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
+                        style={{
+                          background: `radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%)`,
+                        }}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                        }}
+                      />
+                      <motion.div
+                        className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br ${stat.color} mb-3 shadow-lg`}
+                        whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
                       >
-                        <Icon className="h-6 w-6 text-white" />
+                        <Icon className="h-7 w-7 text-white" />
                       </motion.div>
-                      <span className="block text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        {stat.value}
-                      </span>
-                      <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider mt-2 block">
-                        {stat.label}
-                      </span>
+                      <div className="relative z-10">
+                        <span className="block text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent drop-shadow-sm">
+                          {stat.value}
+                        </span>
+                        <span className="text-xs md:text-sm text-gray-600 font-bold uppercase tracking-widest mt-2 block">
+                          {stat.label}
+                        </span>
+                      </div>
                     </motion.div>
                   )
                 })}
@@ -263,151 +300,146 @@ export default function RaftingPage() {
           </div>
         </ScrollReveal>
 
-        {/* Section Header */}
+        {/* Section Header with Water Theme */}
         <ScrollReveal variant="up" className="mb-12">
           <div className="text-center max-w-3xl mx-auto">
             <motion.h2
-              className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4"
+              className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Rivers to Explore
+              Rivers Waiting to Be Conquered
             </motion.h2>
             <motion.p
-              className="text-muted-foreground text-lg"
+              className="text-gray-600 text-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              From beginner floats to expert expeditions
+              From gentle flows to raging rapids — find your perfect water adventure
             </motion.p>
           </div>
         </ScrollReveal>
-        {/* Enhanced Rivers Grid with Premium Animations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+
+        {/* Unique Horizontal River Cards with Flow Design */}
+        <div className="space-y-8 mb-20">
           {rivers.map((river, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              transition={{ delay: idx * 0.1, duration: 0.7 }}
               onHoverStart={() => setHoveredCard(idx)}
               onHoverEnd={() => setHoveredCard(null)}
             >
               <motion.div
-                className="relative overflow-hidden rounded-3xl group h-full bg-white"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.4 }}
+                className={`relative overflow-hidden rounded-[2rem] group bg-white shadow-lg hover:shadow-2xl transition-shadow duration-500 ${
+                  idx % 2 === 0 ? "md:pr-4" : "md:pl-4"
+                }`}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                {/* Gradient border effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-accent to-secondary rounded-3xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+                {/* Flowing water effect on hover */}
+                <motion.div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: "linear-gradient(90deg, transparent, rgba(6,182,212,0.1), transparent)",
+                  }}
+                  animate={hoveredCard === idx ? { x: ["-100%", "100%"] } : {}}
+                  transition={{ duration: 1.5, ease: "linear" }}
+                />
 
-                <div className="relative bg-white rounded-3xl shadow-lg group-hover:shadow-2xl transition-shadow duration-500 h-full">
-                  {/* Image Section with Overlay */}
-                  <div className="relative w-full h-56 overflow-hidden rounded-t-3xl">
-                    <motion.div
-                      className="absolute inset-0"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <Image
-                        src={river.image}
-                        alt={river.name}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={river.imageHint}
-                      />
-                    </motion.div>
-
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                    {/* Shimmer effect on hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      initial={{ x: "-100%" }}
-                      animate={hoveredCard === idx ? { x: "100%" } : { x: "-100%" }}
-                      transition={{ duration: 0.8 }}
+                <div className={`flex flex-col ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-6 p-6`}>
+                  {/* Image Section */}
+                  <div className="relative w-full md:w-2/5 h-64 md:h-auto min-h-[280px] overflow-hidden rounded-2xl flex-shrink-0">
+                    <Image
+                      src={river.image}
+                      alt={river.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      data-ai-hint={river.imageHint}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent" />
 
-                    {/* Floating badge */}
+                    {/* Grade Badge */}
+                    <div className="absolute top-4 left-4">
+                      <Badge className={`${river.gradeColor} font-bold px-4 py-2 text-sm shadow-lg backdrop-blur-sm`}>
+                        {river.grade}
+                      </Badge>
+                    </div>
+
+                    {/* Rating Badge */}
                     <motion.div
                       className="absolute top-4 right-4"
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: idx * 0.1 + 0.3 }}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: idx * 0.1 + 0.3, type: "spring" }}
                     >
-                      <div className="bg-white/95 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg">
-                        <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                      <div className="bg-white/95 backdrop-blur-md rounded-xl px-3 py-2 flex items-center gap-2 shadow-lg">
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                         <span className="text-sm font-bold text-gray-900">{river.rating}</span>
                       </div>
                     </motion.div>
 
-                    {/* River name overlay */}
+                    {/* River Name Overlay */}
                     <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-white text-xl md:text-2xl font-bold font-headline drop-shadow-lg">
+                      <h3 className="text-white text-2xl md:text-3xl font-bold font-headline drop-shadow-2xl">
                         {river.name}
                       </h3>
                     </div>
                   </div>
 
                   {/* Content Section */}
-                  <div className="p-6 flex flex-col gap-4">
-                    {/* Location and Quick Info */}
-                    <div className="flex items-center flex-wrap gap-3">
-                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4 text-primary" />
-                        <span className="font-medium">{river.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Clock className="h-4 w-4 text-primary" />
-                        <span className="font-medium">{river.duration}</span>
-                      </div>
-                    </div>
-
-                    {/* Stats Row */}
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Waves className="h-4 w-4 text-primary" />
-                        <span className="font-medium">{river.season}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Users className="h-4 w-4 text-primary" />
-                        <span className="font-medium">{river.groupSize}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4 text-primary" />
-                        <span className="font-medium">{river.bestSeason}</span>
-                      </div>
-                    </div>
-
-                    {/* Difficulty Badge */}
+                  <div className="flex-1 flex flex-col justify-between py-2">
+                    {/* Location & Duration */}
                     <div>
-                      <Badge className={`${river.gradeColor} font-semibold px-3 py-1`}>
-                        {river.grade}
-                      </Badge>
-                    </div>
+                      <div className="flex items-center flex-wrap gap-4 mb-4">
+                        <div className="flex items-center gap-2 text-cyan-700">
+                          <MapPin className="h-5 w-5" />
+                          <span className="font-semibold text-base">{river.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-blue-700">
+                          <Clock className="h-5 w-5" />
+                          <span className="font-semibold text-base">{river.duration}</span>
+                        </div>
+                      </div>
 
-                    {/* Description */}
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                      {river.desc}
-                    </p>
+                      {/* Description */}
+                      <p className="text-gray-700 text-base leading-relaxed mb-4">
+                        {river.desc}
+                      </p>
+
+                      {/* Stats Grid */}
+                      <div className="grid grid-cols-3 gap-3 mb-4">
+                        <div className="flex items-center gap-2 text-sm text-gray-600 bg-cyan-50 rounded-lg px-3 py-2">
+                          <Waves className="h-4 w-4 text-cyan-600" />
+                          <span className="font-medium">{river.season}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600 bg-blue-50 rounded-lg px-3 py-2">
+                          <Users className="h-4 w-4 text-blue-600" />
+                          <span className="font-medium">{river.groupSize}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600 bg-indigo-50 rounded-lg px-3 py-2">
+                          <Calendar className="h-4 w-4 text-indigo-600" />
+                          <span className="font-medium">{river.bestSeason}</span>
+                        </div>
+                      </div>
+                    </div>
 
                     {/* CTA Button */}
                     <motion.div
-                      className="mt-2"
-                      whileHover={{ x: 4 }}
+                      whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
                       <Link
                         href={`/itinerary?river=${encodeURIComponent(river.name)}`}
-                        className="inline-flex items-center gap-2 text-primary font-semibold text-sm group/link"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold px-6 py-3 rounded-xl hover:from-cyan-700 hover:to-blue-700 transition-all shadow-md hover:shadow-lg group/btn"
                       >
-                        <span>Book River Trip</span>
-                        <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                        <span>Book This River</span>
+                        <ArrowRight className="h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
                       </Link>
                     </motion.div>
                   </div>
@@ -417,25 +449,25 @@ export default function RaftingPage() {
           ))}
         </div>
 
-        {/* Essential Preparations Section */}
+        {/* Water-Themed Preparations Section */}
         <ScrollReveal variant="up" className="mb-20">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <motion.h2
-              className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4"
+              className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Essential Preparations
+              Gear Up for the Rapids
             </motion.h2>
             <motion.p
-              className="text-muted-foreground text-lg"
+              className="text-gray-600 text-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Everything you need to know before embarking on your rafting adventure
+              Everything you need to know before you ride the wild waters
             </motion.p>
           </div>
 
@@ -443,81 +475,81 @@ export default function RaftingPage() {
             {[
               {
                 icon: LifeBuoy,
-                title: "Safety Equipment",
+                title: "Safety First",
                 items: [
-                  "ISI-approved life jackets provided",
-                  "Safety helmets for all participants",
-                  "First-aid kit with every group",
+                  "Coast Guard approved life jackets",
+                  "Impact-resistant helmets included",
+                  "First-aid equipped support kayak",
                   "Safety kayaker for Grade IV+ rapids",
-                  "Throw bags and rescue equipment",
-                  "VHF radios for communication"
+                  "Rescue throw bags on every raft",
+                  "Two-way radios for emergencies"
                 ],
-                color: "from-blue-500 to-cyan-500"
+                color: "from-cyan-500 to-blue-600"
               },
               {
                 icon: Heart,
-                title: "Physical Fitness",
+                title: "Fitness Check",
                 items: [
-                  "Basic swimming skills recommended",
-                  "Moderate fitness level required",
-                  "No prior rafting experience needed",
-                  "Age limit: 12-60 years (varies by grade)",
-                  "Medical fitness certificate for Grade IV+",
-                  "Pregnant women should avoid rafting"
+                  "Comfortable swimming ability required",
+                  "Moderate physical fitness sufficient",
+                  "First-timers welcome (Grade I-III)",
+                  "Age range: 12-60 years typically",
+                  "Medical clearance for Grade IV+",
+                  "No rafting for pregnant women"
                 ],
-                color: "from-red-500 to-pink-500"
+                color: "from-rose-500 to-pink-600"
               },
               {
                 icon: FileText,
-                title: "Documents Required",
+                title: "Documentation",
                 items: [
-                  "Valid government-issued ID proof",
-                  "Inner Line Permit (ILP) for Indians",
-                  "Protected Area Permit (PAP) for foreigners",
-                  "Medical certificate for high-grade rapids",
-                  "Travel insurance (highly recommended)",
-                  "Emergency contact details"
+                  "Photo ID (Passport/Aadhar/License)",
+                  "Inner Line Permit for Indian citizens",
+                  "PAP required for foreign nationals",
+                  "Medical fitness cert for advanced trips",
+                  "Travel insurance strongly advised",
+                  "Emergency contact information"
                 ],
-                color: "from-amber-500 to-orange-500"
+                color: "from-orange-500 to-amber-600"
               },
               {
                 icon: Sun,
-                title: "Weather & Season",
+                title: "Best Times",
                 items: [
-                  "Best season: October to April",
-                  "Water levels ideal during these months",
-                  "Avoid monsoon season (Jun-Sep)",
-                  "Carry sunscreen (SPF 50+) and sunglasses",
-                  "Pack waterproof bags for belongings",
-                  "Temperature ranges: 10°C - 25°C"
+                  "October to April: Peak season",
+                  "Water levels perfect for rafting",
+                  "Skip monsoon months (Jun-Sep)",
+                  "High SPF sunscreen mandatory",
+                  "Waterproof bags for electronics",
+                  "Temperature: 10°C to 25°C"
                 ],
-                color: "from-yellow-500 to-amber-500"
+                color: "from-yellow-500 to-orange-500"
               },
               {
                 icon: Shield,
-                title: "Safety Guidelines",
+                title: "Safety Rules",
                 items: [
-                  "Follow guide instructions at all times",
-                  "Never raft solo or without certified guides",
-                  "Inform family/friends of your itinerary",
-                  "Avoid alcohol 24 hours before rafting",
-                  "Listen to safety briefing carefully",
-                  "Know hand signals and rescue procedures"
+                  "Listen to your river guide always",
+                  "Professional guides mandatory",
+                  "Share itinerary with loved ones",
+                  "Zero alcohol 24hrs before trip",
+                  "Attend mandatory safety briefing",
+                  "Learn emergency hand signals"
                 ],
-                color: "from-green-500 to-emerald-500"
+                color: "from-emerald-500 to-teal-600"
               },
               {
                 icon: Backpack,
-                title: "What to Bring",
+                title: "Pack List",
                 items: [
-                  "Quick-dry clothes and swimwear",
-                  "Secure footwear (no flip-flops)",
-                  "Waterproof bag for valuables",
-                  "Extra set of dry clothes",
-                  "Towel and personal toiletries",
-                  "Water bottle and energy snacks"
+                  "Quick-dry shorts and shirt",
+                  "Water shoes with ankle support",
+                  "Sealed waterproof dry bag",
+                  "Change of warm, dry clothes",
+                  "Towel and toiletries",
+                  "Reusable water bottle & snacks"
                 ],
-                color: "from-purple-500 to-violet-500"
+                color: "from-violet-500 to-purple-600"
               }
             ].map((prep, idx) => {
               const Icon = prep.icon
@@ -528,13 +560,13 @@ export default function RaftingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                 >
-                  <div className="relative h-full bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div className={`absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-gradient-to-r ${prep.color}`} />
+                  <div className="relative h-full bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div className={`absolute top-0 left-0 w-full h-2 rounded-t-2xl bg-gradient-to-r ${prep.color}`} />
 
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`p-3 rounded-2xl bg-gradient-to-br ${prep.color}`}>
+                    <div className="flex items-center gap-3 mb-4 mt-2">
+                      <div className={`p-3 rounded-xl bg-gradient-to-br ${prep.color} shadow-md`}>
                         <Icon className="h-6 w-6 text-white" />
                       </div>
                       <h3 className="text-xl font-bold font-headline text-gray-900">
@@ -544,8 +576,8 @@ export default function RaftingPage() {
 
                     <ul className="space-y-2.5">
                       {prep.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <CheckCircle2 className="h-4 w-4 text-cyan-600 mt-0.5 flex-shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -557,27 +589,27 @@ export default function RaftingPage() {
           </div>
         </ScrollReveal>
 
-        {/* Important Information Section */}
+        {/* Rapids Safety Guide */}
         <ScrollReveal variant="up" className="mb-20">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 p-1">
-            <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 md:p-12">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50 p-1">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 md:p-12">
               <div className="text-center mb-10">
                 <motion.h2
-                  className="text-3xl md:text-4xl font-bold font-headline text-primary mb-3"
+                  className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-cyan-700 to-blue-700 bg-clip-text text-transparent mb-3"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
-                  Before You Go
+                  Know Before You Flow
                 </motion.h2>
                 <motion.p
-                  className="text-muted-foreground"
+                  className="text-gray-600"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
                 >
-                  Critical information for a safe and enjoyable rafting experience
+                  Critical safety information for your white-water adventure
                 </motion.p>
               </div>
 
@@ -585,47 +617,51 @@ export default function RaftingPage() {
                 {[
                   {
                     icon: AlertCircle,
-                    title: "Rapid Grade Classification",
-                    content: "Grade I-II: Easy, suitable for beginners. Grade III-IV: Intermediate to advanced, requires good fitness. Grade V: Expert only, serious commitment required. Always listen to your guide's assessment.",
-                    color: "text-red-600"
+                    title: "Rapid Grades Explained",
+                    content: "Grade I-II: Easy flows, perfect for families. Grade III-IV: Technical rapids, strong paddlers needed. Grade V: Extreme challenges for experts only. Your guide will brief you on each rapid ahead.",
+                    color: "text-rose-600",
+                    bg: "bg-rose-50"
                   },
                   {
                     icon: Phone,
-                    title: "Emergency Contacts",
-                    content: "Save local emergency numbers before departure. Limited mobile connectivity on river sections. Satellite phones available with guides. Emergency evacuation protocols in place for all trips.",
-                    color: "text-blue-600"
+                    title: "Emergency Protocol",
+                    content: "Emergency numbers saved in every guide's satellite phone. Limited cell coverage on rivers. Rescue kayaks positioned at difficult sections. Medical evacuation plan ready for all expeditions.",
+                    color: "text-blue-600",
+                    bg: "bg-blue-50"
                   },
                   {
                     icon: MapPinned,
-                    title: "Route Planning",
-                    content: "Study your route thoroughly before departure. Share detailed itinerary with emergency contacts. Check river conditions with local authorities. Weather can affect water levels and rapid intensity.",
-                    color: "text-green-600"
+                    title: "River Conditions",
+                    content: "Check weather forecast 48hrs before trip. Water levels vary with season and rainfall. Some rapids change character daily. Local authorities monitor all river routes. Trips may be rescheduled for safety.",
+                    color: "text-teal-600",
+                    bg: "bg-teal-50"
                   },
                   {
                     icon: Thermometer,
-                    title: "Water Temperature",
-                    content: "Water temperature ranges from 10-18°C. Wetsuits recommended for Oct-Mar. Hypothermia risk in cold water—stay in boat. Dry quickly after rafting to avoid temperature shock.",
-                    color: "text-purple-600"
+                    title: "Cold Water Safety",
+                    content: "Himalayan rivers stay cold year-round (10-18°C). Wetsuits provided October through March. Hypothermia is a real risk—stay in raft. Change into dry, warm clothes immediately after. Hot beverages served post-trip.",
+                    color: "text-violet-600",
+                    bg: "bg-violet-50"
                   }
                 ].map((info, idx) => {
                   const Icon = info.icon
                   return (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: idx * 0.15, duration: 0.5 }}
-                      className="flex gap-4 p-6 rounded-2xl bg-white/80 hover:bg-white transition-colors duration-300"
+                      transition={{ delay: idx * 0.1, duration: 0.4 }}
+                      className={`flex gap-4 p-6 rounded-xl ${info.bg} border border-white shadow-sm hover:shadow-md transition-all duration-300`}
                     >
-                      <div className={`${info.color} mt-1`}>
-                        <Icon className="h-6 w-6" />
+                      <div className={`${info.color} mt-1 flex-shrink-0`}>
+                        <Icon className="h-7 w-7" />
                       </div>
                       <div>
                         <h3 className="text-lg font-bold font-headline text-gray-900 mb-2">
                           {info.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-sm text-gray-700 leading-relaxed">
                           {info.content}
                         </p>
                       </div>
@@ -634,30 +670,30 @@ export default function RaftingPage() {
                 })}
               </div>
 
-              {/* Quick Tips */}
+              {/* River Guide Tips */}
               <motion.div
-                className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10"
+                className="mt-8 p-6 rounded-xl bg-gradient-to-br from-cyan-100/70 via-blue-100/60 to-indigo-100/70 border border-cyan-200"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                <h3 className="text-lg font-bold font-headline text-primary mb-4 flex items-center gap-2">
-                  <Wind className="h-5 w-5" />
-                  Pro Tips from River Guides
+                <h3 className="text-lg font-bold font-headline text-cyan-800 mb-4 flex items-center gap-2">
+                  <Waves className="h-5 w-5" />
+                  Expert River Guide Tips
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {[
-                    "Book trips at least 1 week in advance during peak season",
-                    "Carry minimal valuables—leave them at camp/hotel",
-                    "Wear contacts instead of glasses if possible",
-                    "Apply waterproof sunscreen generously",
-                    "Stay hydrated but don't overeat before rafting",
-                    "Trust your guide—they know the river intimately"
+                    "Reserve early—peak months book out fast",
+                    "Minimize jewelry and valuables on river",
+                    "Secure eyewear with strap (contacts better)",
+                    "Reef-safe waterproof sunscreen only",
+                    "Light meal 2hrs before—not right before",
+                    "Your guide knows every rock—trust them"
                   ].map((tip, i) => (
                     <div key={i} className="flex items-start gap-2 text-sm">
-                      <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{tip}</span>
+                      <CheckCircle2 className="h-4 w-4 text-cyan-700 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-800 font-medium">{tip}</span>
                     </div>
                   ))}
                 </div>
@@ -666,42 +702,69 @@ export default function RaftingPage() {
           </div>
         </ScrollReveal>
 
-        {/* Enhanced CTA Banner */}
+        {/* Unique Water-Themed CTA Banner */}
         <ScrollReveal variant="up">
           <motion.div
-            className="relative overflow-hidden rounded-[3rem] group"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.4 }}
+            className="relative overflow-hidden rounded-[2.5rem] group"
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.5 }}
           >
-            {/* Animated gradient background */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              style={{
-                backgroundSize: "200% 200%",
-              }}
-            />
+            {/* Animated flowing water background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700" />
+
+            {/* Animated water ripples */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-full h-full"
+                  style={{
+                    background: `radial-gradient(ellipse at ${30 + i * 20}% 50%, rgba(255,255,255,0.15) 0%, transparent 50%)`,
+                  }}
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 4 + i,
+                    repeat: Infinity,
+                    delay: i * 0.8,
+                  }}
+                />
+              ))}
+            </div>
 
             {/* Content */}
             <div className="relative py-20 px-8 md:px-16 flex flex-col items-center text-center space-y-6">
-              {/* Decorative elements */}
+              {/* Floating water drops */}
               <motion.div
-                className="absolute top-10 left-10 w-20 h-20 border-2 border-white/20 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
+                className="absolute top-8 left-12 w-16 h-16 opacity-20"
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Droplets className="w-full h-full text-white" />
+              </motion.div>
               <motion.div
-                className="absolute bottom-10 right-10 w-32 h-32 border-2 border-white/20 rounded-full"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              />
+                className="absolute bottom-8 right-12 w-20 h-20 opacity-20"
+                animate={{
+                  y: [0, 15, 0],
+                  rotate: [360, 180, 0],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Waves className="w-full h-full text-white" />
+              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -709,19 +772,19 @@ export default function RaftingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold font-headline text-white max-w-3xl">
-                  Ride the Himalayan Rivers
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold font-headline text-white max-w-3xl drop-shadow-lg">
+                  Ready to Ride the Rapids?
                 </h2>
               </motion.div>
 
               <motion.p
-                className="text-lg md:text-xl text-white/90 max-w-2xl"
+                className="text-lg md:text-xl text-cyan-50 max-w-2xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                Our certified rafting guides prioritise your safety without compromising the thrill. All equipment provided.
+                Join our certified river guides for an adrenaline-pumping journey through pristine Himalayan waters. All safety gear included.
               </motion.p>
 
               <motion.div
@@ -731,22 +794,22 @@ export default function RaftingPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.98 }}>
                   <Link
                     href="/itinerary"
-                    className="bg-white text-primary px-8 py-4 rounded-2xl font-bold hover:shadow-2xl transition-all inline-flex items-center gap-2 group"
+                    className="bg-white text-cyan-700 px-8 py-4 rounded-2xl font-bold hover:shadow-2xl transition-all inline-flex items-center gap-2 group shadow-xl"
                   >
-                    <span>Book a Rafting Trip</span>
+                    <span>Book Your Adventure</span>
                     <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.98 }}>
                   <Link
                     href="/adventures"
-                    className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-2xl font-bold text-white transition-all inline-flex items-center gap-2"
+                    className="bg-white/10 hover:bg-white/20 backdrop-blur-md border-2 border-white/40 px-8 py-4 rounded-2xl font-bold text-white transition-all inline-flex items-center gap-2 shadow-lg"
                   >
-                    All Adventures
+                    Explore More Adventures
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </motion.div>
