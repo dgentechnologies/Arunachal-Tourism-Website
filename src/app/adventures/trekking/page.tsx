@@ -2,7 +2,11 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Mountain, MapPin, Clock, Star, Users, Calendar, TrendingUp } from "lucide-react"
+import {
+  ArrowRight, Mountain, MapPin, Clock, Star, Users, Calendar, TrendingUp,
+  Backpack, Heart, Shield, Droplets, Sun, Wind, CheckCircle2, AlertCircle,
+  FileText, Phone, MapPinned, Thermometer
+} from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
@@ -413,6 +417,255 @@ export default function TrekkingPage() {
             </motion.div>
           ))}
         </div>
+
+        {/* Essential Preparations Section */}
+        <ScrollReveal variant="up" className="mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <motion.h2
+              className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Essential Preparations
+            </motion.h2>
+            <motion.p
+              className="text-muted-foreground text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Everything you need to know before embarking on your trekking adventure
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Backpack,
+                title: "Gear & Equipment",
+                items: [
+                  "Good quality trekking boots (broken in)",
+                  "Layered clothing (thermal, fleece, waterproof)",
+                  "Sleeping bag (-10°C rated for high altitude)",
+                  "Trekking poles and headlamp",
+                  "Personal first-aid kit",
+                  "Water bottles and purification tablets"
+                ],
+                color: "from-blue-500 to-cyan-500"
+              },
+              {
+                icon: Heart,
+                title: "Physical Fitness",
+                items: [
+                  "Start cardio training 4-6 weeks before",
+                  "Build endurance with regular hiking",
+                  "Practice carrying a loaded backpack",
+                  "Strengthen leg muscles and core",
+                  "Medical check-up recommended",
+                  "Acclimatization days are mandatory"
+                ],
+                color: "from-red-500 to-pink-500"
+              },
+              {
+                icon: FileText,
+                title: "Documents Required",
+                items: [
+                  "Valid government-issued ID proof",
+                  "Inner Line Permit (ILP) for Indians",
+                  "Protected Area Permit (PAP) for foreigners",
+                  "Medical certificate for high-altitude treks",
+                  "Travel insurance (highly recommended)",
+                  "Emergency contact details"
+                ],
+                color: "from-amber-500 to-orange-500"
+              },
+              {
+                icon: Sun,
+                title: "Weather Preparation",
+                items: [
+                  "Check forecast before departure",
+                  "Carry sunscreen (SPF 50+) and sunglasses",
+                  "Pack rain gear year-round",
+                  "Temperature drops 6°C per 1000m gain",
+                  "Best visibility: October-November",
+                  "Avoid monsoon season (Jun-Sep)"
+                ],
+                color: "from-yellow-500 to-amber-500"
+              },
+              {
+                icon: Shield,
+                title: "Safety Guidelines",
+                items: [
+                  "Never trek solo in remote areas",
+                  "Hire certified local guides",
+                  "Inform family/friends of your itinerary",
+                  "Carry emergency communication device",
+                  "Follow Leave No Trace principles",
+                  "Know altitude sickness symptoms"
+                ],
+                color: "from-green-500 to-emerald-500"
+              },
+              {
+                icon: Droplets,
+                title: "Health & Nutrition",
+                items: [
+                  "Stay hydrated (3-4 liters daily)",
+                  "Pack high-energy snacks and meals",
+                  "Avoid alcohol before/during trek",
+                  "Carry ORS and electrolyte supplements",
+                  "Vaccination: Tetanus, Hepatitis A/B",
+                  "Altitude sickness medication if needed"
+                ],
+                color: "from-purple-500 to-violet-500"
+              }
+            ].map((prep, idx) => {
+              const Icon = prep.icon
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="relative h-full bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div className={`absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-gradient-to-r ${prep.color}`} />
+
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`p-3 rounded-2xl bg-gradient-to-br ${prep.color}`}>
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold font-headline text-gray-900">
+                        {prep.title}
+                      </h3>
+                    </div>
+
+                    <ul className="space-y-2.5">
+                      {prep.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </ScrollReveal>
+
+        {/* Important Information Section */}
+        <ScrollReveal variant="up" className="mb-20">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 p-1">
+            <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 md:p-12">
+              <div className="text-center mb-10">
+                <motion.h2
+                  className="text-3xl md:text-4xl font-bold font-headline text-primary mb-3"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  Before You Go
+                </motion.h2>
+                <motion.p
+                  className="text-muted-foreground"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                >
+                  Critical information for a safe and enjoyable trek
+                </motion.p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    icon: AlertCircle,
+                    title: "Altitude Sickness Awareness",
+                    content: "Recognize symptoms like headache, nausea, dizziness, and fatigue. Descend immediately if symptoms worsen. Acclimatize properly—gain no more than 500m elevation per day above 3,000m.",
+                    color: "text-red-600"
+                  },
+                  {
+                    icon: Phone,
+                    title: "Emergency Contacts",
+                    content: "Save local emergency numbers before departure. Mobile connectivity is limited in remote areas. Carry a satellite phone or emergency beacon for high-altitude treks.",
+                    color: "text-blue-600"
+                  },
+                  {
+                    icon: MapPinned,
+                    title: "Route Planning",
+                    content: "Study your route thoroughly. Share detailed itinerary with emergency contacts. Always have contingency plans and alternative routes. Check trail conditions with local authorities.",
+                    color: "text-green-600"
+                  },
+                  {
+                    icon: Thermometer,
+                    title: "Temperature Variations",
+                    content: "Temperatures can range from 25°C during day to -10°C at night in higher camps. Layer clothing appropriately. Pack thermal wear even for summer treks at altitude.",
+                    color: "text-purple-600"
+                  }
+                ].map((info, idx) => {
+                  const Icon = info.icon
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.15, duration: 0.5 }}
+                      className="flex gap-4 p-6 rounded-2xl bg-white/80 hover:bg-white transition-colors duration-300"
+                    >
+                      <div className={`${info.color} mt-1`}>
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold font-headline text-gray-900 mb-2">
+                          {info.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {info.content}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )
+                })}
+              </div>
+
+              {/* Quick Tips */}
+              <motion.div
+                className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <h3 className="text-lg font-bold font-headline text-primary mb-4 flex items-center gap-2">
+                  <Wind className="h-5 w-5" />
+                  Pro Tips from Local Guides
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {[
+                    "Start trekking early morning (5-6 AM) to avoid afternoon weather changes",
+                    "Carry cash—no ATMs or card payment in remote areas",
+                    "Respect local customs and tribal traditions",
+                    "Pack out all waste—leave nothing but footprints",
+                    "Book permits at least 2 weeks in advance",
+                    "Learn basic medical first-aid before your trek"
+                  ].map((tip, i) => (
+                    <div key={i} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{tip}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </ScrollReveal>
 
         {/* Enhanced CTA Banner */}
         <ScrollReveal variant="up">
