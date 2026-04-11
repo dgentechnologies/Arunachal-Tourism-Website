@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useToast } from "@/hooks/use-toast"
 import { Bookmark, Clock, LogOut, UserCircle } from "lucide-react"
 
 function initials(name: string | null) {
@@ -23,6 +24,7 @@ function initials(name: string | null) {
 export default function AccountPage() {
   const { user, loading, signOut } = useAuth()
   const router = useRouter()
+  const { toast } = useToast()
 
   useEffect(() => {
     if (!loading && !user) {
@@ -43,8 +45,12 @@ export default function AccountPage() {
   if (!user) return null
 
   async function handleSignOut() {
-    await signOut()
-    router.push("/")
+    try {
+      await signOut()
+      router.push("/")
+    } catch {
+      toast({ title: "Sign-out failed", description: "Please try again.", variant: "destructive" })
+    }
   }
 
   return (

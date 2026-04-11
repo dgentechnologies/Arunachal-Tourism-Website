@@ -65,6 +65,12 @@ export function Nav() {
   const isHome = pathname === "/"
   const { language, setLanguage, t } = useLanguage()
 
+  async function handleSignOut() {
+    await signOut()
+    router.push("/")
+    setIsOpen(false)
+  }
+
   const navGroups: NavGroup[] = [
     {
       label: t.navExplore,
@@ -330,7 +336,7 @@ export function Nav() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={async () => { await signOut(); router.push("/") }}
+                onClick={handleSignOut}
                 className={cn(
                   "flex items-center gap-1.5 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
                   transparent && "text-white hover:bg-white/20 border border-white/30"
@@ -503,7 +509,7 @@ export function Nav() {
           </div>
           <div className="pt-1 border-t">
             {isSignedIn ? (
-              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={async () => { await signOut(); router.push("/"); setIsOpen(false) }}>
+              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={handleSignOut}>
                 <UserCircle className="h-4 w-4" />
                 {t.signOut}
               </Button>
