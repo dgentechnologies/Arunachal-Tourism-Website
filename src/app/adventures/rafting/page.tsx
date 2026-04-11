@@ -4,8 +4,8 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight, MapPin, Clock, Waves, Star, Users, Calendar, TrendingUp,
-  Backpack, Heart, Shield, Droplets, Sun, Wind, CheckCircle2, AlertCircle,
-  FileText, Phone, MapPinned, Thermometer, Anchor, LifeBuoy
+  Backpack, Heart, Shield, Droplets, Sun, CheckCircle2, AlertCircle,
+  FileText, Phone, MapPinned, Thermometer, LifeBuoy
 } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { Badge } from "@/components/ui/badge"
