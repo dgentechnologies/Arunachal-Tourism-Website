@@ -244,7 +244,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── EDITORIAL SECTIONS: TREKKING + RAFTING ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-24 space-y-28 md:space-y-36 min-h-screen">
+      <section className="container mx-auto px-4 md:px-8 mt-12 md:mt-24 space-y-16 md:space-y-36">
         {editorialActivities.map((act, idx) => (
           <ScrollReveal key={act.name} variant="up">
             <div className={`grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center`}>
@@ -256,7 +256,7 @@ export default function AdventuresPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <div className={`relative h-[420px] md:h-[540px] rounded-[2rem] ${act.cornerClass} overflow-hidden shadow-[0_16px_60px_0_rgba(0,106,98,0.14)] group`}>
+                <div className={`relative h-[55vw] min-h-[240px] max-h-[420px] md:h-[540px] md:max-h-none rounded-[2rem] ${act.cornerClass} overflow-hidden shadow-[0_16px_60px_0_rgba(0,106,98,0.14)] group`}>
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.04 }}
@@ -336,7 +336,7 @@ export default function AdventuresPage() {
 
       {/* ── BENTO GRID: ANGLING + PARAGLIDING ── */}
       <section className="container mx-auto px-4 md:px-8 mt-28 min-h-screen flex flex-col justify-center">
-        <ScrollReveal variant="up" className="text-center max-w-2xl mx-auto mb-14">
+          <ScrollReveal variant="up" className="text-center max-w-2xl mx-auto mb-8 md:mb-14">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">And there&apos;s more</span>
           <motion.h2
             className="text-3xl md:text-5xl font-bold font-headline mt-2 mb-3 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
@@ -353,7 +353,7 @@ export default function AdventuresPage() {
           {bentoActivities.map((act, idx) => (
             <motion.div
               key={act.name}
-              className="group relative rounded-[2.5rem] overflow-hidden h-[500px] md:h-[620px] cursor-pointer"
+              className="group relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden h-[260px] sm:h-[360px] md:h-[620px] cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -386,7 +386,7 @@ export default function AdventuresPage() {
               </div>
 
               {/* Content bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10">
                 <h3 className="text-3xl md:text-4xl font-bold font-headline text-white mb-3 leading-tight">
                   {act.name}:<br />{act.headline}
                 </h3>

@@ -169,7 +169,7 @@ export default function RaftingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <ScrollReveal variant="up" className="relative rounded-[2.5rem] overflow-hidden mb-14 h-[450px] group">
+          <ScrollReveal variant="up" className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden mb-8 md:mb-14 h-[55vw] min-h-[280px] max-h-[450px] md:h-[450px] md:max-h-none group">
             <motion.div
               className="absolute inset-0"
               whileHover={{ scale: 1.03 }}
@@ -210,7 +210,7 @@ export default function RaftingPage() {
               ))}
             </div>
 
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-16">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

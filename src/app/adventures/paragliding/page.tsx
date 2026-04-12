@@ -186,7 +186,7 @@ export default function ParaglidingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          <div className="relative rounded-[3rem] overflow-hidden mb-6 h-[520px] md:h-[640px] group">
+          <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden mb-6 h-[55vw] min-h-[280px] max-h-[520px] md:h-[520px] md:max-h-[640px] lg:h-[640px] group">
             <motion.div className="absolute inset-0" whileHover={{ scale: 1.04 }} transition={{ duration: 0.7 }}>
               <Image
                 src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop&auto=format&q=80"
@@ -220,7 +220,7 @@ export default function ParaglidingPage() {
               ))}
             </div>
 
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-16">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

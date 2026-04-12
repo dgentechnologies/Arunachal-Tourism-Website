@@ -284,7 +284,7 @@ export default function HotelsPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              <div className="col-span-2 md:col-span-1 flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">
                   Guests
                 </label>
@@ -316,7 +316,7 @@ export default function HotelsPage() {
       <section className="max-w-6xl mx-auto px-4 md:px-8 pt-10 pb-20">
 
         {/* Tab switcher */}
-        <div className="flex gap-3 pt-6 mb-6">
+        <div className="flex flex-wrap gap-3 pt-6 mb-6">
           <button
             onClick={() => handleTabChange("hotels")}
             className={cn(
