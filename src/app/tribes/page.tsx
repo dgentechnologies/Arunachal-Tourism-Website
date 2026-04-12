@@ -62,32 +62,34 @@ export default function TribesPage() {
   ]
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Page Header */}
-      <ScrollReveal variant="up" className="max-w-3xl mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-4">{t.tribesPageTitle}</h1>
-        <p className="text-muted-foreground text-lg leading-relaxed">{t.tribesPageSubtitle}</p>
-      </ScrollReveal>
+    <div>
+      {/* Intro + Stats */}
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <ScrollReveal variant="up" className="max-w-3xl mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-4">{t.tribesPageTitle}</h1>
+          <p className="text-muted-foreground text-lg leading-relaxed">{t.tribesPageSubtitle}</p>
+        </ScrollReveal>
 
-      {/* Stats Banner */}
-      <ScrollReveal variant="up" className="mb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-primary/5 rounded-2xl p-6 md:p-8">
-          {[
-            { value: "26+", label: "Recognised Tribes" },
-            { value: "100+", label: "Dialects & Languages" },
-            { value: "500+", label: "Years of Heritage" },
-            { value: "30+", label: "Distinct Festivals" },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <span className="block text-2xl md:text-3xl font-bold text-primary">{stat.value}</span>
-              <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider mt-1 block">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </ScrollReveal>
+        <ScrollReveal variant="up">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-primary/5 rounded-2xl p-6 md:p-8">
+            {[
+              { value: "26+", label: "Recognised Tribes" },
+              { value: "100+", label: "Dialects & Languages" },
+              { value: "500+", label: "Years of Heritage" },
+              { value: "30+", label: "Distinct Festivals" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <span className="block text-2xl md:text-3xl font-bold text-primary">{stat.value}</span>
+                <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider mt-1 block">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+      </section>
 
       {/* Tribes Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {tribes.map((tribe, idx) => (
           <ScrollReveal key={idx} variant="up" delay={idx * 70}>
             <Card className="overflow-hidden border-none shadow-lg group h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-white">
@@ -121,26 +123,29 @@ export default function TribesPage() {
           </ScrollReveal>
         ))}
       </div>
+      </section>
 
       {/* CTA Banner */}
-      <ScrollReveal variant="up" className="mt-20">
-        <div className="py-16 bg-primary text-white rounded-[3rem] px-8 md:px-16 flex flex-col items-center text-center space-y-6">
-          <h2 className="text-3xl md:text-5xl font-bold font-headline max-w-2xl">
-            Experience Living Cultures Firsthand
-          </h2>
-          <p className="text-lg text-white/80 max-w-xl">
-            Plan a cultural immersion tour with local tribal guides and witness ancient festivals, crafts, and traditions that have endured for centuries.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="/itinerary" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
-              {t.planItinerary}
-            </a>
-            <a href="/guides" className="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-xl font-bold transition-all">
-              {t.readFullGuide}
-            </a>
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <ScrollReveal variant="up">
+          <div className="py-16 bg-primary text-white rounded-[3rem] px-8 md:px-16 flex flex-col items-center text-center space-y-6">
+            <h2 className="text-3xl md:text-5xl font-bold font-headline max-w-2xl">
+              Experience Living Cultures Firsthand
+            </h2>
+            <p className="text-lg text-white/80 max-w-xl">
+              Plan a cultural immersion tour with local tribal guides and witness ancient festivals, crafts, and traditions that have endured for centuries.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <a href="/itinerary" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
+                {t.planItinerary}
+              </a>
+              <a href="/guides" className="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-xl font-bold transition-all">
+                {t.readFullGuide}
+              </a>
+            </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </section>
     </div>
   )
 }

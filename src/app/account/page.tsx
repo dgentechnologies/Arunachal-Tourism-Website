@@ -34,7 +34,7 @@ export default function AccountPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto max-w-2xl px-4 py-16 space-y-6">
+      <div className="container mx-auto max-w-2xl px-4 py-16 space-y-6 min-h-screen">
         <Skeleton className="h-16 w-16 rounded-full" />
         <Skeleton className="h-6 w-48" />
         <Skeleton className="h-4 w-64" />
@@ -54,7 +54,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-2xl px-4 py-16">
+    <div className="container mx-auto max-w-2xl px-4 py-16 min-h-screen">
       <div className="rounded-xl border bg-card shadow-sm p-8 space-y-8">
         {/* Profile header */}
         <div className="flex items-center gap-5">

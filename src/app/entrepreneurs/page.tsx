@@ -47,40 +47,42 @@ export default function EntrepreneursPage() {
   ]
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Page Header */}
-      <ScrollReveal variant="up" className="max-w-3xl mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-4">{t.entrepreneursPageTitle}</h1>
-        <p className="text-muted-foreground text-lg leading-relaxed">{t.entrepreneursPageSubtitle}</p>
-      </ScrollReveal>
+    <div>
+      {/* Page Header + Highlight Banner */}
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <ScrollReveal variant="up" className="max-w-3xl mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-4">{t.entrepreneursPageTitle}</h1>
+          <p className="text-muted-foreground text-lg leading-relaxed">{t.entrepreneursPageSubtitle}</p>
+        </ScrollReveal>
 
-      {/* Highlight Banner */}
-      <ScrollReveal variant="up" className="mb-12">
-        <div className="bg-primary/5 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-          <div className="flex-1 space-y-2">
-            <h2 className="text-xl md:text-2xl font-bold text-primary font-headline">
-              Rising Stars of the Himalayas
-            </h2>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-              From ecotourism to tech, handloom to organic farming — the entrepreneurs of Arunachal Pradesh are redefining what it means to do business while honouring their roots.
-            </p>
+        <ScrollReveal variant="up">
+          <div className="bg-primary/5 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+            <div className="flex-1 space-y-2">
+              <h2 className="text-xl md:text-2xl font-bold text-primary font-headline">
+                Rising Stars of the Himalayas
+              </h2>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                From ecotourism to tech, handloom to organic farming — the entrepreneurs of Arunachal Pradesh are redefining what it means to do business while honouring their roots.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 shrink-0">
+              {[
+                { value: "200+", label: "Active Startups" },
+                { value: "5000+", label: "Jobs Created" },
+              ].map((stat, i) => (
+                <div key={i} className="bg-white rounded-xl p-4 text-center shadow-sm">
+                  <span className="block text-2xl font-bold text-primary">{stat.value}</span>
+                  <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 shrink-0">
-            {[
-              { value: "200+", label: "Active Startups" },
-              { value: "5000+", label: "Jobs Created" },
-            ].map((stat, i) => (
-              <div key={i} className="bg-white rounded-xl p-4 text-center shadow-sm">
-                <span className="block text-2xl font-bold text-primary">{stat.value}</span>
-                <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </section>
 
       {/* Entrepreneurs Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {entrepreneurs.map((e, idx) => (
           <ScrollReveal key={idx} variant="up" delay={idx * 80}>
             <Card className="overflow-hidden border-none shadow-lg group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-white h-full">
@@ -116,26 +118,29 @@ export default function EntrepreneursPage() {
           </ScrollReveal>
         ))}
       </div>
+      </section>
 
       {/* CTA Banner */}
-      <ScrollReveal variant="up" className="mt-20">
-        <div className="py-16 bg-primary text-white rounded-[3rem] px-8 md:px-16 flex flex-col items-center text-center space-y-6">
-          <h2 className="text-3xl md:text-5xl font-bold font-headline max-w-2xl">
-            Support Local Businesses
-          </h2>
-          <p className="text-lg text-white/80 max-w-xl">
-            Every time you book a local homestay, hire a tribal guide, or buy handcrafted products, you directly support the economy of Arunachal Pradesh.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Link href="/hotels" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
-              {t.bookNow}
-            </Link>
-            <a href="/guides" className="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-xl font-bold transition-all">
-              {t.viewTravelGuides}
-            </a>
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <ScrollReveal variant="up">
+          <div className="py-16 bg-primary text-white rounded-[3rem] px-8 md:px-16 flex flex-col items-center text-center space-y-6">
+            <h2 className="text-3xl md:text-5xl font-bold font-headline max-w-2xl">
+              Support Local Businesses
+            </h2>
+            <p className="text-lg text-white/80 max-w-xl">
+              Every time you book a local homestay, hire a tribal guide, or buy handcrafted products, you directly support the economy of Arunachal Pradesh.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link href="/hotels" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg">
+                {t.bookNow}
+              </Link>
+              <a href="/guides" className="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-xl font-bold transition-all">
+                {t.viewTravelGuides}
+              </a>
+            </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </section>
     </div>
   )
 }

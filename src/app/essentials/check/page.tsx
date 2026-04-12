@@ -105,7 +105,7 @@ export default function SmartIlpCheckPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-4xl">
+    <div className="container mx-auto px-4 py-12 max-w-4xl min-h-screen">
       <div className="space-y-6 mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline">{t.permitPageTitle}</h1>
         <p className="text-muted-foreground text-lg">

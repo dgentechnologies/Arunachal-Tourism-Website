@@ -245,7 +245,7 @@ export default function PermitHubPage() {
       </div>
 
       {/* ILP Section */}
-      <section className="py-32">
+      <section className="py-32 min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
@@ -342,7 +342,7 @@ export default function PermitHubPage() {
       </section>
 
       {/* PAP Section */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden min-h-screen flex flex-col justify-center">
         <div className="absolute inset-0 bg-stone-900 z-0" />
         <div className="absolute inset-0 z-0">
           <Image
@@ -427,7 +427,7 @@ export default function PermitHubPage() {
       </section>
 
       {/* Entry Gates */}
-      <section className="py-32">
+      <section className="py-32 min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <ScrollReveal variant="left">
@@ -492,7 +492,7 @@ export default function PermitHubPage() {
       </section>
 
       {/* Before You Travel */}
-      <section className="py-20 bg-surface-low">
+      <section className="py-20 bg-surface-low min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center max-w-2xl mx-auto mb-14">
@@ -524,7 +524,7 @@ export default function PermitHubPage() {
       </section>
 
       {/* The Pledge */}
-      <section className="py-8 px-4">
+      <section className="py-8 px-4 min-h-screen flex flex-col justify-center">
         <div className="container mx-auto">
           <ScrollReveal>
             <div className="bg-primary rounded-[3rem] overflow-hidden relative flex items-center shadow-[0_64px_128px_-32px_rgba(0,106,98,0.3)]">
@@ -651,7 +651,7 @@ export default function PermitHubPage() {
       </section>
 
       {/* AI Check CTA */}
-      <section className="py-24 cta-gradient">
+      <section className="py-24 cta-gradient min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 border border-white/30 rounded-full text-white text-xs font-bold tracking-widest uppercase mb-8">

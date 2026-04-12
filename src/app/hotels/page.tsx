@@ -39,7 +39,7 @@ export default function HotelsPage() {
   return (
     <main className="bg-surface">
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="px-4 md:px-10 pt-6 pb-0">
+      <section className="px-4 md:px-10 pt-6 pb-0 min-h-screen flex flex-col justify-center">
         <div className="relative w-full h-[580px] md:h-[720px] rounded-xl md:rounded-[2rem] overflow-hidden group">
           <Image
             src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop&auto=format&q=85"
@@ -90,7 +90,7 @@ export default function HotelsPage() {
       </section>
 
       {/* ── Search / Filter Bar ───────────────────────────────────── */}
-      <section className="px-4 md:px-10 pt-16 pb-20">
+      <section className="px-4 md:px-10 pt-16 pb-20 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up">
           <div className="max-w-5xl mx-auto bg-muted rounded-xl md:rounded-[1.5rem] p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center">
             {/* Location */}
@@ -142,7 +142,7 @@ export default function HotelsPage() {
       </section>
 
       {/* ── Featured: High Altitude Luxury ───────────────────────── */}
-      <section className="px-4 md:px-10 pb-28">
+      <section className="px-4 md:px-10 pb-28 min-h-screen flex flex-col justify-center">
         <div className="max-w-screen-xl mx-auto">
           <ScrollReveal variant="up">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
@@ -235,7 +235,7 @@ export default function HotelsPage() {
       </section>
 
       {/* ── Tribal Homestays: Deep Immersion ─────────────────────── */}
-      <section className="bg-muted py-24 md:py-32">
+      <section className="bg-muted py-24 md:py-32 min-h-screen flex flex-col justify-center">
         <div className="px-4 md:px-10 max-w-screen-xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-center">
             {/* Text column */}
@@ -348,7 +348,7 @@ export default function HotelsPage() {
       </section>
 
       {/* ── Eco-Conscious Lodges ──────────────────────────────────── */}
-      <section className="px-4 md:px-10 py-24 md:py-32">
+      <section className="px-4 md:px-10 py-24 md:py-32 min-h-screen flex flex-col justify-center">
         <div className="max-w-screen-xl mx-auto">
           <ScrollReveal variant="up">
             <div className="max-w-3xl mb-14">
@@ -415,7 +415,7 @@ export default function HotelsPage() {
       </section>
 
       {/* ── All Properties Grid ───────────────────────────────────── */}
-      <section className="bg-muted px-4 md:px-10 py-24 md:py-28">
+      <section className="bg-muted px-4 md:px-10 py-24 md:py-28 min-h-screen flex flex-col justify-center">
         <div className="max-w-screen-xl mx-auto">
           <ScrollReveal variant="up">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
@@ -513,7 +513,7 @@ export default function HotelsPage() {
       </section>
 
       {/* ── CTA: Find Your Himalayan Home ────────────────────────── */}
-      <section className="px-4 md:px-10 py-16 md:py-20">
+      <section className="px-4 md:px-10 py-16 md:py-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-screen-xl mx-auto">
           <ScrollReveal variant="scale">
             <div className="relative bg-primary rounded-xl md:rounded-[2rem] p-10 md:p-20 overflow-hidden text-center">

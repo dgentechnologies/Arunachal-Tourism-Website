@@ -75,7 +75,7 @@ export default function Home() {
       </div>
 
       {/* Quick Services Bar */}
-      <section className="bg-[#f6f3f2]">
+      <section className="bg-[#f6f3f2] min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center md:justify-between divide-y md:divide-y-0 md:divide-x divide-[#cac4c0]/15">
             {quickLinks.map((link, idx) => {
@@ -96,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* ── Narrative Anchors: Bento Grid ──────────────────────────── */}
-      <section className="px-4 md:px-8 py-16 md:py-24 lg:py-32 max-w-[1440px] mx-auto w-full tribal-pattern">
+      <section className="px-4 md:px-8 py-16 md:py-24 lg:py-32 max-w-[1440px] mx-auto w-full tribal-pattern min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6 md:gap-8">
             <div className="max-w-2xl">
@@ -193,7 +193,7 @@ export default function Home() {
       </section>
 
       {/* ── Deep Cultural Resonance — Primary-colored section ─────── */}
-      <section className="bg-primary py-16 md:py-24 lg:py-32 px-4 md:px-8 overflow-hidden relative">
+      <section className="bg-primary py-16 md:py-24 lg:py-32 px-4 md:px-8 overflow-hidden relative min-h-screen flex flex-col justify-center">
         {/* Decorative oversized word */}
         <div className="absolute top-8 right-[-5%] md:right-[-2%] text-white/5 font-headline font-bold text-[6rem] md:text-[10rem] lg:text-[15rem] select-none pointer-events-none leading-none">
           MISHMI
@@ -265,7 +265,7 @@ export default function Home() {
       <ScrollytellingSection />
 
       {/* ── Traveller Testimonials ─────────────────────────────────── */}
-      <section className="container mx-auto px-4 py-16 md:py-20 lg:py-24">
+      <section className="container mx-auto px-4 py-16 md:py-20 lg:py-24 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up" className="text-center mb-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-headline mb-4 tracking-tight">Through the Lens of Our Travellers</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base font-body">Real photos and stories shared by visitors who have experienced the magic of Arunachal Pradesh.</p>
@@ -311,7 +311,7 @@ export default function Home() {
       </section>
 
       {/* ── Newsletter CTA ─────────────────────────────────────────── */}
-      <section className="py-16 md:py-20 lg:py-28 px-4 md:px-8">
+      <section className="py-16 md:py-20 lg:py-28 px-4 md:px-8 min-h-screen flex flex-col justify-center">
         <div className="max-w-4xl mx-auto bg-[#f6f3f2] rounded-xl md:rounded-2xl p-8 md:p-12 lg:p-20 text-center relative overflow-hidden">
           {/* Top accent bar: primary→secondary gradient */}
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-[#fccc38] to-[#40e0d0]" />
@@ -338,7 +338,7 @@ export default function Home() {
       </section>
 
       {/* ── Premium CTA Banner ─────────────────────────────────────── */}
-      <section className="px-4 md:px-8 pb-16 md:pb-24">
+      <section className="px-4 md:px-8 pb-16 md:pb-24 min-h-screen flex flex-col justify-center">
         <div className="relative overflow-hidden cta-gradient py-12 md:py-16 lg:py-24 rounded-xl md:rounded-2xl">
           <div className="absolute inset-0 opacity-10">
             <Image

@@ -142,7 +142,7 @@ export default function AdventuresPage() {
       </div>
 
       {/* ── HERO ── */}
-      <section className="px-4 md:px-8 pt-6 pb-0">
+      <section className="px-4 md:px-8 pt-6 pb-0 min-h-screen flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -244,7 +244,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── EDITORIAL SECTIONS: TREKKING + RAFTING ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-24 space-y-28 md:space-y-36">
+      <section className="container mx-auto px-4 md:px-8 mt-24 space-y-28 md:space-y-36 min-h-screen">
         {editorialActivities.map((act, idx) => (
           <ScrollReveal key={act.name} variant="up">
             <div className={`grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center`}>
@@ -335,7 +335,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── BENTO GRID: ANGLING + PARAGLIDING ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-28">
+      <section className="container mx-auto px-4 md:px-8 mt-28 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up" className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">And there&apos;s more</span>
           <motion.h2
@@ -411,7 +411,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── WHY ARUNACHAL ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-28">
+      <section className="container mx-auto px-4 md:px-8 mt-28 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up" className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">Why come here</span>
           <motion.h2
@@ -452,7 +452,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── SEASON CALENDAR ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-28">
+      <section className="container mx-auto px-4 md:px-8 mt-28 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up">
           <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 p-[1px]">
             <div className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-14">
@@ -531,7 +531,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── PERMIT NOTICE ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-10">
+      <section className="container mx-auto px-4 md:px-8 mt-10 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up">
           <div className="rounded-2xl bg-amber-50 border border-amber-200 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-amber-400/20 flex items-center justify-center">
@@ -552,7 +552,7 @@ export default function AdventuresPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="container mx-auto px-4 md:px-8 mt-10 pb-20">
+      <section className="container mx-auto px-4 md:px-8 mt-10 pb-20 min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up">
           <div className="relative rounded-[3rem] overflow-hidden">
             <div className="absolute inset-0 bg-primary" />

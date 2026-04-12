@@ -124,7 +124,7 @@ export default function SafetyPage() {
     <main id="main-content" className="bg-background overflow-hidden">
 
       {/* ── Hero ────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] pt-28 pb-40 flex items-center overflow-hidden">
+      <section className="relative min-h-screen pt-28 pb-40 flex items-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -234,7 +234,7 @@ export default function SafetyPage() {
       </div>
 
       {/* ── Mountain Hazards ─────────────────────────────── */}
-      <section className="py-28">
+      <section className="py-28 min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -285,7 +285,7 @@ export default function SafetyPage() {
       </section>
 
       {/* ── Directory ─────────────────────────────────────── */}
-      <section className="py-20 bg-surface-low">
+      <section className="py-20 bg-surface-low min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
 
           {/* Header + Search */}
@@ -431,7 +431,7 @@ export default function SafetyPage() {
       </section>
 
       {/* ── Safety Tips Grid ──────────────────────────────── */}
-      <section className="py-28">
+      <section className="py-28 min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
@@ -469,7 +469,7 @@ export default function SafetyPage() {
       </section>
 
       {/* ── Offline + External Resources Banner ──────────── */}
-      <section className="py-8 px-4">
+      <section className="py-8 px-4 min-h-screen flex flex-col justify-center">
         <div className="container mx-auto">
           <ScrollReveal>
             <div className="bg-primary rounded-[3rem] overflow-hidden relative shadow-[0_64px_128px_-32px_rgba(0,106,98,0.3)]">
@@ -551,7 +551,7 @@ export default function SafetyPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────── */}
-      <section className="py-24 cta-gradient">
+      <section className="py-24 cta-gradient min-h-screen flex flex-col justify-center">
         <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 border border-white/30 rounded-full text-white text-xs font-bold tracking-widest uppercase mb-8">

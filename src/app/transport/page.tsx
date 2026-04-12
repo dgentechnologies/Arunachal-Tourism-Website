@@ -133,184 +133,191 @@ export default function TransportPage() {
   )
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold text-primary font-headline mb-4">{t.transportPageTitle}</h1>
-        <p className="text-muted-foreground text-lg max-w-2xl">{t.transportPageSubtitle}</p>
-      </div>
-
-      {/* Route Search */}
-      <div className="bg-gradient-to-r from-primary/5 to-secondary/20 rounded-2xl p-6 mb-8 border border-primary/10 shadow-sm">
-        <h2 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
-          <MapPin className="h-5 w-5" /> Plan Your Route
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Source */}
-          <div ref={sourceRef} className="relative">
-            <label className="text-sm font-medium text-muted-foreground mb-1.5 block">From (Source)</label>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
-              <Input
-                value={source}
-                onChange={(e) => { setSource(e.target.value); setShowSourceSugg(true) }}
-                onFocus={() => setShowSourceSugg(true)}
-                placeholder="e.g. Guwahati"
-                className="pl-9 h-11"
-              />
-            </div>
-            {showSourceSugg && sourceSuggestions.length > 0 && (
-              <div className="absolute z-30 top-full mt-1 w-full bg-background border rounded-lg shadow-lg overflow-hidden">
-                {sourceSuggestions.map((place) => (
-                  <button
-                    key={place}
-                    onClick={() => { setSource(place); setShowSourceSugg(false) }}
-                    className="w-full text-left px-4 py-2.5 text-sm hover:bg-secondary/50 flex items-center gap-2"
-                  >
-                    <MapPin className="h-3.5 w-3.5 text-muted-foreground shrink-0" />{place}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Destination */}
-          <div ref={destRef} className="relative">
-            <label className="text-sm font-medium text-muted-foreground mb-1.5 block">To (Destination)</label>
-            <div className="relative">
-              <ArrowRight className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
-              <Input
-                value={destination}
-                onChange={(e) => { setDestination(e.target.value); setShowDestSugg(true) }}
-                onFocus={() => setShowDestSugg(true)}
-                placeholder="e.g. Tawang"
-                className="pl-9 h-11"
-              />
-            </div>
-            {showDestSugg && destSuggestions.length > 0 && (
-              <div className="absolute z-30 top-full mt-1 w-full bg-background border rounded-lg shadow-lg overflow-hidden">
-                {destSuggestions.map((place) => (
-                  <button
-                    key={place}
-                    onClick={() => { setDestination(place); setShowDestSugg(false) }}
-                    className="w-full text-left px-4 py-2.5 text-sm hover:bg-secondary/50 flex items-center gap-2"
-                  >
-                    <MapPin className="h-3.5 w-3.5 text-muted-foreground shrink-0" />{place}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+    <div>
+      {/* Header + Route Search */}
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <div className="mb-10">
+          <h1 className="text-4xl font-bold text-primary font-headline mb-4">{t.transportPageTitle}</h1>
+          <p className="text-muted-foreground text-lg max-w-2xl">{t.transportPageSubtitle}</p>
         </div>
-        {source && destination && (
-          <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground bg-background rounded-lg px-4 py-2.5 border">
-            <MapPin className="h-4 w-4 text-primary shrink-0" />
-            <span className="font-medium text-foreground">{source}</span>
-            <ArrowRight className="h-4 w-4 text-muted-foreground" />
-            <span className="font-medium text-foreground">{destination}</span>
-            <span className="ml-auto text-xs text-primary">Showing transport providers for this route</span>
-          </div>
-        )}
-      </div>
 
-      {/* Vehicle Type Filters */}
-      <div className="mb-8">
-        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Filter by Vehicle Type</h2>
-        <div className="flex flex-wrap gap-2">
-          {VEHICLE_TYPES.map((type) => {
-            const Icon = type.icon
-            return (
-              <button
-                key={type.value}
-                onClick={() => setActiveFilter(type.value)}
-                className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border",
-                  activeFilter === type.value
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background text-muted-foreground border-border hover:border-primary/50 hover:text-primary"
-                )}
-              >
-                <Icon className="h-4 w-4" />{type.label}
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* Transport Companies */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold text-primary font-headline mb-2">Vehicle Providers & Companies</h2>
-        <p className="text-muted-foreground text-sm mb-6">Contact these verified transport operators directly to book your vehicle.</p>
-        {filteredCompanies.length > 0 ? (
+        {/* Route Search */}
+        <div className="bg-gradient-to-r from-primary/5 to-secondary/20 rounded-2xl p-6 mb-8 border border-primary/10 shadow-sm">
+          <h2 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+            <MapPin className="h-5 w-5" /> Plan Your Route
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredCompanies.map((company) => (
-              <Card key={company.name} className="border border-border/60 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-5">
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-bold text-base">{company.name}</h3>
-                        {company.verified && (
-                          <Badge className="bg-green-100 text-green-700 text-xs border-none px-1.5 py-0.5">
-                            <ShieldCheck className="h-3 w-3 mr-1" />Verified
-                          </Badge>
-                        )}
+            {/* Source */}
+            <div ref={sourceRef} className="relative">
+              <label className="text-sm font-medium text-muted-foreground mb-1.5 block">From (Source)</label>
+              <div className="relative">
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
+                <Input
+                  value={source}
+                  onChange={(e) => { setSource(e.target.value); setShowSourceSugg(true) }}
+                  onFocus={() => setShowSourceSugg(true)}
+                  placeholder="e.g. Guwahati"
+                  className="pl-9 h-11"
+                />
+              </div>
+              {showSourceSugg && sourceSuggestions.length > 0 && (
+                <div className="absolute z-30 top-full mt-1 w-full bg-background border rounded-lg shadow-lg overflow-hidden">
+                  {sourceSuggestions.map((place) => (
+                    <button
+                      key={place}
+                      onClick={() => { setSource(place); setShowSourceSugg(false) }}
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-secondary/50 flex items-center gap-2"
+                    >
+                      <MapPin className="h-3.5 w-3.5 text-muted-foreground shrink-0" />{place}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Destination */}
+            <div ref={destRef} className="relative">
+              <label className="text-sm font-medium text-muted-foreground mb-1.5 block">To (Destination)</label>
+              <div className="relative">
+                <ArrowRight className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
+                <Input
+                  value={destination}
+                  onChange={(e) => { setDestination(e.target.value); setShowDestSugg(true) }}
+                  onFocus={() => setShowDestSugg(true)}
+                  placeholder="e.g. Tawang"
+                  className="pl-9 h-11"
+                />
+              </div>
+              {showDestSugg && destSuggestions.length > 0 && (
+                <div className="absolute z-30 top-full mt-1 w-full bg-background border rounded-lg shadow-lg overflow-hidden">
+                  {destSuggestions.map((place) => (
+                    <button
+                      key={place}
+                      onClick={() => { setDestination(place); setShowDestSugg(false) }}
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-secondary/50 flex items-center gap-2"
+                    >
+                      <MapPin className="h-3.5 w-3.5 text-muted-foreground shrink-0" />{place}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          {source && destination && (
+            <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground bg-background rounded-lg px-4 py-2.5 border">
+              <MapPin className="h-4 w-4 text-primary shrink-0" />
+              <span className="font-medium text-foreground">{source}</span>
+              <ArrowRight className="h-4 w-4 text-muted-foreground" />
+              <span className="font-medium text-foreground">{destination}</span>
+              <span className="ml-auto text-xs text-primary">Showing transport providers for this route</span>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Vehicle Filters + Companies */}
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        {/* Vehicle Type Filters */}
+        <div className="mb-8">
+          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Filter by Vehicle Type</h2>
+          <div className="flex flex-wrap gap-2">
+            {VEHICLE_TYPES.map((type) => {
+              const Icon = type.icon
+              return (
+                <button
+                  key={type.value}
+                  onClick={() => setActiveFilter(type.value)}
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border",
+                    activeFilter === type.value
+                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                      : "bg-background text-muted-foreground border-border hover:border-primary/50 hover:text-primary"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />{type.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Transport Companies */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-primary font-headline mb-2">Vehicle Providers &amp; Companies</h2>
+          <p className="text-muted-foreground text-sm mb-6">Contact these verified transport operators directly to book your vehicle.</p>
+          {filteredCompanies.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filteredCompanies.map((company) => (
+                <Card key={company.name} className="border border-border/60 shadow-sm hover:shadow-md transition-shadow">
+                  <CardContent className="p-5">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="font-bold text-base">{company.name}</h3>
+                          {company.verified && (
+                            <Badge className="bg-green-100 text-green-700 text-xs border-none px-1.5 py-0.5">
+                              <ShieldCheck className="h-3 w-3 mr-1" />Verified
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                          <span className="font-medium text-foreground">{company.rating}</span>
+                          <span>· {company.type}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                        <span className="font-medium text-foreground">{company.rating}</span>
-                        <span>· {company.type}</span>
-                      </div>
+                      <Badge variant="outline" className="shrink-0 text-xs">{company.type}</Badge>
                     </div>
-                    <Badge variant="outline" className="shrink-0 text-xs">{company.type}</Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">{company.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {company.vehicles.map((vehicle) => (
-                      <span key={vehicle} className="text-xs bg-secondary/40 px-2 py-1 rounded-full text-muted-foreground">
-                        {vehicle}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                    <Phone className="h-4 w-4" />
-                    <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hover:underline">
-                      {company.phone}
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-2xl">
-            <Bus className="h-12 w-12 mx-auto mb-4 opacity-20" />
-            <p className="text-lg font-medium">No providers found for this vehicle type.</p>
-            <p className="text-sm mt-1">Try a different filter.</p>
-          </div>
-        )}
-      </div>
+                    <p className="text-sm text-muted-foreground mb-3">{company.description}</p>
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {company.vehicles.map((vehicle) => (
+                        <span key={vehicle} className="text-xs bg-secondary/40 px-2 py-1 rounded-full text-muted-foreground">
+                          {vehicle}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                      <Phone className="h-4 w-4" />
+                      <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hover:underline">
+                        {company.phone}
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 text-muted-foreground border-2 border-dashed rounded-2xl">
+              <Bus className="h-12 w-12 mx-auto mb-4 opacity-20" />
+              <p className="text-lg font-medium">No providers found for this vehicle type.</p>
+              <p className="text-sm mt-1">Try a different filter.</p>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Features Row */}
-      <div className="p-8 bg-primary/5 rounded-3xl border border-primary/10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center space-y-3">
-            <div className="bg-white p-4 rounded-2xl shadow-sm"><Map className="h-8 w-8 text-primary" /></div>
-            <h3 className="font-bold text-lg">{t.gpsEnabled}</h3>
-            <p className="text-sm text-muted-foreground">{t.gpsDesc}</p>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-3">
-            <div className="bg-white p-4 rounded-2xl shadow-sm"><ShieldCheck className="h-8 w-8 text-primary" /></div>
-            <h3 className="font-bold text-lg">{t.fullyInsured}</h3>
-            <p className="text-sm text-muted-foreground">{t.fullyInsuredDesc}</p>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-3">
-            <div className="bg-white p-4 rounded-2xl shadow-sm"><Gauge className="h-8 w-8 text-primary" /></div>
-            <h3 className="font-bold text-lg">{t.verifiedDrivers}</h3>
-            <p className="text-sm text-muted-foreground">{t.verifiedDriversDesc}</p>
+      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+        <div className="p-8 bg-primary/5 rounded-3xl border border-primary/10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="bg-white p-4 rounded-2xl shadow-sm"><Map className="h-8 w-8 text-primary" /></div>
+              <h3 className="font-bold text-lg">{t.gpsEnabled}</h3>
+              <p className="text-sm text-muted-foreground">{t.gpsDesc}</p>
+            </div>
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="bg-white p-4 rounded-2xl shadow-sm"><ShieldCheck className="h-8 w-8 text-primary" /></div>
+              <h3 className="font-bold text-lg">{t.fullyInsured}</h3>
+              <p className="text-sm text-muted-foreground">{t.fullyInsuredDesc}</p>
+            </div>
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="bg-white p-4 rounded-2xl shadow-sm"><Gauge className="h-8 w-8 text-primary" /></div>
+              <h3 className="font-bold text-lg">{t.verifiedDrivers}</h3>
+              <p className="text-sm text-muted-foreground">{t.verifiedDriversDesc}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
