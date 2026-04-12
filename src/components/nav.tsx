@@ -11,7 +11,7 @@ import {
   Flag, Plane, ChevronRight, Leaf, Calendar, Landmark,
   TreePine, Waves, Fish, Wind, Sparkles,
   ScanSearch, BookOpen, Info, Video,
-  Mail, Bookmark, Clock, UserCircle,
+  Mail, UserCircle,
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
@@ -121,14 +121,6 @@ export function Nav() {
         { name: t.navFactsLabel, href: "/about", icon: Info, description: t.navFactsDesc },
         { name: t.navVideoGalleryLabel, href: "/media", icon: Video, description: t.navVideoGalleryDesc },
         { name: t.navNewsletterLabel, href: "/newsletter", icon: Mail, description: t.navNewsletterDesc },
-      ],
-    },
-    {
-      label: t.navAccount,
-      items: [
-        { name: t.navSavedTripsLabel, href: "/account/trips", icon: Bookmark, description: t.navSavedTripsDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
-        { name: t.navPermitTrackerLabel, href: "/account/permits", icon: Clock, description: t.navPermitTrackerDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
-        { name: t.navProfilePrefsLabel, href: "/account", icon: UserCircle, description: t.navProfilePrefsDesc, disabled: !isSignedIn, badge: isSignedIn ? undefined : "Sign In" },
       ],
     },
   ]
@@ -413,16 +405,31 @@ export function Nav() {
                 {t.myAccount}
               </Button>
             ) : (
-              <Button
-                size="sm"
-                onClick={() => router.push("/login")}
-                className={cn(
-                  "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
-                  transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
-                )}
-              >
-                {t.signIn}
-              </Button>
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => router.push("/login")}
+                  className={cn(
+                    "font-semibold transition-all duration-200 hover:scale-105 active:scale-95",
+                    transparent
+                      ? "text-white hover:bg-white/20 border border-white/30"
+                      : "text-foreground hover:text-primary hover:bg-secondary/40"
+                  )}
+                >
+                  {t.signIn}
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => router.push("/signup")}
+                  className={cn(
+                    "font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
+                    transparent && "bg-white/20 text-white hover:bg-white/35 border border-white/30"
+                  )}
+                >
+                  {t.signUp}
+                </Button>
+              </>
             )}
           </div>
         </div>
@@ -589,7 +596,10 @@ export function Nav() {
                 {t.signOut}
               </Button>
             ) : (
-              <Button className="w-full font-semibold" onClick={() => { router.push("/login"); setIsOpen(false) }}>{t.signIn}</Button>
+              <div className="flex gap-2">
+                <Button variant="outline" className="flex-1 font-semibold" onClick={() => { router.push("/login"); setIsOpen(false) }}>{t.signIn}</Button>
+                <Button className="flex-1 font-semibold" onClick={() => { router.push("/signup"); setIsOpen(false) }}>{t.signUp}</Button>
+              </div>
             )}
           </div>
         </div>

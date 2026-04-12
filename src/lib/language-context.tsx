@@ -18,6 +18,7 @@ export interface Translations {
   tribes: string
   entrepreneurs: string
   signIn: string
+  signUp: string
   signOut: string
   myAccount: string
   languageLabel: string
@@ -329,7 +330,8 @@ const translations: Record<Language, Translations> = {
     safety: "Safety",
     tribes: "Tribes",
     entrepreneurs: "Entrepreneurs",
-    signIn: "Sign In",
+    signIn: "Log In",
+    signUp: "Sign Up",
     signOut: "Sign Out",
     myAccount: "My Account",
     languageLabel: "English",
@@ -640,7 +642,8 @@ const translations: Record<Language, Translations> = {
     safety: "सुरक्षा",
     tribes: "जनजातियाँ",
     entrepreneurs: "उद्यमी",
-    signIn: "साइन इन",
+    signIn: "लॉग इन",
+    signUp: "साइन अप",
     signOut: "साइन आउट",
     myAccount: "मेरा खाता",
     languageLabel: "हिंदी",
@@ -951,7 +954,8 @@ const translations: Record<Language, Translations> = {
     safety: "নিরাপত্তা",
     tribes: "উপজাতি",
     entrepreneurs: "উদ্যোক্তা",
-    signIn: "সাইন ইন",
+    signIn: "লগ ইন",
+    signUp: "সাইন আপ",
     signOut: "সাইন আউট",
     myAccount: "আমার অ্যাকাউন্ট",
     languageLabel: "বাংলা",
@@ -1262,7 +1266,8 @@ const translations: Record<Language, Translations> = {
     safety: "সুৰক্ষা",
     tribes: "জনজাতি",
     entrepreneurs: "উদ্যোক্তা",
-    signIn: "চাইন ইন",
+    signIn: "লগ ইন",
+    signUp: "চাইন আপ",
     signOut: "চাইন আউট",
     myAccount: "মোৰ একাউণ্ট",
     languageLabel: "অসমীয়া",
