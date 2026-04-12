@@ -367,7 +367,7 @@ export function Nav() {
                     "flex items-center gap-1 font-medium transition-all duration-200 hover:scale-105",
                     transparent
                       ? "text-white/80 hover:text-white hover:bg-white/15"
-                      : "text-muted-foreground hover:text-primary hover:bg-secondary/40"
+                      : "text-muted-foreground hover:text-primary hover:bg-muted data-[state=open]:bg-muted data-[state=open]:text-primary"
                   )}
                 >
                   <Globe className="h-4 w-4" />
@@ -414,7 +414,7 @@ export function Nav() {
                     "font-semibold transition-all duration-200 hover:scale-105 active:scale-95",
                     transparent
                       ? "text-white hover:bg-white/20 border border-white/30"
-                      : "text-foreground hover:text-primary hover:bg-secondary/40"
+                      : "text-foreground hover:text-primary hover:bg-muted"
                   )}
                 >
                   {t.signIn}
