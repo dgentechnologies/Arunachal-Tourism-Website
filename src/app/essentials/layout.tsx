@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     title: 'Apply for Inner Line Permit (ILP) | Arunachal Explore',
     description:
       'Apply for your Arunachal Pradesh Inner Line Permit (ILP) online with AI-assisted review.',
-    url: '/permit',
+    url: '/essentials',
   },
   alternates: {
-    canonical: '/permit',
+    canonical: '/essentials',
   },
 };
 

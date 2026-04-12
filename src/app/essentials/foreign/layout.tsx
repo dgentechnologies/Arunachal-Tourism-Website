@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     title: 'Protected Area Permit for Foreign Nationals | Arunachal Explore',
     description:
       'Everything foreign tourists need to know about the Protected Area Permit (PAP) for visiting Arunachal Pradesh.',
-    url: '/permit/foreign',
+    url: '/essentials/foreign',
   },
   alternates: {
-    canonical: '/permit/foreign',
+    canonical: '/essentials/foreign',
   },
 };
 

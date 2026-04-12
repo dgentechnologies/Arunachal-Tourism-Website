@@ -258,7 +258,7 @@ export default function ParaglidingPage() {
                   Book a Flight
                 </Link>
                 <Link
-                  href="/permit"
+                  href="/essentials"
                   className="bg-white/10 backdrop-blur-md text-white border border-white/25 px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white/20 transition-all flex items-center gap-2"
                 >
                   Apply for ILP <ArrowRight className="h-4 w-4" />
@@ -875,7 +875,7 @@ export default function ParaglidingPage() {
                   Book a Guide Now
                 </Link>
                 <Link
-                  href="/permit"
+                  href="/essentials"
                   className="bg-white/10 backdrop-blur-md text-white border border-white/25 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-all flex items-center gap-2"
                 >
                   Apply for ILP <ArrowRight className="h-4 w-4" />

@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -36,7 +35,7 @@ const permitFormSchema = z.object({
   tourPurpose: z.string().optional(),
 })
 
-export default function PermitPage() {
+export default function SmartIlpCheckPage() {
   const { t } = useLanguage()
   const [reviewResult, setReviewResult] = useState<PermitPlanOutput | null>(null)
   const [isReviewing, setIsReviewing] = useState(false)
@@ -73,11 +72,11 @@ export default function PermitPage() {
         ...values,
         destinations: values.destinations.split(',').map(d => d.trim()),
       })
-      
+
       if (!res) {
         throw new Error("The AI review tool returned an empty response. Please try again.")
       }
-      
+
       setReviewResult(res)
       toast({
         title: "AI Review Complete",
@@ -85,19 +84,19 @@ export default function PermitPage() {
       })
     } catch (err: unknown) {
       console.error("AI Review Error:", err)
-      
+
       const errorMessage = (err as { message?: string })?.message || "";
-      const isQuotaError = errorMessage.includes("429") || 
-                          errorMessage.includes("RESOURCE_EXHAUSTED") || 
-                          errorMessage.includes("quota") ||
-                          (err as { status?: number })?.status === 429 ||
-                          (err as { code?: number })?.code === 429;
-      
+      const isQuotaError = errorMessage.includes("429") ||
+        errorMessage.includes("RESOURCE_EXHAUSTED") ||
+        errorMessage.includes("quota") ||
+        (err as { status?: number })?.status === 429 ||
+        (err as { code?: number })?.code === 429;
+
       toast({
         variant: "destructive",
         title: isQuotaError ? "API Quota Exceeded" : "Review Failed",
-        description: isQuotaError 
-          ? "You have reached your current API quota limit (429 Too Many Requests). Please wait a moment before trying again." 
+        description: isQuotaError
+          ? "You have reached your current API quota limit (429 Too Many Requests). Please wait a moment before trying again."
           : "Failed to process the AI review. Please check your inputs and try again.",
       })
     } finally {
@@ -245,9 +244,9 @@ export default function PermitPage() {
                   />
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Button 
-                      type="button" 
-                      variant="outline" 
+                    <Button
+                      type="button"
+                      variant="outline"
                       onClick={runReview}
                       disabled={isReviewing}
                       className="flex-1 font-semibold border-primary text-primary hover:bg-secondary/20"
@@ -255,8 +254,8 @@ export default function PermitPage() {
                       {isReviewing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Info className="mr-2 h-4 w-4" />}
                       {t.aiPreCheck}
                     </Button>
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       className="flex-1 font-semibold"
                       disabled={isReviewing}
                     >
@@ -284,7 +283,7 @@ export default function PermitPage() {
                     {t.aiReviewFill}
                   </p>
                 )}
-                
+
                 {isReviewing && (
                   <div className="flex flex-col items-center justify-center py-8 text-center space-y-3">
                     <Loader2 className="h-8 w-8 animate-spin text-primary" />

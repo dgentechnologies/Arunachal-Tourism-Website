@@ -30,7 +30,7 @@ export function Footer() {
           <h5 className="text-primary font-headline font-bold mb-4 md:mb-5 text-xs md:text-sm uppercase tracking-wider">{t.footerQuickLinks}</h5>
           <ul className="space-y-3 md:space-y-4">
             <li><Link href="/guides" className="text-muted-foreground text-sm hover:text-[#fccc38] underline decoration-2 underline-offset-4 transition-colors duration-300">{t.footerTravelGuides}</Link></li>
-            <li><Link href="/permit" className="text-muted-foreground text-sm hover:text-[#fccc38] underline decoration-2 underline-offset-4 transition-colors duration-300">E-Permit</Link></li>
+            <li><Link href="/essentials" className="text-muted-foreground text-sm hover:text-[#fccc38] underline decoration-2 underline-offset-4 transition-colors duration-300">E-Permit</Link></li>
             <li><Link href="/tribes" className="text-muted-foreground text-sm hover:text-[#fccc38] underline decoration-2 underline-offset-4 transition-colors duration-300">{t.tribes}</Link></li>
             <li><Link href="/entrepreneurs" className="text-muted-foreground text-sm hover:text-[#fccc38] underline decoration-2 underline-offset-4 transition-colors duration-300">{t.entrepreneurs}</Link></li>
           </ul>

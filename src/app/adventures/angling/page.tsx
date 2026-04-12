@@ -802,7 +802,7 @@ export default function AnglingPage() {
               >
                 <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.98 }}>
                   <Link
-                    href="/permit"
+                    href="/essentials"
                     className="bg-white text-emerald-700 px-8 py-4 rounded-2xl font-bold hover:shadow-2xl transition-all inline-flex items-center gap-2 group shadow-xl"
                   >
                     <span>Get a Fishing Permit</span>

@@ -19,7 +19,7 @@ export default function Home() {
     { title: t.featGuidesTitle, icon: Compass, href: "/guides" },
     { title: t.featHotelsTitle, icon: Hotel, href: "/hotels" },
     { title: t.featTransportTitle, icon: Car, href: "/transport" },
-    { title: t.featPermitTitle, icon: FileText, href: "/permit" },
+    { title: t.featPermitTitle, icon: FileText, href: "/essentials" },
     { title: t.featSafetyTitle, icon: ShieldCheck, href: "/safety" },
     { title: t.featItineraryTitle, icon: MapPin, href: "/itinerary" },
   ]
@@ -362,7 +362,7 @@ export default function Home() {
                     {t.viewTravelGuides} <MoveRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Link href="/permit">
+                <Link href="/essentials">
                   <Button size="lg" className="w-full sm:w-auto h-11 md:h-12 px-6 md:px-8 font-semibold text-sm md:text-base rounded-full bg-transparent text-white shadow-none border-2 border-white/40 hover:bg-white/15 transition-all duration-300 hover:scale-105 active:scale-95">
                     {t.getYourPermit}
                   </Button>

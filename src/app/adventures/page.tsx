@@ -542,7 +542,7 @@ export default function AdventuresPage() {
               <p className="text-amber-700 text-sm">Indian nationals need an Inner Line Permit (ILP); foreign nationals need a Protected Area Permit (PAP). Apply before booking any expedition.</p>
             </div>
             <Link
-              href="/permit"
+              href="/essentials"
               className="flex-shrink-0 bg-amber-500 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-amber-600 transition-colors flex items-center gap-2 whitespace-nowrap"
             >
               Apply for Permit <ArrowRight className="h-4 w-4" />

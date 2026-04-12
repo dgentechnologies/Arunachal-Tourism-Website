@@ -10,7 +10,7 @@ import {
   Globe, Mountain, Users, Lightbulb, ChevronDown,
   Flag, Plane, ChevronRight, Leaf, Calendar, Landmark,
   TreePine, Waves, Fish, Wind, Sparkles,
-  Map, FileText, ScanSearch, BookOpen, Info, Video,
+  Map, ScanSearch, BookOpen, Info, Video,
   Mail, Bookmark, Clock, UserCircle,
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
@@ -105,11 +105,11 @@ export function Nav() {
     },
     {
       label: t.navEssentials,
+      href: "/essentials",
       items: [
-        { name: t.navArrivalFormalitiesLabel, href: "/permit", icon: FileText, description: t.navArrivalFormalitiesDesc },
-        { name: t.navSmartIlpCheckLabel, href: "/permit/check", icon: ScanSearch, description: t.navSmartIlpCheckDesc, badge: "AI" },
+        { name: t.navSmartIlpCheckLabel, href: "/essentials/check", icon: ScanSearch, description: t.navSmartIlpCheckDesc, badge: "AI" },
         { name: t.navPermitIndianLabel, href: PERMIT_URL_INDIAN, icon: Flag, description: t.navPermitIndianDesc, external: true, badge: "External" },
-        { name: t.navPermitForeignLabel, href: "/permit/foreign", icon: Plane, description: t.navPermitForeignDesc },
+        { name: t.navPermitForeignLabel, href: "/essentials/foreign", icon: Plane, description: t.navPermitForeignDesc },
         { name: t.safety, href: "/safety", icon: ShieldAlert, description: t.navSafetyDesc },
       ],
     },
