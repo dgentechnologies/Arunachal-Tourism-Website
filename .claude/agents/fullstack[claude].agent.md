@@ -16,7 +16,7 @@
 
 ## 2. Verified Tech Stack
 
-```
+```raw
 Framework:       Next.js 15.5.9 (App Router, Turbopack in dev)
 React:           19.2.1
 Styling:         Tailwind CSS 3.4 + tailwindcss-animate
@@ -107,14 +107,14 @@ export const dbCms        = getFirestore(app, 'arunachal-explore-cms');        /
 
 Required `.env` additions:
 ```env
-NEXT_PUBLIC_FIRESTORE_DB_ENTERPRISE=arunachal-explore-enterprise
+NEXT_PUBLIC_FIRESTORE_DB_ENTERPRISE=default
 NEXT_PUBLIC_FIRESTORE_DB_USERS=arunachal-explore-users
 NEXT_PUBLIC_FIRESTORE_DB_CMS=arunachal-explore-cms
 ```
 
 ### 4.3 DB1 — Enterprise (Hotels / Vehicles / Operators / Bookings)
 
-```
+```raw
 /hotels/{hotelId}
   name, circuit, district, type, address, coordinates: GeoPoint
   contact: { phone, email, whatsapp }
@@ -153,7 +153,7 @@ NEXT_PUBLIC_FIRESTORE_DB_CMS=arunachal-explore-cms
 
 ### 4.4 DB2 — Standard (Users)
 
-```
+```raw
 /users/{userId}
   uid, displayName, email, photoURL
   nationality: "indian"|"foreign"
@@ -180,7 +180,7 @@ NEXT_PUBLIC_FIRESTORE_DB_CMS=arunachal-explore-cms
 
 ### 4.5 DB3 — Standard (CMS / Static Content)
 
-```
+```raw
 /circuits/{circuitId}
   slug, name, region, description
   keyAttractions: string[], bestSeason
@@ -220,7 +220,7 @@ NEXT_PUBLIC_FIRESTORE_DB_CMS=arunachal-explore-cms
 
 ## 5. App Router — Current Routes (Verified)
 
-```
+```raw
 EXISTING PAGES (working):
 /                               homepage — Hero, ScrollyTelling, Destinations, Testimonials
 /guides                         ArunachalMap interactive SVG (full-screen)
@@ -275,7 +275,7 @@ TO BUILD:
 
 ## 6. Static Data → Firestore Migration
 
-```
+```raw
 hotels-data.ts     → DB1/hotels        (4 hotels currently, seed then fetch)
 transport-data.ts  → DB1/vehicles      (4 vehicles currently)
 itinerary-data.ts  → DB3/circuits+itineraries  (5 premade itineraries)
@@ -291,7 +291,7 @@ guides-data.ts     → DB3/circuits      (9 Location objects for ArunachalMap)
 **Current:** Forms in `/hotels/[id]/book` and `/transport/[id]/book` are complete UI but call `setSubmitted(true)` with no persistence.
 
 **Target sequence:**
-```
+```raw
 1. Date + guest picker (UI exists)
 2. Auth gate — sign in if anonymous (Firebase Auth exists)
 3. Permit pre-check — query DB2/users/{id}/permitStatus
@@ -325,7 +325,7 @@ guides-data.ts     → DB3/circuits      (9 Location objects for ArunachalMap)
 
 ## 9. Design System (Verified from globals.css + tailwind.config.ts)
 
-```
+```raw
 Primary:         hsl(176, 100%, 21%) = #006a62  (deep turquoise)
 Secondary:       hsl(46, 97%, 60%)  = #fccc38   (saffron)
 Accent:          hsl(176, 68%, 56%) = #40e0d0   (light turquoise)
@@ -413,7 +413,7 @@ service cloud.firestore {
 
 ## 12. PWA / Offline
 
-```
+```raw
 /public/manifest.json:
   name: "Arunachal Explore"
   short_name: "ArunExplore"
