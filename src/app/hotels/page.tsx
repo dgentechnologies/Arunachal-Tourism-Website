@@ -1,6 +1,6 @@
-﻿"use client"
+"use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useRef, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -8,16 +8,105 @@ import {
   Star, MapPin, Wifi, Leaf, Search, CalendarDays, Users,
   ChevronDown, Coffee, Car, Utensils, ShieldCheck, CheckCircle2,
   XCircle, BedDouble, ArrowRight, SlidersHorizontal, Flame,
+  Home, Check, IndianRupee, ArrowUpDown,
 } from "lucide-react"
 import { hotelsData } from "@/lib/hotels-data"
 import { useLanguage } from "@/lib/language-context"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { cn } from "@/lib/utils"
 
-const locationOptions = ["All Locations", "Tawang", "Ziro Valley", "Itanagar", "Changlang"]
-const typeOptions = ["All Types", "Resort", "Eco-friendly", "Lodge", "Luxury", "Heritage"]
+// ── Premium Filter Dropdown ─────────────────────────────────────
+function FilterDropdown({
+  label,
+  icon: Icon,
+  options,
+  value,
+  onChange,
+}: {
+  label: string
+  icon: React.ElementType
+  options: string[]
+  value: string
+  onChange: (v: string) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [])
+
+  const isDefault = value === options[0]
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={cn(
+          "flex items-center gap-2 pl-3.5 pr-3 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 whitespace-nowrap select-none",
+          isDefault
+            ? "bg-white border-border text-foreground hover:border-primary/50 hover:bg-surface-low shadow-sm"
+            : "bg-primary border-primary text-white shadow-glow"
+        )}
+      >
+        <Icon className="h-3.5 w-3.5 shrink-0" />
+        <span className="max-w-[130px] truncate">{value}</span>
+        <ChevronDown
+          className={cn(
+            "h-3.5 w-3.5 shrink-0 transition-transform duration-200",
+            open && "rotate-180"
+          )}
+        />
+      </button>
+      {open && (
+        <div className="absolute top-[calc(100%+6px)] left-0 bg-white rounded-2xl shadow-float border border-border/40 py-1.5 z-50 min-w-[200px] overflow-hidden">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-4 pt-2 pb-1.5">
+            {label}
+          </p>
+          {options.map((opt) => (
+            <button
+              key={opt}
+              onClick={() => { onChange(opt); setOpen(false) }}
+              className={cn(
+                "w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors text-left",
+                value === opt
+                  ? "text-primary font-bold bg-primary/5"
+                  : "text-foreground font-medium hover:bg-muted"
+              )}
+            >
+              <span>{opt}</span>
+              {value === opt && <Check className="h-3.5 w-3.5 text-primary shrink-0" />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Constants ────────────────────────────────────────────────────
+const locationOptions = ["All Locations", "Tawang", "Ziro Valley", "Itanagar", "Changlang", "Pasighat"]
+const hotelTypeOptions = ["All Types", "Resort", "Eco-friendly", "Lodge", "Luxury", "Heritage"]
+const homestayTypeOptions = ["All Types", "Cultural", "Mountain", "Riverside", "Eco-friendly"]
 const sortOptions = ["Recommended", "Price: Low to High", "Price: High to Low", "Rating", "Most Reviewed"]
-const priceRanges = ["Any Price", "Under â‚¹2,000", "â‚¹2,000â€“â‚¹5,000", "â‚¹5,000â€“â‚¹10,000", "Above â‚¹10,000"]
+const hotelPriceRanges = [
+  "Any Budget",
+  "Under \u20b92,000",
+  "\u20b92,000\u2013\u20b95,000",
+  "\u20b95,001\u2013\u20b910,000",
+  "Above \u20b910,000",
+]
+const homestayPriceRanges = [
+  "Any Budget",
+  "Under \u20b91,000",
+  "\u20b91,000\u2013\u20b92,000",
+  "\u20b92,001\u2013\u20b93,500",
+  "Above \u20b93,500",
+]
 
 const amenityIconMap: Record<string, React.ElementType> = {
   wifi: Wifi,
@@ -26,25 +115,38 @@ const amenityIconMap: Record<string, React.ElementType> = {
   thermometer: Flame,
   utensils: Utensils,
   "concierge-bell": ShieldCheck,
+  leaf: Leaf,
 }
 
 const getRatingLabel = (r: number) =>
   r >= 4.7 ? "Exceptional" : r >= 4.4 ? "Excellent" : r >= 4.0 ? "Very Good" : "Good"
 
+const getRatingColor = (r: number) =>
+  r >= 4.7
+    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+    : r >= 4.4
+    ? "bg-primary/10 text-primary border border-primary/20"
+    : "bg-muted text-muted-foreground border border-border"
+
+// ── Page ─────────────────────────────────────────────────────────
 export default function HotelsPage() {
   const { t } = useLanguage()
 
-  // Search form
+  const [activeTab, setActiveTab] = useState<"hotels" | "homestays">("hotels")
   const [searchLocation, setSearchLocation] = useState("")
   const [checkIn, setCheckIn] = useState("")
   const [checkOut, setCheckOut] = useState("")
   const [guests, setGuests] = useState(2)
-
-  // Filters
   const [selectedLocation, setSelectedLocation] = useState("All Locations")
   const [selectedType, setSelectedType] = useState("All Types")
   const [sortBy, setSortBy] = useState("Recommended")
-  const [priceRange, setPriceRange] = useState("Any Price")
+  const [priceRange, setPriceRange] = useState("Any Budget")
+
+  const handleTabChange = (tab: "hotels" | "homestays") => {
+    setActiveTab(tab)
+    setSelectedType("All Types")
+    setPriceRange("Any Budget")
+  }
 
   const nights = useMemo(() => {
     if (!checkIn || !checkOut) return 1
@@ -52,24 +154,36 @@ export default function HotelsPage() {
     return Math.max(1, Math.round(diff))
   }, [checkIn, checkOut])
 
+  const currentPriceRanges = activeTab === "hotels" ? hotelPriceRanges : homestayPriceRanges
+  const currentTypeOptions = activeTab === "hotels" ? hotelTypeOptions : homestayTypeOptions
+  const hotelCount = hotelsData.filter((h) => h.category !== "homestay").length
+  const homestayCount = hotelsData.filter((h) => h.category === "homestay").length
+
   const results = useMemo(() => {
     let list = hotelsData.filter((h) => {
-      const locationQuery = searchLocation.trim().toLowerCase()
+      const isHomestay = h.category === "homestay"
+      if (activeTab === "hotels" && isHomestay) return false
+      if (activeTab === "homestays" && !isHomestay) return false
+      const q = searchLocation.trim().toLowerCase()
       const locMatch =
         selectedLocation === "All Locations" ||
         h.location.toLowerCase().includes(selectedLocation.toLowerCase())
       const searchMatch =
-        !locationQuery ||
-        h.location.toLowerCase().includes(locationQuery) ||
-        h.name.toLowerCase().includes(locationQuery)
+        !q ||
+        h.location.toLowerCase().includes(q) ||
+        h.name.toLowerCase().includes(q)
       const typeMatch =
         selectedType === "All Types" ||
         h.tags.some((tag) => tag.toLowerCase().includes(selectedType.toLowerCase()))
       let priceMatch = true
-      if (priceRange === "Under â‚¹2,000") priceMatch = h.price < 2000
-      else if (priceRange === "â‚¹2,000â€“â‚¹5,000") priceMatch = h.price >= 2000 && h.price <= 5000
-      else if (priceRange === "â‚¹5,000â€“â‚¹10,000") priceMatch = h.price > 5000 && h.price <= 10000
-      else if (priceRange === "Above â‚¹10,000") priceMatch = h.price > 10000
+      if (priceRange === "Under \u20b92,000") priceMatch = h.price < 2000
+      else if (priceRange === "\u20b92,000\u2013\u20b95,000") priceMatch = h.price >= 2000 && h.price <= 5000
+      else if (priceRange === "\u20b95,001\u2013\u20b910,000") priceMatch = h.price > 5000 && h.price <= 10000
+      else if (priceRange === "Above \u20b910,000") priceMatch = h.price > 10000
+      else if (priceRange === "Under \u20b91,000") priceMatch = h.price < 1000
+      else if (priceRange === "\u20b91,000\u2013\u20b92,000") priceMatch = h.price >= 1000 && h.price <= 2000
+      else if (priceRange === "\u20b92,001\u2013\u20b93,500") priceMatch = h.price > 2000 && h.price <= 3500
+      else if (priceRange === "Above \u20b93,500") priceMatch = h.price > 3500
       return locMatch && searchMatch && typeMatch && priceMatch
     })
     if (sortBy === "Price: Low to High") list = [...list].sort((a, b) => a.price - b.price)
@@ -77,25 +191,24 @@ export default function HotelsPage() {
     else if (sortBy === "Rating") list = [...list].sort((a, b) => b.rating - a.rating)
     else if (sortBy === "Most Reviewed") list = [...list].sort((a, b) => b.reviews - a.reviews)
     return list
-  }, [searchLocation, selectedLocation, selectedType, sortBy, priceRange])
+  }, [searchLocation, selectedLocation, selectedType, sortBy, priceRange, activeTab])
 
   const hasActiveFilters =
     selectedLocation !== "All Locations" ||
     selectedType !== "All Types" ||
-    priceRange !== "Any Price"
+    priceRange !== "Any Budget"
 
   const clearFilters = () => {
     setSelectedLocation("All Locations")
     setSelectedType("All Types")
-    setPriceRange("Any Price")
+    setPriceRange("Any Budget")
   }
 
   return (
     <main className="bg-background">
 
-      {/* â”€â”€ Hero + Search Widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Hero + Search Widget ────────────────────────────────── */}
       <section className="relative">
-        {/* Background */}
         <div className="relative h-64 md:h-80 overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=600&fit=crop&auto=format&q=85"
@@ -107,16 +220,15 @@ export default function HotelsPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/50 to-primary/80" />
           <div className="absolute inset-0 tribal-pattern opacity-20 pointer-events-none" />
-
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pb-8">
             <span className="inline-block text-primary-container text-[11px] font-bold uppercase tracking-widest mb-3">
-              Arunachal Pradesh Â· 200+ Properties
+              Arunachal Pradesh &middot; 200+ Properties
             </span>
             <h1 className="font-headline text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 leading-tight">
               Book Your Perfect Stay
             </h1>
             <p className="text-white/80 text-sm md:text-base max-w-sm">
-              Himalayan retreats, tribal homestays &amp; eco-lodges â€” curated just for you.
+              Himalayan retreats, tribal homestays &amp; eco-lodges &mdash; curated just for you.
             </p>
           </div>
         </div>
@@ -126,24 +238,26 @@ export default function HotelsPage() {
           <div className="bg-white rounded-2xl shadow-float p-4 md:p-5 border border-border/40">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
 
-              {/* Destination */}
               <div className="col-span-2 md:col-span-2 flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Destination</label>
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">
+                  Destination
+                </label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
                   <input
                     type="text"
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
-                    placeholder="Tawang, Ziro, Itanagarâ€¦"
+                    placeholder="Tawang, Ziro, Itanagar..."
                     className="w-full pl-9 pr-4 py-3 rounded-xl border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/25 bg-background"
                   />
                 </div>
               </div>
 
-              {/* Check-in */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Check-in</label>
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">
+                  Check-in
+                </label>
                 <div className="relative">
                   <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
                   <input
@@ -155,9 +269,10 @@ export default function HotelsPage() {
                 </div>
               </div>
 
-              {/* Check-out */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Check-out</label>
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">
+                  Check-out
+                </label>
                 <div className="relative">
                   <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
                   <input
@@ -169,9 +284,10 @@ export default function HotelsPage() {
                 </div>
               </div>
 
-              {/* Guests + CTA */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Guests</label>
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">
+                  Guests
+                </label>
                 <div className="flex gap-2">
                   <div className="relative flex-1">
                     <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
@@ -196,93 +312,115 @@ export default function HotelsPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Filter Bar + Results â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Tab + Filters + Results ─────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 md:px-8 pt-10 pb-20">
 
+        {/* Tab switcher */}
+        <div className="flex gap-3 pt-6 mb-6">
+          <button
+            onClick={() => handleTabChange("hotels")}
+            className={cn(
+              "flex items-center gap-2.5 px-5 py-3 rounded-2xl font-headline font-bold text-sm transition-all duration-200",
+              activeTab === "hotels"
+                ? "bg-primary text-white shadow-glow"
+                : "bg-white border border-border text-foreground hover:border-primary/40 hover:bg-surface-low shadow-sm"
+            )}
+          >
+            <BedDouble className="h-4 w-4" />
+            Hotels &amp; Resorts
+            <span className={cn(
+              "text-[11px] font-bold px-2 py-0.5 rounded-full",
+              activeTab === "hotels" ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"
+            )}>
+              {hotelCount}
+            </span>
+          </button>
+
+          <button
+            onClick={() => handleTabChange("homestays")}
+            className={cn(
+              "flex items-center gap-2.5 px-5 py-3 rounded-2xl font-headline font-bold text-sm transition-all duration-200",
+              activeTab === "homestays"
+                ? "bg-primary text-white shadow-glow"
+                : "bg-white border border-border text-foreground hover:border-primary/40 hover:bg-surface-low shadow-sm"
+            )}
+          >
+            <Home className="h-4 w-4" />
+            Tribal Homestays
+            <span className={cn(
+              "text-[11px] font-bold px-2 py-0.5 rounded-full",
+              activeTab === "homestays" ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"
+            )}>
+              {homestayCount}
+            </span>
+          </button>
+        </div>
+
         {/* Filter bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8 pt-6">
-          {/* Result count */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8 bg-white border border-border/50 rounded-2xl px-5 py-4 shadow-sm">
           <div className="flex items-center gap-2">
             <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
-            <span className="font-headline font-bold text-foreground">
+            <span className="font-headline font-bold text-foreground text-sm">
               {results.length} {results.length === 1 ? "property" : "properties"}
             </span>
             {checkIn && checkOut && (
-              <span className="text-muted-foreground text-sm hidden md:inline">
-                Â· {new Date(checkIn).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
-                {" â†’ "}
+              <span className="text-muted-foreground text-xs hidden md:inline">
+                &nbsp;&middot;&nbsp;
+                {new Date(checkIn).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+                {" \u2192 "}
                 {new Date(checkOut).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
-                {" "}({nights} night{nights > 1 ? "s" : ""})
+                &nbsp;({nights} night{nights > 1 ? "s" : ""})
               </span>
             )}
           </div>
 
           <div className="sm:ml-auto flex flex-wrap gap-2 items-center">
-            {/* Sort */}
-            <div className="relative">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
-              >
-                {sortOptions.map((s) => <option key={s}>{s}</option>)}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
-            </div>
-
-            {/* Location */}
-            <div className="relative">
-              <select
-                value={selectedLocation}
-                onChange={(e) => setSelectedLocation(e.target.value)}
-                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
-              >
-                {locationOptions.map((l) => <option key={l}>{l}</option>)}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
-            </div>
-
-            {/* Type */}
-            <div className="relative">
-              <select
-                value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value)}
-                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
-              >
-                {typeOptions.map((tp) => <option key={tp}>{tp}</option>)}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
-            </div>
-
-            {/* Price */}
-            <div className="relative">
-              <select
-                value={priceRange}
-                onChange={(e) => setPriceRange(e.target.value)}
-                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
-              >
-                {priceRanges.map((p) => <option key={p}>{p}</option>)}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
-            </div>
-
+            <FilterDropdown
+              label="Sort By"
+              icon={ArrowUpDown}
+              options={sortOptions}
+              value={sortBy}
+              onChange={setSortBy}
+            />
+            <FilterDropdown
+              label="Location"
+              icon={MapPin}
+              options={locationOptions}
+              value={selectedLocation}
+              onChange={setSelectedLocation}
+            />
+            <FilterDropdown
+              label="Property Type"
+              icon={BedDouble}
+              options={currentTypeOptions}
+              value={selectedType}
+              onChange={setSelectedType}
+            />
+            <FilterDropdown
+              label="Budget"
+              icon={IndianRupee}
+              options={currentPriceRanges}
+              value={priceRange}
+              onChange={setPriceRange}
+            />
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-1.5 text-xs font-semibold text-destructive border border-destructive/30 rounded-full px-3 py-2 hover:bg-destructive/5 transition-colors"
+                className="flex items-center gap-1.5 text-xs font-bold text-red-500 border border-red-200 rounded-xl px-3.5 py-2.5 hover:bg-red-50 transition-colors"
               >
                 <XCircle className="h-3.5 w-3.5" />
-                Clear
+                Clear all
               </button>
             )}
           </div>
         </div>
 
-        {/* Hotel listing cards */}
+        {/* Listing cards */}
         <div className="space-y-5">
           {results.map((hotel, i) => {
             const totalPrice = hotel.price * nights
             const bookUrl = `/hotels/${hotel.id}/book?checkIn=${checkIn}&checkOut=${checkOut}&guests=${guests}&room=${encodeURIComponent(hotel.rooms[0].type)}&price=${hotel.rooms[0].price}`
+            const isHomestay = hotel.category === "homestay"
 
             return (
               <ScrollReveal key={hotel.id} variant="up" delay={i * 60}>
@@ -292,21 +430,25 @@ export default function HotelsPage() {
                   <div className="relative w-full md:w-72 h-56 md:h-auto shrink-0 overflow-hidden">
                     <Image
                       src={hotel.image}
-                      alt={`${hotel.name} â€” ${hotel.location}`}
+                      alt={`${hotel.name} \u2014 ${hotel.location}`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      data-ai-hint="hotel accommodation stay arunachal"
+                      data-ai-hint={isHomestay ? "tribal homestay arunachal family" : "hotel accommodation stay arunachal"}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-transparent" />
-                    {/* Tags */}
                     <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                      {hotel.tags.map((tag) => (
+                      {isHomestay && (
+                        <span className="bg-secondary text-secondary-foreground text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full flex items-center gap-1">
+                          <Home className="h-2.5 w-2.5" />
+                          Homestay
+                        </span>
+                      )}
+                      {hotel.tags.filter((tag) => tag !== "Homestay").map((tag) => (
                         <span key={tag} className="bg-primary/85 backdrop-blur-sm text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full">
                           {tag}
                         </span>
                       ))}
                     </div>
-                    {/* Rating badge on image (mobile) */}
                     <div className="absolute bottom-3 right-3 md:hidden bg-white/95 backdrop-blur-sm rounded-xl px-2.5 py-1.5 flex items-center gap-1 shadow-sm">
                       <Star className="h-3.5 w-3.5 fill-secondary text-secondary" />
                       <span className="text-sm font-bold">{hotel.rating}</span>
@@ -316,9 +458,8 @@ export default function HotelsPage() {
                   {/* Details + Price */}
                   <div className="flex-1 flex flex-col md:flex-row p-5 md:p-6 gap-5">
 
-                    {/* Left: hotel details */}
+                    {/* Left: details */}
                     <div className="flex-1 min-w-0">
-                      {/* Name & location */}
                       <Link href={`/hotels/${hotel.id}`} className="group/name">
                         <h2 className="font-headline text-xl font-bold tracking-tight group-hover/name:text-primary transition-colors leading-tight mb-1">
                           {hotel.name}
@@ -329,7 +470,6 @@ export default function HotelsPage() {
                         <span>{hotel.location}</span>
                       </div>
 
-                      {/* Star rating row */}
                       <div className="flex items-center gap-2 mb-4">
                         <div className="flex items-center gap-0.5">
                           {[...Array(5)].map((_, idx) => (
@@ -345,18 +485,18 @@ export default function HotelsPage() {
                           ))}
                         </div>
                         <span className="text-sm font-bold hidden md:inline">{hotel.rating}</span>
-                        <span className="text-xs text-muted-foreground hidden md:inline">({hotel.reviews} reviews)</span>
-                        <span className="bg-primary text-primary-foreground text-[11px] font-bold px-2 py-0.5 rounded-lg">
+                        <span className="text-xs text-muted-foreground hidden md:inline">
+                          ({hotel.reviews} reviews)
+                        </span>
+                        <span className={cn("text-[11px] font-bold px-2 py-0.5 rounded-lg", getRatingColor(hotel.rating))}>
                           {getRatingLabel(hotel.rating)}
                         </span>
                       </div>
 
-                      {/* Description */}
                       <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
                         {hotel.longDescription}
                       </p>
 
-                      {/* Amenity chips */}
                       <div className="flex flex-wrap gap-2 mb-3">
                         {hotel.amenities.slice(0, 4).map((a) => {
                           const IconComp = amenityIconMap[a.icon] ?? CheckCircle2
@@ -369,35 +509,34 @@ export default function HotelsPage() {
                         })}
                       </div>
 
-                      {/* Room types available */}
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <BedDouble className="h-3.5 w-3.5 text-primary shrink-0" />
                         <span>{hotel.rooms.length} room type{hotel.rooms.length > 1 ? "s" : ""} available</span>
-                        <span className="mx-1">Â·</span>
+                        <span className="mx-1">&middot;</span>
                         <span>Check-in {hotel.checkIn}</span>
-                        <span className="mx-1">Â·</span>
+                        <span className="mx-1">&middot;</span>
                         <span>Check-out {hotel.checkOut}</span>
                       </div>
                     </div>
 
                     {/* Right: price + CTA */}
-                    <div className="flex flex-row md:flex-col items-end justify-between shrink-0 md:min-w-[160px] border-t md:border-t-0 md:border-l border-border/40 pt-4 md:pt-0 md:pl-5 gap-4 md:gap-0">
+                    <div className="flex flex-row md:flex-col items-end justify-between shrink-0 md:min-w-[165px] border-t md:border-t-0 md:border-l border-border/40 pt-4 md:pt-0 md:pl-5 gap-4 md:gap-0">
                       <div className="text-right">
                         <p className="text-[11px] text-muted-foreground mb-1">Starting from</p>
                         <div className="flex items-baseline gap-1 justify-end mb-0.5">
                           <span className="font-headline text-2xl font-bold text-primary">
-                            â‚¹{hotel.price.toLocaleString()}
+                            &#x20B9;{hotel.price.toLocaleString("en-IN")}
                           </span>
-                          <span className="text-muted-foreground text-xs">{t.perNight}</span>
+                          <span className="text-muted-foreground text-xs">/ night</span>
                         </div>
                         {nights > 1 && (
                           <p className="text-xs text-muted-foreground">
-                            â‚¹{totalPrice.toLocaleString()} Â· {nights} nights
+                            &#x20B9;{totalPrice.toLocaleString("en-IN")} &middot; {nights} nights
                           </p>
                         )}
-                        <p className="text-xs text-green-600 font-medium mt-2 flex items-center gap-1 justify-end">
+                        <p className="text-xs text-emerald-600 font-semibold mt-2.5 flex items-center gap-1 justify-end">
                           <CheckCircle2 className="h-3 w-3 shrink-0" />
-                          {hotel.cancellation.startsWith("Free") ? "Free cancellation" : "Flexible"}
+                          {hotel.cancellation.startsWith("Free") ? "Free cancellation" : "Flexible booking"}
                         </p>
                       </div>
 
@@ -435,7 +574,7 @@ export default function HotelsPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Why Book With Us â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Why Book With Us ─────────────────────────────────────── */}
       <section className="bg-muted py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal variant="up">

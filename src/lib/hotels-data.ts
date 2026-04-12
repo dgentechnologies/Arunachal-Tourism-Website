@@ -2,6 +2,7 @@ export type HotelAmenity = { icon: string; label: string }
 
 export type Hotel = {
   id: number
+  category?: "hotel" | "homestay"
   name: string
   location: string
   district: string
@@ -186,6 +187,117 @@ export const hotelsData: Hotel[] = [
       { type: "Heritage Deluxe Room", capacity: "2 Adults", price: 5200, image: "https://picsum.photos/seed/mountain-resort-interior/800/600" },
       { type: "Tribal Art Suite", capacity: "2 Adults + 1 Child", price: 7500, image: "https://picsum.photos/seed/valley-eco-lodge-stay/800/600" },
       { type: "Presidential Suite", capacity: "4 Adults", price: 12000, image: "https://picsum.photos/seed/mountain-resort-interior/800/600" },
+    ],
+  },
+  {
+    id: 5,
+    category: "homestay",
+    name: "Apatani Tribal Homestay",
+    location: "Ziro, Arunachal Pradesh",
+    district: "Lower Subansiri District",
+    price: 1200,
+    rating: 4.7,
+    reviews: 63,
+    tags: ["Homestay", "Cultural"],
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
+    ],
+    description: "Live with an Apatani family in the UNESCO-listed Ziro Valley.",
+    longDescription: "Step into the warm embrace of an Apatani family home in the heart of Ziro Valley. Wake up to rice-wine ceremonies, learn traditional bamboo weaving on backstrap looms, and share meals prepared over a wood-fire hearth. Your hosts — an extended Apatani family — offer a rare, unfiltered window into one of Northeast India's most celebrated tribal cultures.",
+    amenities: [
+      { icon: "coffee", label: "Home-Cooked Meals" },
+      { icon: "leaf", label: "Eco-Friendly" },
+      { icon: "wifi", label: "WiFi Available" },
+      { icon: "map", label: "Village Walk" },
+    ],
+    highlights: [
+      "Traditional Apatani rice-wine ceremony",
+      "Bamboo weaving workshop",
+      "UNESCO-listed valley surroundings",
+      "Family-style tribal meals",
+    ],
+    checkIn: "12:00 PM",
+    checkOut: "10:00 AM",
+    cancellation: "Free cancellation up to 72 hours before check-in",
+    rooms: [
+      { type: "Traditional Bamboo Room", capacity: "2 Adults", price: 1200, image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Family Room", capacity: "2 Adults + 2 Children", price: 1800, image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop&auto=format&q=80" },
+    ],
+  },
+  {
+    id: 6,
+    category: "homestay",
+    name: "Monpa Family Stay",
+    location: "Tawang, Arunachal Pradesh",
+    district: "Tawang District",
+    price: 900,
+    rating: 4.5,
+    reviews: 41,
+    tags: ["Homestay", "Mountain"],
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&auto=format&q=80",
+    ],
+    description: "A cosy Monpa family home with monastery views at 10,000 ft.",
+    longDescription: "Nestled in the misty lanes of Old Tawang, this Monpa family home has hosted trekkers and pilgrims for three generations. Sip butter tea with elders, join morning prayers at dawn, and fall asleep under hand-stitched wool quilts as the wind carries chants from Tawang Monastery. An unforgettable spiritual retreat for the curious traveller.",
+    amenities: [
+      { icon: "coffee", label: "Butter Tea & Meals" },
+      { icon: "thermometer", label: "Wood Heating" },
+      { icon: "leaf", label: "Eco-Stay" },
+      { icon: "map", label: "Monastery Tours" },
+    ],
+    highlights: [
+      "Views of Tawang Monastery from the courtyard",
+      "Monpa butter-tea and thukpa meals",
+      "Guided morning prayer experience",
+      "Traditional wool-weaving demonstration",
+    ],
+    checkIn: "12:00 PM",
+    checkOut: "10:00 AM",
+    cancellation: "Free cancellation up to 48 hours before check-in",
+    rooms: [
+      { type: "Traditional Monpa Room", capacity: "2 Adults", price: 900, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Monastery View Room", capacity: "2 Adults", price: 1200, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80" },
+    ],
+  },
+  {
+    id: 7,
+    category: "homestay",
+    name: "Adi Heritage Homestay",
+    location: "Pasighat, Arunachal Pradesh",
+    district: "East Siang District",
+    price: 1050,
+    rating: 4.6,
+    reviews: 37,
+    tags: ["Homestay", "Riverside"],
+    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop&auto=format&q=80",
+      "https://picsum.photos/seed/arunachal-festival-culture/1200/800",
+    ],
+    description: "An Adi tribal home by the mighty Siang River in East Siang.",
+    longDescription: "Pasighat sits where the Siang River roars down from the Tibetan plateau, and this Adi family homestay puts you right on its banks. Your hosts are an Adi family whose grandparents witnessed the first road arrive in the 1950s. Enjoy bamboo-shoot curry, participate in traditional fishing, and listen to folk tales of the great river under a sky unpolluted by city lights.",
+    amenities: [
+      { icon: "coffee", label: "Traditional Adi Meals" },
+      { icon: "leaf", label: "Eco-Friendly" },
+      { icon: "wifi", label: "WiFi Available" },
+      { icon: "campfire", label: "River Campfire" },
+    ],
+    highlights: [
+      "Riverside location on the mighty Siang",
+      "Traditional Adi bamboo-shoot cuisine",
+      "Village fishing excursion",
+      "Evening folk stories around the campfire",
+    ],
+    checkIn: "1:00 PM",
+    checkOut: "10:00 AM",
+    cancellation: "Free cancellation up to 72 hours before check-in",
+    rooms: [
+      { type: "Adi Riverside Room", capacity: "2 Adults", price: 1050, image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80" },
+      { type: "Family Bamboo Room", capacity: "2 Adults + 2 Children", price: 1600, image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop&auto=format&q=80" },
     ],
   },
 ]
