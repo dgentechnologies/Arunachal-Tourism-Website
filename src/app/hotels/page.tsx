@@ -1,411 +1,464 @@
-"use client"
+﻿"use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Star, MapPin, Wifi, Leaf, ArrowRight, Search, CalendarDays, ChevronDown } from "lucide-react"
+import {
+  Star, MapPin, Wifi, Leaf, Search, CalendarDays, Users,
+  ChevronDown, Coffee, Car, Utensils, ShieldCheck, CheckCircle2,
+  XCircle, BedDouble, ArrowRight, SlidersHorizontal, Flame,
+} from "lucide-react"
 import { hotelsData } from "@/lib/hotels-data"
 import { useLanguage } from "@/lib/language-context"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { cn } from "@/lib/utils"
 
 const locationOptions = ["All Locations", "Tawang", "Ziro Valley", "Itanagar", "Changlang"]
 const typeOptions = ["All Types", "Resort", "Eco-friendly", "Lodge", "Luxury", "Heritage"]
-const ecoLabels: Record<number, { label: string; badge: string }> = {
-  1: { label: "Mountain Retreat", badge: "High Altitude" },
-  2: { label: "Zero Waste", badge: "Eco Certified" },
-  3: { label: "Carbon Neutral", badge: "Riverside" },
-  4: { label: "Heritage Stay", badge: "5-Star Luxury" },
+const sortOptions = ["Recommended", "Price: Low to High", "Price: High to Low", "Rating", "Most Reviewed"]
+const priceRanges = ["Any Price", "Under â‚¹2,000", "â‚¹2,000â€“â‚¹5,000", "â‚¹5,000â€“â‚¹10,000", "Above â‚¹10,000"]
+
+const amenityIconMap: Record<string, React.ElementType> = {
+  wifi: Wifi,
+  coffee: Coffee,
+  car: Car,
+  thermometer: Flame,
+  utensils: Utensils,
+  "concierge-bell": ShieldCheck,
 }
+
+const getRatingLabel = (r: number) =>
+  r >= 4.7 ? "Exceptional" : r >= 4.4 ? "Excellent" : r >= 4.0 ? "Very Good" : "Good"
 
 export default function HotelsPage() {
   const { t } = useLanguage()
+
+  // Search form
+  const [searchLocation, setSearchLocation] = useState("")
+  const [checkIn, setCheckIn] = useState("")
+  const [checkOut, setCheckOut] = useState("")
+  const [guests, setGuests] = useState(2)
+
+  // Filters
   const [selectedLocation, setSelectedLocation] = useState("All Locations")
   const [selectedType, setSelectedType] = useState("All Types")
-  const [email, setEmail] = useState("")
+  const [sortBy, setSortBy] = useState("Recommended")
+  const [priceRange, setPriceRange] = useState("Any Price")
 
-  const featuredHotels = hotelsData.slice(0, 2)
-  const ecoHotels = hotelsData.slice(1, 4)
-  const filteredHotels = hotelsData.filter((h) => {
-    const locMatch =
-      selectedLocation === "All Locations" ||
-      h.location.toLowerCase().includes(selectedLocation.toLowerCase())
-    const typeMatch =
-      selectedType === "All Types" ||
-      h.tags.some((tag) => tag.toLowerCase().includes(selectedType.toLowerCase()))
-    return locMatch && typeMatch
-  })
+  const nights = useMemo(() => {
+    if (!checkIn || !checkOut) return 1
+    const diff = (new Date(checkOut).getTime() - new Date(checkIn).getTime()) / 86400000
+    return Math.max(1, Math.round(diff))
+  }, [checkIn, checkOut])
+
+  const results = useMemo(() => {
+    let list = hotelsData.filter((h) => {
+      const locationQuery = searchLocation.trim().toLowerCase()
+      const locMatch =
+        selectedLocation === "All Locations" ||
+        h.location.toLowerCase().includes(selectedLocation.toLowerCase())
+      const searchMatch =
+        !locationQuery ||
+        h.location.toLowerCase().includes(locationQuery) ||
+        h.name.toLowerCase().includes(locationQuery)
+      const typeMatch =
+        selectedType === "All Types" ||
+        h.tags.some((tag) => tag.toLowerCase().includes(selectedType.toLowerCase()))
+      let priceMatch = true
+      if (priceRange === "Under â‚¹2,000") priceMatch = h.price < 2000
+      else if (priceRange === "â‚¹2,000â€“â‚¹5,000") priceMatch = h.price >= 2000 && h.price <= 5000
+      else if (priceRange === "â‚¹5,000â€“â‚¹10,000") priceMatch = h.price > 5000 && h.price <= 10000
+      else if (priceRange === "Above â‚¹10,000") priceMatch = h.price > 10000
+      return locMatch && searchMatch && typeMatch && priceMatch
+    })
+    if (sortBy === "Price: Low to High") list = [...list].sort((a, b) => a.price - b.price)
+    else if (sortBy === "Price: High to Low") list = [...list].sort((a, b) => b.price - a.price)
+    else if (sortBy === "Rating") list = [...list].sort((a, b) => b.rating - a.rating)
+    else if (sortBy === "Most Reviewed") list = [...list].sort((a, b) => b.reviews - a.reviews)
+    return list
+  }, [searchLocation, selectedLocation, selectedType, sortBy, priceRange])
+
+  const hasActiveFilters =
+    selectedLocation !== "All Locations" ||
+    selectedType !== "All Types" ||
+    priceRange !== "Any Price"
+
+  const clearFilters = () => {
+    setSelectedLocation("All Locations")
+    setSelectedType("All Types")
+    setPriceRange("Any Price")
+  }
 
   return (
-    <main className="bg-surface">
-      {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="px-4 md:px-10 pt-6 pb-0 min-h-screen flex flex-col justify-center">
-        <div className="relative w-full h-[580px] md:h-[720px] rounded-xl md:rounded-[2rem] overflow-hidden group">
+    <main className="bg-background">
+
+      {/* â”€â”€ Hero + Search Widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="relative">
+        {/* Background */}
+        <div className="relative h-64 md:h-80 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop&auto=format&q=85"
-            alt="Panoramic view of snow-capped Himalayan peaks at golden hour near Tawang, Arunachal Pradesh"
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=600&fit=crop&auto=format&q=85"
+            alt="Snow-capped Himalayan peaks near Tawang at golden hour, Arunachal Pradesh"
             fill
             priority
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            data-ai-hint="himalayan mountain landscape arunachal"
+            className="object-cover"
+            data-ai-hint="himalayan mountain sunrise arunachal"
           />
-          {/* gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-          {/* tribal pattern overlay */}
-          <div className="absolute inset-0 tribal-pattern opacity-30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/50 to-primary/80" />
+          <div className="absolute inset-0 tribal-pattern opacity-20 pointer-events-none" />
 
-          {/* Hero text */}
-          <div className="absolute bottom-20 md:bottom-24 left-6 md:left-16 max-w-2xl">
-            <ScrollReveal variant="up">
-              <span className="inline-block text-primary-container font-headline font-bold uppercase tracking-widest text-xs md:text-sm mb-4">
-                Handpicked Accommodations
-              </span>
-              <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-4 leading-[1.05]">
-                Sanctuaries of the Sacred
-              </h1>
-              <p className="text-white/85 text-base md:text-xl font-light max-w-md leading-relaxed">
-                {t.hotelsPageSubtitle}
-              </p>
-            </ScrollReveal>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pb-8">
+            <span className="inline-block text-primary-container text-[11px] font-bold uppercase tracking-widest mb-3">
+              Arunachal Pradesh Â· 200+ Properties
+            </span>
+            <h1 className="font-headline text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 leading-tight">
+              Book Your Perfect Stay
+            </h1>
+            <p className="text-white/80 text-sm md:text-base max-w-sm">
+              Himalayan retreats, tribal homestays &amp; eco-lodges â€” curated just for you.
+            </p>
           </div>
         </div>
 
-        {/* Stats bar — negative margin to overlap hero */}
-        <div className="relative -mt-8 md:-mt-12 mx-auto max-w-4xl z-10">
-          <div className="bg-surface-lowest/90 glass-nav shadow-soft rounded-full py-5 md:py-7 px-8 md:px-14 grid grid-cols-3 items-center text-center">
-            <div className="border-r border-outline-variant/30 pr-4">
-              <span className="block font-headline text-2xl md:text-3xl font-bold text-primary">200+</span>
-              <span className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground font-medium">Unique Stays</span>
-            </div>
-            <div className="border-r border-outline-variant/30 px-4">
-              <span className="block font-headline text-2xl md:text-3xl font-bold text-secondary">26</span>
-              <span className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground font-medium">Tribal Regions</span>
-            </div>
-            <div className="pl-4">
-              <span className="block font-headline text-2xl md:text-3xl font-bold text-primary">Eco</span>
-              <span className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground font-medium">Certified</span>
+        {/* Floating search card */}
+        <div className="relative -mt-10 md:-mt-14 z-10 px-4 md:px-10 max-w-5xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-float p-4 md:p-5 border border-border/40">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+
+              {/* Destination */}
+              <div className="col-span-2 md:col-span-2 flex flex-col gap-1.5">
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Destination</label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
+                  <input
+                    type="text"
+                    value={searchLocation}
+                    onChange={(e) => setSearchLocation(e.target.value)}
+                    placeholder="Tawang, Ziro, Itanagarâ€¦"
+                    className="w-full pl-9 pr-4 py-3 rounded-xl border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/25 bg-background"
+                  />
+                </div>
+              </div>
+
+              {/* Check-in */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Check-in</label>
+                <div className="relative">
+                  <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
+                  <input
+                    type="date"
+                    value={checkIn}
+                    onChange={(e) => setCheckIn(e.target.value)}
+                    className="w-full pl-9 pr-2 py-3 rounded-xl border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/25 bg-background"
+                  />
+                </div>
+              </div>
+
+              {/* Check-out */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Check-out</label>
+                <div className="relative">
+                  <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
+                  <input
+                    type="date"
+                    value={checkOut}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                    className="w-full pl-9 pr-2 py-3 rounded-xl border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/25 bg-background"
+                  />
+                </div>
+              </div>
+
+              {/* Guests + CTA */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pl-1">Guests</label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary pointer-events-none" />
+                    <select
+                      value={guests}
+                      onChange={(e) => setGuests(Number(e.target.value))}
+                      className="w-full pl-9 pr-2 py-3 rounded-xl border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/25 bg-background appearance-none"
+                    >
+                      {[1, 2, 3, 4, 5, 6].map((n) => (
+                        <option key={n} value={n}>{n} Guest{n > 1 ? "s" : ""}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <Button className="rounded-xl px-4 bg-primary hover:bg-primary/90 text-primary-foreground shrink-0 h-auto">
+                    <Search className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Search / Filter Bar ───────────────────────────────────── */}
-      <section className="px-4 md:px-10 pt-16 pb-20 min-h-screen flex flex-col justify-center">
-        <ScrollReveal variant="up">
-          <div className="max-w-5xl mx-auto bg-muted rounded-xl md:rounded-[1.5rem] p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center">
+      {/* â”€â”€ Filter Bar + Results â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="max-w-6xl mx-auto px-4 md:px-8 pt-10 pb-20">
+
+        {/* Filter bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8 pt-6">
+          {/* Result count */}
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
+            <span className="font-headline font-bold text-foreground">
+              {results.length} {results.length === 1 ? "property" : "properties"}
+            </span>
+            {checkIn && checkOut && (
+              <span className="text-muted-foreground text-sm hidden md:inline">
+                Â· {new Date(checkIn).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+                {" â†’ "}
+                {new Date(checkOut).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+                {" "}({nights} night{nights > 1 ? "s" : ""})
+              </span>
+            )}
+          </div>
+
+          <div className="sm:ml-auto flex flex-wrap gap-2 items-center">
+            {/* Sort */}
+            <div className="relative">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+              >
+                {sortOptions.map((s) => <option key={s}>{s}</option>)}
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
+            </div>
+
             {/* Location */}
-            <div className="relative flex-1">
-              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+            <div className="relative">
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full appearance-none bg-surface-lowest border-none rounded-lg pl-10 pr-10 py-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
               >
-                {locationOptions.map((l) => (
-                  <option key={l}>{l}</option>
-                ))}
+                {locationOptions.map((l) => <option key={l}>{l}</option>)}
               </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
             </div>
 
-            {/* Stay Type */}
-            <div className="relative flex-1">
-              <Leaf className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+            {/* Type */}
+            <div className="relative">
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-full appearance-none bg-surface-lowest border-none rounded-lg pl-10 pr-10 py-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
               >
-                {typeOptions.map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
+                {typeOptions.map((tp) => <option key={tp}>{tp}</option>)}
               </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
             </div>
 
-            {/* Date */}
-            <div className="relative flex-1">
-              <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-              <input
-                type="text"
-                placeholder="Check-in / Check-out"
-                className="w-full bg-surface-lowest border-none rounded-lg pl-10 pr-4 py-3.5 text-sm font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-            </div>
-
-            <Button className="shrink-0 rounded-full px-8 py-6 font-headline font-bold flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-              <Search className="h-4 w-4" />
-              Search Stays
-            </Button>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* ── Featured: High Altitude Luxury ───────────────────────── */}
-      <section className="px-4 md:px-10 pb-28 min-h-screen flex flex-col justify-center">
-        <div className="max-w-screen-xl mx-auto">
-          <ScrollReveal variant="up">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
-              <div>
-                <span className="text-primary font-headline font-bold uppercase tracking-widest text-xs md:text-sm block mb-2">
-                  Exclusive Tiers
-                </span>
-                <h2 className="font-headline text-3xl md:text-5xl font-bold tracking-tighter">
-                  High Altitude Luxury
-                </h2>
-              </div>
-              <Link
-                href="/hotels"
-                className="text-primary font-bold flex items-center gap-2 text-sm md:text-base group hover:gap-3 transition-all"
+            {/* Price */}
+            <div className="relative">
+              <select
+                value={priceRange}
+                onChange={(e) => setPriceRange(e.target.value)}
+                className="appearance-none pl-3 pr-7 py-2 text-xs font-semibold rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
               >
-                Explore all retreats <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+                {priceRanges.map((p) => <option key={p}>{p}</option>)}
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" />
             </div>
-          </ScrollReveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14">
-            {featuredHotels.map((hotel, i) => (
-              <ScrollReveal key={hotel.id} variant={i === 0 ? "left" : "right"} delay={i * 80}>
-                <Link href={`/hotels/${hotel.id}`} className="group block">
-                  {/* Asymmetric image container */}
-                  <div className="relative overflow-hidden organic-card shimmer-hover mb-5 md:mb-7">
+            {hasActiveFilters && (
+              <button
+                onClick={clearFilters}
+                className="flex items-center gap-1.5 text-xs font-semibold text-destructive border border-destructive/30 rounded-full px-3 py-2 hover:bg-destructive/5 transition-colors"
+              >
+                <XCircle className="h-3.5 w-3.5" />
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Hotel listing cards */}
+        <div className="space-y-5">
+          {results.map((hotel, i) => {
+            const totalPrice = hotel.price * nights
+            const bookUrl = `/hotels/${hotel.id}/book?checkIn=${checkIn}&checkOut=${checkOut}&guests=${guests}&room=${encodeURIComponent(hotel.rooms[0].type)}&price=${hotel.rooms[0].price}`
+
+            return (
+              <ScrollReveal key={hotel.id} variant="up" delay={i * 60}>
+                <div className="flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-float transition-all duration-300 group">
+
+                  {/* Image */}
+                  <div className="relative w-full md:w-72 h-56 md:h-auto shrink-0 overflow-hidden">
                     <Image
                       src={hotel.image}
-                      alt={`${hotel.name} — ${hotel.description}`}
-                      width={800}
-                      height={600}
-                      className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
-                      data-ai-hint="luxury hotel mountain retreat arunachal"
+                      alt={`${hotel.name} â€” ${hotel.location}`}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      data-ai-hint="hotel accommodation stay arunachal"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    {/* Price badge */}
-                    <div className="absolute top-5 right-5 bg-surface-lowest/90 glass-nav px-4 py-2 rounded-full font-headline font-bold text-primary text-sm shadow-soft">
-                      ₹{hotel.price.toLocaleString()} / night
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-transparent" />
                     {/* Tags */}
-                    <div className="absolute bottom-5 left-5 flex gap-2">
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                       {hotel.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-primary/85 text-primary-foreground text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full"
-                        >
+                        <span key={tag} className="bg-primary/85 backdrop-blur-sm text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full">
                           {tag}
                         </span>
                       ))}
                     </div>
+                    {/* Rating badge on image (mobile) */}
+                    <div className="absolute bottom-3 right-3 md:hidden bg-white/95 backdrop-blur-sm rounded-xl px-2.5 py-1.5 flex items-center gap-1 shadow-sm">
+                      <Star className="h-3.5 w-3.5 fill-secondary text-secondary" />
+                      <span className="text-sm font-bold">{hotel.rating}</span>
+                    </div>
                   </div>
 
-                  {/* Card body */}
-                  <div className="px-1">
-                    <div className="flex justify-between items-start mb-3">
-                      <h3 className="font-headline text-2xl md:text-3xl font-bold tracking-tight group-hover:text-primary transition-colors">
-                        {hotel.name}
-                      </h3>
-                      <div className="flex items-center gap-1 shrink-0 ml-4">
-                        <Star className="h-4 w-4 fill-secondary text-secondary" />
-                        <span className="font-bold text-sm">{hotel.rating}</span>
-                        <span className="text-muted-foreground text-xs">({hotel.reviews})</span>
+                  {/* Details + Price */}
+                  <div className="flex-1 flex flex-col md:flex-row p-5 md:p-6 gap-5">
+
+                    {/* Left: hotel details */}
+                    <div className="flex-1 min-w-0">
+                      {/* Name & location */}
+                      <Link href={`/hotels/${hotel.id}`} className="group/name">
+                        <h2 className="font-headline text-xl font-bold tracking-tight group-hover/name:text-primary transition-colors leading-tight mb-1">
+                          {hotel.name}
+                        </h2>
+                      </Link>
+                      <div className="flex items-center gap-1.5 text-muted-foreground text-sm mb-3">
+                        <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                        <span>{hotel.location}</span>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-muted-foreground text-sm mb-5">
-                      <MapPin className="h-3.5 w-3.5" />
-                      <span>{hotel.location}</span>
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-5 line-clamp-2">
-                      {hotel.description}
-                    </p>
-                    {/* Amenity pills */}
-                    <div className="flex flex-wrap gap-2">
-                      {hotel.amenities.slice(0, 3).map((a) => (
-                        <span
-                          key={a.label}
-                          className="flex items-center gap-1.5 bg-muted text-on-surface text-xs font-medium px-3 py-1.5 rounded-full"
-                        >
-                          <Wifi className="h-3 w-3 text-primary" />
-                          {a.label}
+
+                      {/* Star rating row */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="flex items-center gap-0.5">
+                          {[...Array(5)].map((_, idx) => (
+                            <Star
+                              key={idx}
+                              className={cn(
+                                "h-3.5 w-3.5",
+                                idx < Math.round(hotel.rating)
+                                  ? "fill-secondary text-secondary"
+                                  : "fill-muted text-muted-foreground/40"
+                              )}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-sm font-bold hidden md:inline">{hotel.rating}</span>
+                        <span className="text-xs text-muted-foreground hidden md:inline">({hotel.reviews} reviews)</span>
+                        <span className="bg-primary text-primary-foreground text-[11px] font-bold px-2 py-0.5 rounded-lg">
+                          {getRatingLabel(hotel.rating)}
                         </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Tribal Homestays: Deep Immersion ─────────────────────── */}
-      <section className="bg-muted py-24 md:py-32 min-h-screen flex flex-col justify-center">
-        <div className="px-4 md:px-10 max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-center">
-            {/* Text column */}
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <ScrollReveal variant="left">
-                <span className="text-secondary font-headline font-bold uppercase tracking-widest text-xs md:text-sm block mb-4">
-                  Live Like a Local
-                </span>
-                <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6 leading-tight">
-                  Tribal Homestays: Deep Immersion
-                </h2>
-                <p className="text-base md:text-lg text-muted-foreground mb-10 leading-relaxed">
-                  Step into the rhythm of tribal life. From the Apatani valley to the Monpa highlands,
-                  our certified homestays offer more than a bed — they offer a seat at the family hearth.
-                </p>
-              </ScrollReveal>
-
-              <div className="space-y-7">
-                {[
-                  {
-                    icon: <MapPin className="h-6 w-6 text-primary" />,
-                    title: "Family Hosted",
-                    desc: "Authentic hospitality led by local community leaders and storytellers.",
-                  },
-                  {
-                    icon: <Leaf className="h-6 w-6 text-primary" />,
-                    title: "Ancestral Cuisine",
-                    desc: "Traditional recipes using forest-foraged ingredients passed through generations.",
-                  },
-                  {
-                    icon: <Star className="h-6 w-6 text-primary" />,
-                    title: "Cultural Experiences",
-                    desc: "Weaving lessons, rice-wine ceremonies, and guided village walks included.",
-                  },
-                ].map((item, i) => (
-                  <ScrollReveal key={item.title} variant="left" delay={i * 100}>
-                    <div className="flex gap-5 items-start">
-                      <div className="bg-surface-lowest p-3.5 rounded-xl shrink-0 shadow-ambient">
-                        {item.icon}
                       </div>
-                      <div>
-                        <h4 className="font-headline font-bold text-lg mb-1">{item.title}</h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
 
-              <ScrollReveal variant="up" delay={300}>
-                <Button className="mt-10 rounded-full px-10 py-6 font-headline font-bold bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                  Explore Homestays
-                </Button>
-              </ScrollReveal>
-            </div>
-
-            {/* Image grid column */}
-            <div className="lg:col-span-7 order-1 lg:order-2 grid grid-cols-2 gap-3 md:gap-4">
-              <ScrollReveal variant="up" delay={100}>
-                <div className="pt-10 space-y-3 md:space-y-4">
-                  <div className="relative overflow-hidden rounded-xl md:rounded-[1.5rem]">
-                    <Image
-                      src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=800&fit=crop&auto=format&q=80"
-                      alt="Apatani tribal elder in traditional attire welcoming guests at a bamboo homestay in Ziro Valley"
-                      width={600}
-                      height={800}
-                      className="w-full aspect-[3/4] object-cover hover:scale-105 transition-transform duration-700"
-                      data-ai-hint="tribal elder arunachal welcome homestay"
-                    />
-                  </div>
-                  <div className="relative overflow-hidden rounded-xl md:rounded-[1.5rem]">
-                    <Image
-                      src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=600&fit=crop&auto=format&q=80"
-                      alt="Cozy interior of a traditional bamboo-and-wood tribal homestay with warm hearth lighting"
-                      width={600}
-                      height={600}
-                      className="w-full aspect-square object-cover hover:scale-105 transition-transform duration-700"
-                      data-ai-hint="traditional tribal homestay interior arunachal"
-                    />
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal variant="up" delay={200}>
-                <div className="space-y-3 md:space-y-4">
-                  <div className="relative overflow-hidden rounded-xl md:rounded-[1.5rem]">
-                    <Image
-                      src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=600&fit=crop&auto=format&q=80"
-                      alt="Aerial view of mist-covered traditional Apatani village with terraced rice fields in Ziro"
-                      width={600}
-                      height={600}
-                      className="w-full aspect-square object-cover hover:scale-105 transition-transform duration-700"
-                      data-ai-hint="ziro valley village aerial terraced fields arunachal"
-                    />
-                  </div>
-                  <div className="relative overflow-hidden rounded-xl md:rounded-[1.5rem]">
-                    <Image
-                      src="https://picsum.photos/seed/arunachal-festival-culture/600/800"
-                      alt="Local woman weaving traditional Arunachali textiles on a backstrap loom in a sunny courtyard"
-                      width={600}
-                      height={800}
-                      className="w-full aspect-[3/4] object-cover hover:scale-105 transition-transform duration-700"
-                      data-ai-hint="tribal woman weaving textile arunachal culture"
-                    />
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Eco-Conscious Lodges ──────────────────────────────────── */}
-      <section className="px-4 md:px-10 py-24 md:py-32 min-h-screen flex flex-col justify-center">
-        <div className="max-w-screen-xl mx-auto">
-          <ScrollReveal variant="up">
-            <div className="max-w-3xl mb-14">
-              <span className="text-primary font-headline font-bold uppercase tracking-widest text-xs md:text-sm block mb-4">
-                Sustainability Charter
-              </span>
-              <h2 className="font-headline text-3xl md:text-5xl font-bold tracking-tighter mb-5">
-                Riverside Eco-Lodges
-              </h2>
-              <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
-                Minimal footprints, maximum connection. Built using local stone and timber,
-                our eco-lodges are designed to disappear into the landscape.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {ecoHotels.map((hotel, i) => {
-              const eco = ecoLabels[hotel.id]
-              return (
-                <ScrollReveal key={hotel.id} variant="up" delay={i * 120}>
-                  <div className="bg-surface-lowest rounded-xl md:rounded-[1.5rem] overflow-hidden ghost-border hover:shadow-float transition-shadow duration-500 group">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src={hotel.image}
-                        alt={`${hotel.name} — ${hotel.description}`}
-                        width={600}
-                        height={400}
-                        className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-700"
-                        data-ai-hint="eco lodge sustainable stay arunachal"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                    <div className="p-7">
-                      <div className="flex items-center gap-2 text-primary text-[11px] font-bold tracking-widest uppercase mb-4">
-                        <Leaf className="h-3.5 w-3.5 fill-primary" />
-                        {eco?.badge ?? "Eco Stay"}
-                      </div>
-                      <h4 className="font-headline text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                        {hotel.name}
-                      </h4>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                        {hotel.description}
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
+                        {hotel.longDescription}
                       </p>
-                      <div className="flex items-center justify-between">
-                        <span className="font-headline font-bold text-primary text-base">
-                          ₹{hotel.price.toLocaleString()} {t.perNight}
-                        </span>
-                        <Link
-                          href={`/hotels/${hotel.id}`}
-                          className="font-bold text-primary flex items-center gap-1.5 text-sm group/link hover:gap-2.5 transition-all"
-                        >
-                          View Detail
-                          <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+
+                      {/* Amenity chips */}
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {hotel.amenities.slice(0, 4).map((a) => {
+                          const IconComp = amenityIconMap[a.icon] ?? CheckCircle2
+                          return (
+                            <span key={a.label} className="flex items-center gap-1.5 bg-muted text-xs font-medium px-3 py-1.5 rounded-full text-muted-foreground">
+                              <IconComp className="h-3 w-3 text-primary shrink-0" />
+                              {a.label}
+                            </span>
+                          )
+                        })}
+                      </div>
+
+                      {/* Room types available */}
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <BedDouble className="h-3.5 w-3.5 text-primary shrink-0" />
+                        <span>{hotel.rooms.length} room type{hotel.rooms.length > 1 ? "s" : ""} available</span>
+                        <span className="mx-1">Â·</span>
+                        <span>Check-in {hotel.checkIn}</span>
+                        <span className="mx-1">Â·</span>
+                        <span>Check-out {hotel.checkOut}</span>
+                      </div>
+                    </div>
+
+                    {/* Right: price + CTA */}
+                    <div className="flex flex-row md:flex-col items-end justify-between shrink-0 md:min-w-[160px] border-t md:border-t-0 md:border-l border-border/40 pt-4 md:pt-0 md:pl-5 gap-4 md:gap-0">
+                      <div className="text-right">
+                        <p className="text-[11px] text-muted-foreground mb-1">Starting from</p>
+                        <div className="flex items-baseline gap-1 justify-end mb-0.5">
+                          <span className="font-headline text-2xl font-bold text-primary">
+                            â‚¹{hotel.price.toLocaleString()}
+                          </span>
+                          <span className="text-muted-foreground text-xs">{t.perNight}</span>
+                        </div>
+                        {nights > 1 && (
+                          <p className="text-xs text-muted-foreground">
+                            â‚¹{totalPrice.toLocaleString()} Â· {nights} nights
+                          </p>
+                        )}
+                        <p className="text-xs text-green-600 font-medium mt-2 flex items-center gap-1 justify-end">
+                          <CheckCircle2 className="h-3 w-3 shrink-0" />
+                          {hotel.cancellation.startsWith("Free") ? "Free cancellation" : "Flexible"}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-row md:flex-col gap-2 w-auto md:w-full md:mt-4">
+                        <Link href={bookUrl}>
+                          <Button className="rounded-xl font-headline font-bold bg-primary hover:bg-primary/90 text-primary-foreground whitespace-nowrap text-sm px-5 md:w-full">
+                            Book Now
+                          </Button>
+                        </Link>
+                        <Link href={`/hotels/${hotel.id}`}>
+                          <Button variant="outline" className="rounded-xl font-headline text-sm whitespace-nowrap px-4 md:w-full">
+                            Details
+                            <ArrowRight className="h-3.5 w-3.5 ml-1" />
+                          </Button>
                         </Link>
                       </div>
                     </div>
+
+                  </div>
+                </div>
+              </ScrollReveal>
+            )
+          })}
+
+          {results.length === 0 && (
+            <div className="text-center py-24 text-muted-foreground">
+              <Leaf className="h-14 w-14 mx-auto mb-4 text-primary/30" />
+              <p className="font-headline text-2xl font-bold mb-2">No stays found</p>
+              <p className="text-sm mb-6">Try adjusting your search or filters.</p>
+              <Button variant="outline" className="rounded-full" onClick={clearFilters}>
+                Clear all filters
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* â”€â”€ Why Book With Us â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="bg-muted py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal variant="up">
+            <h2 className="font-headline text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
+              Why Book with Arunachal Explore
+            </h2>
+          </ScrollReveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { icon: ShieldCheck, title: "Verified Properties", desc: "Every stay is ground-verified by our team." },
+              { icon: Leaf, title: "Eco-Certified", desc: "80% of partners carry sustainability ratings." },
+              { icon: Users, title: "Local Hosts", desc: "Direct relationships with tribal innkeepers." },
+              { icon: Star, title: "Best Rate Guarantee", desc: "We match any lower price found elsewhere." },
+            ].map((item, i) => {
+              const Icon = item.icon
+              return (
+                <ScrollReveal key={item.title} variant="up" delay={i * 80}>
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <div className="bg-primary/10 p-4 rounded-2xl">
+                      <Icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-headline font-bold text-sm md:text-base">{item.title}</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 </ScrollReveal>
               )
@@ -414,146 +467,6 @@ export default function HotelsPage() {
         </div>
       </section>
 
-      {/* ── All Properties Grid ───────────────────────────────────── */}
-      <section className="bg-muted px-4 md:px-10 py-24 md:py-28 min-h-screen flex flex-col justify-center">
-        <div className="max-w-screen-xl mx-auto">
-          <ScrollReveal variant="up">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-              <div>
-                <span className="text-primary font-headline font-bold uppercase tracking-widest text-xs md:text-sm block mb-2">
-                  Browse All
-                </span>
-                <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter">
-                  All Stays
-                  <span className="ml-3 text-muted-foreground text-2xl font-normal">
-                    ({filteredHotels.length})
-                  </span>
-                </h2>
-              </div>
-              {/* Active filters */}
-              {(selectedLocation !== "All Locations" || selectedType !== "All Types") && (
-                <button
-                  onClick={() => { setSelectedLocation("All Locations"); setSelectedType("All Types") }}
-                  className="text-sm text-muted-foreground hover:text-primary underline underline-offset-2 transition-colors"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-            {filteredHotels.map((hotel, i) => (
-              <ScrollReveal key={hotel.id} variant="up" delay={i * 70}>
-                <Link href={`/hotels/${hotel.id}`} className="group block bg-surface-lowest rounded-xl md:rounded-[1.5rem] overflow-hidden ghost-border hover:shadow-float transition-all duration-500 h-full">
-                  <div className="relative overflow-hidden h-48">
-                    <Image
-                      src={hotel.image}
-                      alt={`${hotel.name} — ${hotel.location}`}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      data-ai-hint="hotel accommodation arunachal"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute bottom-3 left-3 flex gap-1.5">
-                      {hotel.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-primary/80 backdrop-blur-sm text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="p-5">
-                    <div className="flex justify-between items-start gap-2 mb-1.5">
-                      <h3 className="font-headline text-base font-bold leading-tight group-hover:text-primary transition-colors line-clamp-1">
-                        {hotel.name}
-                      </h3>
-                      <div className="flex items-center gap-1 shrink-0">
-                        <Star className="h-3 w-3 fill-secondary text-secondary" />
-                        <span className="text-xs font-bold">{hotel.rating}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1 text-muted-foreground text-xs mb-4">
-                      <MapPin className="h-3 w-3" />
-                      <span>{hotel.location}</span>
-                    </div>
-                    <div className="flex items-center justify-between border-t border-border pt-4">
-                      <div>
-                        <span className="font-headline font-bold text-primary text-base">
-                          ₹{hotel.price.toLocaleString()}
-                        </span>
-                        <span className="text-muted-foreground text-xs ml-1">{t.perNight}</span>
-                      </div>
-                      <Link
-                        href={`/hotels/${hotel.id}/book?room=${encodeURIComponent(hotel.rooms[0].type)}&price=${hotel.rooms[0].price}`}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Button size="sm" className="rounded-full text-xs px-4 h-8 font-headline">
-                          {t.bookNow}
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-            {filteredHotels.length === 0 && (
-              <div className="col-span-full text-center py-20 text-muted-foreground">
-                <Leaf className="h-12 w-12 mx-auto mb-4 text-primary/30" />
-                <p className="font-headline text-xl mb-2">No stays found</p>
-                <p className="text-sm">Try adjusting your filters above.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA: Find Your Himalayan Home ────────────────────────── */}
-      <section className="px-4 md:px-10 py-16 md:py-20 min-h-screen flex flex-col justify-center">
-        <div className="max-w-screen-xl mx-auto">
-          <ScrollReveal variant="scale">
-            <div className="relative bg-primary rounded-xl md:rounded-[2rem] p-10 md:p-20 overflow-hidden text-center">
-              {/* radial glow background */}
-              <div className="absolute inset-0 tribal-pattern opacity-20 pointer-events-none" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(64,224,208,0.15)_0%,_transparent_70%)] pointer-events-none" />
-
-              <div className="relative z-10 max-w-xl mx-auto">
-                <h2 className="font-headline text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter mb-6 leading-tight">
-                  Find Your Himalayan Home
-                </h2>
-                <p className="text-white/80 text-base md:text-lg mb-10 leading-relaxed">
-                  Subscribe to receive curated stay guides and seasonal availability updates
-                  for our most exclusive retreats.
-                </p>
-                <form
-                  onSubmit={(e) => e.preventDefault()}
-                  className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/55 rounded-full px-6 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
-                    required
-                  />
-                  <Button
-                    type="submit"
-                    className="rounded-full px-8 py-6 font-headline font-bold bg-secondary text-secondary-foreground hover:bg-secondary/90 shrink-0"
-                  >
-                    Join Concierge
-                  </Button>
-                </form>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
     </main>
   )
 }
-
