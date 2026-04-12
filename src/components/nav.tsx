@@ -10,7 +10,7 @@ import {
   Globe, Mountain, Users, Lightbulb, ChevronDown,
   Flag, Plane, ChevronRight, Leaf, Calendar, Landmark,
   TreePine, Waves, Fish, Wind, Sparkles,
-  Map, ScanSearch, BookOpen, Info, Video,
+  ScanSearch, BookOpen, Info, Video,
   Mail, Bookmark, Clock, UserCircle,
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
@@ -81,9 +81,9 @@ export function Nav() {
         { name: t.guides, href: "/guides", icon: Compass, description: t.navGuidesDesc },
         { name: t.tribes, href: "/tribes", icon: Users, description: t.navTribesDesc },
         { name: t.entrepreneurs, href: "/entrepreneurs", icon: Lightbulb, description: t.navEntrepreneursDesc },
-        { name: t.navWildlifeLabel, href: "/wildlife", icon: Leaf, description: t.navWildlifeDesc, badge: "New" },
-        { name: t.navEventsLabel, href: "/events", icon: Calendar, description: t.navEventsDesc, badge: "New" },
-        { name: t.navHeritageLabel, href: "/heritage", icon: Landmark, description: t.navHeritageDesc, badge: "New" },
+        { name: t.navWildlifeLabel, href: "/wildlife", icon: Leaf, description: t.navWildlifeDesc },
+        { name: t.navEventsLabel, href: "/events", icon: Calendar, description: t.navEventsDesc },
+        { name: t.navHeritageLabel, href: "/heritage", icon: Landmark, description: t.navHeritageDesc },
       ],
     },
     {
@@ -102,7 +102,6 @@ export function Nav() {
         { name: t.itinerary, href: "/itinerary", icon: Mountain, description: t.navItineraryDesc },
         { name: t.hotels, href: "/hotels", icon: Hotel, description: t.navHotelsDesc },
         { name: t.transport, href: "/transport", icon: Car, description: t.navTransportDesc },
-        { name: t.navDistrictMapLabel, href: "/map", icon: Map, description: t.navDistrictMapDesc, badge: "New" },
       ],
     },
     {
@@ -120,7 +119,7 @@ export function Nav() {
       items: [
         { name: t.navEguidesLabel, href: "/guides/ebooks", icon: BookOpen, description: t.navEguidesDesc },
         { name: t.navFactsLabel, href: "/about", icon: Info, description: t.navFactsDesc },
-        { name: t.navVideoGalleryLabel, href: "/media", icon: Video, description: t.navVideoGalleryDesc, badge: "New" },
+        { name: t.navVideoGalleryLabel, href: "/media", icon: Video, description: t.navVideoGalleryDesc },
         { name: t.navNewsletterLabel, href: "/newsletter", icon: Mail, description: t.navNewsletterDesc },
       ],
     },
