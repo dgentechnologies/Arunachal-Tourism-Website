@@ -1,0 +1,53 @@
+rules_version = '2';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DB2 — USERS  (database: arunachal-explore-users)
+// Collections: users, users/{id}/trips, users/{id}/permits
+// Applied via firebase.json → database: "arunachal-explore-users"
+// ─────────────────────────────────────────────────────────────────────────────
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── User Profile ──────────────────────────────────────────────────────────
+    match /users/{userId} {
+      // Owner reads their own data; admin can read any profile
+      allow read: if request.auth != null
+        && (request.auth.uid == userId
+            || request.auth.token.role == 'admin');
+      // Only the authenticated user may create their own document
+      allow create: if request.auth != null
+        && request.auth.uid == userId;
+      // Owner may update their profile; admin may update any (e.g. set role)
+      allow update: if request.auth != null
+        && (request.auth.uid == userId
+            || request.auth.token.role == 'admin');
+      // Profiles are never deleted via client — use Admin SDK if needed
+      allow delete: if false;
+    }
+
+    // ── Saved Trips ───────────────────────────────────────────────────────────
+    match /users/{userId}/trips/{tripId} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == userId;
+    }
+
+    // ── Permit Applications ───────────────────────────────────────────────────
+    match /users/{userId}/permits/{permitId} {
+      // Owner or admin can read
+      allow read: if request.auth != null
+        && (request.auth.uid == userId
+            || request.auth.token.role == 'admin');
+      // Owner creates and updates their permit drafts / submissions
+      allow create, update: if request.auth != null
+        && request.auth.uid == userId;
+      // Permit records must not be deleted
+      allow delete: if false;
+    }
+
+    // ── Deny everything else ──────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

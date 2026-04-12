@@ -1,0 +1,16 @@
+{
+  "firestore": [
+    {
+      "database": "(default)",
+      "rules": "firestore.rules"
+    },
+    {
+      "database": "arunachal-explore-users",
+      "rules": "firestore-users.rules"
+    },
+    {
+      "database": "arunachal-explore-cms",
+      "rules": "firestore-cms.rules"
+    }
+  ]
+}

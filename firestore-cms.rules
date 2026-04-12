@@ -1,0 +1,60 @@
+rules_version = '2';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DB3 — CMS  (database: arunachal-explore-cms)
+// Collections: circuits, activities, festivals, emergencyContacts,
+//              permitInfo, notices
+// Applied via firebase.json → database: "arunachal-explore-cms"
+// ─────────────────────────────────────────────────────────────────────────────
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Circuits ──────────────────────────────────────────────────────────────
+    match /circuits/{circuitId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    // ── Activities ────────────────────────────────────────────────────────────
+    match /activities/{activityId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    // ── Festivals ─────────────────────────────────────────────────────────────
+    match /festivals/{festivalId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    // ── Emergency Contacts ────────────────────────────────────────────────────
+    match /emergencyContacts/{districtId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    // ── Permit Information (ILP / PAP / RAP) ──────────────────────────────────
+    match /permitInfo/{permitType} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    // ── Site Notices (replaces hardcoded banners) ──────────────────────────────
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    // ── Deny everything else ──────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

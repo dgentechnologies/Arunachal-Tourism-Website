@@ -1,51 +1,91 @@
 rules_version = '2';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// DB1 — ENTERPRISE (default database)
+// Collections: hotels, vehicles, tour_operators, bookings
+// Applied via firebase.json → database: "(default)"
+// ─────────────────────────────────────────────────────────────────────────────
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── Users ──────────────────────────────────────────────────────────────
-    // Each user can read and write only their own document.
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // ── Saved trips ────────────────────────────────────────────────────────
-    // Trips belong to a user. Only the owner may read or write.
-    match /users/{userId}/trips/{tripId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // ── Permit applications ────────────────────────────────────────────────
-    // Permit documents belong to a user. Only the owner may read or write.
-    match /users/{userId}/permits/{permitId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // ── Public content (read-only) ─────────────────────────────────────────
-    // Destinations, events, etc. are publicly readable but never client-writable.
-    match /destinations/{docId} {
+    // ── Hotels ───────────────────────────────────────────────────────────────
+    match /hotels/{hotelId} {
       allow read: if true;
-      allow write: if false;
+      allow write: if request.auth != null
+        && request.auth.token.role in ['admin', 'operator'];
     }
 
-    match /events/{docId} {
+    match /hotels/{hotelId}/availability/{dateId} {
       allow read: if true;
-      allow write: if false;
+      allow write: if request.auth != null
+        && request.auth.token.role in ['admin', 'operator'];
     }
 
-    match /hotels/{docId} {
+    match /hotels/{hotelId}/rooms/{roomId} {
       allow read: if true;
-      allow write: if false;
+      allow write: if request.auth != null
+        && request.auth.token.role in ['admin', 'operator'];
     }
 
-    match /guides/{docId} {
+    match /hotels/{hotelId}/reviews/{reviewId} {
       allow read: if true;
-      allow write: if false;
+      // Any signed-in user may leave a review
+      allow create: if request.auth != null;
+      // Only the author or an admin may edit / delete
+      allow update, delete: if request.auth != null
+        && (request.auth.uid == resource.data.userId
+            || request.auth.token.role == 'admin');
     }
 
-    // ── Deny everything else ───────────────────────────────────────────────
+    // ── Vehicles ─────────────────────────────────────────────────────────────
+    match /vehicles/{vehicleId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    match /vehicles/{vehicleId}/availability/{dateId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role in ['admin', 'operator'];
+    }
+
+    // ── Tour Operators ────────────────────────────────────────────────────────
+    match /tour_operators/{operatorId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'admin';
+    }
+
+    match /tour_operators/{operatorId}/packages/{packageId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role in ['admin', 'operator'];
+    }
+
+    // ── Bookings ──────────────────────────────────────────────────────────────
+    // NOTE: cross-database join (user display name etc.) must be resolved in
+    // the Application Layer — Firestore does not support cross-database queries.
+    match /bookings/{bookingId} {
+      // Owner or staff can read
+      allow read: if request.auth != null
+        && (request.auth.uid == resource.data.userId
+            || request.auth.token.role in ['admin', 'operator']);
+      // Any signed-in user can create a booking for themselves
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid;
+      // Only admin / operator may update (status changes, confirmations)
+      allow update: if request.auth != null
+        && request.auth.token.role in ['admin', 'operator'];
+      // Bookings are never hard-deleted — use status: "cancelled"
+      allow delete: if false;
+    }
+
+    // ── Deny everything else ─────────────────────────────────────────────────
     match /{document=**} {
       allow read, write: if false;
     }
   }
 }
+

@@ -18,7 +18,7 @@ import {
   type User,
 } from "firebase/auth"
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore"
-import { getFirebaseAuth, getFirebaseDb, googleProvider } from "@/lib/firebase"
+import { getFirebaseAuth, getFirebaseDbUsers, googleProvider } from "@/lib/firebase"
 
 interface AuthContextValue {
   user: User | null
@@ -33,7 +33,7 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 async function upsertUserDoc(user: User) {
-  const ref = doc(getFirebaseDb(), "users", user.uid)
+  const ref = doc(getFirebaseDbUsers(), "users", user.uid)
   const snap = await getDoc(ref)
   if (!snap.exists()) {
     await setDoc(ref, {
