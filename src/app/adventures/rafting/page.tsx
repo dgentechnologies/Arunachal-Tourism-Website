@@ -164,6 +164,7 @@ export default function RaftingPage() {
       <div className="container mx-auto px-4 py-12">
         {/* Enhanced Hero Banner with Wave Effects */}
         <motion.div
+          className="min-h-screen flex flex-col justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -243,7 +244,7 @@ export default function RaftingPage() {
         </motion.div>
 
         {/* Unique Water-Flow Stats Section */}
-        <ScrollReveal variant="up" className="mb-16">
+        <ScrollReveal as="section" variant="up" className="mb-16 min-h-screen flex flex-col justify-center">
           <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-indigo-500/10 p-1">
             <div className="bg-gradient-to-br from-blue-50/90 via-cyan-50/80 to-white/90 backdrop-blur-xl rounded-[2rem] p-8 md:p-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -300,7 +301,8 @@ export default function RaftingPage() {
           </div>
         </ScrollReveal>
 
-        {/* Section Header with Water Theme */}
+        {/* Rivers Section */}
+        <section className="min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up" className="mb-12">
           <div className="text-center max-w-3xl mx-auto">
             <motion.h2
@@ -449,8 +451,10 @@ export default function RaftingPage() {
           ))}
         </div>
 
+        </section>
+
         {/* Water-Themed Preparations Section */}
-        <ScrollReveal variant="up" className="mb-20">
+        <ScrollReveal as="section" variant="up" className="mb-20 min-h-screen flex flex-col justify-center">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <motion.h2
               className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4"
@@ -590,7 +594,7 @@ export default function RaftingPage() {
         </ScrollReveal>
 
         {/* Rapids Safety Guide */}
-        <ScrollReveal variant="up" className="mb-20">
+        <ScrollReveal as="section" variant="up" className="mb-20 min-h-screen flex flex-col justify-center">
           <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50 p-1">
             <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 md:p-12">
               <div className="text-center mb-10">
@@ -703,7 +707,7 @@ export default function RaftingPage() {
         </ScrollReveal>
 
         {/* Unique Water-Themed CTA Banner */}
-        <ScrollReveal variant="up">
+        <ScrollReveal as="section" variant="up" className="min-h-screen flex flex-col justify-center">
           <motion.div
             className="relative overflow-hidden rounded-[2.5rem] group"
             whileHover={{ scale: 1.01 }}

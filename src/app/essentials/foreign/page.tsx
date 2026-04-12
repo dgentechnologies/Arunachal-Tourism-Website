@@ -188,7 +188,7 @@ export default function ForeignPermitPage() {
         </div>
 
         {/* Key Requirements */}
-        <section>
+        <section className="min-h-screen flex flex-col justify-center">
           <h2 className="text-3xl font-bold font-headline text-primary mb-3">Key Requirements</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl">Everything you need to know before applying for your Protected Area Permit.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -230,7 +230,7 @@ export default function ForeignPermitPage() {
         </section>
 
         {/* Where to Apply — 4 offices */}
-        <section>
+        <section className="min-h-screen flex flex-col justify-center">
           <h2 className="text-3xl font-bold font-headline text-primary mb-3">Where to Apply for PAP</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl">
             PAP can be obtained physically from any of these four official government offices, or online via the FRRO portal.
@@ -321,7 +321,7 @@ export default function ForeignPermitPage() {
         </section>
 
         {/* Photography & Compliance */}
-        <section>
+        <section className="min-h-screen flex flex-col justify-center">
           <h2 className="text-3xl font-bold font-headline text-primary mb-3">Rules to Follow</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl">Important rules all foreign visitors must observe while in Arunachal Pradesh.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -345,7 +345,7 @@ export default function ForeignPermitPage() {
         </section>
 
         {/* FAQ */}
-        <section>
+        <section className="min-h-screen flex flex-col justify-center">
           <h2 className="text-3xl font-bold font-headline text-primary mb-3">Frequently Asked Questions</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl">Common questions from foreign nationals planning to visit Arunachal Pradesh.</p>
           <div className="space-y-3 max-w-3xl">

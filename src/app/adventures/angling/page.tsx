@@ -163,6 +163,7 @@ export default function AnglingPage() {
       <div className="container mx-auto px-4 py-12">
         {/* Enhanced Hero Banner */}
         <motion.div
+          className="min-h-screen flex flex-col justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -243,7 +244,7 @@ export default function AnglingPage() {
         </motion.div>
 
         {/* Enhanced Stats Section */}
-        <ScrollReveal variant="up" className="mb-16">
+        <ScrollReveal as="section" variant="up" className="mb-16 min-h-screen flex flex-col justify-center">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-500/10 via-green-500/5 to-teal-500/10 p-1">
             <div className="bg-gradient-to-br from-green-50/90 via-emerald-50/80 to-white/90 backdrop-blur-xl rounded-3xl p-8 md:p-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -300,7 +301,8 @@ export default function AnglingPage() {
           </div>
         </ScrollReveal>
 
-        {/* Section Header */}
+        {/* Fishing Spots Section */}
+        <section className="min-h-screen flex flex-col justify-center">
         <ScrollReveal variant="up" className="mb-12">
           <div className="text-center max-w-3xl mx-auto">
             <motion.h2
@@ -455,8 +457,10 @@ export default function AnglingPage() {
           ))}
         </div>
 
+        </section>
+
         {/* Essential Preparations Section */}
-        <ScrollReveal variant="up" className="mb-20">
+        <ScrollReveal as="section" variant="up" className="mb-20 min-h-screen flex flex-col justify-center">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <motion.h2
               className="text-3xl md:text-5xl font-bold font-headline bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 bg-clip-text text-transparent mb-4"
@@ -596,7 +600,7 @@ export default function AnglingPage() {
         </ScrollReveal>
 
         {/* Important Information Section */}
-        <ScrollReveal variant="up" className="mb-20">
+        <ScrollReveal as="section" variant="up" className="mb-20 min-h-screen flex flex-col justify-center">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 p-1">
             <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-12">
               <div className="text-center mb-10">
@@ -709,7 +713,7 @@ export default function AnglingPage() {
         </ScrollReveal>
 
         {/* Enhanced CTA Banner */}
-        <ScrollReveal variant="up">
+        <ScrollReveal as="section" variant="up" className="min-h-screen flex flex-col justify-center">
           <motion.div
             className="relative overflow-hidden rounded-[3rem] group"
             whileHover={{ scale: 1.01 }}
