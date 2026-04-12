@@ -177,7 +177,7 @@ export default function ParaglidingPage() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 pt-6 pb-12">
 
         {/* ── HERO ── */}
         <motion.div

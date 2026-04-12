@@ -142,12 +142,12 @@ export default function AdventuresPage() {
       </div>
 
       {/* ── HERO ── */}
-      <section className="px-4 md:px-8 pt-6 pb-0 min-h-screen flex flex-col justify-center">
+      <section className="px-3 md:px-8 pt-4 pb-0 min-h-screen flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
-          className="relative w-full h-[580px] md:h-[700px] rounded-[2.5rem] overflow-hidden group"
+          className="relative w-full h-[55vw] min-h-[360px] max-h-[580px] md:h-[700px] md:max-h-none rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden group"
         >
           <motion.div className="absolute inset-0" whileHover={{ scale: 1.04 }} transition={{ duration: 0.8 }}>
             <Image
@@ -181,7 +181,7 @@ export default function AdventuresPage() {
             ))}
           </div>
 
-          <div className="absolute bottom-12 left-8 md:left-14 max-w-3xl">
+          <div className="absolute bottom-6 md:bottom-12 left-5 md:left-14 max-w-3xl pr-5 md:pr-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -192,7 +192,7 @@ export default function AdventuresPage() {
               </span>
             </motion.div>
             <motion.h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold font-headline text-white leading-[0.95] tracking-tighter mb-5"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-headline text-white leading-[0.95] tracking-tighter mb-3 md:mb-5"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
@@ -201,7 +201,7 @@ export default function AdventuresPage() {
               <span className="text-[hsl(176,68%,56%)]">Arunachal</span>
             </motion.h1>
             <motion.p
-              className="text-white/80 max-w-xl text-lg md:text-xl leading-relaxed font-light"
+              className="text-white/80 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.72, duration: 0.6 }}
@@ -213,7 +213,7 @@ export default function AdventuresPage() {
 
         {/* Stats Bar — floating over hero bottom */}
         <ScrollReveal variant="up" className="-mt-10 relative z-10 max-w-4xl mx-auto">
-          <div className="bg-white/90 backdrop-blur-xl rounded-full shadow-[0_16px_60px_0_rgba(0,106,98,0.14)] px-6 py-5 flex flex-wrap justify-around items-center gap-4">
+          <div className="bg-white/90 backdrop-blur-xl rounded-3xl sm:rounded-full shadow-[0_16px_60px_0_rgba(0,106,98,0.14)] px-6 py-5 flex flex-wrap justify-around items-center gap-4">
             {[
               { icon: Mountain, value: "12+", label: "Adventure Types" },
               { icon: Waves, value: "5", label: "Major River Basins" },

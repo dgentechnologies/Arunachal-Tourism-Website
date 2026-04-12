@@ -160,7 +160,7 @@ export default function AnglingPage() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 pt-6 pb-12">
         {/* Enhanced Hero Banner */}
         <motion.div
           className="min-h-screen flex flex-col justify-center"

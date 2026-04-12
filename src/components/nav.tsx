@@ -455,13 +455,7 @@ export function Nav() {
               <div key={group.label} className="rounded-xl border border-border/60 overflow-hidden">
                 <button
                   onClick={() => {
-                    if (group.href) {
-                      router.push(group.href)
-                      setIsOpen(false)
-                      setMobileOpenGroup(null)
-                    } else {
-                      setMobileOpenGroup(isMobileGroupOpen ? null : group.label)
-                    }
+                    setMobileOpenGroup(isMobileGroupOpen ? null : group.label)
                   }}
                   className="w-full flex items-center justify-between px-4 py-3 bg-secondary/20 hover:bg-secondary/30 transition-colors"
                 >
@@ -475,6 +469,17 @@ export function Nav() {
                 </button>
                 {isMobileGroupOpen && (
                   <div className="divide-y divide-border/40">
+                    {/* "View all" link for groups that have a dedicated page */}
+                    {group.href && (
+                      <Link
+                        href={group.href}
+                        onClick={() => { setIsOpen(false); setMobileOpenGroup(null) }}
+                        className="flex items-center justify-between px-4 py-3 bg-primary/5 hover:bg-primary/10 transition-colors"
+                      >
+                        <span className="text-sm font-bold text-primary">View all {group.label}</span>
+                        <ChevronRight className="h-4 w-4 text-primary" />
+                      </Link>
+                    )}
                     {group.items.map((item) => {
                       const Icon = item.icon
                       const isItemActive = !item.external && !item.disabled && pathname === item.href

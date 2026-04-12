@@ -142,7 +142,7 @@ export default function PermitHubPage() {
               </ScrollReveal>
 
               <ScrollReveal variant="left" delay={100}>
-                <h1 className="font-headline text-7xl md:text-8xl xl:text-[7rem] font-bold text-foreground tracking-tighter leading-[0.85]">
+                <h1 className="font-headline text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-bold text-foreground tracking-tighter leading-[0.9] md:leading-[0.85]">
                   Arrival<br />
                   <span className="text-primary">Formalities</span>
                 </h1>
