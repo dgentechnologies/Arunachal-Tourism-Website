@@ -50,6 +50,7 @@ interface NavSubItem {
 interface NavGroup {
   label: string
   href?: string
+  columns?: 1 | 2 | 3
   items: NavSubItem[]
 }
 
@@ -75,6 +76,7 @@ export function Nav() {
   const navGroups: NavGroup[] = [
     {
       label: t.navExplore,
+      columns: 3,
       items: [
         { name: t.guides, href: "/guides", icon: Compass, description: t.navGuidesDesc },
         { name: t.tribes, href: "/tribes", icon: Users, description: t.navTribesDesc },
@@ -216,12 +218,62 @@ export function Nav() {
 
                 {/* Dropdown panel */}
                 {isGroupOpen && (
-                  <div className="absolute top-full left-0 mt-1 rounded-xl bg-[#fcf9f8]/80 backdrop-blur-[24px] shadow-ambient p-2 z-50 min-w-[320px]">
-                    <div className={cn("grid gap-0.5", group.items.length <= 2 ? "grid-cols-1" : "grid-cols-2")}>
+                  <div className={cn(
+                    "absolute top-full left-0 mt-1 rounded-2xl bg-[#fcf9f8]/95 backdrop-blur-[24px] shadow-float border border-border/40 p-3 z-50",
+                    group.columns === 3 ? "min-w-[540px]" : "min-w-[320px]"
+                  )}>
+                    <div className={cn(
+                      "grid gap-1",
+                      group.columns === 3 ? "grid-cols-3" :
+                      group.columns === 1 || group.items.length <= 2 ? "grid-cols-1" : "grid-cols-2"
+                    )}>
                     {group.items.map((item) => {
                       const Icon = item.icon
                       const isItemActive = !item.external && !item.disabled && pathname === item.href
-                      const inner = (
+                      const is3Col = group.columns === 3
+
+                      const inner = is3Col ? (
+                        /* 3-column compact: icon top, name + badge, description */
+                        <div className="flex flex-col items-center text-center gap-2 w-full">
+                          <span
+                            className={cn(
+                              "flex h-10 w-10 items-center justify-center rounded-xl",
+                              item.disabled
+                                ? "bg-muted text-muted-foreground/50"
+                                : isItemActive
+                                  ? "bg-primary/15 text-primary"
+                                  : "bg-secondary/70 text-muted-foreground"
+                            )}
+                          >
+                            <Icon className="h-5 w-5" />
+                          </span>
+                          <div className="min-w-0 w-full">
+                            <div className="flex items-center justify-center gap-1 flex-wrap">
+                              <p className={cn(
+                                "text-xs font-bold leading-tight",
+                                item.disabled ? "text-muted-foreground/60" : isItemActive ? "text-primary" : "text-foreground"
+                              )}>
+                                {item.name}
+                              </p>
+                              {item.badge && (
+                                <span className={cn(
+                                  "inline-flex items-center rounded px-1 py-0 text-[10px] font-semibold leading-4",
+                                  badgeColorClass(item.badge, item.disabled)
+                                )}>
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className={cn(
+                              "text-[11px] mt-0.5 leading-tight",
+                              item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
+                            )}>
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        /* Default: icon left, text right */
                         <>
                           <span
                             className={cn(
@@ -261,10 +313,18 @@ export function Nav() {
                           </div>
                         </>
                       )
+
+                      const itemClass = is3Col
+                        ? "flex flex-col items-center p-3 rounded-xl hover:bg-secondary/50 transition-colors text-center"
+                        : "flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                      const disabledClass = is3Col
+                        ? "flex flex-col items-center p-3 rounded-xl cursor-not-allowed opacity-60 text-center"
+                        : "flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-not-allowed opacity-60"
+
                       return (
                         <div key={item.href}>
                           {item.disabled ? (
-                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-not-allowed opacity-60">
+                            <div className={disabledClass}>
                               {inner}
                             </div>
                           ) : item.external ? (
@@ -273,7 +333,7 @@ export function Nav() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => setOpenGroup(null)}
-                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                              className={itemClass}
                             >
                               {inner}
                             </a>
@@ -281,7 +341,7 @@ export function Nav() {
                             <Link
                               href={item.href}
                               onClick={() => setOpenGroup(null)}
-                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                              className={itemClass}
                             >
                               {inner}
                             </Link>
