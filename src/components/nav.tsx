@@ -9,7 +9,7 @@ import {
   Hotel, Car, ShieldAlert, Compass, Menu, X,
   Globe, Mountain, Users, Lightbulb, ChevronDown,
   Flag, Plane, ChevronRight, Leaf, Calendar, Landmark,
-  TreePine, Waves, Fish, Wind, LayoutGrid, Sparkles,
+  TreePine, Waves, Fish, Wind, Sparkles,
   Map, FileText, ScanSearch, BookOpen, Info, Video,
   Mail, Bookmark, Clock, UserCircle,
 } from "lucide-react"
@@ -49,6 +49,7 @@ interface NavSubItem {
 
 interface NavGroup {
   label: string
+  href?: string
   items: NavSubItem[]
 }
 
@@ -85,12 +86,12 @@ export function Nav() {
     },
     {
       label: t.navAdventures,
+      href: "/adventures",
       items: [
         { name: t.navTrekkingLabel, href: "/adventures/trekking", icon: TreePine, description: t.navTrekkingDesc },
         { name: t.navRaftingLabel, href: "/adventures/rafting", icon: Waves, description: t.navRaftingDesc },
         { name: t.navAnglingLabel, href: "/adventures/angling", icon: Fish, description: t.navAnglingDesc },
         { name: t.navParaglidingLabel, href: "/adventures/paragliding", icon: Wind, description: t.navParaglidingDesc },
-        { name: t.navAllActivitiesLabel, href: "/adventures", icon: LayoutGrid, description: t.navAllActivitiesDesc, badge: "Hub" },
       ],
     },
     {
@@ -185,7 +186,14 @@ export function Nav() {
                 onMouseLeave={() => setOpenGroup(null)}
               >
                 <button
-                  onClick={() => setOpenGroup(isGroupOpen ? null : group.label)}
+                  onClick={() => {
+                    if (group.href) {
+                      router.push(group.href)
+                      setOpenGroup(null)
+                    } else {
+                      setOpenGroup(isGroupOpen ? null : group.label)
+                    }
+                  }}
                   className={cn(
                     "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 hover:scale-105",
                     transparent
@@ -380,7 +388,15 @@ export function Nav() {
             return (
               <div key={group.label} className="rounded-xl border border-border/60 overflow-hidden">
                 <button
-                  onClick={() => setMobileOpenGroup(isMobileGroupOpen ? null : group.label)}
+                  onClick={() => {
+                    if (group.href) {
+                      router.push(group.href)
+                      setIsOpen(false)
+                      setMobileOpenGroup(null)
+                    } else {
+                      setMobileOpenGroup(isMobileGroupOpen ? null : group.label)
+                    }
+                  }}
                   className="w-full flex items-center justify-between px-4 py-3 bg-secondary/20 hover:bg-secondary/30 transition-colors"
                 >
                   <span className="text-sm font-semibold text-foreground">{group.label}</span>
