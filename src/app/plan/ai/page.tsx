@@ -30,7 +30,7 @@ export default function JourneyAIPage() {
   const { toast } = useToast();
 
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: "assistant", content: t("journeyAiWelcomeMessage") },
+    { role: "assistant", content: t.journeyAiWelcomeMessage },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,10 +42,10 @@ export default function JourneyAIPage() {
   }, [messages]);
 
   const suggestedQuestions = [
-    t("journeyAiSuggestedQ1"),
-    t("journeyAiSuggestedQ2"),
-    t("journeyAiSuggestedQ3"),
-    t("journeyAiSuggestedQ4"),
+    t.journeyAiSuggestedQ1,
+    t.journeyAiSuggestedQ2,
+    t.journeyAiSuggestedQ3,
+    t.journeyAiSuggestedQ4,
   ];
 
   const sendMessage = async (text: string) => {
@@ -73,7 +73,7 @@ export default function JourneyAIPage() {
         title: isQuota ? "API Quota Exceeded" : "Chat Error",
         description: isQuota
           ? "You've reached the API quota limit. Please wait a moment and try again."
-          : t("journeyAiErrorMessage"),
+          : t.journeyAiErrorMessage,
       });
     } finally {
       setLoading(false);
@@ -97,10 +97,10 @@ export default function JourneyAIPage() {
           </div>
           <div>
             <h1 className="text-lg font-bold font-headline leading-tight">
-              {t("journeyAiPageTitle")}
+              {t.journeyAiPageTitle}
             </h1>
             <p className="text-xs text-muted-foreground leading-tight">
-              {t("journeyAiPageSubtitle")}
+              {t.journeyAiPageSubtitle}
             </p>
           </div>
         </div>
@@ -156,7 +156,7 @@ export default function JourneyAIPage() {
                 </div>
                 <div className="bg-surface-lowest border border-border/50 shadow-ambient rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-2 text-sm text-muted-foreground">
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  {t("journeyAiThinkingLabel")}
+                  {t.journeyAiThinkingLabel}
                 </div>
               </div>
             )}
@@ -188,7 +188,7 @@ export default function JourneyAIPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={t("journeyAiInputPlaceholder")}
+            placeholder={t.journeyAiInputPlaceholder}
             rows={1}
             disabled={loading}
             className="flex-1 resize-none border-none shadow-none focus-visible:ring-0 bg-transparent text-sm min-h-[2.5rem] max-h-36 py-2 px-2"
@@ -198,7 +198,7 @@ export default function JourneyAIPage() {
             disabled={loading || !input.trim()}
             size="icon"
             className="h-9 w-9 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 shadow-lg shadow-violet-500/30 shrink-0 disabled:opacity-40"
-            aria-label={t("journeyAiSendLabel")}
+            aria-label={t.journeyAiSendLabel}
           >
             {loading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
