@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Nav } from '@/components/nav';
-import { Footer } from '@/components/footer';
+import { ConditionalFooter } from '@/components/conditional-footer';
 import { Toaster } from '@/components/ui/toaster';
 import { Providers } from '@/components/providers';
 
@@ -126,7 +126,7 @@ export default function RootLayout({
           <main className="flex-grow pt-16">
             {children}
           </main>
-          <Footer />
+          <ConditionalFooter />
           <Toaster />
         </Providers>
       </body>
