@@ -211,11 +211,11 @@ export function Nav() {
                 {/* Dropdown panel */}
                 {isGroupOpen && (
                   <div className={cn(
-                    "absolute top-full left-0 mt-1 rounded-2xl bg-[#fcf9f8]/95 backdrop-blur-[24px] shadow-float border border-border/40 p-3 z-50",
-                    group.columns === 3 ? "min-w-[540px]" : "min-w-[320px]"
+                    "absolute top-full left-0 mt-1 rounded-2xl bg-[#fcf9f8]/95 backdrop-blur-[24px] shadow-float border border-border/40 p-4 z-50",
+                    group.columns === 3 ? "min-w-[700px]" : "min-w-[480px]"
                   )}>
                     <div className={cn(
-                      "grid gap-1",
+                      "grid gap-2",
                       group.columns === 3 ? "grid-cols-3" :
                       group.columns === 1 || group.items.length <= 2 ? "grid-cols-1" : "grid-cols-2"
                     )}>
@@ -226,10 +226,10 @@ export function Nav() {
 
                       const inner = is3Col ? (
                         /* 3-column compact: icon top, name + badge, description */
-                        <div className="flex flex-col items-center text-center gap-2 w-full">
+                        <div className="flex flex-col items-center text-center gap-3 w-full">
                           <span
                             className={cn(
-                              "flex h-10 w-10 items-center justify-center rounded-xl",
+                              "flex h-12 w-12 items-center justify-center rounded-2xl",
                               item.disabled
                                 ? "bg-muted text-muted-foreground/50"
                                 : isItemActive
@@ -237,12 +237,12 @@ export function Nav() {
                                   : "bg-secondary/70 text-muted-foreground"
                             )}
                           >
-                            <Icon className="h-5 w-5" />
+                            <Icon className="h-6 w-6" />
                           </span>
                           <div className="min-w-0 w-full">
                             <div className="flex items-center justify-center gap-1 flex-wrap">
                               <p className={cn(
-                                "text-xs font-bold leading-tight",
+                                "text-sm font-bold leading-tight",
                                 item.disabled ? "text-muted-foreground/60" : isItemActive ? "text-primary" : "text-foreground"
                               )}>
                                 {item.name}
@@ -257,7 +257,7 @@ export function Nav() {
                               )}
                             </div>
                             <p className={cn(
-                              "text-[11px] mt-0.5 leading-tight",
+                              "text-xs mt-1 leading-tight",
                               item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
                             )}>
                               {item.description}
@@ -269,7 +269,7 @@ export function Nav() {
                         <>
                           <span
                             className={cn(
-                              "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+                              "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl",
                               item.disabled
                                 ? "bg-muted text-muted-foreground/50"
                                 : isItemActive
@@ -277,7 +277,7 @@ export function Nav() {
                                   : "bg-secondary/60 text-muted-foreground"
                             )}
                           >
-                            <Icon className="h-4 w-4" />
+                            <Icon className="h-5 w-5" />
                           </span>
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-1.5 flex-wrap">
@@ -307,11 +307,11 @@ export function Nav() {
                       )
 
                       const itemClass = is3Col
-                        ? "flex flex-col items-center p-3 rounded-xl hover:bg-secondary/50 transition-colors text-center"
-                        : "flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                        ? "flex flex-col items-center p-4 rounded-xl hover:bg-secondary/50 transition-colors text-center"
+                        : "flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-secondary/50 transition-colors"
                       const disabledClass = is3Col
-                        ? "flex flex-col items-center p-3 rounded-xl cursor-not-allowed opacity-60 text-center"
-                        : "flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-not-allowed opacity-60"
+                        ? "flex flex-col items-center p-4 rounded-xl cursor-not-allowed opacity-60 text-center"
+                        : "flex items-center gap-4 px-4 py-3 rounded-xl cursor-not-allowed opacity-60"
 
                       return (
                         <div key={item.href}>

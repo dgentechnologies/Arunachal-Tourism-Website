@@ -57,6 +57,17 @@ export interface Translations {
   navAllActivitiesDesc: string
   navAiTripBuilderLabel: string
   navAiTripBuilderDesc: string
+  journeyAiPageTitle: string
+  journeyAiPageSubtitle: string
+  journeyAiWelcomeMessage: string
+  journeyAiInputPlaceholder: string
+  journeyAiSendLabel: string
+  journeyAiThinkingLabel: string
+  journeyAiErrorMessage: string
+  journeyAiSuggestedQ1: string
+  journeyAiSuggestedQ2: string
+  journeyAiSuggestedQ3: string
+  journeyAiSuggestedQ4: string
   navDistrictMapLabel: string
   navDistrictMapDesc: string
   navArrivalFormalitiesLabel: string
@@ -380,6 +391,17 @@ const translations: Record<Language, Translations> = {
     navAllActivitiesDesc: "Browse the complete adventure hub",
     navAiTripBuilderLabel: "Journey AI",
     navAiTripBuilderDesc: "AI-powered personalised itineraries",
+    journeyAiPageTitle: "Journey AI",
+    journeyAiPageSubtitle: "Ask me anything about visiting Arunachal Pradesh — permits, places, tribes, weather, and more.",
+    journeyAiWelcomeMessage: "Namaste! I'm Journey AI, your personal travel guide to Arunachal Pradesh. Ask me about permits (ILP/PAP), best places to visit, tribal culture, festivals, adventure activities, packing tips, or anything else about travelling here!",
+    journeyAiInputPlaceholder: "Ask about permits, places, culture, food, weather…",
+    journeyAiSendLabel: "Send",
+    journeyAiThinkingLabel: "Thinking…",
+    journeyAiErrorMessage: "Sorry, something went wrong. Please try again.",
+    journeyAiSuggestedQ1: "Do I need a permit to visit Arunachal Pradesh?",
+    journeyAiSuggestedQ2: "What is the best time to visit Tawang?",
+    journeyAiSuggestedQ3: "Tell me about the Apatani tribe.",
+    journeyAiSuggestedQ4: "What adventure activities are available?",
     navDistrictMapLabel: "District Map",
     navDistrictMapDesc: "Interactive map of all 26 districts",
     navArrivalFormalitiesLabel: "Arrival Formalities",
@@ -702,6 +724,17 @@ const translations: Record<Language, Translations> = {
     navAllActivitiesDesc: "पूर्ण साहसिक केंद्र देखें",
     navAiTripBuilderLabel: "AI यात्रा निर्माता",
     navAiTripBuilderDesc: "Genkit-संचालित व्यक्तिगत यात्रा कार्यक्रम",
+    journeyAiPageTitle: "Journey AI",
+    journeyAiPageSubtitle: "अरुणाचल प्रदेश की यात्रा के बारे में कोई भी प्रश्न पूछें — परमिट, स्थान, जनजातियाँ, मौसम और बहुत कुछ।",
+    journeyAiWelcomeMessage: "नमस्ते! मैं Journey AI हूँ — अरुणाचल प्रदेश के लिए आपका व्यक्तिगत यात्रा गाइड। परमिट (ILP/PAP), घूमने की जगहें, जनजातीय संस्कृति, त्योहार, साहसिक गतिविधियाँ या यहाँ की यात्रा से जुड़ी किसी भी बात के बारे में पूछें!",
+    journeyAiInputPlaceholder: "परमिट, स्थान, संस्कृति, खाना, मौसम के बारे में पूछें…",
+    journeyAiSendLabel: "भेजें",
+    journeyAiThinkingLabel: "सोच रहा हूँ…",
+    journeyAiErrorMessage: "क्षमा करें, कुछ गलत हो गया। कृपया पुनः प्रयास करें।",
+    journeyAiSuggestedQ1: "क्या अरुणाचल प्रदेश जाने के लिए परमिट की ज़रूरत है?",
+    journeyAiSuggestedQ2: "तवांग घूमने का सबसे अच्छा समय कब है?",
+    journeyAiSuggestedQ3: "अपातानी जनजाति के बारे में बताएं।",
+    journeyAiSuggestedQ4: "कौन-कौन सी साहसिक गतिविधियाँ उपलब्ध हैं?",
     navDistrictMapLabel: "जिला मानचित्र",
     navDistrictMapDesc: "सभी 26 जिलों का इंटरैक्टिव मानचित्र",
     navArrivalFormalitiesLabel: "आगमन औपचारिकताएँ",
@@ -1024,6 +1057,17 @@ const translations: Record<Language, Translations> = {
     navAllActivitiesDesc: "সম্পূর্ণ অ্যাডভেঞ্চার হাব দেখুন",
     navAiTripBuilderLabel: "AI ট্রিপ বিল্ডার",
     navAiTripBuilderDesc: "Genkit-চালিত ব্যক্তিগতকৃত ভ্রমণসূচি",
+    journeyAiPageTitle: "Journey AI",
+    journeyAiPageSubtitle: "অরুণাচল প্রদেশ ভ্রমণ সম্পর্কে যেকোনো প্রশ্ন করুন — পারমিট, জায়গা, উপজাতি, আবহাওয়া এবং আরও অনেক কিছু।",
+    journeyAiWelcomeMessage: "নমস্কার! আমি Journey AI — অরুণাচল প্রদেশের জন্য আপনার ব্যক্তিগত ট্রাভেল গাইড। পারমিট (ILP/PAP), দর্শনীয় স্থান, উপজাতীয় সংস্কৃতি, উৎসব, অ্যাডভেঞ্চার কার্যক্রম বা এখানে ভ্রমণ সম্পর্কে যেকোনো বিষয়ে জিজ্ঞেস করুন!",
+    journeyAiInputPlaceholder: "পারমিট, জায়গা, সংস্কৃতি, খাবার, আবহাওয়া সম্পর্কে জিজ্ঞেস করুন…",
+    journeyAiSendLabel: "পাঠান",
+    journeyAiThinkingLabel: "ভাবছি…",
+    journeyAiErrorMessage: "দুঃখিত, কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।",
+    journeyAiSuggestedQ1: "অরুণাচল প্রদেশে যেতে কি পারমিট লাগে?",
+    journeyAiSuggestedQ2: "তাওয়াং যাওয়ার সেরা সময় কখন?",
+    journeyAiSuggestedQ3: "আপাতানি উপজাতি সম্পর্কে বলুন।",
+    journeyAiSuggestedQ4: "কী কী অ্যাডভেঞ্চার কার্যক্রম পাওয়া যায়?",
     navDistrictMapLabel: "জেলা মানচিত্র",
     navDistrictMapDesc: "সব ২৬টি জেলার ইন্টারেক্টিভ মানচিত্র",
     navArrivalFormalitiesLabel: "আগমন আনুষ্ঠানিকতা",
@@ -1346,6 +1390,17 @@ const translations: Record<Language, Translations> = {
     navAllActivitiesDesc: "সম্পূৰ্ণ অভিযান কেন্দ্ৰ চাওক",
     navAiTripBuilderLabel: "AI ভ্ৰমণ নিৰ্মাতা",
     navAiTripBuilderDesc: "Genkit-চালিত ব্যক্তিগতকৃত ভ্ৰমণ পৰিকল্পনা",
+    journeyAiPageTitle: "Journey AI",
+    journeyAiPageSubtitle: "অৰুণাচল প্ৰদেশ ভ্ৰমণ সম্পৰ্কে যিকোনো প্ৰশ্ন কৰক — পাৰমিট, ঠাই, জনজাতি, বতৰ আৰু আৰু বহুত কিছু।",
+    journeyAiWelcomeMessage: "নমস্কাৰ! মই Journey AI — অৰুণাচল প্ৰদেশৰ বাবে আপোনাৰ ব্যক্তিগত ভ্ৰমণ গাইড। পাৰমিট (ILP/PAP), দৰ্শনীয় ঠাই, জনজাতীয় সংস্কৃতি, উৎসৱ, দুঃসাহসিক কাৰ্যক্ৰম বা ইয়ালৈ ভ্ৰমণ সম্পৰ্কে যিকোনো বিষয়ত সুধিব!",
+    journeyAiInputPlaceholder: "পাৰমিট, ঠাই, সংস্কৃতি, খাদ্য, বতৰৰ বিষয়ে সুধিব…",
+    journeyAiSendLabel: "পঠাওক",
+    journeyAiThinkingLabel: "ভাবি আছোঁ…",
+    journeyAiErrorMessage: "ক্ষমা কৰিব, কিবা ভুল হৈছে। পুনৰাই চেষ্টা কৰক।",
+    journeyAiSuggestedQ1: "অৰুণাচল প্ৰদেশলৈ যাবলৈ পাৰমিট লাগেনে?",
+    journeyAiSuggestedQ2: "তাৱাং ভ্ৰমণৰ সৰ্বোত্তম সময় কেতিয়া?",
+    journeyAiSuggestedQ3: "আপাতানি জনজাতিৰ বিষয়ে কওক।",
+    journeyAiSuggestedQ4: "কি কি দুঃসাহসিক কাৰ্যক্ৰম উপলব্ধ?",
     navDistrictMapLabel: "জিলা মানচিত্ৰ",
     navDistrictMapDesc: "সকলো ২৬টি জিলাৰ ইন্টাৰেক্টিভ মানচিত্ৰ",
     navArrivalFormalitiesLabel: "আগমনৰ আনুষ্ঠানিকতা",
