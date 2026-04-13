@@ -2,8 +2,8 @@
 # Location: .claude/agents/arunachal-explore-fullstack.md
 
 > **Reviewer:** ChatGPT 5.4  
-> **Live URL:** https://apt-website-v1.vercel.app  
-> **AI Models:** `gemini-3.1-flash-lite-preview` · `gemini-3.1-flash-live-preview`  
+> **Live URL:** https://apt-website-v2.vercel.app  
+> **AI Models:** `gemini-3.1-flash-lite-preview` · `gemini-3.1-flash-live-preview` . `gemini-2.5-flash`
 > **Scope:** Full-stack — Next.js 15, Firebase, Firestore (3 DBs), Genkit, booking engine, auth, PWA, API routes
 
 ---
