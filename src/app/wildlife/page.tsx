@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Image from "next/image"
 import Link from "next/link"
@@ -49,7 +49,7 @@ export default function WildlifePage() {
       </div>
 
       {/* Featured Species: Bento Grid */}
-      <section className="py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 max-w-screen-2xl mx-auto min-h-screen flex flex-col justify-center">
+      <section className="py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 max-w-screen-2xl mx-auto">
         <ScrollReveal variant="up">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
             <div className="max-w-2xl">
@@ -126,7 +126,7 @@ export default function WildlifePage() {
       </section>
 
       {/* National Parks Section */}
-      <section className="bg-surface-container-low py-24 px-8 md:px-12 min-h-screen flex flex-col justify-center">
+      <section className="bg-surface-container-low py-24 px-8 md:px-12">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollReveal variant="up">
             <div className="text-center mb-16">
@@ -264,7 +264,7 @@ export default function WildlifePage() {
       </section>
 
       {/* Botanical Wonders: Orchids */}
-      <section className="py-24 overflow-hidden min-h-screen flex flex-col justify-center">
+      <section className="py-24 overflow-hidden">
         <div className="max-w-screen-2xl mx-auto px-8 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Images Grid */}
           <ScrollReveal variant="left" className="relative order-2 lg:order-1">
@@ -332,7 +332,7 @@ export default function WildlifePage() {
       </section>
 
       {/* Sustainable Tourism: Conservation Section */}
-      <section className="mb-24 px-8 md:px-12 max-w-screen-2xl mx-auto min-h-screen flex flex-col justify-center">
+      <section className="mb-24 px-8 md:px-12 max-w-screen-2xl mx-auto">
         <ScrollReveal variant="up">
           <div className="bg-primary-container/20 rounded-xl md:rounded-[4rem] p-8 md:p-20 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-20 opacity-10">

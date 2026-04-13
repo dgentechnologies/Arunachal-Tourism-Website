@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Image from "next/image"
 import Link from "next/link"
@@ -181,7 +181,7 @@ export default function ParaglidingPage() {
 
         {/* ── HERO ── */}
         <motion.div
-          className="min-h-screen flex flex-col justify-center"
+          className=""
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
@@ -270,7 +270,7 @@ export default function ParaglidingPage() {
         </motion.div>
 
         {/* ── STATS BAR ── */}
-        <ScrollReveal as="section" variant="up" className="mb-20 min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="mb-20">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 p-[1px]">
             <div className="bg-white/85 backdrop-blur-xl rounded-3xl p-8 md:p-10">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -313,7 +313,7 @@ export default function ParaglidingPage() {
         </ScrollReveal>
 
         {/* ── EDITORIAL SPLIT ── */}
-        <ScrollReveal as="section" variant="up" className="mb-24 min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="mb-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div className="space-y-7">
               <motion.span
@@ -420,7 +420,7 @@ export default function ParaglidingPage() {
         </ScrollReveal>
 
         {/* ── LAUNCH SITES BENTO GRID ── */}
-        <ScrollReveal as="section" variant="up" className="mb-24 min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="mb-24">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
               <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">Where you&apos;ll fly</span>
@@ -528,7 +528,7 @@ export default function ParaglidingPage() {
         </ScrollReveal>
 
         {/* ── EXPERIENCE PACKAGES ── */}
-        <ScrollReveal as="section" variant="up" className="mb-24 min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="mb-24">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">Choose your flight</span>
             <motion.h2
@@ -601,7 +601,7 @@ export default function ParaglidingPage() {
         </ScrollReveal>
 
         {/* ── SAFETY & GEAR ── */}
-        <ScrollReveal as="section" variant="up" className="mb-24 min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="mb-24">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">Your safety first</span>
             <motion.h2
@@ -724,7 +724,7 @@ export default function ParaglidingPage() {
         </ScrollReveal>
 
         {/* ── YOUR FLIGHT, STEP BY STEP ── */}
-        <ScrollReveal as="section" variant="up" className="mb-24 min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="mb-24">
           <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 p-[1px]">
             <div className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-14">
               <div className="text-center mb-12">
@@ -823,7 +823,7 @@ export default function ParaglidingPage() {
         </ScrollReveal>
 
         {/* ── CTA ── */}
-        <ScrollReveal as="section" variant="up" className="min-h-screen flex flex-col justify-center">
+        <ScrollReveal as="section" variant="up" className="">
           <div className="relative rounded-[3rem] overflow-hidden">
             <div className="absolute inset-0 bg-primary" />
             {/* Decorative wave lines */}

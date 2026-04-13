@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
@@ -64,7 +64,7 @@ export default function TribesPage() {
   return (
     <div>
       {/* Intro + Stats */}
-      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+      <section className="container mx-auto px-4 py-12">
         <ScrollReveal variant="up" className="max-w-3xl mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-primary font-headline mb-4">{t.tribesPageTitle}</h1>
           <p className="text-muted-foreground text-lg leading-relaxed">{t.tribesPageSubtitle}</p>
@@ -88,7 +88,7 @@ export default function TribesPage() {
       </section>
 
       {/* Tribes Grid */}
-      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+      <section className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {tribes.map((tribe, idx) => (
           <ScrollReveal key={idx} variant="up" delay={idx * 70}>
@@ -126,7 +126,7 @@ export default function TribesPage() {
       </section>
 
       {/* CTA Banner */}
-      <section className="container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center">
+      <section className="container mx-auto px-4 py-12">
         <ScrollReveal variant="up">
           <div className="py-16 bg-primary text-white rounded-[3rem] px-8 md:px-16 flex flex-col items-center text-center space-y-6">
             <h2 className="text-3xl md:text-5xl font-bold font-headline max-w-2xl">
