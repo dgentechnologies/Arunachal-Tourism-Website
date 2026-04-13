@@ -98,8 +98,8 @@ export function HeroCarousel() {
         ) : null
       })}
 
-      {/* Cinematic gradient overlay: top dark → transparent → surface tint at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#fcf9f8]/80 z-[1]" />
+      {/* Cinematic gradient overlay: top dark → transparent */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-[1]" />
 
       {/* Content */}
       <div

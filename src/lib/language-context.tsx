@@ -317,6 +317,16 @@ export interface Translations {
   featEntrepreneursDesc: string
   exploreTribes: string
   exploreEntrepreneurs: string
+
+  // GETTING HERE PAGE
+  navGettingHereLabel: string
+  navGettingHereDesc: string
+  gettingHerePageTitle: string
+  gettingHerePageSubtitle: string
+  ghByAir: string
+  ghByTrain: string
+  ghByRoad: string
+  ghInternational: string
 }
 
 const translations: Record<Language, Translations> = {
@@ -630,6 +640,16 @@ const translations: Record<Language, Translations> = {
     featEntrepreneursDesc: "Meet the innovators and changemakers from Arunachal Pradesh who are building businesses and inspiring the next generation.",
     exploreTribes: "Explore Tribes",
     exploreEntrepreneurs: "Meet Entrepreneurs",
+
+    // GETTING HERE PAGE
+    navGettingHereLabel: "Getting Here",
+    navGettingHereDesc: "Flights, trains, roads & international routes",
+    gettingHerePageTitle: "How to Reach Arunachal Pradesh",
+    gettingHerePageSubtitle: "Your complete guide to reaching the Land of the Rising Sun — by air, rail, road, or from anywhere in the world.",
+    ghByAir: "By Air",
+    ghByTrain: "By Train",
+    ghByRoad: "By Road",
+    ghInternational: "International",
   },
 
   hi: {
@@ -942,6 +962,16 @@ const translations: Record<Language, Translations> = {
     featEntrepreneursDesc: "अरुणाचल प्रदेश के उन नवप्रवर्तकों से मिलें जो व्यवसाय बना रहे हैं और अगली पीढ़ी को प्रेरित कर रहे हैं।",
     exploreTribes: "जनजातियाँ जानें",
     exploreEntrepreneurs: "उद्यमियों से मिलें",
+
+    // GETTING HERE PAGE
+    navGettingHereLabel: "कैसे पहुँचें",
+    navGettingHereDesc: "हवाई, रेल, सड़क और अंतर्राष्ट्रीय मार्ग",
+    gettingHerePageTitle: "अरुणाचल प्रदेश कैसे पहुँचें",
+    gettingHerePageSubtitle: "उगते सूरज की भूमि तक पहुँचने के लिए आपकी पूरी गाइड — हवाई, रेल, सड़क या दुनिया के किसी भी कोने से।",
+    ghByAir: "हवाई मार्ग",
+    ghByTrain: "रेल मार्ग",
+    ghByRoad: "सड़क मार्ग",
+    ghInternational: "अंतर्राष्ट्रीय",
   },
 
   bn: {
@@ -1254,6 +1284,16 @@ const translations: Record<Language, Translations> = {
     featEntrepreneursDesc: "অরুণাচল প্রদেশের সেই উদ্ভাবকদের সাথে পরিচিত হন যারা ব্যবসা গড়ছেন এবং পরবর্তী প্রজন্মকে অনুপ্রাণিত করছেন।",
     exploreTribes: "উপজাতি জানুন",
     exploreEntrepreneurs: "উদ্যোক্তাদের সাথে মিলুন",
+
+    // GETTING HERE PAGE
+    navGettingHereLabel: "কীভাবে যাবেন",
+    navGettingHereDesc: "বিমান, ট্রেন, রাস্তা ও আন্তর্জাতিক রুট",
+    gettingHerePageTitle: "অরুণাচল প্রদেশে কীভাবে পৌঁছাবেন",
+    gettingHerePageSubtitle: "উদীয়মান সূর্যের দেশে পৌঁছানোর সম্পূর্ণ গাইড — বিমান, ট্রেন, সড়ক বা বিশ্বের যেকোনো প্রান্ত থেকে।",
+    ghByAir: "বিমানে",
+    ghByTrain: "ট্রেনে",
+    ghByRoad: "সড়কে",
+    ghInternational: "আন্তর্জাতিক",
   },
 
   as: {
@@ -1566,6 +1606,16 @@ const translations: Record<Language, Translations> = {
     featEntrepreneursDesc: "অৰুণাচল প্ৰদেশৰ সেই উদ্ভাৱকসকলক লগ কৰক যি ব্যৱসায় গঢ়িছে আৰু পৰৱৰ্তী প্ৰজন্মক অনুপ্ৰাণিত কৰিছে।",
     exploreTribes: "জনজাতি জানক",
     exploreEntrepreneurs: "উদ্যোক্তাক লগ কৰক",
+
+    // GETTING HERE PAGE
+    navGettingHereLabel: "কেনেকৈ যাব",
+    navGettingHereDesc: "বিমান, ৰেল, ৰাস্তা আৰু আন্তৰ্জাতিক পথ",
+    gettingHerePageTitle: "অৰুণাচল প্ৰদেশ কেনেকৈ যাব",
+    gettingHerePageSubtitle: "উদয়মান সূৰ্যৰ ভূমিলৈ যোৱাৰ সম্পূৰ্ণ গাইড — বিমান, ৰেল, ৰাস্তা বা পৃথিৱীৰ যিকোনো প্ৰান্তৰ পৰা।",
+    ghByAir: "বিমানেৰে",
+    ghByTrain: "ৰেলেৰে",
+    ghByRoad: "ৰাস্তাৰে",
+    ghInternational: "আন্তৰ্জাতিক",
   },
 }
 

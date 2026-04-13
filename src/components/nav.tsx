@@ -102,6 +102,7 @@ export function Nav() {
         { name: t.itinerary, href: "/itinerary", icon: Mountain, description: t.navItineraryDesc },
         { name: t.hotels, href: "/hotels", icon: Hotel, description: t.navHotelsDesc },
         { name: t.transport, href: "/transport", icon: Car, description: t.navTransportDesc },
+        { name: t.navGettingHereLabel, href: "/plan/getting-here", icon: Plane, description: t.navGettingHereDesc },
       ],
     },
     {
