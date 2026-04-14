@@ -268,151 +268,88 @@ export default function NotFound() {
         <TribalDiamond className="absolute bottom-24 right-6 w-8 h-8 text-secondary opacity-20 pointer-events-none"
           style={{ animation: "pulse-glow 4s ease-in-out infinite 0.5s" } as React.CSSProperties} />
 
-        {/* ══════════════════════════════════════════════════════════════
-            MAIN CONTENT
-        ══════════════════════════════════════════════════════════════ */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6 py-4 max-w-2xl mx-auto w-full">
+        {/* ══ MAIN CONTENT ══ */}
+        <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-xl mx-auto w-full gap-3">
 
-          {/* ── Tribal mandala ring around compass ── */}
+          {/* Compass mandala */}
           <div
-            className="relative mb-3"
+            className="relative"
             style={{
               opacity: phase >= 1 ? 1 : 0,
               transform: phase >= 1 ? "scale(1)" : "scale(0.7)",
               transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1)",
             }}
           >
-            {/* Outer tribal ring */}
             <div className="tribal-ring-outer absolute inset-0 flex items-center justify-center">
-              <TribalCircle className="w-28 h-28 text-primary opacity-25" />
+              <TribalCircle className="w-20 h-20 text-primary opacity-25" />
             </div>
-
-            {/* Mid ring */}
-            <div className="tribal-ring-inner absolute inset-0 flex items-center justify-center">
-              <svg viewBox="0 0 120 120" className="w-24 h-24 text-secondary opacity-20" aria-hidden="true">
-                {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((a) => {
-                  const r = (a * Math.PI) / 180
-                  const x1 = 60 + 36 * Math.cos(r); const y1 = 60 + 36 * Math.sin(r)
-                  const x2 = 60 + 52 * Math.cos(r); const y2 = 60 + 52 * Math.sin(r)
-                  return <line key={a} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="1.5" />
-                })}
-                <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="1" />
-                <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" strokeWidth="0.8" />
-              </svg>
-            </div>
-
-            {/* Compass icon center */}
-            <div className="relative w-28 h-28 flex items-center justify-center">
-              <div className="tribal-pulse w-20 h-20 rounded-full flex items-center justify-center"
+            <div className="relative w-20 h-20 flex items-center justify-center">
+              <div className="tribal-pulse w-14 h-14 rounded-full flex items-center justify-center"
                 style={{ background: "radial-gradient(circle, rgba(0,106,98,0.5) 0%, rgba(0,106,98,0.1) 70%)" }}>
-                <Compass className="compass-needle w-10 h-10 text-primary-container" strokeWidth={1.5} />
+                <Compass className="compass-needle w-7 h-7 text-primary-container" strokeWidth={1.5} />
               </div>
             </div>
           </div>
 
-          {/* ── "404" giant display ── */}
+          {/* 404 */}
           <div
             style={{
               opacity: phase >= 2 ? 1 : 0,
-              transform: phase >= 2 ? "translateY(0)" : "translateY(24px)",
+              transform: phase >= 2 ? "translateY(0)" : "translateY(20px)",
               transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
+              lineHeight: 1,
             }}
           >
-            <div className="relative">
-              {/* Ghost large text */}
-              <span
-                className="block font-headline font-black select-none pointer-events-none"
-                style={{
-                  fontSize: "clamp(4rem, 13vw, 8rem)",
-                  lineHeight: 1,
-                  color: "transparent",
-                  WebkitTextStroke: "1px rgba(64,224,208,0.15)",
-                  letterSpacing: "-0.04em",
-                  marginBottom: "-0.15em",
-                }}
-                aria-hidden="true"
-              >
-                404
-              </span>
-              {/* Shimmer foreground text */}
-              <span
-                className="shimmer-text block font-headline font-black select-none pointer-events-none"
-                style={{
-                  fontSize: "clamp(4rem, 13vw, 8rem)",
-                  lineHeight: 1,
-                  letterSpacing: "-0.04em",
-                  marginTop: "-1em",
-                  position: "relative",
-                }}
-              >
-                404
-              </span>
-            </div>
+            <span
+              className="shimmer-text font-headline font-black select-none pointer-events-none"
+              style={{ fontSize: "clamp(3.5rem, 12vw, 6rem)", letterSpacing: "-0.04em" }}
+            >
+              404
+            </span>
           </div>
 
-          {/* ── Tribal divider ── */}
-          <div
-            className="my-2 w-full"
-            style={{
-              opacity: phase >= 2 ? 1 : 0,
-              transition: "opacity 0.5s ease 0.3s",
-            }}
-          >
+          {/* Divider */}
+          <div style={{ opacity: phase >= 2 ? 1 : 0, transition: "opacity 0.5s ease 0.3s", width: "100%" }}>
             <TribalBorderPattern />
           </div>
 
-          {/* ── Headline ── */}
+          {/* Headline block */}
           <div
             style={{
               opacity: phase >= 3 ? 1 : 0,
-              transform: phase >= 3 ? "translateY(0)" : "translateY(20px)",
+              transform: phase >= 3 ? "translateY(0)" : "translateY(16px)",
               transition: "opacity 0.6s ease, transform 0.6s ease",
             }}
           >
-            <h1 className="font-headline font-bold text-white mb-3"
-              style={{ fontSize: "clamp(1.4rem, 4vw, 2rem)", letterSpacing: "-0.02em" }}>
+            <h1 className="font-headline font-bold text-white mb-1"
+              style={{ fontSize: "clamp(1.2rem, 3.5vw, 1.75rem)", letterSpacing: "-0.02em" }}>
               Lost in the Hills?
             </h1>
-            <p className="text-sm font-body uppercase tracking-[0.25em] mb-4"
-              style={{ color: "#fccc38" }}>
+            <p className="text-xs font-body uppercase tracking-[0.2em] mb-2" style={{ color: "#fccc38" }}>
               The Spirits of the Forest Led You Astray
             </p>
-            <p className="font-body leading-relaxed max-w-md mx-auto"
-              style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.95rem" }}>
-              This trail doesn&#39;t exist in our maps. But don&#39;t worry — the highlands of Arunachal Pradesh have
-              many wonders waiting to be discovered.
+            <p className="font-body max-w-sm mx-auto" style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: "1.5" }}>
+              This trail doesn&#39;t exist in our maps — but the highlands of Arunachal Pradesh have many wonders waiting to be discovered.
             </p>
           </div>
 
-          {/* ── Tribal weave divider ── */}
+          {/* Buttons */}
           <div
-            className="my-3 w-48"
-            style={{
-              opacity: phase >= 3 ? 1 : 0,
-              transition: "opacity 0.5s ease 0.2s",
-              color: "rgba(64,224,208,0.3)",
-            }}
-          >
-            <TribalWeave className="w-full" />
-          </div>
-
-          {/* ── Action buttons ── */}
-          <div
-            className="flex flex-wrap items-center justify-center gap-3"
+            className="flex flex-wrap items-center justify-center gap-2.5"
             style={{
               opacity: phase >= 4 ? 1 : 0,
-              transform: phase >= 4 ? "translateY(0)" : "translateY(16px)",
+              transform: phase >= 4 ? "translateY(0)" : "translateY(12px)",
               transition: "opacity 0.6s ease, transform 0.6s ease",
             }}
           >
             <Link href="/">
               <Button
-                size="lg"
-                className="rounded-full gap-2 font-body font-semibold px-7 text-sm"
+                size="default"
+                className="rounded-full gap-2 font-body font-semibold px-6 text-sm"
                 style={{
                   background: "linear-gradient(135deg, #006a62, #40e0d0)",
                   color: "#fff",
-                  boxShadow: "0 0 24px rgba(64,224,208,0.3)",
+                  boxShadow: "0 0 20px rgba(64,224,208,0.3)",
                   border: "none",
                 }}
               >
@@ -424,49 +361,24 @@ export default function NotFound() {
             <Link href="/guides">
               <Button
                 variant="outline"
-                size="lg"
-                className="rounded-full gap-2 font-body font-semibold px-7 text-sm"
-                style={{
-                  borderColor: "rgba(252,204,56,0.5)",
-                  color: "#fccc38",
-                  background: "rgba(252,204,56,0.08)",
-                }}
+                size="default"
+                className="rounded-full gap-2 font-body font-semibold px-6 text-sm"
+                style={{ borderColor: "rgba(252,204,56,0.5)", color: "#fccc38", background: "rgba(252,204,56,0.08)" }}
               >
                 <Map className="w-4 h-4" />
-                Explore Destinations
+                Explore
               </Button>
             </Link>
 
             <button
               type="button"
               onClick={() => window.history.back()}
-              className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-body transition-colors hover:bg-white/5"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-body transition-colors hover:bg-white/5"
+              style={{ color: "rgba(255,255,255,0.45)" }}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               Go Back
             </button>
-          </div>
-
-          {/* ── Fun tribal fact ── */}
-          <div
-            className="mt-4 max-w-sm mx-auto rounded-2xl px-4 py-3"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(64,224,208,0.12)",
-              opacity: phase >= 4 ? 1 : 0,
-              transform: phase >= 4 ? "translateY(0)" : "translateY(12px)",
-              transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-            }}
-          >
-            <p className="text-xs uppercase tracking-widest mb-1.5" style={{ color: "#40e0d0" }}>
-              Did you know?
-            </p>
-            <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Arunachal Pradesh is home to <span style={{ color: "#fccc38" }}>26 major tribes</span> and
-              over <span style={{ color: "#40e0d0" }}>100 sub-tribes</span>, each with their own language,
-              traditions, and weaving patterns — just like the one bordering this page.
-            </p>
           </div>
 
         </div>
