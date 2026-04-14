@@ -173,9 +173,13 @@ export default function NotFound() {
   }))
 
   return (
-    <>
+    <div
+      className="fixed inset-0 z-[9999] overflow-hidden flex flex-col items-center justify-center"
+      style={{ background: "linear-gradient(160deg, #0a1f1e 0%, #0d2b2a 40%, #112220 70%, #0c1c1b 100%)" }}
+    >
       {/* Keyframe injections */}
       <style>{`
+        body { overflow: hidden !important; }
         @keyframes tribal-float {
           0%   { transform: translateY(0) scale(1); opacity: 0; }
           10%  { opacity: 0.8; }
@@ -234,10 +238,7 @@ export default function NotFound() {
         .compass-needle   { animation: compass-spin 3s ease-in-out forwards; transform-origin: center; }
       `}</style>
 
-      <main
-        className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center"
-        style={{ background: "linear-gradient(160deg, #0a1f1e 0%, #0d2b2a 40%, #112220 70%, #0c1c1b 100%)" }}
-      >
+      <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden">
         {/* ── Canvas fireflies ── */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true" />
 
@@ -270,11 +271,11 @@ export default function NotFound() {
         {/* ══════════════════════════════════════════════════════════════
             MAIN CONTENT
         ══════════════════════════════════════════════════════════════ */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6 py-16 max-w-2xl mx-auto">
+        <div className="relative z-10 flex flex-col items-center text-center px-6 py-4 max-w-2xl mx-auto w-full">
 
           {/* ── Tribal mandala ring around compass ── */}
           <div
-            className="relative mb-8"
+            className="relative mb-3"
             style={{
               opacity: phase >= 1 ? 1 : 0,
               transform: phase >= 1 ? "scale(1)" : "scale(0.7)",
@@ -283,12 +284,12 @@ export default function NotFound() {
           >
             {/* Outer tribal ring */}
             <div className="tribal-ring-outer absolute inset-0 flex items-center justify-center">
-              <TribalCircle className="w-40 h-40 text-primary opacity-25" />
+              <TribalCircle className="w-28 h-28 text-primary opacity-25" />
             </div>
 
             {/* Mid ring */}
             <div className="tribal-ring-inner absolute inset-0 flex items-center justify-center">
-              <svg viewBox="0 0 120 120" className="w-32 h-32 text-secondary opacity-20" aria-hidden="true">
+              <svg viewBox="0 0 120 120" className="w-24 h-24 text-secondary opacity-20" aria-hidden="true">
                 {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((a) => {
                   const r = (a * Math.PI) / 180
                   const x1 = 60 + 36 * Math.cos(r); const y1 = 60 + 36 * Math.sin(r)
@@ -301,7 +302,7 @@ export default function NotFound() {
             </div>
 
             {/* Compass icon center */}
-            <div className="relative w-40 h-40 flex items-center justify-center">
+            <div className="relative w-28 h-28 flex items-center justify-center">
               <div className="tribal-pulse w-20 h-20 rounded-full flex items-center justify-center"
                 style={{ background: "radial-gradient(circle, rgba(0,106,98,0.5) 0%, rgba(0,106,98,0.1) 70%)" }}>
                 <Compass className="compass-needle w-10 h-10 text-primary-container" strokeWidth={1.5} />
@@ -322,7 +323,7 @@ export default function NotFound() {
               <span
                 className="block font-headline font-black select-none pointer-events-none"
                 style={{
-                  fontSize: "clamp(6rem, 20vw, 12rem)",
+                  fontSize: "clamp(4rem, 13vw, 8rem)",
                   lineHeight: 1,
                   color: "transparent",
                   WebkitTextStroke: "1px rgba(64,224,208,0.15)",
@@ -337,7 +338,7 @@ export default function NotFound() {
               <span
                 className="shimmer-text block font-headline font-black select-none pointer-events-none"
                 style={{
-                  fontSize: "clamp(6rem, 20vw, 12rem)",
+                  fontSize: "clamp(4rem, 13vw, 8rem)",
                   lineHeight: 1,
                   letterSpacing: "-0.04em",
                   marginTop: "-1em",
@@ -351,7 +352,7 @@ export default function NotFound() {
 
           {/* ── Tribal divider ── */}
           <div
-            className="my-4 w-full"
+            className="my-2 w-full"
             style={{
               opacity: phase >= 2 ? 1 : 0,
               transition: "opacity 0.5s ease 0.3s",
@@ -385,7 +386,7 @@ export default function NotFound() {
 
           {/* ── Tribal weave divider ── */}
           <div
-            className="my-6 w-48"
+            className="my-3 w-48"
             style={{
               opacity: phase >= 3 ? 1 : 0,
               transition: "opacity 0.5s ease 0.2s",
@@ -449,7 +450,7 @@ export default function NotFound() {
 
           {/* ── Fun tribal fact ── */}
           <div
-            className="mt-10 max-w-sm mx-auto rounded-2xl px-6 py-4"
+            className="mt-4 max-w-sm mx-auto rounded-2xl px-4 py-3"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(64,224,208,0.12)",
@@ -473,7 +474,7 @@ export default function NotFound() {
         {/* ── Bottom tribal band ── */}
         <div className="absolute bottom-0 left-0 right-0 h-1 pointer-events-none"
           style={{ background: "linear-gradient(to right, transparent, #006a62, #fccc38, #40e0d0, #fccc38, #006a62, transparent)" }} />
-      </main>
-    </>
+      </div>
+    </div>
   )
 }
