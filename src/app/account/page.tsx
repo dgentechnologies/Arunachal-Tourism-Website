@@ -85,7 +85,7 @@ export default function AccountPage() {
       await signOut()
       router.push("/")
     } catch {
-      toast({ title: t("accountSignOutFailed"), description: t("accountSignOutFailedDesc"), variant: "destructive" })
+      toast({ title: t.accountSignOutFailed, description: t.accountSignOutFailedDesc, variant: "destructive" })
     }
   }
 
@@ -93,34 +93,34 @@ export default function AccountPage() {
     {
       href: "/account/trips",
       icon: BookmarkCheck,
-      label: t("accountSavedTripsLabel"),
-      desc: t("accountSavedTripsDesc"),
+      label: t.accountSavedTripsLabel,
+      desc: t.accountSavedTripsDesc,
       color: "bg-primary/10 text-primary",
       accent: "from-primary/5 to-transparent",
     },
     {
       href: "/account/permits",
       icon: FileCheck2,
-      label: t("accountPermitTrackerLabel"),
-      desc: t("accountPermitTrackerDesc"),
+      label: t.accountPermitTrackerLabel,
+      desc: t.accountPermitTrackerDesc,
       color: "bg-secondary/30 text-amber-700",
       accent: "from-secondary/10 to-transparent",
     },
     {
       href: "/itinerary",
       icon: Route,
-      label: t("accountPlanTripLabel"),
-      desc: t("accountPlanTripDesc"),
+      label: t.accountPlanTripLabel,
+      desc: t.accountPlanTripDesc,
       color: "bg-accent/20 text-teal-700",
       accent: "from-accent/10 to-transparent",
     },
   ]
 
   const quickLinks = [
-    { href: "/essentials/check", icon: ShieldCheck, label: t("accountQuickIlpCheck") },
-    { href: "/safety", icon: MapPin, label: t("accountQuickSafety") },
-    { href: "/adventures", icon: Compass, label: t("accountQuickAdventures") },
-    { href: "/events", icon: CalendarDays, label: t("accountQuickEvents") },
+    { href: "/essentials/check", icon: ShieldCheck, label: t.accountQuickIlpCheck },
+    { href: "/safety", icon: MapPin, label: t.accountQuickSafety },
+    { href: "/adventures", icon: Compass, label: t.accountQuickAdventures },
+    { href: "/events", icon: CalendarDays, label: t.accountQuickEvents },
   ]
 
   return (
@@ -152,17 +152,17 @@ export default function AccountPage() {
           <div className="flex-1 min-w-0 pb-1">
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="font-headline text-2xl sm:text-3xl font-bold text-foreground truncate">
-                {user.displayName || t("accountDefaultName")}
+                {user.displayName || t.accountDefaultName}
               </h1>
               <Badge className="bg-secondary text-foreground gap-1 shrink-0 font-medium">
                 <Sparkles className="h-3 w-3" />
-                {t("accountExplorerBadge")}
+                {t.accountExplorerBadge}
               </Badge>
             </div>
             <p className="text-sm text-muted-foreground truncate mt-0.5">{user.email}</p>
             {memberSince && (
               <p className="text-xs text-muted-foreground mt-1">
-                {t("accountMemberSince")} {memberSince}
+                {t.accountMemberSince} {memberSince}
               </p>
             )}
           </div>
@@ -176,7 +176,7 @@ export default function AccountPage() {
               className="gap-2 text-destructive border-destructive/30 hover:bg-destructive/5 hover:border-destructive focus-visible:ring-2 focus-visible:ring-destructive/50"
             >
               <LogOut className="h-4 w-4" />
-              {t("signOut")}
+              {t.signOut}
             </Button>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function AccountPage() {
         {/* ── Main nav cards ── */}
         <section className="space-y-3 mb-8">
           <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-1">
-            {t("accountSectionManage")}
+            {t.accountSectionManage}
           </h2>
           <div className="space-y-3">
             {navCards.map(({ href, icon: Icon, label, desc, color, accent }) => (
@@ -211,8 +211,8 @@ export default function AccountPage() {
                 <UserCog className="h-6 w-6" />
               </span>
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-foreground">{t("navProfilePrefsLabel")}</p>
-                <p className="text-sm text-muted-foreground mt-0.5">{t("navProfilePrefsDesc")}</p>
+                <p className="font-semibold text-foreground">{t.navProfilePrefsLabel}</p>
+                <p className="text-sm text-muted-foreground mt-0.5">{t.navProfilePrefsDesc}</p>
               </div>
               <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
             </Link>
@@ -222,7 +222,7 @@ export default function AccountPage() {
         {/* ── Quick access ── */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-1 mb-3">
-            {t("accountSectionQuickAccess")}
+            {t.accountSectionQuickAccess}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {quickLinks.map(({ href, icon: Icon, label }) => (
