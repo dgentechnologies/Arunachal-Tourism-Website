@@ -17,11 +17,14 @@ import {
   MapPin,
   Sparkles,
   ChevronRight,
-  Route,
   ShieldCheck,
   Compass,
   CalendarDays,
   Mountain,
+  Hotel,
+  Bus,
+  FileText,
+  Zap,
 } from "lucide-react"
 
 function initials(name: string | null) {
@@ -54,16 +57,26 @@ export default function AccountPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[var(--background)]">
-        <div className="h-64 bg-gradient-to-br from-primary/30 via-primary/20 to-accent/10" />
-        <div className="container mx-auto max-w-2xl px-4 -mt-20 pb-16 space-y-6">
-          <div className="flex flex-col items-center gap-4">
-            <Skeleton className="h-28 w-28 rounded-full ring-4 ring-background" />
-            <Skeleton className="h-7 w-44" />
-            <Skeleton className="h-4 w-56" />
+      <div className="min-h-screen bg-[var(--surface-low)]">
+        {/* Hero skeleton */}
+        <div className="relative h-72 bg-gradient-to-br from-[#003330] via-primary to-[#004d47] overflow-hidden">
+          <div className="absolute inset-0 tribal-pattern opacity-[0.06]" />
+        </div>
+        <div className="container mx-auto max-w-2xl px-4 -mt-14 pb-16 space-y-5">
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <Skeleton className="h-28 w-28 rounded-full" />
+            <Skeleton className="h-7 w-44 rounded-full" />
+            <Skeleton className="h-4 w-56 rounded-full" />
+            <div className="flex gap-6 mt-2">
+              {[1, 2, 3].map((i) => <Skeleton key={i} className="h-12 w-16 rounded-2xl" />)}
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 mt-8">
-            {[1,2,3,4].map((i) => <Skeleton key={i} className="h-28 rounded-3xl" />)}
+          <Skeleton className="h-36 rounded-3xl" />
+          <div className="grid grid-cols-2 gap-3">
+            {[1, 2].map((i) => <Skeleton key={i} className="h-32 rounded-3xl" />)}
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
           </div>
         </div>
       </div>
@@ -83,149 +96,271 @@ export default function AccountPage() {
     }
   }
 
-  const actionCards = [
-    {
-      href: "/account/trips",
-      icon: BookmarkCheck,
-      label: t.accountSavedTripsLabel,
-      desc: t.accountSavedTripsDesc,
-      iconBg: "bg-primary/10",
-      iconColor: "text-primary",
-      accent: "hover:ring-primary/20",
-    },
-    {
-      href: "/itinerary",
-      icon: Route,
-      label: t.accountPlanTripLabel,
-      desc: t.accountPlanTripDesc,
-      iconBg: "bg-accent/20",
-      iconColor: "text-teal-700",
-      accent: "hover:ring-accent/30",
-    },
-    {
-      href: "/account/profile",
-      icon: UserCog,
-      label: t.navProfilePrefsLabel,
-      desc: t.navProfilePrefsDesc,
-      iconBg: "bg-muted",
-      iconColor: "text-muted-foreground",
-      accent: "hover:ring-border",
-    },
-    {
-      href: "/adventures",
-      icon: Mountain,
-      label: t.accountQuickAdventures,
-      desc: "Trekking, rafting & more",
-      iconBg: "bg-secondary/30",
-      iconColor: "text-amber-700",
-      accent: "hover:ring-secondary/40",
-    },
-  ]
-
-  const quickLinks = [
-    { href: "/essentials/check", icon: ShieldCheck, label: t.accountQuickIlpCheck },
-    { href: "/safety", icon: MapPin, label: t.accountQuickSafety },
-    { href: "/events", icon: CalendarDays, label: t.accountQuickEvents },
-    { href: "/guides", icon: Compass, label: "Guides" },
-  ]
-
   return (
     <div className="min-h-screen bg-[var(--surface-low)]">
 
-      {/* ── Deep hero ── */}
-      <div className="relative overflow-hidden bg-primary pb-28 pt-14">
-        {/* layered glows */}
-        <div className="absolute inset-0 tribal-pattern opacity-[0.07]" />
-        <div className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
-        <div className="absolute -bottom-12 right-0 h-56 w-56 rounded-full bg-secondary/20 blur-3xl" />
+      {/* ─────────────────────────────────────────────── */}
+      {/* HERO                                           */}
+      {/* ─────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-[#002a27] via-primary to-[#004d47] pb-32 pt-16">
+        {/* Background texture */}
+        <div className="absolute inset-0 tribal-pattern opacity-[0.08]" />
 
-        {/* sign-out top-right */}
-        <div className="absolute right-4 top-4 sm:right-8 sm:top-6">
+        {/* Ambient glow blobs */}
+        <div className="pointer-events-none absolute -top-20 -left-20 h-96 w-96 rounded-full bg-accent/15 blur-[80px]" />
+        <div className="pointer-events-none absolute -bottom-16 right-0 h-72 w-72 rounded-full bg-secondary/15 blur-[60px]" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full bg-primary/30 blur-[100px]" />
+
+        {/* Sign-out */}
+        <div className="absolute right-4 top-4 sm:right-6 sm:top-5 z-20">
           <Button
             variant="ghost"
             size="sm"
             onClick={handleSignOut}
-            className="gap-1.5 text-white/70 hover:text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/30"
+            aria-label={t.signOut}
+            className="gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 text-white/60 backdrop-blur-sm hover:bg-white/12 hover:text-white focus-visible:ring-2 focus-visible:ring-white/30 transition-all"
           >
-            <LogOut className="h-4 w-4" />
-            <span className="hidden sm:inline">{t.signOut}</span>
+            <LogOut className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline text-xs font-medium">{t.signOut}</span>
           </Button>
         </div>
 
-        {/* centered profile */}
-        <div className="relative z-10 flex flex-col items-center gap-3 px-4 text-center">
+        {/* Profile */}
+        <div className="relative z-10 flex flex-col items-center gap-4 px-4 text-center">
+          {/* Avatar with multi-ring glow */}
           <div className="relative">
-            <Avatar className="h-24 w-24 sm:h-28 sm:w-28 ring-4 ring-white/20 shadow-float">
-              <AvatarImage src={user.photoURL ?? undefined} alt={user.displayName ?? "User"} />
-              <AvatarFallback className="bg-white/20 text-white font-headline text-3xl backdrop-blur-sm">
-                {initials(user.displayName)}
-              </AvatarFallback>
-            </Avatar>
+            {/* outer glow ring */}
+            <div className="absolute inset-0 rounded-full bg-accent/30 blur-xl scale-125" />
+            <div className="relative rounded-full p-[3px] bg-gradient-to-br from-accent/60 via-white/20 to-secondary/40">
+              <Avatar className="h-24 w-24 sm:h-28 sm:w-28 ring-2 ring-white/10">
+                <AvatarImage src={user.photoURL ?? undefined} alt={user.displayName ?? "User"} />
+                <AvatarFallback className="bg-gradient-to-br from-primary/80 to-[#003330] text-white font-headline text-2xl sm:text-3xl">
+                  {initials(user.displayName)}
+                </AvatarFallback>
+              </Avatar>
+            </div>
+            {/* online dot */}
             <span
-              className="absolute bottom-1.5 right-1.5 h-4 w-4 rounded-full bg-green-400 ring-2 ring-primary"
+              className="absolute bottom-1 right-1 h-4 w-4 rounded-full bg-emerald-400 ring-2 ring-[#002a27] shadow-[0_0_8px_rgba(52,211,153,0.6)]"
               aria-label="Online"
             />
           </div>
 
-          <div>
-            <div className="flex items-center justify-center gap-2 flex-wrap">
-              <h1 className="font-headline text-2xl sm:text-3xl font-bold text-white">
+          {/* Name + badge */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-center gap-2.5 flex-wrap">
+              <h1 className="font-headline text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 {user.displayName || t.accountDefaultName}
               </h1>
-              <Badge className="bg-secondary/90 text-foreground gap-1 font-semibold text-xs">
+              <Badge className="bg-gradient-to-r from-secondary to-[#f5b800] text-[#1a1200] gap-1 font-bold text-[11px] px-2.5 py-0.5 shadow-[0_2px_8px_rgba(252,204,56,0.4)]">
                 <Sparkles className="h-3 w-3" />
                 {t.accountExplorerBadge}
               </Badge>
             </div>
-            <p className="mt-1 text-sm text-white/60">{user.email}</p>
+            <p className="text-sm text-white/55 font-medium">{user.email}</p>
             {memberSince && (
-              <p className="mt-0.5 text-xs text-white/40">{t.accountMemberSince} {memberSince}</p>
+              <p className="text-xs text-white/35">
+                {t.accountMemberSince} {memberSince}
+              </p>
             )}
+          </div>
+
+          {/* Stats row */}
+          <div className="mt-2 flex items-center gap-2 sm:gap-3">
+            {[
+              { val: "0", label: t.accountStatTripsLabel },
+              { val: "0", label: t.accountStatPermitsLabel },
+              { val: "0", label: t.accountStatGuidesLabel },
+            ].map(({ val, label }, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-0.5 rounded-2xl border border-white/10 bg-white/8 px-5 py-2.5 backdrop-blur-sm"
+              >
+                <span className="font-headline text-xl font-bold text-white leading-none">{val}</span>
+                <span className="text-[10px] font-medium text-white/50 uppercase tracking-wider">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* ── Content ── */}
-      <div className="container mx-auto max-w-2xl px-4 -mt-10 pb-16">
+      {/* ─────────────────────────────────────────────── */}
+      {/* MAIN CONTENT                                   */}
+      {/* ─────────────────────────────────────────────── */}
+      <div className="container mx-auto max-w-2xl px-4 -mt-14 pb-20 space-y-5">
 
-        {/* ── Action cards 2×2 grid ── */}
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          {actionCards.map(({ href, icon: Icon, label, desc, iconBg, iconColor, accent }) => (
+        {/* ── Section: My Journeys ── */}
+        <div>
+          <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
+            {t.accountSectionJourneys}
+          </p>
+
+          {/* Featured: Saved Trips — full-width organic card */}
+          <Link
+            href="/account/trips"
+            className="shimmer-hover group relative flex items-center gap-5 overflow-hidden rounded-[2rem_1.5rem_1.5rem_1.5rem] bg-gradient-to-br from-primary/8 via-[var(--surface-lowest)] to-accent/5 p-6 ring-1 ring-border/40 hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-primary mb-3"
+          >
+            {/* decorative blob */}
+            <div className="pointer-events-none absolute -top-6 -right-6 h-28 w-28 rounded-full bg-primary/8 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-4 left-8 h-16 w-16 rounded-full bg-accent/12 blur-xl" />
+
+            <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.2rem] bg-gradient-to-br from-primary to-[#009688] shadow-[0_4px_16px_rgba(0,106,98,0.35)]">
+              <BookmarkCheck className="h-6 w-6 text-white" />
+            </span>
+            <div className="flex-1 min-w-0">
+              <p className="font-headline text-base font-bold text-foreground leading-snug">
+                {t.accountSavedTripsLabel}
+              </p>
+              <p className="mt-0.5 text-sm text-muted-foreground leading-snug">
+                {t.accountSavedTripsDesc}
+              </p>
+            </div>
+            <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+          </Link>
+
+          {/* Half: Plan with AI + My Permits */}
+          <div className="grid grid-cols-2 gap-3">
+            {/* Plan with AI */}
             <Link
-              key={href}
-              href={href}
-              className={`group flex flex-col gap-3 rounded-3xl bg-[var(--surface-lowest)] p-5 ring-1 ring-border/50 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary ${accent}`}
+              href="/itinerary"
+              className="shimmer-hover group relative flex flex-col gap-3 overflow-hidden rounded-[1.5rem_3rem_1.5rem_1.5rem] bg-gradient-to-br from-[#003330] to-primary p-5 hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <span className={`flex h-11 w-11 items-center justify-center rounded-2xl ${iconBg} ${iconColor}`}>
-                <Icon className="h-5 w-5" />
+              <div className="pointer-events-none absolute -bottom-4 -right-4 h-20 w-20 rounded-full bg-accent/20 blur-2xl" />
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white">
+                <Zap className="h-5 w-5" />
               </span>
               <div>
-                <p className="font-semibold text-sm text-foreground leading-snug">{label}</p>
-                <p className="text-xs text-muted-foreground mt-0.5 leading-snug line-clamp-2">{desc}</p>
+                <p className="font-headline text-sm font-bold text-white leading-snug">
+                  {t.accountPlanTripLabel}
+                </p>
+                <p className="mt-0.5 text-[11px] text-white/60 leading-snug line-clamp-2">
+                  {t.accountPlanTripDesc}
+                </p>
               </div>
-              <ChevronRight className="h-4 w-4 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all mt-auto self-end" />
+              <ChevronRight className="h-4 w-4 text-white/40 group-hover:text-white group-hover:translate-x-0.5 transition-all mt-auto self-end" />
             </Link>
-          ))}
+
+            {/* My Permits */}
+            <Link
+              href="/essentials/check"
+              className="shimmer-hover group relative flex flex-col gap-3 overflow-hidden rounded-[3rem_1.5rem_1.5rem_1.5rem] bg-gradient-to-br from-[#3d2a00] to-[#7a5200] p-5 hover:shadow-[0_8px_32px_rgba(252,204,56,0.2)] hover:-translate-y-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-secondary"
+            >
+              <div className="pointer-events-none absolute -top-4 -left-4 h-20 w-20 rounded-full bg-secondary/20 blur-2xl" />
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-secondary">
+                <FileText className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="font-headline text-sm font-bold text-white leading-snug">
+                  {t.accountPermitsLabel}
+                </p>
+                <p className="mt-0.5 text-[11px] text-white/60 leading-snug line-clamp-2">
+                  {t.accountPermitsDesc}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 text-white/40 group-hover:text-secondary group-hover:translate-x-0.5 transition-all mt-auto self-end" />
+            </Link>
+          </div>
         </div>
 
-        {/* ── Quick links strip ── */}
-        <div className="rounded-3xl bg-[var(--surface-lowest)] ring-1 ring-border/50 overflow-hidden">
-          <p className="px-5 pt-4 pb-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+        {/* ── Section: Discover ── */}
+        <div>
+          <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
+            {t.accountSectionDiscover}
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              {
+                href: "/adventures",
+                icon: Mountain,
+                label: t.accountQuickAdventures,
+                desc: "Trekking, rafting & more",
+                from: "from-emerald-50",
+                to: "to-teal-50/80",
+                iconBg: "bg-emerald-100",
+                iconColor: "text-emerald-700",
+                ring: "ring-emerald-100",
+                hoverRing: "hover:ring-emerald-200",
+              },
+              {
+                href: "/guides",
+                icon: Compass,
+                label: t.accountStatGuidesLabel,
+                desc: "Culture & destination guides",
+                from: "from-violet-50",
+                to: "to-purple-50/80",
+                iconBg: "bg-violet-100",
+                iconColor: "text-violet-700",
+                ring: "ring-violet-100",
+                hoverRing: "hover:ring-violet-200",
+              },
+              {
+                href: "/hotels",
+                icon: Hotel,
+                label: t.accountHotelsLabel,
+                desc: t.accountHotelsDesc,
+                from: "from-sky-50",
+                to: "to-blue-50/80",
+                iconBg: "bg-sky-100",
+                iconColor: "text-sky-700",
+                ring: "ring-sky-100",
+                hoverRing: "hover:ring-sky-200",
+              },
+              {
+                href: "/transport",
+                icon: Bus,
+                label: t.accountTransportLabel,
+                desc: t.accountTransportDesc,
+                from: "from-orange-50",
+                to: "to-amber-50/80",
+                iconBg: "bg-orange-100",
+                iconColor: "text-orange-700",
+                ring: "ring-orange-100",
+                hoverRing: "hover:ring-orange-200",
+              },
+            ].map(({ href, icon: Icon, label, desc, from, to, iconBg, iconColor, ring, hoverRing }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`shimmer-hover group flex flex-col gap-2.5 rounded-2xl bg-gradient-to-br ${from} ${to} p-4 ring-1 ${ring} ${hoverRing} hover:shadow-soft hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary`}
+              >
+                <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconBg} ${iconColor}`}>
+                  <Icon className="h-4.5 w-4.5" />
+                </span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground leading-snug">{label}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug line-clamp-2">{desc}</p>
+                </div>
+                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all mt-auto self-end" />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Section: Quick Access ── */}
+        <div>
+          <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
             {t.accountSectionQuickAccess}
           </p>
-          {quickLinks.map(({ href, icon: Icon, label }, idx) => (
-            <Link
-              key={href}
-              href={href}
-              className={`flex items-center gap-3 px-5 py-3.5 hover:bg-muted/60 transition-colors group ${idx < quickLinks.length - 1 ? "border-b border-border/40" : ""}`}
-            >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary">
-                <Icon className="h-4 w-4" />
-              </span>
-              <span className="flex-1 text-sm font-medium text-foreground">{label}</span>
-              <ChevronRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-            </Link>
-          ))}
+          <div className="overflow-hidden rounded-3xl bg-[var(--surface-lowest)] ring-1 ring-border/50">
+            {[
+              { href: "/essentials/check", icon: ShieldCheck, label: t.accountQuickIlpCheck, iconBg: "bg-primary/8", iconColor: "text-primary" },
+              { href: "/safety", icon: MapPin, label: t.accountQuickSafety, iconBg: "bg-rose-50", iconColor: "text-rose-600" },
+              { href: "/events", icon: CalendarDays, label: t.accountQuickEvents, iconBg: "bg-secondary/20", iconColor: "text-amber-700" },
+              { href: "/account/profile", icon: UserCog, label: t.navProfilePrefsLabel, iconBg: "bg-muted", iconColor: "text-muted-foreground" },
+            ].map(({ href, icon: Icon, label, iconBg, iconColor }, idx, arr) => (
+              <Link
+                key={href}
+                href={href}
+                className={`group flex items-center gap-3.5 px-5 py-4 hover:bg-muted/50 transition-colors ${idx < arr.length - 1 ? "border-b border-border/30" : ""}`}
+              >
+                <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${iconBg} ${iconColor}`}>
+                  <Icon className="h-4 w-4" />
+                </span>
+                <span className="flex-1 text-sm font-medium text-foreground">{label}</span>
+                <ChevronRight className="h-4 w-4 text-muted-foreground/35 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+              </Link>
+            ))}
+          </div>
         </div>
 
       </div>

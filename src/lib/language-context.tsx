@@ -89,6 +89,34 @@ export interface Translations {
   navProfilePrefsLabel: string
   navProfilePrefsDesc: string
 
+  // ACCOUNT PAGE
+  accountDefaultName: string
+  accountExplorerBadge: string
+  accountMemberSince: string
+  accountSignOutFailed: string
+  accountSignOutFailedDesc: string
+  accountWelcomeBack: string
+  accountSavedTripsLabel: string
+  accountSavedTripsDesc: string
+  accountPlanTripLabel: string
+  accountPlanTripDesc: string
+  accountPermitsLabel: string
+  accountPermitsDesc: string
+  accountQuickAdventures: string
+  accountSectionJourneys: string
+  accountSectionDiscover: string
+  accountSectionQuickAccess: string
+  accountQuickIlpCheck: string
+  accountQuickSafety: string
+  accountQuickEvents: string
+  accountHotelsLabel: string
+  accountHotelsDesc: string
+  accountTransportLabel: string
+  accountTransportDesc: string
+  accountStatTripsLabel: string
+  accountStatPermitsLabel: string
+  accountStatGuidesLabel: string
+
   // FOOTER
   footerTagline: string
   footerQuickLinks: string
@@ -423,6 +451,34 @@ const translations: Record<Language, Translations> = {
     navProfilePrefsLabel: "Profile & Preferences",
     navProfilePrefsDesc: "Account settings — Phase 2",
 
+    // ACCOUNT PAGE
+    accountDefaultName: "Explorer",
+    accountExplorerBadge: "Explorer",
+    accountMemberSince: "Member since",
+    accountSignOutFailed: "Sign-out failed",
+    accountSignOutFailedDesc: "Please try again.",
+    accountWelcomeBack: "Welcome back",
+    accountSavedTripsLabel: "Saved Trips",
+    accountSavedTripsDesc: "Your bookmarked itineraries",
+    accountPlanTripLabel: "Plan with AI",
+    accountPlanTripDesc: "Build a personalised itinerary",
+    accountPermitsLabel: "My Permits",
+    accountPermitsDesc: "ILP & PAP tracker",
+    accountQuickAdventures: "Adventures",
+    accountSectionJourneys: "My Journeys",
+    accountSectionDiscover: "Discover",
+    accountSectionQuickAccess: "Quick Access",
+    accountQuickIlpCheck: "Smart ILP Pre-Check",
+    accountQuickSafety: "Safety & Emergency",
+    accountQuickEvents: "Upcoming Festivals",
+    accountHotelsLabel: "Hotels",
+    accountHotelsDesc: "Browse & book stays",
+    accountTransportLabel: "Transport",
+    accountTransportDesc: "Vehicles & local drivers",
+    accountStatTripsLabel: "Trips",
+    accountStatPermitsLabel: "Permits",
+    accountStatGuidesLabel: "Guides",
+
     // FOOTER
     footerTagline: "Discover the Land of the Rising Sun. Experience the unparalleled natural beauty and rich cultural heritage of Arunachal Pradesh.",
     footerQuickLinks: "Quick Links",
@@ -755,6 +811,34 @@ const translations: Record<Language, Translations> = {
     navPermitTrackerDesc: "ILP/PAP स्थिति ट्रैक करें — चरण 2",
     navProfilePrefsLabel: "प्रोफ़ाइल और प्राथमिकताएँ",
     navProfilePrefsDesc: "खाता सेटिंग — चरण 2",
+
+    // ACCOUNT PAGE
+    accountDefaultName: "अन्वेषक",
+    accountExplorerBadge: "अन्वेषक",
+    accountMemberSince: "सदस्य बने",
+    accountSignOutFailed: "साइन-आउट विफल",
+    accountSignOutFailedDesc: "कृपया पुनः प्रयास करें।",
+    accountWelcomeBack: "स्वागत है",
+    accountSavedTripsLabel: "सहेजी गई यात्राएं",
+    accountSavedTripsDesc: "आपकी बुकमार्क की गई यात्रा-योजनाएं",
+    accountPlanTripLabel: "AI से योजना बनाएं",
+    accountPlanTripDesc: "व्यक्तिगत यात्रा कार्यक्रम बनाएं",
+    accountPermitsLabel: "मेरे परमिट",
+    accountPermitsDesc: "ILP और PAP ट्रैकर",
+    accountQuickAdventures: "साहसिक गतिविधियां",
+    accountSectionJourneys: "मेरी यात्राएं",
+    accountSectionDiscover: "अन्वेषण करें",
+    accountSectionQuickAccess: "त्वरित पहुंच",
+    accountQuickIlpCheck: "स्मार्ट ILP प्री-चेक",
+    accountQuickSafety: "सुरक्षा और आपातकाल",
+    accountQuickEvents: "आगामी उत्सव",
+    accountHotelsLabel: "होटल",
+    accountHotelsDesc: "आवास खोजें और बुक करें",
+    accountTransportLabel: "परिवहन",
+    accountTransportDesc: "वाहन और स्थानीय चालक",
+    accountStatTripsLabel: "यात्राएं",
+    accountStatPermitsLabel: "परमिट",
+    accountStatGuidesLabel: "गाइड",
 
     // FOOTER
     footerTagline: "उगते सूरज की भूमि की खोज करें। अरुणाचल प्रदेश की अतुलनीय प्राकृतिक सुंदरता और समृद्ध सांस्कृतिक विरासत का अनुभव करें।",
@@ -1089,6 +1173,34 @@ const translations: Record<Language, Translations> = {
     navProfilePrefsLabel: "প্রোফাইল ও পছন্দ",
     navProfilePrefsDesc: "অ্যাকাউন্ট সেটিংস — পর্যায় ২",
 
+    // ACCOUNT PAGE
+    accountDefaultName: "অন্বেষক",
+    accountExplorerBadge: "অন্বেষক",
+    accountMemberSince: "সদস্য হয়েছেন",
+    accountSignOutFailed: "সাইন-আউট ব্যর্থ",
+    accountSignOutFailedDesc: "অনুগ্রহ করে আবার চেষ্টা করুন।",
+    accountWelcomeBack: "স্বাগতম",
+    accountSavedTripsLabel: "সংরক্ষিত ভ্রমণ",
+    accountSavedTripsDesc: "আপনার বুকমার্ক করা ভ্রমণসূচি",
+    accountPlanTripLabel: "AI দিয়ে পরিকল্পনা",
+    accountPlanTripDesc: "ব্যক্তিগত ভ্রমণসূচি তৈরি করুন",
+    accountPermitsLabel: "আমার পারমিট",
+    accountPermitsDesc: "ILP ও PAP ট্র্যাকার",
+    accountQuickAdventures: "অ্যাডভেঞ্চার",
+    accountSectionJourneys: "আমার যাত্রা",
+    accountSectionDiscover: "আবিষ্কার করুন",
+    accountSectionQuickAccess: "দ্রুত অ্যাক্সেস",
+    accountQuickIlpCheck: "স্মার্ট ILP প্রি-চেক",
+    accountQuickSafety: "নিরাপত্তা ও জরুরি",
+    accountQuickEvents: "আসন্ন উৎসব",
+    accountHotelsLabel: "হোটেল",
+    accountHotelsDesc: "থাকার জায়গা খুঁজুন ও বুক করুন",
+    accountTransportLabel: "পরিবহন",
+    accountTransportDesc: "যানবাহন ও স্থানীয় চালক",
+    accountStatTripsLabel: "যাত্রা",
+    accountStatPermitsLabel: "পারমিট",
+    accountStatGuidesLabel: "গাইড",
+
     // FOOTER
     footerTagline: "উদীয়মান সূর্যের ভূমি আবিষ্কার করুন। অরুণাচল প্রদেশের অতুলনীয় প্রাকৃতিক সৌন্দর্য ও সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য উপভোগ করুন।",
     footerQuickLinks: "দ্রুত লিঙ্ক",
@@ -1421,6 +1533,34 @@ const translations: Record<Language, Translations> = {
     navPermitTrackerDesc: "ILP/PAP স্থিতি ট্ৰেক কৰক — পৰ্যায় ২",
     navProfilePrefsLabel: "প্ৰফাইল আৰু পছন্দ",
     navProfilePrefsDesc: "একাউণ্ট ছেটিং — পৰ্যায় ২",
+
+    // ACCOUNT PAGE
+    accountDefaultName: "অন্বেষক",
+    accountExplorerBadge: "অন্বেষক",
+    accountMemberSince: "সদস্য হৈছে",
+    accountSignOutFailed: "চাইন-আউট বিফল",
+    accountSignOutFailedDesc: "অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।",
+    accountWelcomeBack: "স্বাগতম",
+    accountSavedTripsLabel: "সংৰক্ষিত ভ্ৰমণ",
+    accountSavedTripsDesc: "আপোনাৰ বুকমাৰ্ক কৰা ভ্ৰমণসূচি",
+    accountPlanTripLabel: "AI ৰে পৰিকল্পনা",
+    accountPlanTripDesc: "ব্যক্তিগত ভ্ৰমণসূচি তৈয়াৰ কৰক",
+    accountPermitsLabel: "মোৰ পাৰমিট",
+    accountPermitsDesc: "ILP আৰু PAP ট্ৰেকাৰ",
+    accountQuickAdventures: "এডভেঞ্চাৰ",
+    accountSectionJourneys: "মোৰ যাত্ৰা",
+    accountSectionDiscover: "আৱিষ্কাৰ কৰক",
+    accountSectionQuickAccess: "দ্ৰুত প্ৰৱেশ",
+    accountQuickIlpCheck: "স্মাৰ্ট ILP প্ৰি-চেক",
+    accountQuickSafety: "সুৰক্ষা আৰু জৰুৰী",
+    accountQuickEvents: "আগামী উৎসৱ",
+    accountHotelsLabel: "হোটেল",
+    accountHotelsDesc: "থকাৰ ঠাই বিচাৰক আৰু বুক কৰক",
+    accountTransportLabel: "পৰিবহন",
+    accountTransportDesc: "বাহন আৰু স্থানীয় চালক",
+    accountStatTripsLabel: "যাত্ৰা",
+    accountStatPermitsLabel: "পাৰমিট",
+    accountStatGuidesLabel: "গাইড",
 
     // FOOTER
     footerTagline: "উদীয়মান সূৰ্যৰ ভূমি আৱিষ্কাৰ কৰক। অৰুণাচল প্ৰদেশৰ অতুলনীয় প্ৰাকৃতিক সৌন্দৰ্য আৰু সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য উপভোগ কৰক।",
