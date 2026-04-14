@@ -396,7 +396,7 @@ export function Nav() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={handleSignOut}
+                onClick={() => router.push("/account")}
                 className={cn(
                   "flex items-center gap-1.5 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-md active:scale-95",
                   transparent && "text-white hover:bg-white/20 border border-white/30"
@@ -597,10 +597,15 @@ export function Nav() {
           </div>
           <div className="pt-1 border-t">
             {isSignedIn ? (
-              <Button variant="outline" className="w-full font-semibold flex items-center gap-2" onClick={handleSignOut}>
-                <UserCircle className="h-4 w-4" />
-                {t.signOut}
-              </Button>
+              <div className="flex gap-2">
+                <Button variant="outline" className="flex-1 font-semibold flex items-center gap-2" onClick={() => { router.push("/account"); setIsOpen(false) }}>
+                  <UserCircle className="h-4 w-4" />
+                  {t.myAccount}
+                </Button>
+                <Button variant="ghost" className="flex-1 font-semibold flex items-center gap-2 text-destructive hover:text-destructive hover:bg-destructive/5" onClick={handleSignOut}>
+                  {t.signOut}
+                </Button>
+              </div>
             ) : (
               <div className="flex gap-2">
                 <Button variant="outline" className="flex-1 font-semibold" onClick={() => { router.push("/login"); setIsOpen(false) }}>{t.signIn}</Button>
