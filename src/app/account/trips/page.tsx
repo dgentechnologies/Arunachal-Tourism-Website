@@ -21,7 +21,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { useToast } from "@/hooks/use-toast"
-import { BookmarkCheck, Loader2, Trash2, MapPin, Clock, Calendar, ArrowLeft } from "lucide-react"
+import { BookmarkCheck, Loader2, Trash2, MapPin, Clock, Calendar, ArrowLeft, Pencil } from "lucide-react"
 
 interface SavedTrip {
   id: string
@@ -34,6 +34,7 @@ interface SavedTrip {
   coverImage: string
   tags: string[]
   bestTime: string
+  generatedByAI?: boolean
   savedAt: { seconds: number } | null
 }
 
@@ -136,6 +137,17 @@ export default function SavedTripsPage() {
                     data-ai-hint="scenic landscape"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+                  {/* Pencil edit icon — top-right */}
+                  <Link
+                    href={`/itinerary/edit/${trip.id}`}
+                    className="absolute top-3 right-3 w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-md transition-colors"
+                    title="Edit with AI"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Pencil className="h-3.5 w-3.5 text-primary" />
+                  </Link>
+
                   <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${difficultyColor[trip.difficulty] ?? "bg-white/20 text-white"}`}>
                       {trip.difficulty}
@@ -154,7 +166,12 @@ export default function SavedTripsPage() {
                   </div>
                 </div>
                 <CardContent className="p-4 space-y-2">
-                  <h3 className="font-bold text-base font-headline leading-tight">{trip.title}</h3>
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-bold text-base font-headline leading-tight">{trip.title}</h3>
+                    {trip.generatedByAI && (
+                      <span className="shrink-0 text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">AI Edited</span>
+                    )}
+                  </div>
                   <p className="text-xs text-muted-foreground flex items-center gap-1">
                     <MapPin className="h-3 w-3 text-primary" />{trip.circuit}
                   </p>
@@ -170,9 +187,16 @@ export default function SavedTripsPage() {
                       <Badge key={tag} variant="secondary" className="text-xs px-2 py-0">{tag}</Badge>
                     ))}
                   </div>
-                  <Button className="w-full mt-2" size="sm" asChild>
-                    <Link href="/itinerary">View Full Plan</Link>
-                  </Button>
+                  <div className="flex gap-2 mt-2">
+                    <Button className="flex-1" size="sm" variant="outline" asChild>
+                      <Link href="/itinerary">View Plans</Link>
+                    </Button>
+                    <Button className="flex-1 gap-1.5" size="sm" asChild>
+                      <Link href={`/itinerary/edit/${trip.id}`}>
+                        <Pencil className="h-3.5 w-3.5" /> Edit with AI
+                      </Link>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
