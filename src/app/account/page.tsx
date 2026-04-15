@@ -1,8 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { collection, getDocs } from "firebase/firestore"
+import { getFirebaseDbUsers } from "@/lib/firebase"
 import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -48,12 +50,29 @@ export default function AccountPage() {
   const router = useRouter()
   const { toast } = useToast()
   const { t } = useLanguage()
+  const [tripsCount, setTripsCount] = useState<number | null>(null)
+  const [permitsCount, setPermitsCount] = useState<number | null>(null)
 
   useEffect(() => {
     if (!loading && !user) {
       router.replace("/login")
     }
   }, [user, loading, router])
+
+  useEffect(() => {
+    if (!user) return
+    const db = getFirebaseDbUsers()
+    Promise.all([
+      getDocs(collection(db, "users", user.uid, "trips")),
+      getDocs(collection(db, "users", user.uid, "permits")),
+    ]).then(([tripsSnap, permitsSnap]) => {
+      setTripsCount(tripsSnap.size)
+      setPermitsCount(permitsSnap.size)
+    }).catch(() => {
+      setTripsCount(0)
+      setPermitsCount(0)
+    })
+  }, [user])
 
   if (loading) {
     return (
@@ -168,15 +187,17 @@ export default function AccountPage() {
           {/* Stats row */}
           <div className="mt-2 flex items-center gap-2 sm:gap-3">
             {[
-              { val: "0", label: t.accountStatTripsLabel },
-              { val: "0", label: t.accountStatPermitsLabel },
-              { val: "0", label: t.accountStatGuidesLabel },
+              { val: tripsCount, label: t.accountStatTripsLabel },
+              { val: permitsCount, label: t.accountStatPermitsLabel },
+              { val: null, label: t.accountStatGuidesLabel },
             ].map(({ val, label }, i) => (
               <div
                 key={i}
                 className="flex flex-col items-center gap-0.5 rounded-2xl border border-white/10 bg-white/8 px-5 py-2.5 backdrop-blur-sm"
               >
-                <span className="font-headline text-xl font-bold text-white leading-none">{val}</span>
+                <span className="font-headline text-xl font-bold text-white leading-none">
+                  {val === null ? "—" : tripsCount === null ? "…" : val}
+                </span>
                 <span className="text-[10px] font-medium text-white/50 uppercase tracking-wider">{label}</span>
               </div>
             ))}
