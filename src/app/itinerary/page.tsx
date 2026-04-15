@@ -22,11 +22,12 @@ import {
   Calendar, MapPin, Utensils, BedDouble, CheckCircle2,
   Clock, Zap, Bot, Send, Loader2, User, Sparkles,
   Mountain, TreePine, Users, Waves, Globe, ArrowLeft,
-  BookmarkPlus, BookmarkCheck, LogIn, ChevronRight, Star
+  BookmarkPlus, BookmarkCheck, LogIn, ChevronRight, Star, Pencil
 } from "lucide-react"
 import { motion } from "framer-motion"
 import { premadeItineraries, type PremadeItinerary } from "@/lib/itinerary-data"
 import { chatAboutItinerary } from "@/ai/flows/itinerary-chat-flow"
+import type { ItineraryPatch } from "@/ai/flows/itinerary-chat-flow"
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/lib/auth-context"
 import { collection, doc, setDoc, getDocs, serverTimestamp } from "firebase/firestore"
@@ -44,7 +45,7 @@ function stripMarkdown(text: string): string {
     .replace(/^\s*\d+\.\s+/gm, '')
 }
 
-type ChatMessage = { role: 'user' | 'assistant'; content: string }
+type ChatMessage = { role: 'user' | 'assistant'; content: string; hasPatch?: boolean }
 
 const planIcons: Record<string, React.ElementType> = {
   'buddhist-circuit': Mountain,
@@ -82,6 +83,8 @@ export default function ItineraryPage() {
   const [isSaving, setIsSaving] = useState(false)
   const [savedPlanIds, setSavedPlanIds] = useState<Set<string>>(new Set())
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
+  const [aiModifiedPlan, setAiModifiedPlan] = useState<PremadeItinerary | null>(null)
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const chatBottomRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
   const { user } = useAuth()
@@ -113,8 +116,26 @@ export default function ItineraryPage() {
     }).catch(() => { /* silently ignore — not critical */ })
   }, [user])
 
+  const applyPatch = (base: PremadeItinerary, patch: ItineraryPatch): PremadeItinerary => ({
+    ...base,
+    ...(patch.title        !== undefined && { title:        patch.title }),
+    ...(patch.subtitle     !== undefined && { subtitle:     patch.subtitle }),
+    ...(patch.summary      !== undefined && { summary:      patch.summary }),
+    ...(patch.duration     !== undefined && { duration:     patch.duration }),
+    ...(patch.durationDays !== undefined && { durationDays: patch.durationDays }),
+    ...(patch.bestTime     !== undefined && { bestTime:     patch.bestTime }),
+    ...(patch.difficulty   !== undefined && { difficulty:   patch.difficulty }),
+    ...(patch.highlights   !== undefined && { highlights:   patch.highlights }),
+    ...(patch.tags         !== undefined && { tags:         patch.tags }),
+    ...(patch.days         !== undefined && { days:         patch.days }),
+  })
+
+  const activePlan = aiModifiedPlan ?? selectedPlan
+
   const handleSelectPlan = (plan: PremadeItinerary) => {
     setSelectedPlan(plan)
+    setAiModifiedPlan(null)
+    setHasUnsavedChanges(false)
     setChatMessages([
       {
         role: 'assistant',
@@ -123,7 +144,9 @@ export default function ItineraryPage() {
     ])
   }
 
-  const handleSaveItinerary = async (plan: PremadeItinerary) => {
+  const handleSaveItinerary = async (planToSave?: PremadeItinerary) => {
+    const plan = planToSave ?? activePlan
+    if (!plan) return
     if (!user) {
       setShowLoginPrompt(true)
       return
@@ -144,11 +167,12 @@ export default function ItineraryPage() {
         bestTime: plan.bestTime,
         highlights: plan.highlights,
         days: plan.days,
-        generatedByAI: false,
+        generatedByAI: !!aiModifiedPlan,
         savedAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       })
       setSavedPlanIds((prev) => new Set([...prev, plan.id]))
+      setHasUnsavedChanges(false)
       toast({
         title: "Itinerary Saved!",
         description: `"${plan.title}" has been saved to your account.`,
@@ -165,7 +189,7 @@ export default function ItineraryPage() {
   }
 
   const handleSendMessage = async () => {
-    if (!chatInput.trim() || !selectedPlan || chatLoading) return
+    if (!chatInput.trim() || !activePlan || chatLoading) return
     const userMessage = chatInput.trim()
     setChatInput("")
     const newMessages: ChatMessage[] = [...chatMessages, { role: 'user', content: userMessage }]
@@ -173,12 +197,21 @@ export default function ItineraryPage() {
     setChatLoading(true)
     try {
       const res = await chatAboutItinerary({
-        planTitle: selectedPlan.title,
-        planSummary: selectedPlan.summary,
+        planTitle: activePlan.title,
+        planSummary: activePlan.summary,
+        planJson: JSON.stringify(activePlan),
         userMessage,
-        chatHistory: chatMessages.slice(-8),
+        chatHistory: chatMessages.slice(-10).map(m => ({ role: m.role, content: m.content })),
       })
-      setChatMessages([...newMessages, { role: 'assistant', content: res.reply }])
+
+      const hasPatch = !!res.itineraryPatch && Object.keys(res.itineraryPatch).length > 0
+      if (hasPatch && res.itineraryPatch) {
+        const base = aiModifiedPlan ?? selectedPlan!
+        setAiModifiedPlan(applyPatch(base, res.itineraryPatch))
+        setHasUnsavedChanges(true)
+      }
+
+      setChatMessages([...newMessages, { role: 'assistant', content: res.reply, hasPatch }])
     } catch (error: unknown) {
       const isQuota = (error as { status?: number; code?: number; message?: string })?.status === 429 || (error as { status?: number; code?: number; message?: string })?.code === 429 || ((error as { message?: string })?.message || '').includes('quota')
       toast({
@@ -439,7 +472,7 @@ export default function ItineraryPage() {
                           size="sm"
                           className="w-full gap-1.5 text-xs text-muted-foreground hover:text-primary h-8"
                           onClick={(e) => { e.stopPropagation(); handleSaveItinerary(plan) }}
-                          disabled={isSaving && !isSaved}
+                          disabled={isSaving}
                         >
                           {isSaved ? (
                             <><BookmarkCheck className="h-3.5 w-3.5 text-primary" /> Saved to Account</>
@@ -493,31 +526,38 @@ export default function ItineraryPage() {
         <div className="fixed inset-0 z-50 bg-background flex flex-col overflow-hidden">
 
           {/* Top bar — back button left, save right */}
-          <div className="flex items-center justify-between px-4 md:px-6 h-14 border-b border-border/40 bg-background/95 backdrop-blur-sm shrink-0">
+          <div className="flex items-center justify-between px-4 md:px-6 h-14 border-b border-border/40 bg-background/95 backdrop-blur-sm shrink-0 gap-3">
             <button
-              onClick={() => setSelectedPlan(null)}
-              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
+              onClick={() => { setSelectedPlan(null); setAiModifiedPlan(null); setHasUnsavedChanges(false) }}
+              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group shrink-0"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
               <span className="hidden sm:inline">All Itineraries</span>
             </button>
             <span className="absolute left-1/2 -translate-x-1/2 text-xs font-bold uppercase tracking-widest text-foreground/50 hidden md:block">Arunachal <span className="text-primary">Explore</span></span>
-            <Button
-              variant={savedPlanIds.has(selectedPlan.id) ? "secondary" : "default"}
-              size="sm"
-              className="gap-2"
-              onClick={() => handleSaveItinerary(selectedPlan)}
-              disabled={isSaving}
-            >
-              {isSaving ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : savedPlanIds.has(selectedPlan.id) ? (
-                <BookmarkCheck className="h-4 w-4" />
-              ) : (
-                <BookmarkPlus className="h-4 w-4" />
+            <div className="flex items-center gap-2 shrink-0">
+              {hasUnsavedChanges && (
+                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">
+                  <Sparkles className="h-3 w-3" /> AI Modified
+                </span>
               )}
-              {savedPlanIds.has(selectedPlan.id) ? "Saved" : "Save Itinerary"}
-            </Button>
+              <Button
+                variant={savedPlanIds.has(activePlan!.id) && !hasUnsavedChanges ? "secondary" : "default"}
+                size="sm"
+                className="gap-2"
+                onClick={() => handleSaveItinerary()}
+                disabled={isSaving}
+              >
+                {isSaving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : savedPlanIds.has(activePlan!.id) && !hasUnsavedChanges ? (
+                  <BookmarkCheck className="h-4 w-4" />
+                ) : (
+                  <BookmarkPlus className="h-4 w-4" />
+                )}
+                {savedPlanIds.has(activePlan!.id) && !hasUnsavedChanges ? "Saved" : "Save Itinerary"}
+              </Button>
+            </div>
           </div>
 
           <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-3 overflow-hidden">
@@ -525,17 +565,18 @@ export default function ItineraryPage() {
             {/* LEFT: Plan Details — only this column scrolls */}
             <div className="lg:col-span-2 h-full overflow-y-auto overscroll-contain px-4 md:px-8 py-6 space-y-6">
 
-              {/* Cinematic plan header */}
+              {/* Cinematic plan header — uses activePlan (AI-patched or original) */}
               <motion.div
+                key={(activePlan ?? selectedPlan)!.title + (activePlan ?? selectedPlan)!.duration}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.4 }}
                 className="organic-card overflow-hidden ghost-border shadow-float"
               >
                 <div className="relative h-64 md:h-80">
                   <Image
-                    src={selectedPlan.coverImage}
-                    alt={selectedPlan.title}
+                    src={(activePlan ?? selectedPlan)!.coverImage}
+                    alt={(activePlan ?? selectedPlan)!.title}
                     fill
                     className="object-cover"
                     data-ai-hint="scenic landscape arunachal"
@@ -545,7 +586,7 @@ export default function ItineraryPage() {
 
                   {/* Tags */}
                   <div className="absolute top-5 left-6 flex flex-wrap gap-2">
-                    {selectedPlan.tags.map((tag) => (
+                    {(activePlan ?? selectedPlan)!.tags.map((tag) => (
                       <Badge key={tag} className="bg-white/15 text-white text-xs border-none backdrop-blur-sm">
                         {tag}
                       </Badge>
@@ -554,21 +595,21 @@ export default function ItineraryPage() {
 
                   {/* Title block */}
                   <div className="absolute bottom-6 left-6 right-6">
-                    <span className={cn("inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full mb-3", difficultyColor[selectedPlan.difficulty])}>
-                      <span className={cn("w-1.5 h-1.5 rounded-full", difficultyDot[selectedPlan.difficulty])} />
-                      {selectedPlan.difficulty}
+                    <span className={cn("inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full mb-3", difficultyColor[(activePlan ?? selectedPlan)!.difficulty])}>
+                      <span className={cn("w-1.5 h-1.5 rounded-full", difficultyDot[(activePlan ?? selectedPlan)!.difficulty])} />
+                      {(activePlan ?? selectedPlan)!.difficulty}
                     </span>
-                    <h2 className="text-2xl md:text-4xl font-bold text-white font-headline leading-tight mb-1">{selectedPlan.title}</h2>
-                    <p className="text-white/75 text-sm">{selectedPlan.subtitle}</p>
+                    <h2 className="text-2xl md:text-4xl font-bold text-white font-headline leading-tight mb-1">{(activePlan ?? selectedPlan)!.title}</h2>
+                    <p className="text-white/75 text-sm">{(activePlan ?? selectedPlan)!.subtitle}</p>
                   </div>
                 </div>
 
                 {/* Stats row */}
                 <div className="grid grid-cols-3 divide-x divide-border/40 bg-card px-2">
                   {[
-                    { label: "Duration", value: selectedPlan.duration },
-                    { label: "Difficulty", value: selectedPlan.difficulty, accent: selectedPlan.difficulty === 'Easy' ? 'text-emerald-600' : selectedPlan.difficulty === 'Moderate' ? 'text-amber-600' : 'text-red-600' },
-                    { label: "Best Time", value: selectedPlan.bestTime },
+                    { label: "Duration", value: (activePlan ?? selectedPlan)!.duration },
+                    { label: "Difficulty", value: (activePlan ?? selectedPlan)!.difficulty, accent: (activePlan ?? selectedPlan)!.difficulty === 'Easy' ? 'text-emerald-600' : (activePlan ?? selectedPlan)!.difficulty === 'Moderate' ? 'text-amber-600' : 'text-red-600' },
+                    { label: "Best Time", value: (activePlan ?? selectedPlan)!.bestTime },
                   ].map((s) => (
                     <div key={s.label} className="text-center py-4">
                       <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">{s.label}</p>
@@ -579,10 +620,10 @@ export default function ItineraryPage() {
 
                 {/* Summary + highlights */}
                 <div className="px-6 pb-6 pt-4 bg-card">
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{selectedPlan.summary}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{(activePlan ?? selectedPlan)!.summary}</p>
                   <p className="text-[10px] font-bold text-primary uppercase tracking-widest mb-3">Top Highlights</p>
                   <div className="flex flex-wrap gap-2">
-                    {selectedPlan.highlights.map((h) => (
+                    {(activePlan ?? selectedPlan)!.highlights.map((h) => (
                       <span key={h} className="flex items-center gap-1.5 text-xs bg-primary/8 text-foreground px-3 py-1.5 rounded-full font-medium">
                         <Zap className="h-3 w-3 text-[#40e0d0]" />{h}
                       </span>
@@ -596,6 +637,11 @@ export default function ItineraryPage() {
                 <h3 className="text-xl md:text-2xl font-bold text-foreground font-headline mb-6 flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-primary" />
                   Day-by-Day Itinerary
+                  {hasUnsavedChanges && (
+                    <span className="text-xs font-normal text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <Sparkles className="h-3 w-3" /> AI Updated
+                    </span>
+                  )}
                 </h3>
 
                 <div className="relative">
@@ -603,7 +649,7 @@ export default function ItineraryPage() {
                   <div className="absolute left-[1.35rem] top-5 bottom-5 w-px bg-gradient-to-b from-primary via-[#40e0d0] to-primary/20 hidden md:block" />
 
                   <div className="space-y-4">
-                    {selectedPlan.days.map((day, idx) => (
+                    {(activePlan ?? selectedPlan)!.days.map((day, idx) => (
                       <motion.div
                         key={day.day}
                         initial={{ opacity: 0, x: -12 }}
@@ -713,20 +759,27 @@ export default function ItineraryPage() {
                               <Bot className="h-3.5 w-3.5 text-primary" />
                             </div>
                           )}
-                          <div
-                            className={cn(
-                              "max-w-[82%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed",
-                              msg.role === 'user'
-                                ? "bg-primary text-white rounded-tr-sm"
-                                : "bg-muted text-foreground rounded-tl-sm"
-                            )}
-                          >
-                            {msg.content.split('\n').map((line, j) => (
-                              <span key={j}>
-                                {stripMarkdown(line)}
-                                {j < msg.content.split('\n').length - 1 && <br />}
+                          <div className="flex flex-col gap-1 max-w-[82%]">
+                            <div
+                              className={cn(
+                                "rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed",
+                                msg.role === 'user'
+                                  ? "bg-primary text-white rounded-tr-sm"
+                                  : "bg-muted text-foreground rounded-tl-sm"
+                              )}
+                            >
+                              {msg.content.split('\n').map((line, j) => (
+                                <span key={j}>
+                                  {stripMarkdown(line)}
+                                  {j < msg.content.split('\n').length - 1 && <br />}
+                                </span>
+                              ))}
+                            </div>
+                            {msg.hasPatch && (
+                              <span className="text-[10px] text-emerald-600 flex items-center gap-1 pl-1">
+                                <Sparkles className="h-3 w-3" /> Plan updated on the left
                               </span>
-                            ))}
+                            )}
                           </div>
                           {msg.role === 'user' && (
                             <div className="shrink-0 w-7 h-7 rounded-full bg-muted flex items-center justify-center mt-0.5">
