@@ -401,13 +401,12 @@ export default function ItineraryPlanPage({ params }: { params: Promise<{ id: st
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
 
-                <div className="absolute top-5 left-6 flex flex-wrap gap-2">
-                  {activePlan.tags.map((tag) => (
-                    <Badge key={tag} className="bg-white/15 text-white text-xs border-none backdrop-blur-sm">{tag}</Badge>
-                  ))}
-                </div>
-
                 <div className="absolute bottom-6 left-6 right-6">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {activePlan.tags.map((tag) => (
+                      <Badge key={tag} className="bg-white/15 text-white text-[10px] border-none backdrop-blur-sm px-2 py-0.5 font-medium">{tag}</Badge>
+                    ))}
+                  </div>
                   <span className={cn("inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full mb-3", difficultyColor[activePlan.difficulty])}>
                     <span className={cn("w-1.5 h-1.5 rounded-full", difficultyDot[activePlan.difficulty])} />
                     {activePlan.difficulty}
@@ -624,58 +623,44 @@ export default function ItineraryPlanPage({ params }: { params: Promise<{ id: st
         )}
       </AnimatePresence>
 
-      {/* ── Mobile: Floating AI Chat Button ── */}
-      <motion.button
-        className="fixed bottom-6 right-6 z-[62] lg:hidden w-14 h-14 rounded-full bg-primary shadow-float flex items-center justify-center"
-        onClick={() => { setIsMobileChatOpen((prev) => !prev); setUnreadCount(0) }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Open AI travel assistant"
-      >
-        <AnimatePresence mode="wait">
-          {isMobileChatOpen ? (
-            <motion.span
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <X className="h-6 w-6 text-white" />
-            </motion.span>
-          ) : (
-            <motion.span
-              key="open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <Bot className="h-6 w-6 text-white" />
-            </motion.span>
-          )}
-        </AnimatePresence>
+      {/* ── Mobile: Floating AI Chat Button (only shown when drawer is closed) ── */}
+      <AnimatePresence>
+        {!isMobileChatOpen && (
+          <motion.button
+            className="fixed bottom-6 right-6 z-[62] lg:hidden w-14 h-14 rounded-full bg-primary shadow-float flex items-center justify-center"
+            onClick={() => { setIsMobileChatOpen(true); setUnreadCount(0) }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
+            aria-label="Open AI travel assistant"
+          >
+            <Bot className="h-6 w-6 text-white" />
 
-        {/* Unread badge */}
-        <AnimatePresence>
-          {!isMobileChatOpen && unreadCount > 0 && (
-            <motion.span
-              key="badge"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              className="absolute -top-1.5 -right-1.5 min-w-[1.25rem] h-5 bg-secondary text-[10px] font-bold rounded-full flex items-center justify-center text-foreground px-1 shadow"
-            >
-              {unreadCount}
-            </motion.span>
-          )}
-        </AnimatePresence>
+            {/* Unread badge */}
+            <AnimatePresence>
+              {unreadCount > 0 && (
+                <motion.span
+                  key="badge"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="absolute -top-1.5 -right-1.5 min-w-[1.25rem] h-5 bg-secondary text-[10px] font-bold rounded-full flex items-center justify-center text-foreground px-1 shadow"
+                >
+                  {unreadCount}
+                </motion.span>
+              )}
+            </AnimatePresence>
 
-        {/* Pulse dot when AI has patched the plan */}
-        {!isMobileChatOpen && hasUnsavedChanges && unreadCount === 0 && (
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#40e0d0] rounded-full animate-pulse shadow" />
+            {/* Pulse dot when AI has patched the plan */}
+            {hasUnsavedChanges && unreadCount === 0 && (
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#40e0d0] rounded-full animate-pulse shadow" />
+            )}
+          </motion.button>
         )}
-      </motion.button>
+      </AnimatePresence>
 
     </div>
   )
