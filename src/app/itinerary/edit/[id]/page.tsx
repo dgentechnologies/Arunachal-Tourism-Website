@@ -14,7 +14,7 @@ import {
   Calendar, MapPin, Utensils, BedDouble, CheckCircle2,
   Clock, Zap, Bot, Send, Loader2, User, Sparkles, Pencil,
   Mountain, ArrowLeft, BookmarkCheck, BookmarkPlus, ChevronRight,
-  Share2, Copy, Check,
+  Share2, Copy, Check, X,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { chatAboutItinerary } from "@/ai/flows/itinerary-chat-flow"
@@ -68,7 +68,10 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
   const [sharedToken, setSharedToken] = useState<string | null>(null)
   const [isSharing, setIsSharing] = useState(false)
   const [shareCopied, setShareCopied] = useState(false)
+  const [isMobileChatOpen, setIsMobileChatOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0)
   const chatBottomRef = useRef<HTMLDivElement>(null)
+  const mobileChatBottomRef = useRef<HTMLDivElement>(null)
 
   // Load plan from Firestore
   useEffect(() => {
@@ -105,7 +108,10 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
     if (chatBottomRef.current) {
       chatBottomRef.current.scrollIntoView({ behavior: "smooth" })
     }
-  }, [chatMessages])
+    if (isMobileChatOpen && mobileChatBottomRef.current) {
+      mobileChatBottomRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [chatMessages, isMobileChatOpen])
 
   // Lock body scroll
   useEffect(() => {
@@ -154,6 +160,7 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
         ...newMessages,
         { role: 'assistant', content: res.reply, hasPatch },
       ])
+      if (!isMobileChatOpen) setUnreadCount((prev) => prev + 1)
     } catch (error: unknown) {
       const isQuota =
         (error as { status?: number })?.status === 429 ||
@@ -326,7 +333,7 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
       <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-3 overflow-hidden">
 
         {/* LEFT: Live Plan Detail */}
-        <div className="lg:col-span-2 h-full overflow-y-auto overscroll-contain px-4 md:px-8 py-6 space-y-6">
+        <div className="lg:col-span-2 h-full overflow-y-auto overscroll-contain px-4 md:px-8 py-6 pb-24 lg:pb-6 space-y-6">
 
           {/* Plan header card */}
           <AnimatePresence mode="wait">
@@ -600,6 +607,214 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
         </div>
 
       </div>
+
+      {/* ── Mobile: AI Chat Floating Bubble + Bottom-Sheet Drawer ── */}
+
+      {/* Backdrop */}
+      <AnimatePresence>
+        {isMobileChatOpen && (
+          <motion.div
+            className="absolute inset-0 z-[8] lg:hidden bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsMobileChatOpen(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Bottom-sheet drawer */}
+      <AnimatePresence>
+        {isMobileChatOpen && (
+          <motion.div
+            className="absolute inset-x-0 bottom-0 z-[9] lg:hidden bg-card flex flex-col overflow-hidden"
+            style={{ height: "82vh", borderRadius: "2rem 2rem 0 0" }}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 28, stiffness: 300 }}
+          >
+            {/* Drag handle */}
+            <div className="flex justify-center pt-3 pb-2 shrink-0">
+              <div className="w-10 h-1 rounded-full bg-border" />
+            </div>
+
+            {/* Chat header */}
+            <div className="mx-3 mb-2 rounded-2xl overflow-hidden shrink-0">
+              <div className="bg-gradient-to-br from-primary via-primary to-primary/90 px-4 py-3 relative overflow-hidden">
+                <div className="absolute inset-0 tribal-pattern opacity-20" />
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center">
+                      <Pencil className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm font-headline">AI Itinerary Editor</p>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 bg-[#40e0d0] rounded-full animate-pulse" />
+                        <p className="text-white/70 text-[10px]">Live editing · Gemini powered</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileChatOpen(false)}
+                    className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center hover:bg-white/25 transition-colors"
+                    aria-label="Close AI chat"
+                  >
+                    <X className="h-4 w-4 text-white" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Messages */}
+            <ScrollArea className="flex-1 min-h-0 px-4 py-2">
+              <div className="space-y-3">
+                {chatMessages.map((msg, i) => (
+                  <div key={i} className={cn("flex gap-2.5", msg.role === 'user' ? "justify-end" : "justify-start")}>
+                    {msg.role === 'assistant' && (
+                      <div className="shrink-0 w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Bot className="h-3.5 w-3.5 text-primary" />
+                      </div>
+                    )}
+                    <div className="flex flex-col gap-1 max-w-[82%]">
+                      <div className={cn(
+                        "rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed",
+                        msg.role === 'user'
+                          ? "bg-primary text-white rounded-tr-sm"
+                          : "bg-muted text-foreground rounded-tl-sm"
+                      )}>
+                        {msg.content.split('\n').map((line, j) => (
+                          <span key={j}>
+                            {stripMarkdown(line)}
+                            {j < msg.content.split('\n').length - 1 && <br />}
+                          </span>
+                        ))}
+                      </div>
+                      {msg.hasPatch && (
+                        <span className="text-[10px] text-emerald-600 flex items-center gap-1 pl-1">
+                          <Sparkles className="h-3 w-3" /> Plan updated above
+                        </span>
+                      )}
+                    </div>
+                    {msg.role === 'user' && (
+                      <div className="shrink-0 w-7 h-7 rounded-full bg-muted flex items-center justify-center mt-0.5">
+                        <User className="h-3.5 w-3.5 text-muted-foreground" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {chatLoading && (
+                  <div className="flex gap-2.5 justify-start">
+                    <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Bot className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <div className="bg-muted rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5">
+                      {[0, 0.2, 0.4].map((d, i) => (
+                        <motion.span
+                          key={i}
+                          className="w-1.5 h-1.5 bg-muted-foreground/50 rounded-full"
+                          animate={{ y: [0, -4, 0] }}
+                          transition={{ duration: 0.7, repeat: Infinity, delay: d }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div ref={mobileChatBottomRef} />
+              </div>
+            </ScrollArea>
+
+            {/* Input */}
+            <div className="p-3 border-t border-border/50 bg-card shrink-0">
+              <div className="flex gap-2">
+                <Input
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
+                  placeholder="Change day 3 to Ziro Valley…"
+                  className="text-xs h-9 bg-muted border-none focus-visible:ring-primary/40"
+                  disabled={chatLoading}
+                />
+                <Button
+                  size="sm"
+                  className="h-9 w-9 p-0 shrink-0 bg-primary hover:bg-primary/90"
+                  onClick={handleSendMessage}
+                  disabled={chatLoading || !chatInput.trim()}
+                >
+                  {chatLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
+                </Button>
+              </div>
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                {['Add 2 more days', 'Make it budget-friendly', 'Swap hotels to Luxury', 'Change difficulty to Easy'].map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => setChatInput(q)}
+                    className="text-[10px] bg-muted hover:bg-primary/10 hover:text-primary text-muted-foreground px-2.5 py-1 rounded-full transition-colors font-medium"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating AI Chat Button (mobile only) */}
+      <motion.button
+        className="absolute bottom-6 right-6 z-[10] lg:hidden w-14 h-14 rounded-full bg-primary shadow-float flex items-center justify-center overflow-visible"
+        onClick={() => { setIsMobileChatOpen((prev) => !prev); setUnreadCount(0) }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Open AI itinerary editor"
+      >
+        <AnimatePresence mode="wait">
+          {isMobileChatOpen ? (
+            <motion.span
+              key="close"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <X className="h-6 w-6 text-white" />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="open"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <Bot className="h-6 w-6 text-white" />
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        {/* Unread badge */}
+        <AnimatePresence>
+          {!isMobileChatOpen && unreadCount > 0 && (
+            <motion.span
+              key="badge"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              className="absolute -top-1.5 -right-1.5 min-w-[1.25rem] h-5 bg-secondary text-[10px] font-bold rounded-full flex items-center justify-center text-foreground px-1 leading-none shadow"
+            >
+              {unreadCount}
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        {/* Pulse dot when AI made changes but no unread */}
+        {!isMobileChatOpen && hasUnsavedChanges && unreadCount === 0 && (
+          <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#40e0d0] rounded-full animate-pulse shadow" />
+        )}
+      </motion.button>
+
     </div>
   )
 }
