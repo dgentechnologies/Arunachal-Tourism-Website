@@ -387,7 +387,7 @@ export default function ItineraryPlanPage({ params }: { params: Promise<{ id: st
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="organic-card overflow-hidden ghost-border shadow-float"
+              className="relative overflow-hidden ghost-border shadow-float rounded-[2rem]"
             >
               <div className="relative h-56 md:h-72">
                 <Image
