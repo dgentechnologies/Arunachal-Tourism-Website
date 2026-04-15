@@ -4,6 +4,7 @@ export const maxDuration = 60;
 
 import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,13 +12,25 @@ import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import {
   Calendar, MapPin, Utensils, BedDouble, CheckCircle2,
   ChevronRight, Clock, Zap, Bot, Send, Loader2, User,
-  Mountain, TreePine, Users, Waves, Globe, ArrowLeft
+  Mountain, TreePine, Users, Waves, Globe, ArrowLeft,
+  BookmarkPlus, BookmarkCheck, LogIn
 } from "lucide-react"
 import { premadeItineraries, type PremadeItinerary } from "@/lib/itinerary-data"
 import { chatAboutItinerary } from "@/ai/flows/itinerary-chat-flow"
 import { useToast } from "@/hooks/use-toast"
+import { useAuth } from "@/lib/auth-context"
+import { collection, doc, setDoc, getDocs, serverTimestamp } from "firebase/firestore"
+import { getFirebaseDbUsers } from "@/lib/firebase"
 
 /** Strip common Markdown formatting for plain-text chat display */
 function stripMarkdown(text: string): string {
@@ -52,14 +65,29 @@ export default function ItineraryPage() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
   const [chatInput, setChatInput] = useState("")
   const [chatLoading, setChatLoading] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+  const [savedPlanIds, setSavedPlanIds] = useState<Set<string>>(new Set())
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const chatBottomRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
+  const { user } = useAuth()
+  const router = useRouter()
 
   useEffect(() => {
     if (chatBottomRef.current) {
       chatBottomRef.current.scrollIntoView({ behavior: "smooth" })
     }
   }, [chatMessages])
+
+  // Load already-saved plan IDs for the current user
+  useEffect(() => {
+    if (!user) { setSavedPlanIds(new Set()); return }
+    const tripsRef = collection(getFirebaseDbUsers(), "users", user.uid, "trips")
+    getDocs(tripsRef).then((snap) => {
+      const ids = new Set(snap.docs.map((d) => d.data().planId as string).filter(Boolean))
+      setSavedPlanIds(ids)
+    }).catch(() => { /* silently ignore — not critical */ })
+  }, [user])
 
   const handleSelectPlan = (plan: PremadeItinerary) => {
     setSelectedPlan(plan)
@@ -69,6 +97,47 @@ export default function ItineraryPage() {
         content: `Hello! 👋 I'm your AI travel assistant for the **${plan.title}** (${plan.duration}).\n\nAsk me anything about this plan — I can help you customize it, suggest upgrades, explain what's included, or adjust it to fit your budget and interests!`,
       },
     ])
+  }
+
+  const handleSaveItinerary = async (plan: PremadeItinerary) => {
+    if (!user) {
+      setShowLoginPrompt(true)
+      return
+    }
+    if (isSaving) return
+    setIsSaving(true)
+    try {
+      const tripDocRef = doc(getFirebaseDbUsers(), "users", user.uid, "trips", plan.id)
+      await setDoc(tripDocRef, {
+        planId: plan.id,
+        title: plan.title,
+        circuit: plan.subtitle,
+        durationDays: plan.durationDays,
+        difficulty: plan.difficulty,
+        summary: plan.summary,
+        coverImage: plan.coverImage,
+        tags: plan.tags,
+        bestTime: plan.bestTime,
+        highlights: plan.highlights,
+        days: plan.days,
+        generatedByAI: false,
+        savedAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      })
+      setSavedPlanIds((prev) => new Set([...prev, plan.id]))
+      toast({
+        title: "Itinerary Saved!",
+        description: `"${plan.title}" has been saved to your account.`,
+      })
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Save Failed",
+        description: "Could not save itinerary. Please try again.",
+      })
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const handleSendMessage = async () => {
@@ -102,6 +171,36 @@ export default function ItineraryPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/10">
+      {/* Login Prompt Dialog */}
+      <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <BookmarkPlus className="h-5 w-5 text-primary" />
+              Sign in to Save Itinerary
+            </DialogTitle>
+            <DialogDescription>
+              Create a free account or sign in to save itineraries, track your trips, and access them anytime from your dashboard.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex flex-col sm:flex-row gap-2">
+            <Button variant="outline" className="flex-1" onClick={() => setShowLoginPrompt(false)}>
+              Maybe Later
+            </Button>
+            <Button
+              className="flex-1 gap-2"
+              onClick={() => {
+                setShowLoginPrompt(false)
+                router.push(`/login?redirect=/itinerary`)
+              }}
+            >
+              <LogIn className="h-4 w-4" />
+              Sign In / Sign Up
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       <div className="container mx-auto px-4 py-12 max-w-7xl">
         {/* Header */}
         <div className="text-center space-y-4 mb-10">
@@ -172,6 +271,19 @@ export default function ItineraryPage() {
                     <Button className="w-full mt-4 font-semibold group-hover:bg-primary/90" size="sm">
                       View Plan & Customize <ChevronRight className="h-4 w-4 ml-1" />
                     </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full mt-2 gap-1.5"
+                      onClick={(e) => { e.stopPropagation(); handleSaveItinerary(plan) }}
+                      disabled={isSaving && !savedPlanIds.has(plan.id)}
+                    >
+                      {savedPlanIds.has(plan.id) ? (
+                        <><BookmarkCheck className="h-4 w-4 text-primary" /> Saved</>
+                      ) : (
+                        <><BookmarkPlus className="h-4 w-4" /> Save Itinerary</>
+                      )}
+                    </Button>
                   </CardContent>
                 </Card>
               )
@@ -187,6 +299,27 @@ export default function ItineraryPage() {
             >
               <ArrowLeft className="h-4 w-4 mr-2" /> Back to all plans
             </Button>
+
+            {/* Save button row */}
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-xl font-bold text-primary font-headline truncate">{selectedPlan.title}</h2>
+              <Button
+                variant={savedPlanIds.has(selectedPlan.id) ? "secondary" : "default"}
+                size="sm"
+                className="gap-2 shrink-0"
+                onClick={() => handleSaveItinerary(selectedPlan)}
+                disabled={isSaving}
+              >
+                {isSaving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : savedPlanIds.has(selectedPlan.id) ? (
+                  <BookmarkCheck className="h-4 w-4" />
+                ) : (
+                  <BookmarkPlus className="h-4 w-4" />
+                )}
+                {savedPlanIds.has(selectedPlan.id) ? "Saved" : "Save Itinerary"}
+              </Button>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Left: Plan Details */}

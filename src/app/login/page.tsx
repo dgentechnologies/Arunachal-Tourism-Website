@@ -1,7 +1,7 @@
 ﻿"use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { useForm } from "react-hook-form"
@@ -22,9 +22,11 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>
 
-export default function LoginPage() {
+function LoginContent() {
   const { signInWithEmail, signInWithGoogle } = useAuth()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get("redirect") ?? "/account"
   const { toast } = useToast()
   const [googleLoading, setGoogleLoading] = useState(false)
 
@@ -37,7 +39,7 @@ export default function LoginPage() {
   async function onSubmit(data: FormValues) {
     try {
       await signInWithEmail(data.email, data.password)
-      router.push("/account")
+      router.push(redirectTo)
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Sign-in failed"
       toast({ title: "Sign-in failed", description: friendlyError(message), variant: "destructive" })
@@ -48,7 +50,7 @@ export default function LoginPage() {
     setGoogleLoading(true)
     try {
       await signInWithGoogle()
-      router.push("/account")
+      router.push(redirectTo)
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Google sign-in failed"
       toast({ title: "Google sign-in failed", description: friendlyError(message), variant: "destructive" })
@@ -190,6 +192,14 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginContent />
+    </Suspense>
   )
 }
 
