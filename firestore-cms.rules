@@ -52,6 +52,19 @@ service cloud.firestore {
         && request.auth.token.role == 'admin';
     }
 
+    // ── Shared Itineraries (user-generated share links) ────────────────────────
+    match /sharedItineraries/{token} {
+      // Anyone with the link can view the shared plan
+      allow read: if true;
+      // Only authenticated users may create a share document
+      allow create: if request.auth != null;
+      // Only the original owner may update their shared plan snapshot
+      allow update: if request.auth != null
+        && request.auth.uid == resource.data.ownerId;
+      // Shared plans are never deleted via client
+      allow delete: if false;
+    }
+
     // ── Deny everything else ──────────────────────────────────────────────────
     match /{document=**} {
       allow read, write: if false;

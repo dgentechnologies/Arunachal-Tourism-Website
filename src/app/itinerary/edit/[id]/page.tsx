@@ -14,6 +14,7 @@ import {
   Calendar, MapPin, Utensils, BedDouble, CheckCircle2,
   Clock, Zap, Bot, Send, Loader2, User, Sparkles, Pencil,
   Mountain, ArrowLeft, BookmarkCheck, BookmarkPlus, ChevronRight,
+  Share2, Copy, Check,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { chatAboutItinerary } from "@/ai/flows/itinerary-chat-flow"
@@ -23,7 +24,7 @@ import { useAuth } from "@/lib/auth-context"
 import {
   doc, getDoc, setDoc, serverTimestamp,
 } from "firebase/firestore"
-import { getFirebaseDbUsers } from "@/lib/firebase"
+import { getFirebaseDbUsers, getFirebaseDbCms } from "@/lib/firebase"
 import { cn } from "@/lib/utils"
 import type { PremadeItinerary } from "@/lib/itinerary-data"
 
@@ -64,6 +65,9 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
   const [chatLoading, setChatLoading] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+  const [sharedToken, setSharedToken] = useState<string | null>(null)
+  const [isSharing, setIsSharing] = useState(false)
+  const [shareCopied, setShareCopied] = useState(false)
   const chatBottomRef = useRef<HTMLDivElement>(null)
 
   // Load plan from Firestore
@@ -80,8 +84,9 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
           router.replace("/account/trips")
           return
         }
-        const data = snap.data() as PremadeItinerary & { savedAt?: unknown; updatedAt?: unknown }
+        const data = snap.data() as PremadeItinerary & { savedAt?: unknown; updatedAt?: unknown; sharedToken?: string }
         setPlan(data)
+        if (data.sharedToken) setSharedToken(data.sharedToken)
         setChatMessages([
           {
             role: 'assistant',
@@ -175,13 +180,68 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
         planId: plan.id ?? id,
         generatedByAI: true,
         updatedAt: serverTimestamp(),
+        ...(sharedToken ? { sharedToken } : {}),
       }, { merge: true })
+      // If plan is shared, refresh the shared snapshot in DB3
+      if (sharedToken) {
+        const sharedRef = doc(getFirebaseDbCms(), "sharedItineraries", sharedToken)
+        await setDoc(sharedRef, {
+          token: sharedToken,
+          ownerId: user.uid,
+          ownerName: user.displayName ?? null,
+          plan,
+          updatedAt: serverTimestamp(),
+        }, { merge: true })
+      }
       setHasUnsavedChanges(false)
       toast({ title: "Changes Saved!", description: "Your customised itinerary has been updated." })
     } catch {
       toast({ variant: "destructive", title: "Save Failed", description: "Could not save changes. Please try again." })
     } finally {
       setIsSaving(false)
+    }
+  }
+
+  const handleShare = async () => {
+    if (!user || !plan || isSharing) return
+    // Require saving before sharing
+    if (hasUnsavedChanges) {
+      toast({ title: "Save first", description: "Please save your changes before sharing." })
+      return
+    }
+    setIsSharing(true)
+    try {
+      const token = sharedToken ?? crypto.randomUUID()
+      const sharedRef = doc(getFirebaseDbCms(), "sharedItineraries", token)
+      await setDoc(sharedRef, {
+        token,
+        ownerId: user.uid,
+        ownerName: user.displayName ?? null,
+        plan,
+        createdAt: sharedToken ? undefined : serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      }, { merge: true })
+      if (!sharedToken) {
+        const tripDocRef = doc(getFirebaseDbUsers(), "users", user.uid, "trips", id)
+        await setDoc(tripDocRef, { sharedToken: token }, { merge: true })
+        setSharedToken(token)
+      }
+      const shareUrl = `${window.location.origin}/itinerary/share/${token}`
+      if (typeof navigator.share === "function") {
+        await navigator.share({ title: plan.title, text: `Check out my Arunachal trip plan: ${plan.title}`, url: shareUrl })
+      } else {
+        await navigator.clipboard.writeText(shareUrl)
+        setShareCopied(true)
+        setTimeout(() => setShareCopied(false), 2500)
+        toast({ title: "Link Copied!", description: "Share link copied to clipboard." })
+      }
+    } catch (err: unknown) {
+      const name = (err as { name?: string })?.name
+      if (name !== "AbortError") {
+        toast({ variant: "destructive", title: "Share Failed", description: "Could not generate share link. Please try again." })
+      }
+    } finally {
+      setIsSharing(false)
     }
   }
 
@@ -230,6 +290,23 @@ export default function ItineraryEditPage({ params }: { params: Promise<{ id: st
               Discard
             </Button>
           )}
+          <Button
+            size="sm"
+            variant="outline"
+            className="gap-1.5 text-xs h-8 border-primary/30 hover:bg-primary/5 hover:border-primary/60"
+            onClick={handleShare}
+            disabled={isSharing || hasUnsavedChanges}
+            title={hasUnsavedChanges ? "Save changes first to enable sharing" : "Share this itinerary"}
+          >
+            {isSharing ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : shareCopied ? (
+              <Check className="h-3.5 w-3.5 text-emerald-600" />
+            ) : (
+              <Share2 className="h-3.5 w-3.5 text-primary" />
+            )}
+            <span className="hidden sm:inline">{shareCopied ? "Copied!" : sharedToken ? "Share" : "Share"}</span>
+          </Button>
           <Button
             size="sm"
             className="gap-2 bg-primary hover:bg-primary/90 h-8"
