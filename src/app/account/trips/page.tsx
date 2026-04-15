@@ -189,7 +189,7 @@ export default function SavedTripsPage() {
                   </div>
                   <div className="flex gap-2 mt-2">
                     <Button className="flex-1" size="sm" variant="outline" asChild>
-                      <Link href="/itinerary">View Plans</Link>
+                      <Link href={`/itinerary/edit/${trip.id}`}>View Plan</Link>
                     </Button>
                     <Button className="flex-1 gap-1.5" size="sm" asChild>
                       <Link href={`/itinerary/edit/${trip.id}`}>
