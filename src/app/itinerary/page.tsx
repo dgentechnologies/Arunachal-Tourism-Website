@@ -93,6 +93,16 @@ export default function ItineraryPage() {
     }
   }, [chatMessages])
 
+  // Lock body scroll when plan detail overlay is open
+  useEffect(() => {
+    if (selectedPlan) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [selectedPlan])
+
   // Load already-saved plan IDs for the current user
   useEffect(() => {
     if (!user) { setSavedPlanIds(new Set()); return }
@@ -480,17 +490,18 @@ export default function ItineraryPage() {
         </>
       ) : (
         /* ── PLAN DETAIL + AI CHAT ─────────────────────────────────── */
-        <div className="flex flex-col" style={{ height: 'calc(100vh - 64px)' }}>
+        <div className="fixed inset-0 z-50 bg-background flex flex-col overflow-hidden">
 
-          {/* Back + Save row — fixed height bar */}
-          <div className="flex items-center justify-between px-3 md:px-8 py-3 md:py-4 border-b border-border/40 bg-background/95 backdrop-blur-sm shrink-0">
+          {/* Top bar — back button left, save right */}
+          <div className="flex items-center justify-between px-4 md:px-6 h-14 border-b border-border/40 bg-background/95 backdrop-blur-sm shrink-0">
             <button
               onClick={() => setSelectedPlan(null)}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
-              All Itineraries
+              <span className="hidden sm:inline">All Itineraries</span>
             </button>
+            <span className="absolute left-1/2 -translate-x-1/2 text-xs font-bold uppercase tracking-widest text-foreground/50 hidden md:block">Arunachal <span className="text-primary">Explore</span></span>
             <Button
               variant={savedPlanIds.has(selectedPlan.id) ? "secondary" : "default"}
               size="sm"
@@ -509,10 +520,10 @@ export default function ItineraryPage() {
             </Button>
           </div>
 
-          <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-3 gap-0 overflow-hidden">
+          <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-3 overflow-hidden">
 
-            {/* LEFT: Plan Details — scrollable */}
-            <div className="lg:col-span-2 overflow-y-auto px-3 md:px-8 py-6 md:py-8 space-y-6">
+            {/* LEFT: Plan Details — only this column scrolls */}
+            <div className="lg:col-span-2 h-full overflow-y-auto overscroll-contain px-4 md:px-8 py-6 space-y-6">
 
               {/* Cinematic plan header */}
               <motion.div
@@ -786,3 +797,4 @@ export default function ItineraryPage() {
     </div>
   )
 }
+
