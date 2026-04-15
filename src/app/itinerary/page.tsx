@@ -480,10 +480,10 @@ export default function ItineraryPage() {
         </>
       ) : (
         /* ── PLAN DETAIL + AI CHAT ─────────────────────────────────── */
-        <div className="px-3 md:px-8 py-6 md:py-10 max-w-[1440px] mx-auto">
+        <div className="flex flex-col" style={{ height: 'calc(100vh - 64px)' }}>
 
-          {/* Back + Save row */}
-          <div className="flex items-center justify-between mb-6">
+          {/* Back + Save row — fixed height bar */}
+          <div className="flex items-center justify-between px-3 md:px-8 py-3 md:py-4 border-b border-border/40 bg-background/95 backdrop-blur-sm shrink-0">
             <button
               onClick={() => setSelectedPlan(null)}
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
@@ -509,10 +509,10 @@ export default function ItineraryPage() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-3 gap-0 overflow-hidden">
 
-            {/* LEFT: Plan Details */}
-            <div className="lg:col-span-2 space-y-6">
+            {/* LEFT: Plan Details — scrollable */}
+            <div className="lg:col-span-2 overflow-y-auto px-3 md:px-8 py-6 md:py-8 space-y-6">
 
               {/* Cinematic plan header */}
               <motion.div
@@ -659,14 +659,13 @@ export default function ItineraryPage() {
               </div>
             </div>
 
-            {/* RIGHT: AI Chat */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24">
+            {/* RIGHT: AI Chat — fixed, fills full column height */}
+            <div className="lg:col-span-1 hidden lg:flex flex-col border-l border-border/40 bg-card">
                 <motion.div
                   initial={{ opacity: 0, x: 16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="organic-card-alt overflow-hidden shadow-float ghost-border"
+                  className="flex flex-col h-full overflow-hidden"
                 >
                   {/* Chat header */}
                   <div className="bg-gradient-to-br from-primary via-primary to-primary/90 px-5 py-4 relative overflow-hidden">
@@ -691,7 +690,7 @@ export default function ItineraryPage() {
                   </div>
 
                   {/* Messages */}
-                  <ScrollArea className="h-[360px] md:h-[440px] bg-card px-4 py-3">
+                  <ScrollArea className="flex-1 bg-card px-4 py-3">
                     <div className="space-y-3">
                       {chatMessages.map((msg, i) => (
                         <div
@@ -779,7 +778,6 @@ export default function ItineraryPage() {
                     </div>
                   </div>
                 </motion.div>
-              </div>
             </div>
 
           </div>
