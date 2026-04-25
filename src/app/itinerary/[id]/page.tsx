@@ -265,7 +265,7 @@ export default function ItineraryPlanPage({ params }: { params: Promise<{ id: st
     </div>
   )
 
-  const ChatInput = () => (
+  const chatInputJSX = (
     <div className="p-3 border-t border-border/50 bg-card shrink-0">
       <div className="flex gap-2">
         <Input
@@ -551,7 +551,7 @@ export default function ItineraryPlanPage({ params }: { params: Promise<{ id: st
               <ChatMessages bottomRef={chatBottomRef} />
             </ScrollArea>
 
-            <ChatInput />
+            {chatInputJSX}
           </motion.div>
         </div>
       </div>
@@ -618,7 +618,7 @@ export default function ItineraryPlanPage({ params }: { params: Promise<{ id: st
               <ChatMessages bottomRef={mobileChatBottomRef} />
             </ScrollArea>
 
-            <ChatInput />
+            {chatInputJSX}
           </motion.div>
         )}
       </AnimatePresence>
