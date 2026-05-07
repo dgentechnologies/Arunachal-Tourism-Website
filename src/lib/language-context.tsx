@@ -366,6 +366,30 @@ export interface Translations {
   ghByTrain: string
   ghByRoad: string
   ghInternational: string
+  navTravelAgentsLabel: string
+  navTravelAgentsDesc: string
+  travelAgentsPageTitle: string
+  travelAgentsPageSubtitle: string
+  travelAgentsStat1Label: string
+  travelAgentsStat2Label: string
+  travelAgentsStat3Label: string
+  travelAgentsStat4Label: string
+  travelAgentsSectionTitle: string
+  travelAgentsSectionSubtitle: string
+  travelAgentsTableAgency: string
+  travelAgentsTableLocation: string
+  travelAgentsTableSpeciality: string
+  travelAgentsTableContact: string
+  travelAgentsTableRating: string
+  travelAgentsVerifiedLabel: string
+  travelAgentsSupportTitle: string
+  travelAgentsSupportSubtitle: string
+  travelAgentsInfo1Title: string
+  travelAgentsInfo1Desc: string
+  travelAgentsInfo2Title: string
+  travelAgentsInfo2Desc: string
+  travelAgentsInfo3Title: string
+  travelAgentsInfo3Desc: string
 }
 
 const translations: Record<Language, Translations> = {
@@ -728,6 +752,30 @@ const translations: Record<Language, Translations> = {
     ghByTrain: "By Train",
     ghByRoad: "By Road",
     ghInternational: "International",
+    navTravelAgentsLabel: "Travel Agents",
+    navTravelAgentsDesc: "Verified local agencies for end-to-end trip support",
+    travelAgentsPageTitle: "Verified Travel Agents",
+    travelAgentsPageSubtitle: "Work with trusted local experts for permits, routing, accommodation and high-altitude logistics across Arunachal Pradesh.",
+    travelAgentsStat1Label: "Verified Operators",
+    travelAgentsStat2Label: "District Coverage",
+    travelAgentsStat3Label: "Avg Response",
+    travelAgentsStat4Label: "Support Window",
+    travelAgentsSectionTitle: "Agency Directory",
+    travelAgentsSectionSubtitle: "Browse professional operators by location and specialization. Contact details below are for planning support and itinerary coordination.",
+    travelAgentsTableAgency: "Agency",
+    travelAgentsTableLocation: "Location",
+    travelAgentsTableSpeciality: "Speciality",
+    travelAgentsTableContact: "Contact",
+    travelAgentsTableRating: "Rating",
+    travelAgentsVerifiedLabel: "Verified local partner",
+    travelAgentsSupportTitle: "How This Directory Helps",
+    travelAgentsSupportSubtitle: "Use this page to compare operators before you book. Always confirm pricing, permit timelines, inclusions, and cancellation terms directly with the agency.",
+    travelAgentsInfo1Title: "Compliance Ready",
+    travelAgentsInfo1Desc: "Most agencies assist with ILP/PAP documentation and route advisories.",
+    travelAgentsInfo2Title: "Fast Coordination",
+    travelAgentsInfo2Desc: "Get support on transfers, hotel blocks, and circuit feasibility windows.",
+    travelAgentsInfo3Title: "Local Intelligence",
+    travelAgentsInfo3Desc: "Ground-level updates on weather, road conditions, and access constraints.",
   },
 
   hi: {
@@ -1089,6 +1137,30 @@ const translations: Record<Language, Translations> = {
     ghByTrain: "रेल मार्ग",
     ghByRoad: "सड़क मार्ग",
     ghInternational: "अंतर्राष्ट्रीय",
+    navTravelAgentsLabel: "ट्रैवल एजेंट",
+    navTravelAgentsDesc: "पूरी यात्रा सहायता के लिए सत्यापित स्थानीय एजेंसियां",
+    travelAgentsPageTitle: "सत्यापित ट्रैवल एजेंट",
+    travelAgentsPageSubtitle: "अरुणाचल प्रदेश में परमिट, रूट, आवास और ऊंचाई वाले मार्गों के लिए भरोसेमंद स्थानीय विशेषज्ञों के साथ योजना बनाएं।",
+    travelAgentsStat1Label: "सत्यापित ऑपरेटर",
+    travelAgentsStat2Label: "जिला कवरेज",
+    travelAgentsStat3Label: "औसत प्रतिक्रिया",
+    travelAgentsStat4Label: "सहायता समय",
+    travelAgentsSectionTitle: "एजेंसी निर्देशिका",
+    travelAgentsSectionSubtitle: "स्थान और विशेषज्ञता के आधार पर पेशेवर ऑपरेटर देखें। नीचे दिए संपर्क योजना सहायता के लिए हैं।",
+    travelAgentsTableAgency: "एजेंसी",
+    travelAgentsTableLocation: "स्थान",
+    travelAgentsTableSpeciality: "विशेषज्ञता",
+    travelAgentsTableContact: "संपर्क",
+    travelAgentsTableRating: "रेटिंग",
+    travelAgentsVerifiedLabel: "सत्यापित स्थानीय भागीदार",
+    travelAgentsSupportTitle: "यह निर्देशिका कैसे मदद करती है",
+    travelAgentsSupportSubtitle: "बुकिंग से पहले एजेंसियों की तुलना करें। कीमत, परमिट समय, शामिल सेवाएं और रद्दीकरण शर्तें एजेंसी से पुष्टि करें।",
+    travelAgentsInfo1Title: "अनुपालन सहायता",
+    travelAgentsInfo1Desc: "अधिकांश एजेंसियां ILP/PAP दस्तावेज़ीकरण और रूट सलाह में मदद करती हैं।",
+    travelAgentsInfo2Title: "तेज़ समन्वय",
+    travelAgentsInfo2Desc: "ट्रांसफर, होटल ब्लॉक और यात्रा समय-सीमा पर सहायता प्राप्त करें।",
+    travelAgentsInfo3Title: "स्थानीय जानकारी",
+    travelAgentsInfo3Desc: "मौसम, सड़क स्थिति और पहुंच पर वास्तविक जमीनी अपडेट।",
   },
 
   bn: {
@@ -1450,6 +1522,30 @@ const translations: Record<Language, Translations> = {
     ghByTrain: "ট্রেনে",
     ghByRoad: "সড়কে",
     ghInternational: "আন্তর্জাতিক",
+    navTravelAgentsLabel: "ট্রাভেল এজেন্ট",
+    navTravelAgentsDesc: "সম্পূর্ণ ট্রিপ সাপোর্টের জন্য যাচাইকৃত স্থানীয় এজেন্সি",
+    travelAgentsPageTitle: "যাচাইকৃত ট্রাভেল এজেন্ট",
+    travelAgentsPageSubtitle: "অরুণাচল প্রদেশে পারমিট, রুট, থাকার ব্যবস্থা ও পাহাড়ি লজিস্টিকসের জন্য নির্ভরযোগ্য স্থানীয় বিশেষজ্ঞদের সঙ্গে পরিকল্পনা করুন।",
+    travelAgentsStat1Label: "যাচাইকৃত অপারেটর",
+    travelAgentsStat2Label: "জেলা কভারেজ",
+    travelAgentsStat3Label: "গড় প্রতিক্রিয়া",
+    travelAgentsStat4Label: "সহায়তা সময়",
+    travelAgentsSectionTitle: "এজেন্সি ডিরেক্টরি",
+    travelAgentsSectionSubtitle: "লোকেশন ও বিশেষায়নের ভিত্তিতে পেশাদার অপারেটর দেখুন। নিচের যোগাযোগগুলো ভ্রমণ পরিকল্পনা সহায়তার জন্য।",
+    travelAgentsTableAgency: "এজেন্সি",
+    travelAgentsTableLocation: "লোকেশন",
+    travelAgentsTableSpeciality: "বিশেষায়ন",
+    travelAgentsTableContact: "যোগাযোগ",
+    travelAgentsTableRating: "রেটিং",
+    travelAgentsVerifiedLabel: "যাচাইকৃত স্থানীয় অংশীদার",
+    travelAgentsSupportTitle: "এই ডিরেক্টরির সুবিধা",
+    travelAgentsSupportSubtitle: "বুকিংয়ের আগে অপারেটর তুলনা করুন। মূল্য, পারমিট সময়সীমা, অন্তর্ভুক্ত সেবা ও বাতিল নীতি সরাসরি এজেন্সির সঙ্গে নিশ্চিত করুন।",
+    travelAgentsInfo1Title: "কমপ্লায়েন্স সাপোর্ট",
+    travelAgentsInfo1Desc: "বেশিরভাগ এজেন্সি ILP/PAP ডকুমেন্টেশন ও রুট নির্দেশনা দেয়।",
+    travelAgentsInfo2Title: "দ্রুত সমন্বয়",
+    travelAgentsInfo2Desc: "ট্রান্সফার, হোটেল ব্লক এবং ভ্রমণ সময়সীমা নিয়ে সহায়তা পান।",
+    travelAgentsInfo3Title: "স্থানীয় আপডেট",
+    travelAgentsInfo3Desc: "আবহাওয়া, রাস্তার অবস্থা ও প্রবেশ সীমাবদ্ধতা সম্পর্কে মাঠপর্যায়ের তথ্য।",
   },
 
   as: {
@@ -1811,6 +1907,30 @@ const translations: Record<Language, Translations> = {
     ghByTrain: "ৰেলেৰে",
     ghByRoad: "ৰাস্তাৰে",
     ghInternational: "আন্তৰ্জাতিক",
+    navTravelAgentsLabel: "ট্ৰেভেল এজেন্ট",
+    navTravelAgentsDesc: "সম্পূৰ্ণ ভ্ৰমণ সহায়তাৰ বাবে যাচাইকৃত স্থানীয় এজেন্সী",
+    travelAgentsPageTitle: "যাচাইকৃত ট্ৰেভেল এজেন্ট",
+    travelAgentsPageSubtitle: "অৰুণাচল প্রদেশত পাৰমিট, ৰুট, থকা-খোৱাৰ ব্যৱস্থা আৰু পাহাৰীয়া লজিস্টিকছৰ বাবে নিৰ্ভৰযোগ্য স্থানীয় বিশেষজ্ঞৰ সৈতে পৰিকল্পনা কৰক।",
+    travelAgentsStat1Label: "যাচাইকৃত অপাৰেটৰ",
+    travelAgentsStat2Label: "জিলা কভাৰেজ",
+    travelAgentsStat3Label: "গড় সঁহাৰি",
+    travelAgentsStat4Label: "সহায়তাৰ সময়",
+    travelAgentsSectionTitle: "এজেন্সী ডাইৰেক্টৰি",
+    travelAgentsSectionSubtitle: "স্থান আৰু বিশেষজ্ঞতাৰ ভিত্তিত পেছাদাৰী অপাৰেটৰ চাওক। তলৰ যোগাযোগসমূহ ভ্ৰমণ পৰিকল্পনা সহায়তাৰ বাবে।",
+    travelAgentsTableAgency: "এজেন্সী",
+    travelAgentsTableLocation: "স্থান",
+    travelAgentsTableSpeciality: "বিশেষজ্ঞতা",
+    travelAgentsTableContact: "যোগাযোগ",
+    travelAgentsTableRating: "ৰেটিং",
+    travelAgentsVerifiedLabel: "যাচাইকৃত স্থানীয় অংশীদাৰ",
+    travelAgentsSupportTitle: "এই ডাইৰেক্টৰীয়ে কেনেকৈ সহায় কৰে",
+    travelAgentsSupportSubtitle: "বুকিংৰ আগতে অপাৰেটৰ তুলনা কৰক। মূল্য, পাৰমিট সময়সীমা, অন্তৰ্ভুক্ত সেৱা আৰু বাতিল নীতি এজেন্সীৰ সৈতে নিশ্চিত কৰক।",
+    travelAgentsInfo1Title: "কমপ্লায়েন্স সহায়তা",
+    travelAgentsInfo1Desc: "বহুত এজেন্সীয়ে ILP/PAP ডকুমেন্টেশন আৰু ৰুট পৰামৰ্শ দিয়ে।",
+    travelAgentsInfo2Title: "দ্ৰুত সমন্বয়",
+    travelAgentsInfo2Desc: "ট্ৰান্সফাৰ, হোটেল ব্লক আৰু ভ্ৰমণ সময়সীমাৰ বাবে সহায়তা লাভ কৰক।",
+    travelAgentsInfo3Title: "স্থানীয় আপডেট",
+    travelAgentsInfo3Desc: "বতৰ, ৰাস্তাৰ অৱস্থা আৰু প্ৰৱেশ সীমাবদ্ধতাৰ ভূমিস্তৰীয় তথ্য।",
   },
 }
 
